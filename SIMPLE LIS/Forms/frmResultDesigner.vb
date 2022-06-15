@@ -180,6 +180,7 @@ Public Class frmResultDesigner
     Private Sub loadDesign()
         If myFormaction = formaction.updateFormat Then
             Dim dt As DataTable = clsExamination.genericcls(10, Me.laboratoryid)
+            fbaseform.panelresultgrid.Visible = False
             For Each row As DataRow In dt.Rows
                 If row.Item("controltype") > 0 Then
                     If row.Item("visible") Then
@@ -322,6 +323,10 @@ Public Class frmResultDesigner
                             Exit Sub
                         End If
                     Case Else
+                        If fbaseform.cmbMedtech.SelectedIndex = -1 Or fbaseform.cmbPathologist.SelectedIndex = -1 Then
+                            MsgBox("Medical Tehnologist and Pathologist are required!", MsgBoxStyle.Critical, msgboxTitle)
+                            Exit Sub
+                        End If
                         Dim x As New clsLaboratoryResult
                         x.Oldlaboratoryid = fbaseform.laboratoryresultid  'Used as primarykey
                         x.laboratoryid = Me.laboratoryid
@@ -392,7 +397,7 @@ Public Class frmResultDesigner
                                 End If
                             Next
                         End If
-                        
+
                 End Select
                 updateRequestStatus(4)
                 MsgBox("Record successfully saved.", vbInformation, modGlobal.msgboxTitle)

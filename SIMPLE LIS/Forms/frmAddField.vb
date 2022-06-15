@@ -40,8 +40,12 @@
         Me.cmbFieldType.SelectedValue = Me.fieldtype
         Me.txtfieldname.Text = Me.fieldname
         Me.txtvalue.Text = Me.fieldoptions
+        If Me.fieldtype = clsModel.ConstrolTypes.ParagraphField Then
+            Me.txtfieldlabelrtf.Rtf = Me.fieldlabel
+        Else
+            Me.txtLabelText.Text = Me.fieldlabel
+        End If
         Me.cmbDefaultValue.Text = Me.fielddefaultval
-        Me.txtLabelText.Text = Me.fieldlabel
         Me.txtX.Text = Me.fieldlocationx
         Me.txtY.Text = Me.fieldlocationy
         Me.txtwidth.Text = Me.fieldwidth
@@ -53,6 +57,7 @@
             .Items.Add(New DictionaryEntry("Text Field", clsModel.ConstrolTypes.TextField))
             .Items.Add(New DictionaryEntry("Double Text Field", clsModel.ConstrolTypes.DoubleTextField))
             .Items.Add(New DictionaryEntry("Resizable Text Field", clsModel.ConstrolTypes.ResizableTextField))
+            .Items.Add(New DictionaryEntry("Paragraph Label", clsModel.ConstrolTypes.ParagraphField))
             .Items.Add(New DictionaryEntry("Dropdown Field", clsModel.ConstrolTypes.Dropdown))
             .Items.Add(New DictionaryEntry("Date & Time Picker", clsModel.ConstrolTypes.DateTimePicker))
             .Items.Add(New DictionaryEntry("Label H1 (Bold)", clsModel.ConstrolTypes.LabelH1))
@@ -83,7 +88,11 @@
         Me.fieldname = Me.txtfieldname.Text
         Me.fieldoptions = Me.txtvalue.Text
         Me.fielddefaultval = Me.cmbDefaultValue.Text
-        Me.fieldlabel = Me.txtLabelText.Text()
+        If fieldtype = clsModel.ConstrolTypes.ParagraphField Then
+            Me.fieldlabel = Me.txtfieldlabelrtf.Rtf
+        Else
+            Me.fieldlabel = Me.txtLabelText.Text()
+        End If
         Me.fieldlocationx = Val(Me.txtX.Text)
         Me.fieldlocationy = Val(Me.txtY.Text)
         Me.fieldwidth = Val(Me.txtwidth.Text)
@@ -103,6 +112,14 @@
         Else
             Me.txtheight.Text = clsModel.ConstrolTypes.DefaultPanelHeight
             Me.txtheight.Enabled = False
+        End If
+        If cmbFieldType.SelectedValue = clsModel.ConstrolTypes.ParagraphField Then
+            Me.txtheight.Enabled = True
+            Me.paneltextrtf.Visible = True
+            Me.paneltextreg.Visible = False
+        Else
+            Me.paneltextrtf.Visible = False
+            Me.paneltextreg.Visible = True
         End If
     End Sub
 End Class

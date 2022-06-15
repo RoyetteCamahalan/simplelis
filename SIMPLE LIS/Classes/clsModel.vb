@@ -10,11 +10,12 @@
         Public Shared LabelH5 As Integer = 8
         Public Shared ResizableTextField As Integer = 9
         Public Shared DateTimePicker As Integer = 10
+        Public Shared ParagraphField As Integer = 11
 
         Public Shared DoubleTextFieldHeight As Integer = 46
         Public Shared ResizableTextFieldHeight As Integer = 86
         Public Shared DefaultPanelHeight As Integer = 26
-        Public Shared DefaultPanelWidth As Integer = 32
+        Public Shared DefaultPanelWidth As Integer = 120
 
         Public Shared yyyyMMddhhmmtt As String = "yyyy/MM/dd hh:mm: tt"
         Public Shared Function getDescription(ByVal ctrtype As Integer) As String

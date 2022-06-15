@@ -82,7 +82,7 @@ Partial Class frmResultDesigner
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsmain.Size = New System.Drawing.Size(922, 39)
+        Me.tsmain.Size = New System.Drawing.Size(922, 38)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
         '
@@ -91,7 +91,7 @@ Partial Class frmResultDesigner
         Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
         Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 36)
+        Me.tsSave.Size = New System.Drawing.Size(35, 35)
         Me.tsSave.Text = "Save"
         Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -113,7 +113,7 @@ Partial Class frmResultDesigner
         Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
         Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 36)
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
         Me.tsClose.Text = "Close"
         Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -123,7 +123,7 @@ Partial Class frmResultDesigner
         Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
         Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsradtemplatemain.Name = "tsradtemplatemain"
-        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 36)
+        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
         Me.tsradtemplatemain.Text = "Templates"
         Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.tsradtemplatemain.Visible = False
@@ -189,7 +189,7 @@ Partial Class frmResultDesigner
         Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(257, 233)
+        Me.dgvResult.Size = New System.Drawing.Size(257, 234)
         Me.dgvResult.TabIndex = 230
         '
         'colchk
@@ -293,9 +293,9 @@ Partial Class frmResultDesigner
         Me.panelsidebar.Controls.Add(Me.btnAdd)
         Me.panelsidebar.Controls.Add(Me.dgvResult)
         Me.panelsidebar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.panelsidebar.Location = New System.Drawing.Point(659, 39)
+        Me.panelsidebar.Location = New System.Drawing.Point(659, 38)
         Me.panelsidebar.Name = "panelsidebar"
-        Me.panelsidebar.Size = New System.Drawing.Size(263, 329)
+        Me.panelsidebar.Size = New System.Drawing.Size(263, 330)
         Me.panelsidebar.TabIndex = 231
         '
         'btnpreview

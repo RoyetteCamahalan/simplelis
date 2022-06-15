@@ -145,7 +145,7 @@ Public Class frmResultBaseDesign
         If medtech > 0 Then
             Me.cmbMedtech.SelectedValue = medtech
         ElseIf Me.cmbMedtech.Items.Count > 0 Then
-            Me.cmbMedtech.SelectedIndex = 0
+            Me.cmbMedtech.SelectedValue = modGlobal.userid
         End If
 
     End Sub
@@ -416,7 +416,28 @@ Public Class frmResultBaseDesign
             If islock Then
                 txt.BackColor = Color.White
                 txt.ReadOnly = True
+                txt.BorderStyle = BorderStyle.None
             End If
+        ElseIf ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+            panel.Height = IIf(panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, panelheight)
+            Dim loctop As Integer = 20
+            Dim locl As Integer = 19
+
+            Dim txt As New RichTextBox
+            txt.Size = New Size(panel.Width - locl - 4, panel.Height - loctop - 4)
+            txt.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+            panel.Controls.Add(txt)
+
+            txt.Rtf = labeltext
+            txt.Left = locl
+            txt.Top = loctop
+            txt.Name = "txt_" & uuid
+            txt.BringToFront()
+            'If islock Then
+            txt.BackColor = Color.White
+            txt.ReadOnly = True
+            txt.BorderStyle = BorderStyle.None
+            'End If
         Else
             Dim locl As Integer = 137
             If labeltext = "" Then
