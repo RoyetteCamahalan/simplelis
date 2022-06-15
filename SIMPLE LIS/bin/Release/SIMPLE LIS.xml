@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SIMPLELIS
+</name>
+</assembly>
+<members>
+<member name="M:SIMPLE_LIS.clsQuery.GetData">
+	<summary>
+ Gets the Data From the Database. 
+ Must Execute the ExecuteQueryDB method First before using this method.
+ </summary>
+	<returns>Return True if no error occured, return false if error occured</returns>
+	<remarks></remarks>
+</member><member name="P:SIMPLE_LIS.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:SIMPLE_LIS.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:SIMPLE_LIS.My.Resources.Resources.add_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:SIMPLE_LIS.My.Resources.Resources.delete_16x16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:SIMPLE_LIS.My.Resources.Resources.logo_his">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:SIMPLE_LIS.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

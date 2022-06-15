@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SIMPLE LIS", "SIMPLE LIS\SIMPLE LIS.vbproj", "{A608FEA1-0DE5-4726-AE71-4761CE37C25B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A608FEA1-0DE5-4726-AE71-4761CE37C25B}.Debug|x86.ActiveCfg = Debug|x86
+		{A608FEA1-0DE5-4726-AE71-4761CE37C25B}.Debug|x86.Build.0 = Debug|x86
+		{A608FEA1-0DE5-4726-AE71-4761CE37C25B}.Release|x86.ActiveCfg = Release|x86
+		{A608FEA1-0DE5-4726-AE71-4761CE37C25B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
