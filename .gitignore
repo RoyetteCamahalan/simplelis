@@ -1,0 +1,8 @@
+**/Debug/*
+!**/Debug/*.dll
+!**/Debug/templates
+**/Debug/templates/temp/*
+Obj/
+App.config
+desktop.ini
+README.MD
