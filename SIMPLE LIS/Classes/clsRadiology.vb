@@ -322,6 +322,11 @@ Public Class clsRadiology
         Dim strVal() As Object = {0, isNew, requestdetailno}
         Return GenericDA.ManageQuery(strPar, strVal, "spRadiology", 0)
     End Function
+    Public Shared Function getPreviousResults(ByVal patientid As Long, ByVal requestdetailno As String) As DataTable
+        Dim strPar() As String = {"operation", "soperation", "search", "patientrequestdetailno"}
+        Dim strVal() As Object = {0, 10, patientid, requestdetailno}
+        Return GenericDA.ManageQuery(strPar, strVal, "spRadiology", 0)
+    End Function
     Public Shared Function removeImages(ByVal d As String) As Boolean
         Dim myConnection As New clsDBConnection
         Dim okdelete As Boolean = False

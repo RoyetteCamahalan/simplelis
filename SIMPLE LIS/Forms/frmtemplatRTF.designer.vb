@@ -26,14 +26,14 @@ Partial Class frmtemplateRTF
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmtemplateRTF))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.tbResult = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -44,6 +44,10 @@ Partial Class frmtemplateRTF
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.dgvImageAddress = New System.Windows.Forms.DataGridView()
+        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsImageTools = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButtonbrowswimage = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -92,7 +96,6 @@ Partial Class frmtemplateRTF
         Me.MiscPrintDocu = New System.Drawing.Printing.PrintDocument()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbradiologist = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -104,10 +107,8 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmbpreviousresult = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.tbResult.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -186,6 +187,7 @@ Partial Class frmtemplateRTF
         Me.txtpreviousresult.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtpreviousresult.Location = New System.Drawing.Point(562, 3)
         Me.txtpreviousresult.Name = "txtpreviousresult"
+        Me.txtpreviousresult.ReadOnly = True
         Me.txtpreviousresult.Size = New System.Drawing.Size(553, 471)
         Me.txtpreviousresult.TabIndex = 53
         Me.txtpreviousresult.Text = ""
@@ -245,29 +247,29 @@ Partial Class frmtemplateRTF
         Me.dgvImageAddress.AllowUserToDeleteRows = False
         Me.dgvImageAddress.AllowUserToResizeColumns = False
         Me.dgvImageAddress.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.dgvImageAddress.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.dgvImageAddress.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.dgvImageAddress.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvImageAddress.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvImageAddress.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvImageAddress.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvImageAddress.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
         Me.dgvImageAddress.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvImageAddress.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colimagename, Me.colimagedesc, Me.collocation, Me.colimageid})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvImageAddress.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvImageAddress.DefaultCellStyle = DataGridViewCellStyle19
         Me.dgvImageAddress.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvImageAddress.Location = New System.Drawing.Point(0, 30)
         Me.dgvImageAddress.Name = "dgvImageAddress"
@@ -275,6 +277,34 @@ Partial Class frmtemplateRTF
         Me.dgvImageAddress.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvImageAddress.Size = New System.Drawing.Size(413, 421)
         Me.dgvImageAddress.TabIndex = 6
+        '
+        'colimagename
+        '
+        Me.colimagename.HeaderText = "Image Name"
+        Me.colimagename.Name = "colimagename"
+        Me.colimagename.ReadOnly = True
+        Me.colimagename.Width = 160
+        '
+        'colimagedesc
+        '
+        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.colimagedesc.HeaderText = "Description"
+        Me.colimagedesc.Name = "colimagedesc"
+        '
+        'collocation
+        '
+        Me.collocation.HeaderText = "Location"
+        Me.collocation.Name = "collocation"
+        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.collocation.Visible = False
+        '
+        'colimageid
+        '
+        Me.colimageid.HeaderText = "colimageid"
+        Me.colimageid.Name = "colimageid"
+        Me.colimageid.ReadOnly = True
+        Me.colimageid.Visible = False
         '
         'tsImageTools
         '
@@ -431,43 +461,43 @@ Partial Class frmtemplateRTF
         Me.DGVFilm.AllowUserToDeleteRows = False
         Me.DGVFilm.AllowUserToResizeColumns = False
         Me.DGVFilm.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.DGVFilm.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.DGVFilm.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle20
         Me.DGVFilm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGVFilm.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGVFilm.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.DGVFilm.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGVFilm.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGVFilm.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle21
         Me.DGVFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DGVFilm.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colremove, Me.colitemcode, Me.colfilmname, Me.colnooffilms, Me.Column14, Me.colchargedetailsid})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DGVFilm.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DGVFilm.DefaultCellStyle = DataGridViewCellStyle23
         Me.DGVFilm.GridColor = System.Drawing.Color.WhiteSmoke
         Me.DGVFilm.Location = New System.Drawing.Point(16, 14)
         Me.DGVFilm.MultiSelect = False
         Me.DGVFilm.Name = "DGVFilm"
         Me.DGVFilm.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGVFilm.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGVFilm.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.DGVFilm.RowHeadersVisible = False
         Me.DGVFilm.RowHeadersWidth = 30
         Me.DGVFilm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -501,9 +531,9 @@ Partial Class frmtemplateRTF
         '
         'Column14
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.NullValue = False
-        Me.Column14.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle22.NullValue = False
+        Me.Column14.DefaultCellStyle = DataGridViewCellStyle22
         Me.Column14.HeaderText = "Is Used?"
         Me.Column14.Name = "Column14"
         Me.Column14.Visible = False
@@ -646,9 +676,9 @@ Partial Class frmtemplateRTF
         Me.dtDate.CustomFormat = ""
         Me.dtDate.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtDate.Location = New System.Drawing.Point(553, 72)
+        Me.dtDate.Location = New System.Drawing.Point(831, 9)
         Me.dtDate.Name = "dtDate"
-        Me.dtDate.Size = New System.Drawing.Size(304, 26)
+        Me.dtDate.Size = New System.Drawing.Size(130, 26)
         Me.dtDate.TabIndex = 269
         '
         'lblDate
@@ -657,7 +687,7 @@ Partial Class frmtemplateRTF
         Me.lblDate.BackColor = System.Drawing.Color.White
         Me.lblDate.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblDate.ForeColor = System.Drawing.Color.Black
-        Me.lblDate.Location = New System.Drawing.Point(482, 76)
+        Me.lblDate.Location = New System.Drawing.Point(760, 13)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(69, 18)
         Me.lblDate.TabIndex = 268
@@ -749,15 +779,6 @@ Partial Class frmtemplateRTF
         Me.cmbradiologist.Size = New System.Drawing.Size(304, 26)
         Me.cmbradiologist.TabIndex = 276
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(1004, 13)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 275
-        Me.Button1.Text = "test print"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.HeaderText = "old location..."
@@ -844,33 +865,32 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         Me.DataGridViewTextBoxColumn11.Width = 132
         '
-        'colimagename
+        'cmbpreviousresult
         '
-        Me.colimagename.HeaderText = "Image Name"
-        Me.colimagename.Name = "colimagename"
-        Me.colimagename.ReadOnly = True
-        Me.colimagename.Width = 160
+        Me.cmbpreviousresult.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbpreviousresult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbpreviousresult.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.cmbpreviousresult.FormattingEnabled = True
+        Me.cmbpreviousresult.Location = New System.Drawing.Point(831, 86)
+        Me.cmbpreviousresult.Name = "cmbpreviousresult"
+        Me.cmbpreviousresult.Size = New System.Drawing.Size(304, 26)
+        Me.cmbpreviousresult.TabIndex = 278
         '
-        'colimagedesc
+        'Label2
         '
-        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.colimagedesc.HeaderText = "Description"
-        Me.colimagedesc.Name = "colimagedesc"
-        '
-        'collocation
-        '
-        Me.collocation.HeaderText = "Location"
-        Me.collocation.Name = "collocation"
-        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.collocation.Visible = False
-        '
-        'colimageid
-        '
-        Me.colimageid.HeaderText = "colimageid"
-        Me.colimageid.Name = "colimageid"
-        Me.colimageid.ReadOnly = True
-        Me.colimageid.Visible = False
+        Me.Label2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(718, 89)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(114, 18)
+        Me.Label2.TabIndex = 279
+        Me.Label2.Text = "Previous Results:"
         '
         'frmtemplateRTF
         '
@@ -879,9 +899,9 @@ Partial Class frmtemplateRTF
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1138, 611)
         Me.ControlBox = False
+        Me.Controls.Add(Me.cmbpreviousresult)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbradiologist)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblexamination)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.dtDate)
@@ -894,6 +914,7 @@ Partial Class frmtemplateRTF
         Me.Controls.Add(Me.lblPatientname)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.cmbRadTech)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.tbResult)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -987,11 +1008,12 @@ Partial Class frmtemplateRTF
     Friend WithEvents txtpreviousresult As System.Windows.Forms.RichTextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cmbradiologist As System.Windows.Forms.ComboBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents colimagename As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colimagedesc As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents collocation As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colimageid As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents cmbpreviousresult As System.Windows.Forms.ComboBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 End Class

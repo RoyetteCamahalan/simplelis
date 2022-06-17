@@ -313,10 +313,14 @@ Public Class frmtemplateRTF
             Me.txtPatientname.Text = dtResult.Rows(0).Item("patient").ToString
             Me.txtAge.Text = dtResult.Rows(0).Item("age").ToString
             Me.lblexamination.Text = dtResult.Rows(0).Item("itemspecs").ToString
-            Me.cmbRadTech.SelectedValue = dtResult.Rows(0).Item("radtechid")
-            Me.cmbradiologist.SelectedValue = dtResult.Rows(0).Item("radiologistid")
             Me.laboratoryresultid = dtResult.Rows(0).Item("laboratoryresultid")
             Me.labradiologyid = dtResult.Rows(0).Item("labradiologyid")
+            If Me.laboratoryresultid = 0 Then
+                Me.cmbRadTech.SelectedValue = modGlobal.userid
+            Else
+                Me.cmbRadTech.SelectedValue = dtResult.Rows(0).Item("radtechid")
+            End If
+            Me.cmbradiologist.SelectedValue = dtResult.Rows(0).Item("radiologistid")
             Me.patientid = dtResult.Rows(0).Item("patientid")
             Me.patientname = dtResult.Rows(0).Item("patient")
             Me.patientbirthdate = Utility.NullToDefaultDateFormat(dtResult.Rows(0).Item("birthdate"))
@@ -349,6 +353,18 @@ Public Class frmtemplateRTF
         Catch ex As Exception
         End Try
         img = Me.Picture.Image
+        loadPreviousResult()
+    End Sub
+    Private Sub loadPreviousResult()
+        Dim dt As DataTable = clsRadiology.getPreviousResults(Me.patientid, Me.requestdetailno)
+        With Me.cmbpreviousresult
+            .DataSource = dt
+            .DisplayMember = "testdesc"
+            .ValueMember = "patientrequestdetailno"
+            If .Items.Count > 0 Then
+                .SelectedIndex = 0
+            End If
+        End With
     End Sub
     Private Sub readImageName(ByVal dgv As String)
         Try
@@ -677,7 +693,21 @@ Public Class frmtemplateRTF
         End If
     End Sub
 
-    Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs)
         DisplayPrintPreview()
+    End Sub
+
+    Private Sub cmbpreviousresult_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbpreviousresult.SelectedValueChanged
+        Try
+            If Me.cmbpreviousresult.SelectedValue > 0 Then
+                Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(Me.cmbpreviousresult.SelectedValue, 9)
+                Dim prevrtfLocation = String.Format("{0}\{1}\results\{2}.rtf", DocumentLocation, dtResult.Rows(0).Item("admissionid"), Me.cmbpreviousresult.SelectedValue)
+                If File.Exists(prevrtfLocation) Then
+                    Me.txtpreviousresult.LoadFile(prevrtfLocation)
+                End If
+            End If
+        Catch ex As Exception
+            Me.txtpreviousresult.Text = ""
+        End Try
     End Sub
 End Class
