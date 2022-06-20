@@ -327,6 +327,7 @@ Public Class frmtemplateRTF
             Me.ptno = Utility.NullToEmptyString(dtResult.Rows(0).Item("ptno"))
             Me.patientaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
             Me.radiologistdesignation = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistdesignation"))
+            Me.dtDate.Value = Utility.NullToCurrentDate(dtResult.Rows(0).Item("dateencoded"))
 
             Dim dtResultImages As DataTable = clsRadiology.getRadiologyResultDetailsImages(requestdetailno, 4)
             For i = 0 To dtResultImages.Rows.Count - 1

@@ -206,6 +206,7 @@ Public Class frmResultDesigner
                 islock = True
             End If
             If Me.labformatid = clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION Then
+
                 For Each row As DataRow In dt.Rows
                     If row.Item("visible") Then
                         fbaseform.dgvResult.Rows.Add(1)
@@ -342,6 +343,7 @@ Public Class frmResultDesigner
                         x.medicaltechnologist = x.medtech
                         x.releasedby = modGlobal.userid
                         x.datereleased = "01/01/1990"
+                        x.remarks = fbaseform.txtgridremarks.Text
                         If x.Oldlaboratoryid = 0 Then
                             x.Oldlaboratoryid = x.Save(True)
                             Call SaveLog("Laboratory", "New " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)
