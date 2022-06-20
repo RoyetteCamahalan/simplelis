@@ -30,7 +30,7 @@ Public Class frmResultBaseDesign
     Public labexaminationno As Long
 
     'default grid height
-    Private rowheight As Integer = 22
+    Private rowheight As Integer = 20
 
 #End Region
 #Region "Constructor"
@@ -112,6 +112,7 @@ Public Class frmResultBaseDesign
         Me.txtcontactno.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("mobileno").ToString)
         Me.lblptno.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("ptno").ToString)
         Me.lblpatientaddress.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("homeaddress").ToString)
+        Me.txtgridremarks.Text = dtPatientDetails.Rows(0).Item("remarks")
     End Sub
     Private Sub LoadCombo()
         afterload = False
@@ -684,10 +685,14 @@ Public Class frmResultBaseDesign
                     Me.dgvResult.Rows.RemoveAt(i)
                     Call reduceForm()
                 Else
-                    Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value & " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                    Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
                 End If
             Next
             Me.panelmanageparams.Visible = False
+            Me.panelresultgrid.Height = Me.panelresultgrid.Height - Me.panelmanageparams.Height
+            Me.Height = Me.Height - Me.panelmanageparams.Height
+            Me.txtgridremarks.ReadOnly = True
+            Me.txtgridremarks.BorderStyle = BorderStyle.None
             Me.dgvResult.Columns(colunits.Index).Width = CInt(Me.dgvResult.Columns(colunits.Index).Width + (Me.dgvResult.Columns(colresult.Index).Width / 2))
             Me.dgvResult.Columns(colresult.Index).Visible = False
             Me.dgvResult.Columns(colunits.Index).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter

@@ -17,6 +17,7 @@
     Dim mmedtech As Long
     Dim mreleasedby As Long
     Dim mdatereleased As Date
+    Dim mremarks As String
 #End Region
 #Region "Properties"
     Public Property Oldlaboratoryid() As Long
@@ -147,6 +148,14 @@
             mdatereleased = value
         End Set
     End Property
+    Public Property remarks() As String
+        Get
+            Return mremarks
+        End Get
+        Set(ByVal value As String)
+            mremarks = value
+        End Set
+    End Property
 #End Region
 #Region "Methods"
     Public Shared Function genericcls(ByVal soperation As Integer, ByVal search As String) As DataTable
@@ -189,9 +198,9 @@
             operation = 2
         End If
         Dim strPar() As String = {"@operation", "@soperation", "@Oldlaboratoryid", "@laboratoryid", "@itemcode", "@admissionid", "@patientrequestno", "@specimen", "@labno", "@datesubmitted", "@dateencoded", _
-                                  "@encodedby", "@pathologist", "@medicaltechnologist", "@medtech", "@releasedby", "@datereleased", "NewPK"}
+                                  "@encodedby", "@pathologist", "@medicaltechnologist", "@medtech", "@releasedby", "@datereleased", "@remarks", "NewPK"}
         Dim strVal() As Object = {operation, soperation, Me.Oldlaboratoryid, Me.laboratoryid, Me.itemcode, Me.admissionid, Me.patientrequestno, Me.specimen, Me.labno, Me.datesubmitted, Me.dateencoded, _
-                                    Me.encodedby, Me.pathologist, Me.medicaltechnologist, Me.medtech, Me.releasedby, Me.datereleased, 1}
+                                    Me.encodedby, Me.pathologist, Me.medicaltechnologist, Me.medtech, Me.releasedby, Me.datereleased, Me.remarks, 1}
         Return GenericDA.ManageQuery(strPar, strVal, "spLaboratoryResult", 2)
     End Function
 #End Region
