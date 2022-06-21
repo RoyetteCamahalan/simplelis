@@ -44,7 +44,7 @@ Public Class frmtemplateRTF
 
     Private ImageStorage As String
     Private DocumentLocation As String
-    Private rtfLocation As String
+    Public rtfLocation As String
 
     Dim dtHospitalInfo As New DataTable
 
@@ -207,6 +207,15 @@ Public Class frmtemplateRTF
 
 #End Region
 #Region "Methods"
+    Public Sub testprint()
+        Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
+        dtResult.Rows(0).Item("result") = Me.txtResult.Rtf
+        Dim crpt As New crptRadTemplate
+        crpt.SetDataSource(dtResult)
+        Dim frm As New frmReportHandler
+        frm.crvPrinting.ReportSource = crpt
+        frm.ShowDialog()
+    End Sub
     Private Function BrowseFile() As Boolean
         Dim dlg As New OpenFileDialog()
         dlg.Filter = "Image Files|*.jpg;*.bmp;*.png;*.jpeg"

@@ -132,6 +132,18 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
+    <Compile Include="Forms\frmPrintMDI.Designer.vb">
+      <DependentUpon>frmPrintMDI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintMDI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRTFPrint.Designer.vb">
+      <DependentUpon>frmRTFPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRTFPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmtemplatRTF.designer.vb">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </Compile>
@@ -211,8 +223,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\crptRadTemplate.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crptRadTemplate.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\frmReportHandler.Designer.vb">
+      <DependentUpon>frmReportHandler.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmReportHandler.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmPrintMDI.resx">
+      <DependentUpon>frmPrintMDI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRTFPrint.resx">
+      <DependentUpon>frmRTFPrint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmtemplatRTF.resx">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </EmbeddedResource>
@@ -252,6 +282,13 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crptRadTemplate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crptRadTemplate.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmReportHandler.resx">
+      <DependentUpon>frmReportHandler.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -276,9 +313,7 @@
     <None Include="Resources\delete-16x16.png" />
     <None Include="Resources\add_16.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
