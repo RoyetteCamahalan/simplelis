@@ -22,42 +22,31 @@ Partial Class frmResultDesigner
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmResultDesigner))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmResultDesigner))
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tsmain = New System.Windows.Forms.ToolStrip()
-        Me.tsSave = New System.Windows.Forms.ToolStripButton()
-        Me.tsPrint = New System.Windows.Forms.ToolStripButton()
-        Me.tsClose = New System.Windows.Forms.ToolStripButton()
-        Me.tsradtemplatemain = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.LoadFromTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveAsNewTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExternalTemplateManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
         Me.colchk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colfieldname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtypedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coloptionvalues = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratorydetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtype = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coluuid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationx = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationy = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coldefaultvalue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratoryresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collabeltext = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colwidth = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colheight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelsidebar = New System.Windows.Forms.Panel()
         Me.btnpreview = New System.Windows.Forms.Button()
         Me.txtpanelheight = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.tsSave = New System.Windows.Forms.ToolStripButton()
+        Me.tsPrint = New System.Windows.Forms.ToolStripButton()
+        Me.tsoptions = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.tsMergeWithOtherResultToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsClose = New System.Windows.Forms.ToolStripButton()
+        Me.tsradtemplatemain = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.LoadFromTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveAsNewTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExternalTemplateManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,6 +60,19 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfieldname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfieldtypedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coloptionvalues = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collaboratorydetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfieldtype = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coluuid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocationx = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocationy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coldefaultvalue = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collaboratoryresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collabeltext = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colwidth = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colheight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsmain.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelsidebar.SuspendLayout()
@@ -78,77 +80,13 @@ Partial Class frmResultDesigner
         '
         'tsmain
         '
-        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsPrint, Me.tsClose, Me.tsradtemplatemain})
+        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsPrint, Me.tsoptions, Me.tsClose, Me.tsradtemplatemain})
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.tsmain.Size = New System.Drawing.Size(922, 38)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
-        '
-        'tsSave
-        '
-        Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
-        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 35)
-        Me.tsSave.Text = "Save"
-        Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsPrint
-        '
-        Me.tsPrint.Image = CType(resources.GetObject("tsPrint.Image"), System.Drawing.Image)
-        Me.tsPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsPrint.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsPrint.Name = "tsPrint"
-        Me.tsPrint.Size = New System.Drawing.Size(36, 36)
-        Me.tsPrint.Text = "Print"
-        Me.tsPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.tsPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsPrint.ToolTipText = "CTRL+P-Print"
-        Me.tsPrint.Visible = False
-        '
-        'tsClose
-        '
-        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
-        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 35)
-        Me.tsClose.Text = "Close"
-        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsradtemplatemain
-        '
-        Me.tsradtemplatemain.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadFromTemplateToolStripMenuItem, Me.SaveAsNewTemplateToolStripMenuItem, Me.ExternalTemplateManagementToolStripMenuItem})
-        Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
-        Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsradtemplatemain.Name = "tsradtemplatemain"
-        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
-        Me.tsradtemplatemain.Text = "Templates"
-        Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsradtemplatemain.Visible = False
-        '
-        'LoadFromTemplateToolStripMenuItem
-        '
-        Me.LoadFromTemplateToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
-        Me.LoadFromTemplateToolStripMenuItem.Name = "LoadFromTemplateToolStripMenuItem"
-        Me.LoadFromTemplateToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.LoadFromTemplateToolStripMenuItem.Text = "Load from templates"
-        '
-        'SaveAsNewTemplateToolStripMenuItem
-        '
-        Me.SaveAsNewTemplateToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
-        Me.SaveAsNewTemplateToolStripMenuItem.Name = "SaveAsNewTemplateToolStripMenuItem"
-        Me.SaveAsNewTemplateToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.SaveAsNewTemplateToolStripMenuItem.Text = "Save as template"
-        '
-        'ExternalTemplateManagementToolStripMenuItem
-        '
-        Me.ExternalTemplateManagementToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
-        Me.ExternalTemplateManagementToolStripMenuItem.Name = "ExternalTemplateManagementToolStripMenuItem"
-        Me.ExternalTemplateManagementToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.ExternalTemplateManagementToolStripMenuItem.Text = "External Template Management"
-        Me.ExternalTemplateManagementToolStripMenuItem.ToolTipText = "Opens the directory of template to edit templates using MS Word"
         '
         'dgvResult
         '
@@ -189,7 +127,7 @@ Partial Class frmResultDesigner
         Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(257, 234)
+        Me.dgvResult.Size = New System.Drawing.Size(257, 330)
         Me.dgvResult.TabIndex = 230
         '
         'colchk
@@ -199,91 +137,6 @@ Partial Class frmResultDesigner
         Me.colchk.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.colchk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.colchk.Width = 30
-        '
-        'colfieldname
-        '
-        Me.colfieldname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.colfieldname.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colfieldname.HeaderText = "Name"
-        Me.colfieldname.Name = "colfieldname"
-        Me.colfieldname.ReadOnly = True
-        '
-        'colfieldtypedesc
-        '
-        Me.colfieldtypedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.colfieldtypedesc.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colfieldtypedesc.HeaderText = "Type"
-        Me.colfieldtypedesc.Name = "colfieldtypedesc"
-        Me.colfieldtypedesc.ReadOnly = True
-        Me.colfieldtypedesc.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'coloptionvalues
-        '
-        Me.coloptionvalues.HeaderText = "coloptionvalues"
-        Me.coloptionvalues.Name = "coloptionvalues"
-        Me.coloptionvalues.Visible = False
-        '
-        'collaboratorydetailsid
-        '
-        Me.collaboratorydetailsid.HeaderText = "laboratorydetailsid"
-        Me.collaboratorydetailsid.Name = "collaboratorydetailsid"
-        Me.collaboratorydetailsid.Visible = False
-        '
-        'colfieldtype
-        '
-        Me.colfieldtype.HeaderText = "colfieldtype"
-        Me.colfieldtype.Name = "colfieldtype"
-        Me.colfieldtype.Visible = False
-        '
-        'coluuid
-        '
-        Me.coluuid.HeaderText = "coluuid"
-        Me.coluuid.Name = "coluuid"
-        Me.coluuid.Visible = False
-        '
-        'collocationx
-        '
-        Me.collocationx.HeaderText = "collocationx"
-        Me.collocationx.Name = "collocationx"
-        Me.collocationx.Visible = False
-        '
-        'collocationy
-        '
-        Me.collocationy.HeaderText = "collocationy"
-        Me.collocationy.Name = "collocationy"
-        Me.collocationy.Visible = False
-        '
-        'coldefaultvalue
-        '
-        Me.coldefaultvalue.HeaderText = "coldefaultvalue"
-        Me.coldefaultvalue.Name = "coldefaultvalue"
-        Me.coldefaultvalue.Visible = False
-        '
-        'collaboratoryresultdetailid
-        '
-        Me.collaboratoryresultdetailid.HeaderText = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Name = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Visible = False
-        '
-        'collabeltext
-        '
-        Me.collabeltext.HeaderText = "collabeltext"
-        Me.collabeltext.Name = "collabeltext"
-        Me.collabeltext.Visible = False
-        '
-        'colwidth
-        '
-        Me.colwidth.HeaderText = "colwidth"
-        Me.colwidth.Name = "colwidth"
-        Me.colwidth.Visible = False
-        '
-        'colheight
-        '
-        Me.colheight.HeaderText = "colheight"
-        Me.colheight.Name = "colheight"
-        Me.colheight.Visible = False
         '
         'panelsidebar
         '
@@ -343,6 +196,90 @@ Partial Class frmResultDesigner
         Me.btnAdd.TabIndex = 232
         Me.btnAdd.Text = "     Add New"
         Me.btnAdd.UseVisualStyleBackColor = False
+        '
+        'tsSave
+        '
+        Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
+        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsSave.Name = "tsSave"
+        Me.tsSave.Size = New System.Drawing.Size(35, 35)
+        Me.tsSave.Text = "Save"
+        Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsPrint
+        '
+        Me.tsPrint.Image = CType(resources.GetObject("tsPrint.Image"), System.Drawing.Image)
+        Me.tsPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsPrint.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsPrint.Name = "tsPrint"
+        Me.tsPrint.Size = New System.Drawing.Size(36, 36)
+        Me.tsPrint.Text = "Print"
+        Me.tsPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsPrint.ToolTipText = "CTRL+P-Print"
+        Me.tsPrint.Visible = False
+        '
+        'tsoptions
+        '
+        Me.tsoptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsMergeWithOtherResultToolStripMenuItem})
+        Me.tsoptions.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_gear_16
+        Me.tsoptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsoptions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsoptions.Name = "tsoptions"
+        Me.tsoptions.Size = New System.Drawing.Size(57, 35)
+        Me.tsoptions.Text = "Option"
+        Me.tsoptions.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.tsoptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsoptions.Visible = False
+        '
+        'tsMergeWithOtherResultToolStripMenuItem
+        '
+        Me.tsMergeWithOtherResultToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_merge_16
+        Me.tsMergeWithOtherResultToolStripMenuItem.Name = "tsMergeWithOtherResultToolStripMenuItem"
+        Me.tsMergeWithOtherResultToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.tsMergeWithOtherResultToolStripMenuItem.Text = "Merge with other result"
+        '
+        'tsClose
+        '
+        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
+        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsClose.Name = "tsClose"
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
+        Me.tsClose.Text = "Close"
+        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsradtemplatemain
+        '
+        Me.tsradtemplatemain.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadFromTemplateToolStripMenuItem, Me.SaveAsNewTemplateToolStripMenuItem, Me.ExternalTemplateManagementToolStripMenuItem})
+        Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
+        Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsradtemplatemain.Name = "tsradtemplatemain"
+        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
+        Me.tsradtemplatemain.Text = "Templates"
+        Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsradtemplatemain.Visible = False
+        '
+        'LoadFromTemplateToolStripMenuItem
+        '
+        Me.LoadFromTemplateToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
+        Me.LoadFromTemplateToolStripMenuItem.Name = "LoadFromTemplateToolStripMenuItem"
+        Me.LoadFromTemplateToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.LoadFromTemplateToolStripMenuItem.Text = "Load from templates"
+        '
+        'SaveAsNewTemplateToolStripMenuItem
+        '
+        Me.SaveAsNewTemplateToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
+        Me.SaveAsNewTemplateToolStripMenuItem.Name = "SaveAsNewTemplateToolStripMenuItem"
+        Me.SaveAsNewTemplateToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.SaveAsNewTemplateToolStripMenuItem.Text = "Save as template"
+        '
+        'ExternalTemplateManagementToolStripMenuItem
+        '
+        Me.ExternalTemplateManagementToolStripMenuItem.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
+        Me.ExternalTemplateManagementToolStripMenuItem.Name = "ExternalTemplateManagementToolStripMenuItem"
+        Me.ExternalTemplateManagementToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.ExternalTemplateManagementToolStripMenuItem.Text = "External Template Management"
+        Me.ExternalTemplateManagementToolStripMenuItem.ToolTipText = "Opens the directory of template to edit templates using MS Word"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -430,6 +367,91 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.Visible = False
         '
+        'colfieldname
+        '
+        Me.colfieldname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.colfieldname.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colfieldname.HeaderText = "Name"
+        Me.colfieldname.Name = "colfieldname"
+        Me.colfieldname.ReadOnly = True
+        '
+        'colfieldtypedesc
+        '
+        Me.colfieldtypedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.colfieldtypedesc.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colfieldtypedesc.HeaderText = "Type"
+        Me.colfieldtypedesc.Name = "colfieldtypedesc"
+        Me.colfieldtypedesc.ReadOnly = True
+        Me.colfieldtypedesc.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'coloptionvalues
+        '
+        Me.coloptionvalues.HeaderText = "coloptionvalues"
+        Me.coloptionvalues.Name = "coloptionvalues"
+        Me.coloptionvalues.Visible = False
+        '
+        'collaboratorydetailsid
+        '
+        Me.collaboratorydetailsid.HeaderText = "laboratorydetailsid"
+        Me.collaboratorydetailsid.Name = "collaboratorydetailsid"
+        Me.collaboratorydetailsid.Visible = False
+        '
+        'colfieldtype
+        '
+        Me.colfieldtype.HeaderText = "colfieldtype"
+        Me.colfieldtype.Name = "colfieldtype"
+        Me.colfieldtype.Visible = False
+        '
+        'coluuid
+        '
+        Me.coluuid.HeaderText = "coluuid"
+        Me.coluuid.Name = "coluuid"
+        Me.coluuid.Visible = False
+        '
+        'collocationx
+        '
+        Me.collocationx.HeaderText = "collocationx"
+        Me.collocationx.Name = "collocationx"
+        Me.collocationx.Visible = False
+        '
+        'collocationy
+        '
+        Me.collocationy.HeaderText = "collocationy"
+        Me.collocationy.Name = "collocationy"
+        Me.collocationy.Visible = False
+        '
+        'coldefaultvalue
+        '
+        Me.coldefaultvalue.HeaderText = "coldefaultvalue"
+        Me.coldefaultvalue.Name = "coldefaultvalue"
+        Me.coldefaultvalue.Visible = False
+        '
+        'collaboratoryresultdetailid
+        '
+        Me.collaboratoryresultdetailid.HeaderText = "collaboratoryresultdetailid"
+        Me.collaboratoryresultdetailid.Name = "collaboratoryresultdetailid"
+        Me.collaboratoryresultdetailid.Visible = False
+        '
+        'collabeltext
+        '
+        Me.collabeltext.HeaderText = "collabeltext"
+        Me.collabeltext.Name = "collabeltext"
+        Me.collabeltext.Visible = False
+        '
+        'colwidth
+        '
+        Me.colwidth.HeaderText = "colwidth"
+        Me.colwidth.Name = "colwidth"
+        Me.colwidth.Visible = False
+        '
+        'colheight
+        '
+        Me.colheight.HeaderText = "colheight"
+        Me.colheight.Name = "colheight"
+        Me.colheight.Visible = False
+        '
         'frmResultDesigner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -491,4 +513,6 @@ End Sub
     Friend WithEvents LoadFromTemplateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveAsNewTemplateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExternalTemplateManagementToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents tsoptions As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents tsMergeWithOtherResultToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

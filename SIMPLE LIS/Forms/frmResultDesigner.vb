@@ -647,24 +647,7 @@ Public Class frmResultDesigner
         Process.Start(Application.StartupPath & "\templates")
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As System.Object, e As System.EventArgs)
+    Private Sub tsMergeWithOtherResultToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsMergeWithOtherResultToolStripMenuItem.Click
 
-        'Dim frm As New frmRTFPrint
-        'Dim theight As Integer = frm.RichTextBox1.Height
-        'If File.Exists(frmRadiology.rtfLocation) Then
-        '    frm.RichTextBox1.LoadFile(frmRadiology.rtfLocation)
-        '    'frm.RichTextBox1.Height = Me.CreateGraphics().MeasureString(frm.RichTextBox1.Text, frm.RichTextBox1.Font, frm.RichTextBox1.Width).Height
-        'End If
-        'frm.Height = frm.Height + frm.RichTextBox1.Height - theight
-        'frm.lock()
-        'frm.ShowDialog()
-        'Dim frm As New frmPrintMDI
-        'frm.rtfLocation = frmRadiology.rtfLocation
-        'frm.requestdetailno = Me.requestdetailno
-        'frm.ShowDialog()
-    End Sub
-
-    Private Sub ToolStripButton1_Click_1(sender As System.Object, e As System.EventArgs)
-        frmRadiology.testprint()
     End Sub
 End Class

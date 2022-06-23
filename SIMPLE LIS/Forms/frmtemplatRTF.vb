@@ -359,6 +359,8 @@ Public Class frmtemplateRTF
 
             If File.Exists(rtfLocation) Then
                 txtResult.LoadFile(rtfLocation)
+            ElseIf File.Exists("templates\default.rtf") Then
+                txtResult.LoadFile("templates\default.rtf")
             End If
         Catch ex As Exception
         End Try
@@ -631,7 +633,7 @@ Public Class frmtemplateRTF
             'wordDocument.Range.InsertFile(finfo.FullName, Type.Missing, False, False, False)
             wordDocument.Save()
 
-            Dim outputFilename = String.Format("\{0}\{1}.pdf", admissionid, Me.lblexamination.Text)
+            Dim outputFilename = String.Format("\{0}\{1}.pdf", admissionid, Me.lblexamination.Text.Replace("/", "").Replace("\", ""))
             Dim fi As New FileInfo(DocumentLocation)
 
 

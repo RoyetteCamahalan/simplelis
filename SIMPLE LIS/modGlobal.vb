@@ -25,6 +25,7 @@ Module modGlobal
     Public gFilePrinterName As String = ConfigurationManager.AppSettings("FilePrinterName")
     Public gDocumentLocationEMR As String = ConfigurationManager.AppSettings("DocumentLocationEMR")
 
+    Public themecolor3 As Color = Color.MediumSeaGreen
 
     Public new_icon _
     , edit_icon _

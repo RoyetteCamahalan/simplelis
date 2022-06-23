@@ -147,6 +147,11 @@
         Dim strVal() As String = {0, 5}
         Return GenericDA.ManageQuery(strPar, strVal, "spExamination", 0)
     End Function
+    Public Shared Function getResultForMerging() As DataTable
+        Dim strPar() As String = {"operation", "soperation", "", ""}
+        Dim strVal() As String = {0, 5, ""}
+        Return GenericDA.ManageQuery(strPar, strVal, "spExamination", 0)
+    End Function
 
 
     Public Function save(ByVal isNew As Boolean) As Long

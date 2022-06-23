@@ -132,6 +132,12 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
+    <Compile Include="Forms\frmSearchEngine.designer.vb">
+      <DependentUpon>frmSearchEngine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSearchEngine.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmtemplatRTF.designer.vb">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </Compile>
@@ -225,6 +231,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmSearchEngine.resx">
+      <DependentUpon>frmSearchEngine.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmtemplatRTF.resx">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +297,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
+    <None Include="Resources\ic_gear_16.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\Settings-4822.png" />
+    <None Include="Resources\Settings-482.png" />
+    <None Include="Resources\ic_setting16.png" />
+    <None Include="Resources\ic_merge_16.png" />
     <None Include="Resources\ic_text_color_16.png" />
     <None Include="Resources\ic_undo_16.png" />
     <None Include="Resources\ic_redo_16.png" />
