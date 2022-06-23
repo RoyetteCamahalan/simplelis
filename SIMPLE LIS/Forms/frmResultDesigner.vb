@@ -664,8 +664,7 @@ Public Class frmResultDesigner
         'frm.ShowDialog()
     End Sub
 
-    Private Sub ToolStripButton1_Click_1(sender As System.Object, e As System.EventArgs) Handles ToolStripButton1.Click
-
+    Private Sub ToolStripButton1_Click_1(sender As System.Object, e As System.EventArgs)
         frmRadiology.testprint()
     End Sub
 End Class

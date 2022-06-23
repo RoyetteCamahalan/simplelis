@@ -176,19 +176,6 @@
         SSebBtWstXPHIv8FrBI8yb6qWYwAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVDhPrZK9SwJxHMYdqqWxf6P+BYnAqS3EsUmDoKHO
-        O0opDHpHwk0oIiszyKCpojdPs6aCCsPIyNNyiKbsZcghnn6PXpHxy5a+8Jmez/PcHZzl+7X71ntCB9cv
-        oURGjsjomLr82rSIP1sE9LwcZnRMXX4U7l+B8wc5zP4cae2P+B/fgJx4ogxmdExdeg2dg0GU3oFiSQ4z
-        OnQrFfO8Xm+XruuIx3V0D4xjLRpFdHVVCjM6dNnxeDx95RFFUYZy+VukLtLwDY9gdGyyJnTosuN2uyuf
-        xpGskUfWMDAx5Yd/OlATOnTZqRo5O09ha3sPqtYPxa3VhA5ddr5GVFUd4uslkkfY2Y1hMRzBUnhFCjM6
-        dNmpGklfXuH45BR6PImZ2bma0KHLTtWIkbvDTdZAr28amxub2I/pgtgP9HJGhy47mqZVRhwOh9XpdC64
-        XK7FDjWYyj8BhwU5zOjQZcdut9vKI+LqBI3EqiwEnsRPVXiWw4zOpy+oF1SfTZsfjBxcYzmRkcKMjqn/
-        ek2CZkHLLzCj899nsXwAhlRPmwQnn3kAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="colchk.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

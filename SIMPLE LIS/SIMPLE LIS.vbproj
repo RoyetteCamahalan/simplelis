@@ -132,18 +132,6 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
-    <Compile Include="Forms\frmPrintMDI.Designer.vb">
-      <DependentUpon>frmPrintMDI.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmPrintMDI.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmRTFPrint.Designer.vb">
-      <DependentUpon>frmRTFPrint.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmRTFPrint.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\frmtemplatRTF.designer.vb">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </Compile>
@@ -237,12 +225,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\frmPrintMDI.resx">
-      <DependentUpon>frmPrintMDI.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmRTFPrint.resx">
-      <DependentUpon>frmRTFPrint.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmtemplatRTF.resx">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
+    <None Include="Resources\ic_underline_16.png" />
+    <None Include="Resources\ic_italic_16.png" />
+    <None Include="Resources\ic_bold_16.png" />
     <None Include="Resources\ic_save.png" />
     <None Include="Resources\ic_folder_16.png" />
     <None Include="Resources\ic_template.png" />

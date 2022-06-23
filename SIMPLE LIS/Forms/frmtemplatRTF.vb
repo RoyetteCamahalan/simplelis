@@ -208,13 +208,9 @@ Public Class frmtemplateRTF
 #End Region
 #Region "Methods"
     Public Sub testprint()
-        Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
-        dtResult.Rows(0).Item("result") = Me.txtResult.Rtf
-        Dim crpt As New crptRadTemplate
-        crpt.SetDataSource(dtResult)
-        Dim frm As New frmReportHandler
-        frm.crvPrinting.ReportSource = crpt
-        frm.ShowDialog()
+        
+        Call generatePDF()
+        
     End Sub
     Private Function BrowseFile() As Boolean
         Dim dlg As New OpenFileDialog()
@@ -559,6 +555,8 @@ Public Class frmtemplateRTF
         End If
         Try
             File.Copy(mastertemplate, tempfilename, True)
+            Me.txtResult.SelectAll()
+            Me.txtResult.Copy()
             wordDocument = wordApplication.Documents.Open(tempfilename)
             wordDocument.Activate()
             For Each r As Microsoft.Office.Interop.Word.Range In wordDocument.StoryRanges
@@ -623,8 +621,10 @@ Public Class frmtemplateRTF
                     .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
                 End With
             Next
-            Dim finfo As New FileInfo(rtfLocation)
-            wordDocument.Range.InsertFile(finfo.FullName, Type.Missing, False, False, False)
+
+            wordApplication.Selection.Paste()
+            'Dim finfo As New FileInfo(rtfLocation)
+            'wordDocument.Range.InsertFile(finfo.FullName, Type.Missing, False, False, False)
             wordDocument.Save()
 
             Dim outputFilename = String.Format("\{0}\{1}.pdf", admissionid, Me.lblexamination.Text)
@@ -719,5 +719,59 @@ Public Class frmtemplateRTF
         Catch ex As Exception
             Me.txtpreviousresult.Text = ""
         End Try
+    End Sub
+    Private Enum formating
+        bold
+        underline
+        italize
+    End Enum
+    Private Sub formatText(format As formating)
+        Dim fstyle As Drawing.FontStyle
+        fstyle = txtResult.SelectionFont.Style
+        Select Case format
+            Case formating.bold
+                If txtResult.SelectionFont.Bold Then
+                    fstyle = fstyle And Not FontStyle.Bold
+                Else
+                    fstyle = fstyle Or FontStyle.Bold
+                End If
+            Case formating.italize
+                If txtResult.SelectionFont.Italic Then
+                    fstyle = fstyle And Not FontStyle.Italic
+                Else
+                    fstyle = fstyle Or FontStyle.Italic
+                End If
+            Case formating.underline
+                If txtResult.SelectionFont.Underline Then
+                    fstyle = fstyle And Not FontStyle.Underline
+                Else
+                    fstyle = fstyle Or FontStyle.Underline
+                End If
+
+
+        End Select
+        Dim font = New Font(txtResult.SelectionFont, fstyle)
+        txtResult.SelectionFont = font
+    End Sub
+    Private Sub tsbold_Click(sender As System.Object, e As System.EventArgs) Handles tsbold.Click
+        formatText(formating.bold)
+    End Sub
+
+    Private Sub tsunderline_Click(sender As System.Object, e As System.EventArgs) Handles tsunderline.Click
+        formatText(formating.underline)
+    End Sub
+
+    Private Sub tsitalize_Click(sender As System.Object, e As System.EventArgs) Handles tsitalize.Click
+        formatText(formating.italize)
+    End Sub
+
+    Private Sub txtResult_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtResult.KeyDown
+        If Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.B Then
+            formatText(formating.bold)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.I Then
+            formatText(formating.italize)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.U Then
+            formatText(formating.underline)
+        End If
     End Sub
 End Class

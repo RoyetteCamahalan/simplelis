@@ -71,7 +71,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.tsmain.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelsidebar.SuspendLayout()
@@ -79,11 +78,11 @@ Partial Class frmResultDesigner
         '
         'tsmain
         '
-        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsPrint, Me.tsClose, Me.tsradtemplatemain, Me.ToolStripButton1})
+        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsPrint, Me.tsClose, Me.tsradtemplatemain})
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsmain.Size = New System.Drawing.Size(922, 39)
+        Me.tsmain.Size = New System.Drawing.Size(922, 38)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
         '
@@ -92,7 +91,7 @@ Partial Class frmResultDesigner
         Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
         Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 36)
+        Me.tsSave.Size = New System.Drawing.Size(35, 35)
         Me.tsSave.Text = "Save"
         Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -114,7 +113,7 @@ Partial Class frmResultDesigner
         Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
         Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 36)
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
         Me.tsClose.Text = "Close"
         Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -124,7 +123,7 @@ Partial Class frmResultDesigner
         Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
         Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsradtemplatemain.Name = "tsradtemplatemain"
-        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 36)
+        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
         Me.tsradtemplatemain.Text = "Templates"
         Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.tsradtemplatemain.Visible = False
@@ -190,7 +189,7 @@ Partial Class frmResultDesigner
         Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(257, 233)
+        Me.dgvResult.Size = New System.Drawing.Size(257, 234)
         Me.dgvResult.TabIndex = 230
         '
         'colchk
@@ -294,9 +293,9 @@ Partial Class frmResultDesigner
         Me.panelsidebar.Controls.Add(Me.btnAdd)
         Me.panelsidebar.Controls.Add(Me.dgvResult)
         Me.panelsidebar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.panelsidebar.Location = New System.Drawing.Point(659, 39)
+        Me.panelsidebar.Location = New System.Drawing.Point(659, 38)
         Me.panelsidebar.Name = "panelsidebar"
-        Me.panelsidebar.Size = New System.Drawing.Size(263, 329)
+        Me.panelsidebar.Size = New System.Drawing.Size(263, 330)
         Me.panelsidebar.TabIndex = 231
         '
         'btnpreview
@@ -431,18 +430,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.Visible = False
         '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(36, 36)
-        Me.ToolStripButton1.Text = "Print"
-        Me.ToolStripButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ToolStripButton1.ToolTipText = "CTRL+P-Print"
-        '
         'frmResultDesigner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -504,5 +491,4 @@ End Sub
     Friend WithEvents LoadFromTemplateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveAsNewTemplateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExternalTemplateManagementToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Public WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
 End Class
