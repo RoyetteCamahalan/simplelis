@@ -51,6 +51,7 @@ Public Class frmtemplateRTF
     Dim getTransNo As DataTable
     Dim img As Image
     Public isSave As Boolean
+    Private afterload As Boolean
 #End Region
 #Region "Events"
     Private Sub btnAddToList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddToList.Click
@@ -106,6 +107,8 @@ Public Class frmtemplateRTF
         Call LoadRecord()
         If Islock Then
             lock()
+        Else
+            loadFonts()
         End If
         Me.tsSave.Image = modGlobal.save_icon
         Me.tsClose.Image = modGlobal.close_icon
@@ -257,6 +260,7 @@ Public Class frmtemplateRTF
         Me.dtDate.Enabled = False
         Me.cmbRadTech.Enabled = False
         Me.cmbradiologist.Enabled = False
+        Me.paneleditortools.Visible = False
     End Sub
     Public Function moveImage(ByVal sourcePath As String, ByVal imageName As String, ByVal isdelete As Boolean) As String
         Dim targetlocation As String = ImageStorage & "\Templates"
@@ -720,38 +724,103 @@ Public Class frmtemplateRTF
             Me.txtpreviousresult.Text = ""
         End Try
     End Sub
+#Region "Text editor"
     Private Enum formating
         bold
         underline
         italize
+        alignleft
+        aligncenter
+        alignright
+        undo
+        redo
+        fontfamily
+        fontSize
+        fontColor
     End Enum
+    Private Sub loadFonts()
+        afterload = False
+        Dim installedFonts As New System.Drawing.Text.InstalledFontCollection
+        Dim fontFamilies = installedFonts.Families()
+        With Me.tsfontfamily.ComboBox
+            .DataSource = fontFamilies
+            .ValueMember = "name"
+            .DisplayMember = "name"
+        End With
+        With Me.tsfonsize.ComboBox
+            .Items.Add("8")
+            .Items.Add("9")
+            .Items.Add("10")
+            .Items.Add("11")
+            .Items.Add("12")
+            .Items.Add("14")
+            .Items.Add("16")
+            .Items.Add("18")
+            .Items.Add("20")
+            .Items.Add("24")
+        End With
+        afterload = True
+    End Sub
     Private Sub formatText(format As formating)
-        Dim fstyle As Drawing.FontStyle
-        fstyle = txtResult.SelectionFont.Style
+        Dim ffont As Font
+        If txtResult.SelectionFont Is Nothing Then
+            ffont = txtResult.Font
+        Else
+            ffont = txtResult.SelectionFont
+        End If
+        Dim fstyle = ffont.Style
+        Dim isfontstyle As Boolean = False
         Select Case format
             Case formating.bold
-                If txtResult.SelectionFont.Bold Then
+                If ffont.Bold Then
                     fstyle = fstyle And Not FontStyle.Bold
                 Else
                     fstyle = fstyle Or FontStyle.Bold
                 End If
+                isfontstyle = True
             Case formating.italize
-                If txtResult.SelectionFont.Italic Then
+                If ffont.Italic Then
                     fstyle = fstyle And Not FontStyle.Italic
                 Else
                     fstyle = fstyle Or FontStyle.Italic
                 End If
+                isfontstyle = True
             Case formating.underline
-                If txtResult.SelectionFont.Underline Then
+                If ffont.Underline Then
                     fstyle = fstyle And Not FontStyle.Underline
                 Else
                     fstyle = fstyle Or FontStyle.Underline
                 End If
-
-
+                isfontstyle = True
+            Case formating.alignleft
+                txtResult.SelectionAlignment = HorizontalAlignment.Left
+            Case formating.aligncenter
+                txtResult.SelectionAlignment = HorizontalAlignment.Center
+            Case formating.alignright
+                txtResult.SelectionAlignment = HorizontalAlignment.Right
+            Case formating.undo
+                txtResult.Undo()
+            Case formating.redo
+                txtResult.Redo()
+            Case formating.fontfamily
+                ffont = New Font(tsfontfamily.ComboBox.SelectedValue.ToString(), ffont.Size, fstyle)
+                isfontstyle = True
+            Case formating.fontSize
+                ffont = New Font(tsfontfamily.ComboBox.SelectedValue.ToString(), CSng(tsfonsize.Text), fstyle)
+                isfontstyle = True
+            Case formating.fontColor
+                Dim cd As New ColorDialog
+                If Not txtResult.SelectionColor = Nothing Then
+                    cd.Color = txtResult.SelectionColor
+                End If
+                If cd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                    txtResult.SelectionColor = cd.Color
+                End If
         End Select
-        Dim font = New Font(txtResult.SelectionFont, fstyle)
-        txtResult.SelectionFont = font
+        If isfontstyle Then
+            Dim font = New Font(ffont, fstyle)
+            txtResult.SelectionFont = font
+        End If
     End Sub
     Private Sub tsbold_Click(sender As System.Object, e As System.EventArgs) Handles tsbold.Click
         formatText(formating.bold)
@@ -772,6 +841,88 @@ Public Class frmtemplateRTF
             formatText(formating.italize)
         ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.U Then
             formatText(formating.underline)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.L Then
+            formatText(formating.alignleft)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.E Then
+            formatText(formating.aligncenter)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.R Then
+            formatText(formating.alignright)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.Z Then
+            formatText(formating.undo)
+        ElseIf Control.ModifierKeys = Keys.Control And e.KeyCode = Keys.Y Then
+            formatText(formating.redo)
         End If
+    End Sub
+
+    Private Sub tsalignleft_Click(sender As System.Object, e As System.EventArgs) Handles tsalignleft.Click
+        formatText(formating.alignleft)
+    End Sub
+
+    Private Sub tsaligncenter_Click(sender As System.Object, e As System.EventArgs) Handles tsaligncenter.Click
+        formatText(formating.aligncenter)
+    End Sub
+
+    Private Sub tsalignright_Click(sender As System.Object, e As System.EventArgs) Handles tsalignright.Click
+        formatText(formating.alignright)
+    End Sub
+
+    Private Sub tsundo_Click(sender As System.Object, e As System.EventArgs) Handles tsundo.Click
+        formatText(formating.undo)
+    End Sub
+
+    Private Sub tsredo_Click(sender As System.Object, e As System.EventArgs) Handles tsredo.Click
+        formatText(formating.redo)
+    End Sub
+#End Region
+
+    Private Sub txtResult_SelectionChanged(sender As System.Object, e As System.EventArgs) Handles txtResult.SelectionChanged
+        Try
+            If afterload Then
+                afterload = False
+                tsfontfamily.ComboBox.SelectedValue = txtResult.SelectionFont.FontFamily.Name
+                tsfonsize.ComboBox.Text = txtResult.SelectionFont.Size
+                tsbold.Checked = txtResult.SelectionFont.Bold
+                tsunderline.Checked = txtResult.SelectionFont.Underline
+                tsitalize.Checked = txtResult.SelectionFont.Italic
+                afterload = True
+            End If
+        Catch ex As Exception
+            tsfontfamily.ComboBox.SelectedIndex = -1
+            afterload = True
+        End Try
+    End Sub
+
+    Private Sub tsfontfamily_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles tsfontfamily.SelectedIndexChanged
+        Try
+            If afterload Then
+                afterload = False
+                formatText(formating.fontfamily)
+                afterload = True
+            End If
+        Catch ex As Exception
+            afterload = True
+        End Try
+    End Sub
+
+    Private Sub tsfonsize_TextChanged(sender As System.Object, e As System.EventArgs) Handles tsfonsize.TextChanged
+        Try
+            If afterload Then
+                If Val(tsfonsize.Text) > 7 And Val(tsfonsize.Text) < 72 Then
+                    afterload = False
+                    formatText(formating.fontSize)
+                    afterload = True
+                End If
+            End If
+        Catch ex As Exception
+            afterload = True
+        End Try
+    End Sub
+
+    Private Sub tsfontcolor_Click(sender As System.Object, e As System.EventArgs) Handles tsfontcolor.Click
+        Try
+            formatText(formating.fontColor)
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

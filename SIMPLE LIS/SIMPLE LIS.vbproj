@@ -288,6 +288,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
+    <None Include="Resources\ic_text_color_16.png" />
+    <None Include="Resources\ic_undo_16.png" />
+    <None Include="Resources\ic_redo_16.png" />
+    <None Include="Resources\ic_bold_161.png" />
+    <None Include="Resources\ic_align_right_16.png" />
+    <None Include="Resources\ic_align_left_16.png" />
+    <None Include="Resources\ic_align_center_16.png" />
     <None Include="Resources\ic_underline_16.png" />
     <None Include="Resources\ic_italic_16.png" />
     <None Include="Resources\ic_bold_16.png" />

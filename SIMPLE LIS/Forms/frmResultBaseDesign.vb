@@ -681,10 +681,13 @@ Public Class frmResultBaseDesign
         Me.lblmedtech.Visible = True
         If panelresultgrid.Visible = True Then
             For i As Integer = Me.dgvResult.Rows.Count - 1 To 0 Step -1
-                If Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colresult.Index).Value) = "" Then
+                If Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colresult.Index).Value) = "" And Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colref.Index).Value) <> "-" Then
                     Me.dgvResult.Rows.RemoveAt(i)
                     Call reduceForm()
                 Else
+                    If Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colref.Index).Value) = "-" Then
+                        Me.dgvResult.Rows(i).Cells(colref.Index).Value = ""
+                    End If
                     Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
                 End If
             Next
