@@ -421,7 +421,9 @@ getLabDetails:
                 End Select
                 updateRequestStatus(4)
                 MsgBox("Record successfully saved.", vbInformation, modGlobal.msgboxTitle)
-                Me.Close()
+                Me.myFormaction = formaction.Release
+                Me.tsSave.Text = "Release"
+                'Me.Close()
             End If
         ElseIf myFormaction = formaction.Release Then
             If MsgBox("Are you sure you want to release this examination?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then

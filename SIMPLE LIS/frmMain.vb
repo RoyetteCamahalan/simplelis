@@ -44,7 +44,7 @@ Public Class frmMain
         laboratoryid = 29
         requestdetailno = 169
         employeeid = 1001
-        myformaction = enformstatus.edit
+        myformaction = enformstatus.view_release
         target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
