@@ -91,7 +91,7 @@
 
         Select Case mModule
             Case ModuleName.MergeResult
-                Me.dgGeneric.DataSource = clsLaboratoryResult.genericcls(32, Me.txtSearch.Text)
+                Me.dgGeneric.DataSource = clsLaboratoryResult.genericcls(16, Me.mKey)
         End Select
 
         Me.lblRecordCount.Text = Me.dgGeneric.Rows.Count & " rows"
@@ -136,7 +136,7 @@
     Public Sub FormatGrid()
         With dgGeneric
             .SelectionMode = DataGridViewSelectionMode.FullRowSelect
-            .DefaultCellStyle.Font = New Font("Tahoma", 8.0!)
+            .DefaultCellStyle.Font = New Font("Tahoma", 9.0!)
             .RowsDefaultCellStyle.BackColor = Color.WhiteSmoke ' themecolor4 'Color.FromArgb(80,123,139) ' Color.WhiteSmoke ' Color.OldLace 'Color.Gainsboro
             .RowsDefaultCellStyle.SelectionBackColor = themecolor3
             .AlternatingRowsDefaultCellStyle.BackColor = Color.White 'Color.FromArgb(142,171,182) ' Color.White
@@ -148,28 +148,12 @@
 
             If Me.mModule = ModuleName.MergeResult Then
                 .Columns(0).Visible = False
-                .Columns(1).Width = 80
-                .Columns(2).Width = 130
-                .Columns(3).Width = 130
-                .Columns(4).Width = 100
-                .Columns(5).Width = 150 'address
-                .Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                .Columns(6).Width = 100
-                .Columns(7).Width = 100
-                .Columns(8).Visible = False
-                .Columns(9).Visible = False
-                .Columns(10).Visible = False
-                .Columns(11).Visible = False
-                .Columns(12).Visible = False
-                .Columns(13).Visible = False
-                .Columns(14).Visible = False
-                .Columns(15).Visible = False
-                .Columns(16).Visible = False
-                .Columns(17).Visible = False
-                .Columns(18).Width = 100
-                .Columns(19).Visible = False
-                .Columns(20).Visible = False
-                .Columns(21).Visible = False
+                .Columns(1).HeaderText = "Test Description"
+                .Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                .Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                .Columns(2).HeaderText = "Test Specification"
+                .Columns(3).Width = 100
+                .Columns(3).HeaderText = "Date Released"
             End If
         End With
     End Sub
@@ -256,7 +240,7 @@
             mKey = Me.dgGeneric.SelectedRows(0).Cells(0).Value
             Select Case mModule
                 Case ModuleName.MergeResult
-                    mKey = Me.dgGeneric.SelectedRows(0).Cells("laboratoryresultid").Value
+                    mKey = Me.dgGeneric.SelectedRows(0).Cells("patientrequestdetailno").Value
             End Select
             If mKey = "0" Then
                 MsgBox("No record selected. Please select from the list or search again.", vbInformation, modGlobal.msgboxTitle)

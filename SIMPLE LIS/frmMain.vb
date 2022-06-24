@@ -42,9 +42,9 @@ Public Class frmMain
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
         laboratoryid = 29
-        requestdetailno = 132
+        requestdetailno = 169
         employeeid = 1001
-        myformaction = enformstatus.view_release
+        myformaction = enformstatus.edit
         target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
@@ -95,6 +95,7 @@ Public Class frmMain
         setUserInfo()
         Me.Hide()
         If target = targetmodule.manageresult Then
+getResultDetails:
             Dim dt As DataTable = clsExaminationUpshots.getPatientRequestStatus(requestdetailno)
             '' if status is 3
             'If dt.Rows(0)(0) = 3 Then
@@ -114,22 +115,30 @@ Public Class frmMain
             '        MsgBox("Request doesn't have result yet", MsgBoxStyle.Information)
             '    End If
             'End If
+            Dim frmDesigner As frmResultDesigner
             If Me.myformaction = enformstatus.add AndAlso dt.Rows(0)(0) = 3 Then
-                Dim frmDesigner As New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
+                frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()
             ElseIf Me.myformaction = enformstatus.edit AndAlso (dt.Rows(0)(0) = 4 Or dt.Rows(0)(0) = 5) Then
-                Dim frmDesigner As New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
+                frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()
             ElseIf Me.myformaction = enformstatus.view_release Then
                 If dt.Rows(0)(0) = 4 Then
-                    Dim frmDesigner As New frmResultDesigner(frmResultDesigner.formaction.Release, requestdetailno, 0, dt.Rows(0)(0))
+                    frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.Release, requestdetailno, 0, dt.Rows(0)(0))
                     frmDesigner.ShowDialog()
                 ElseIf dt.Rows(0)(0) = 5 Or dt.Rows(0)(0) = 6 Then
-                    Dim frmDesigner As New frmResultDesigner(frmResultDesigner.formaction.View, requestdetailno, 0, dt.Rows(0)(0))
+                    frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.View, requestdetailno, 0, dt.Rows(0)(0))
                     frmDesigner.ShowDialog()
                 ElseIf dt.Rows(0)(0) = 3 Then
                     MsgBox("Request doesn't have result yet", MsgBoxStyle.Information)
                 End If
+            End If
+            If Not frmDesigner Is Nothing AndAlso frmDesigner.mergeToogle = 1 Then
+                Me.myformaction = enformstatus.view_release
+                GoTo getResultDetails
+            ElseIf Not frmDesigner Is Nothing AndAlso frmDesigner.mergeToogle = 2 Then
+                Me.myformaction = enformstatus.add
+                GoTo getResultDetails
             End If
         ElseIf target = targetmodule.updateformat Then
             Dim f As New frmResultDesigner(frmResultDesigner.formaction.updateFormat, 0, laboratoryid, 0)

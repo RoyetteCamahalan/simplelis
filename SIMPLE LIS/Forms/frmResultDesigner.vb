@@ -2,7 +2,7 @@
 Public Class frmResultDesigner
 
 #Region "Vars"
-    Public requestdetailno As Long
+    Public requestdetailno, oldrequestdetailno As Long
     Private admissionid As Long
     Private itemdescription As String
     Private laboratoryresultid As Long
@@ -25,6 +25,8 @@ Public Class frmResultDesigner
     Private labformatid As Integer
     Private requestStatus As Integer
     Public myFormaction As formaction
+    Public mergeToogle As Integer = 0
+    Private ismergeresult As Boolean
 
     Enum formaction
         NONE = 0
@@ -42,6 +44,7 @@ Public Class frmResultDesigner
         ' Add any initialization after the InitializeComponent() call.
         Me.myFormaction = myFormaction
         Me.requestdetailno = requestdetailno
+        Me.oldrequestdetailno = requestdetailno
         Me.laboratoryid = laboratoryid
         Me.requestStatus = status
     End Sub
@@ -82,7 +85,7 @@ Public Class frmResultDesigner
             Me.Close()
             Exit Sub
         Else
-            Me.Text = Me.laboratoryname
+            Me.Text = Me.laboratoryname & Me.Text
             Me.panelsidebar.Visible = False
             Select Case Me.labformatid
                 Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
@@ -131,6 +134,7 @@ Public Class frmResultDesigner
         If Me.myFormaction = formaction.updateFormat Then
             dt = clsExamination.genericcls(8, Me.laboratoryid)
         Else
+getLabDetails:
             dt = clsExamination.genericcls(9, Me.requestdetailno)
             If dt.Rows.Count = 0 Then
                 MsgBox("Diagnostic Format not yet assigned!", MsgBoxStyle.Information + MsgBoxStyle.Information, modGlobal.msgboxTitle)
@@ -141,6 +145,20 @@ Public Class frmResultDesigner
             Me.laboratoryresultid = dt.Rows(0).Item("laboratoryresultid")
             Me.itemdescription = dt.Rows(0).Item("itemdescription")
             Me.testofficecode = Utility.NullToEmptyString(dt.Rows(0).Item("destinationoffice"))
+            Me.tsoptions.Visible = True
+            If Not ismergeresult Then
+                If dt.Rows(0).Item("mergetoresult") = 0 Then
+                    Me.tsMergeWithOtherResultToolStripMenuItem.Tag = "0"
+                Else
+                    Me.tsMergeWithOtherResultToolStripMenuItem.Tag = "1"
+                    Me.tsMergeWithOtherResultToolStripMenuItem.Text = "Unmerge result"
+                    Me.requestdetailno = dt.Rows(0).Item("mergetoresult")
+                    Dim dtmerge As DataTable = clsExamination.genericcls(9, Me.requestdetailno)
+                    Me.Text = " - Merged with " & dtmerge.Rows(0).Item("itemdescription")
+                    Me.ismergeresult = True
+                    GoTo getLabDetails
+                End If
+            End If
         End If
         Me.laboratoryid = dt.Rows(0).Item("laboratoryid")
         Me.labformatid = dt.Rows(0).Item("labformatid")
@@ -648,6 +666,25 @@ Public Class frmResultDesigner
     End Sub
 
     Private Sub tsMergeWithOtherResultToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsMergeWithOtherResultToolStripMenuItem.Click
-
+        If tsMergeWithOtherResultToolStripMenuItem.Tag = "0" Then
+            Dim f As New frmSearchEngine
+            f.mModule = frmSearchEngine.ModuleName.MergeResult
+            f.mKey = Me.requestdetailno
+            f.ShowDialog()
+            If f.issave Then
+                If MsgBox("Do you want to MERGE this result?", MsgBoxStyle.YesNo, msgboxTitle) = MsgBoxResult.Yes Then
+                    Me.mergeToogle = 1
+                    clsLaboratoryResult.mergeResult(Me.oldrequestdetailno, Me.laboratoryresultid, f.mKey)
+                    Me.Close()
+                End If
+            End If
+        Else
+            If MsgBox("Do you want to UNMERGE this result?", MsgBoxStyle.YesNo, msgboxTitle) = MsgBoxResult.Yes Then
+                Me.mergeToogle = 2
+                clsLaboratoryResult.unmergeResult(Me.oldrequestdetailno, Me.laboratoryresultid, 0)
+                Me.Close()
+            End If
+        End If
+        
     End Sub
 End Class
