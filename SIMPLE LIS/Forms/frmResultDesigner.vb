@@ -73,7 +73,7 @@ Public Class frmResultDesigner
                     f.ShowDialog()
                     Me.Close()
                     Exit Sub
-                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.CROSSMATCHING, clsModel.LabFormats.ECGREPORT
+                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.CROSSMATCHING, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                     MsgBox("Diagnostic Format is not available for editing!", MsgBoxStyle.Information + MsgBoxStyle.Information, modGlobal.msgboxTitle)
                     Me.Close()
                     Exit Sub
@@ -98,12 +98,12 @@ Public Class frmResultDesigner
                     fCrossmatching.MdiParent = Me
                     fCrossmatching.Show()
                     fCrossmatching.Top = (Me.Height - fCrossmatching.Height) / 2
-                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT
+                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                     If Me.myFormaction = formaction.manageResult Then
                         tsradtemplatemain.Visible = True
                         loadTemplateList()
                     End If
-                    frmRadiology = New frmtemplateRTF(requestdetailno, Me.laboratoryid, Me.laboratoryname, Me.myFormaction <> formaction.manageResult, Me.requestStatus)
+                    frmRadiology = New frmtemplateRTF(requestdetailno, Me.laboratoryid, Me.laboratoryname, Me.myFormaction <> formaction.manageResult, Me.requestStatus, Me.labformatid)
                     frmRadiology.MdiParent = Me
                     frmRadiology.Dock = DockStyle.Fill
                     frmRadiology.Show()
@@ -123,12 +123,24 @@ Public Class frmResultDesigner
             If Me.myFormaction = formaction.View Then
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = testofficecode = modGlobal.sourceOfficeCode
+                If Me.tsPrint.Visible And Me.isRTFForm() Then
+                    Me.tsprintas.Visible = True
+                    If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                        Me.CrystalReportToolStripMenuItem.Visible = False
+                    End If
+                End If
             ElseIf Me.myFormaction = formaction.Release Then
                 Me.tsSave.Text = "Release"
             End If
         End If
         afterload = True
     End Sub
+    Private Function isRTFForm() As Boolean
+        Return Me.labformatid = clsModel.LabFormats.RADIOLOGY Or
+            Me.labformatid = clsModel.LabFormats.ULTRASOUND Or
+            Me.labformatid = clsModel.LabFormats.ECGREPORT Or
+            Me.labformatid = clsModel.LabFormats.EchoForms
+    End Function
     Private Sub getLabResultDetails()
         Dim dt As DataTable
         If Me.myFormaction = formaction.updateFormat Then
@@ -336,11 +348,12 @@ getLabDetails:
                         If Not fCrossmatching.issave Then
                             Exit Sub
                         End If
-                    Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT
+                    Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                         frmRadiology.saveNow(Me.tsSave.Text)
                         If Not frmRadiology.isSave Then
                             Exit Sub
                         End If
+                        frmRadiology.lock()
                     Case Else
                         If fbaseform.cmbMedtech.SelectedIndex = -1 Or fbaseform.cmbPathologist.SelectedIndex = -1 Then
                             MsgBox("Medical Tehnologist and Pathologist are required!", MsgBoxStyle.Critical, msgboxTitle)
@@ -416,6 +429,11 @@ getLabDetails:
                                     End If
                                 End If
                             Next
+                            Me.myFormaction = formaction.Release
+                            fbaseform.panelresult.Controls.Clear()
+                            fbaseform.lock()
+                            loadDesign()
+
                         End If
 
                 End Select
@@ -431,6 +449,12 @@ getLabDetails:
                 Me.myFormaction = formaction.View
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = True
+                If Me.isRTFForm() Then
+                    Me.tsprintas.Visible = True
+                    If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                        Me.CrystalReportToolStripMenuItem.Visible = False
+                    End If
+                End If
             End If
         End If
 
@@ -446,9 +470,13 @@ getLabDetails:
             MsgBox("Unable to locate template folder", MsgBoxStyle.Critical, msgboxTitle)
             Exit Sub
         End If
-        generateTS("templates", LoadFromTemplateToolStripMenuItem)
+        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            generateTS("templates", LoadFromTemplateToolStripMenuItem, ".docx")
+        Else
+            generateTS("templates", LoadFromTemplateToolStripMenuItem, ".rtf")
+        End If
     End Sub
-    Private Sub generateTS(foldername As String, tsitem As ToolStripMenuItem)
+    Private Sub generateTS(foldername As String, tsitem As ToolStripMenuItem, fileext As String)
         Dim di As New IO.DirectoryInfo(foldername)
         Dim arrFolders As IO.DirectoryInfo() = di.GetDirectories()
         For Each folder In arrFolders
@@ -456,24 +484,30 @@ getLabDetails:
                 Dim tsfolder As New ToolStripMenuItem
                 tsfolder.Text = folder.Name
                 tsfolder.Image = My.Resources.ic_folder_16
-                generateTS(foldername & "/" & folder.Name, tsfolder)
+                generateTS(foldername & "/" & folder.Name, tsfolder, fileext)
                 If tsfolder.DropDownItems.Count > 0 Then
                     tsitem.DropDownItems.Add(tsfolder)
                 End If
             End If
         Next
-        Dim aryFi As IO.FileInfo() = di.GetFiles("*.rtf")
+        Dim aryFi As IO.FileInfo() = di.GetFiles("*" & fileext)
         For Each fi In aryFi
-            Dim tstemplate As New ToolStripMenuItem
-            tstemplate.Text = fi.Name.Replace(".rtf", "")
-            tstemplate.Tag = fi.FullName
-            tstemplate.Image = My.Resources.ic_template
-            AddHandler tstemplate.Click, AddressOf tsTemplate_Click
-            tsitem.DropDownItems.Add(tstemplate)
+            If Not fi.Name.Contains("headertemplatedoc") Then
+                Dim tstemplate As New ToolStripMenuItem
+                tstemplate.Text = fi.Name.Replace(fileext, "")
+                tstemplate.Tag = fi.FullName
+                tstemplate.Image = My.Resources.ic_template
+                AddHandler tstemplate.Click, AddressOf tsTemplate_Click
+                tsitem.DropDownItems.Add(tstemplate)
+            End If
         Next
     End Sub
     Private Sub tsTemplate_Click(sender As System.Object, e As System.EventArgs)
-        frmRadiology.txtResult.LoadFile(sender.Tag, RichTextBoxStreamType.RichText)
+        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            frmRadiology.processWordDocument(sender.Tag, True)
+        Else
+            frmRadiology.txtResult.LoadFile(sender.Tag, RichTextBoxStreamType.RichText)
+        End If
     End Sub
     Private Sub tsClose_Click(sender As System.Object, e As System.EventArgs) Handles tsClose.Click
         Me.Close()
@@ -635,11 +669,19 @@ getLabDetails:
                 fBloodChem.DisplayPrintPreview()
             Case clsModel.LabFormats.CROSSMATCHING
                 fCrossmatching.DisplayPrintPreview()
-            Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT
+            Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                 frmRadiology.DisplayPrintPreview()
             Case Else
                 Me.fbaseform.DisplayPrintPreview()
         End Select
+    End Sub
+
+    Private Sub DefaultPDFViewerToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DefaultPDFViewerToolStripMenuItem.Click
+        frmRadiology.DisplayPrintPreview(1)
+    End Sub
+
+    Private Sub CrystalReportToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CrystalReportToolStripMenuItem.Click
+        frmRadiology.DisplayPrintPreview(2)
     End Sub
 
     Private Sub SaveAsNewTemplateToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SaveAsNewTemplateToolStripMenuItem.Click

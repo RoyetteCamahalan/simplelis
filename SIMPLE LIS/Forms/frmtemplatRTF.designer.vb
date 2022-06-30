@@ -37,23 +37,52 @@ Partial Class frmtemplateRTF
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.tbResult = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.tbllayoutpanel = New System.Windows.Forms.TableLayoutPanel()
+        Me.panelpreviousresult = New System.Windows.Forms.Panel()
         Me.txtpreviousresult = New System.Windows.Forms.RichTextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.AxAcroPDFPrevious = New AxAcroPDFLib.AxAcroPDF()
+        Me.panelcurrentresult = New System.Windows.Forms.Panel()
         Me.txtResult = New System.Windows.Forms.RichTextBox()
+        Me.AxAcroPDFCurrent = New AxAcroPDFLib.AxAcroPDF()
         Me.paneleditortools = New System.Windows.Forms.Panel()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.tscontainerrtfeditor = New System.Windows.Forms.ToolStrip()
         Me.tsfontfamily = New System.Windows.Forms.ToolStripComboBox()
         Me.tsfonsize = New System.Windows.Forms.ToolStripComboBox()
+        Me.tsfontcolor = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbold = New System.Windows.Forms.ToolStripButton()
+        Me.tsunderline = New System.Windows.Forms.ToolStripButton()
+        Me.tsitalize = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsalignleft = New System.Windows.Forms.ToolStripButton()
+        Me.tsaligncenter = New System.Windows.Forms.ToolStripButton()
+        Me.tsalignright = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsundo = New System.Windows.Forms.ToolStripButton()
+        Me.tsredo = New System.Windows.Forms.ToolStripButton()
+        Me.tscontainerwordeditor = New System.Windows.Forms.ToolStrip()
+        Me.tseditresultpdf = New System.Windows.Forms.ToolStripButton()
+        Me.tsreloadresultpdf = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.dgvImageAddress = New System.Windows.Forms.DataGridView()
+        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsImageTools = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonbrowswimage = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButtonremovethisimage = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.CenterImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NormalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StretchImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Picture = New System.Windows.Forms.PictureBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.paneladdfilm = New System.Windows.Forms.Panel()
         Me.btnAddToList = New System.Windows.Forms.Button()
@@ -61,7 +90,11 @@ Partial Class frmtemplateRTF
         Me.Label18 = New System.Windows.Forms.Label()
         Me.DGVFilm = New System.Windows.Forms.DataGridView()
         Me.colremove = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.colitemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfilmname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colnooffilms = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colchargedetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.tsCancel = New System.Windows.Forms.ToolStripButton()
         Me.tsPrint = New System.Windows.Forms.ToolStripButton()
@@ -82,31 +115,15 @@ Partial Class frmtemplateRTF
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.lblexamination = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
-        Me.MiscPrintDocu = New System.Drawing.Printing.PrintDocument()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbradiologist = New System.Windows.Forms.ComboBox()
         Me.cmbpreviousresult = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsbold = New System.Windows.Forms.ToolStripButton()
-        Me.tsunderline = New System.Windows.Forms.ToolStripButton()
-        Me.tsitalize = New System.Windows.Forms.ToolStripButton()
-        Me.tsalignleft = New System.Windows.Forms.ToolStripButton()
-        Me.tsaligncenter = New System.Windows.Forms.ToolStripButton()
-        Me.tsalignright = New System.Windows.Forms.ToolStripButton()
-        Me.tsundo = New System.Windows.Forms.ToolStripButton()
-        Me.tsredo = New System.Windows.Forms.ToolStripButton()
-        Me.tsfontcolor = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonbrowswimage = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonremovethisimage = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.CenterImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NormalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StretchImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutoSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Picture = New System.Windows.Forms.PictureBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblchiefcomplaint = New System.Windows.Forms.Label()
+        Me.lblrequestedby = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -115,32 +132,28 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colitemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfilmname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colnooffilms = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colchargedetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbResult.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
+        Me.tbllayoutpanel.SuspendLayout()
+        Me.panelpreviousresult.SuspendLayout()
+        CType(Me.AxAcroPDFPrevious, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panelcurrentresult.SuspendLayout()
+        CType(Me.AxAcroPDFCurrent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.paneleditortools.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
+        Me.tscontainerrtfeditor.SuspendLayout()
+        Me.tscontainerwordeditor.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvImageAddress, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tsImageTools.SuspendLayout()
+        CType(Me.Picture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.paneladdfilm.SuspendLayout()
         CType(Me.DGVFilm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Picture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImageList1
@@ -168,7 +181,7 @@ Partial Class frmtemplateRTF
         Me.tbResult.Cursor = System.Windows.Forms.Cursors.Hand
         Me.tbResult.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbResult.ImageList = Me.ImageList1
-        Me.tbResult.Location = New System.Drawing.Point(3, 95)
+        Me.tbResult.Location = New System.Drawing.Point(3, 100)
         Me.tbResult.Name = "tbResult"
         Me.tbResult.SelectedIndex = 0
         Me.tbResult.Size = New System.Drawing.Size(1132, 510)
@@ -177,7 +190,8 @@ Partial Class frmtemplateRTF
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.TableLayoutPanel1)
+        Me.TabPage1.BackColor = System.Drawing.Color.White
+        Me.TabPage1.Controls.Add(Me.tbllayoutpanel)
         Me.TabPage1.ImageIndex = 6
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
@@ -185,42 +199,64 @@ Partial Class frmtemplateRTF
         Me.TabPage1.Size = New System.Drawing.Size(1124, 483)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "      Result      "
-        Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'TableLayoutPanel1
+        'tbllayoutpanel
         '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.txtpreviousresult, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 0, 0)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1118, 477)
-        Me.TableLayoutPanel1.TabIndex = 53
+        Me.tbllayoutpanel.ColumnCount = 2
+        Me.tbllayoutpanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tbllayoutpanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tbllayoutpanel.Controls.Add(Me.panelpreviousresult, 1, 0)
+        Me.tbllayoutpanel.Controls.Add(Me.panelcurrentresult, 0, 0)
+        Me.tbllayoutpanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbllayoutpanel.Location = New System.Drawing.Point(3, 3)
+        Me.tbllayoutpanel.Name = "tbllayoutpanel"
+        Me.tbllayoutpanel.RowCount = 2
+        Me.tbllayoutpanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tbllayoutpanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tbllayoutpanel.Size = New System.Drawing.Size(1118, 477)
+        Me.tbllayoutpanel.TabIndex = 53
+        '
+        'panelpreviousresult
+        '
+        Me.panelpreviousresult.Controls.Add(Me.txtpreviousresult)
+        Me.panelpreviousresult.Controls.Add(Me.AxAcroPDFPrevious)
+        Me.panelpreviousresult.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelpreviousresult.Location = New System.Drawing.Point(562, 3)
+        Me.panelpreviousresult.Name = "panelpreviousresult"
+        Me.panelpreviousresult.Size = New System.Drawing.Size(553, 451)
+        Me.panelpreviousresult.TabIndex = 281
         '
         'txtpreviousresult
         '
         Me.txtpreviousresult.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtpreviousresult.Location = New System.Drawing.Point(562, 3)
+        Me.txtpreviousresult.Location = New System.Drawing.Point(0, 0)
         Me.txtpreviousresult.Name = "txtpreviousresult"
         Me.txtpreviousresult.ReadOnly = True
-        Me.txtpreviousresult.Size = New System.Drawing.Size(553, 471)
+        Me.txtpreviousresult.Size = New System.Drawing.Size(553, 451)
         Me.txtpreviousresult.TabIndex = 53
         Me.txtpreviousresult.Text = ""
         '
-        'Panel2
+        'AxAcroPDFPrevious
         '
-        Me.Panel2.Controls.Add(Me.txtResult)
-        Me.Panel2.Controls.Add(Me.paneleditortools)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(3, 3)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(553, 471)
-        Me.Panel2.TabIndex = 280
+        Me.AxAcroPDFPrevious.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AxAcroPDFPrevious.Enabled = True
+        Me.AxAcroPDFPrevious.Location = New System.Drawing.Point(0, 0)
+        Me.AxAcroPDFPrevious.Name = "AxAcroPDFPrevious"
+        Me.AxAcroPDFPrevious.OcxState = CType(resources.GetObject("AxAcroPDFPrevious.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxAcroPDFPrevious.Size = New System.Drawing.Size(553, 451)
+        Me.AxAcroPDFPrevious.TabIndex = 234
+        Me.AxAcroPDFPrevious.Visible = False
+        '
+        'panelcurrentresult
+        '
+        Me.panelcurrentresult.Controls.Add(Me.txtResult)
+        Me.panelcurrentresult.Controls.Add(Me.AxAcroPDFCurrent)
+        Me.panelcurrentresult.Controls.Add(Me.paneleditortools)
+        Me.panelcurrentresult.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelcurrentresult.Location = New System.Drawing.Point(3, 3)
+        Me.panelcurrentresult.Name = "panelcurrentresult"
+        Me.panelcurrentresult.Size = New System.Drawing.Size(553, 451)
+        Me.panelcurrentresult.TabIndex = 280
         '
         'txtResult
         '
@@ -229,27 +265,38 @@ Partial Class frmtemplateRTF
         Me.txtResult.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtResult.Location = New System.Drawing.Point(0, 24)
         Me.txtResult.Name = "txtResult"
-        Me.txtResult.Size = New System.Drawing.Size(553, 447)
+        Me.txtResult.Size = New System.Drawing.Size(553, 427)
         Me.txtResult.TabIndex = 52
         Me.txtResult.Text = ""
         '
+        'AxAcroPDFCurrent
+        '
+        Me.AxAcroPDFCurrent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AxAcroPDFCurrent.Enabled = True
+        Me.AxAcroPDFCurrent.Location = New System.Drawing.Point(0, 24)
+        Me.AxAcroPDFCurrent.Name = "AxAcroPDFCurrent"
+        Me.AxAcroPDFCurrent.OcxState = CType(resources.GetObject("AxAcroPDFCurrent.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxAcroPDFCurrent.Size = New System.Drawing.Size(553, 427)
+        Me.AxAcroPDFCurrent.TabIndex = 234
+        '
         'paneleditortools
         '
-        Me.paneleditortools.Controls.Add(Me.ToolStrip1)
+        Me.paneleditortools.Controls.Add(Me.tscontainerrtfeditor)
+        Me.paneleditortools.Controls.Add(Me.tscontainerwordeditor)
         Me.paneleditortools.Dock = System.Windows.Forms.DockStyle.Top
         Me.paneleditortools.Location = New System.Drawing.Point(0, 0)
         Me.paneleditortools.Name = "paneleditortools"
         Me.paneleditortools.Size = New System.Drawing.Size(553, 24)
         Me.paneleditortools.TabIndex = 53
         '
-        'ToolStrip1
+        'tscontainerrtfeditor
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsfontfamily, Me.tsfonsize, Me.tsfontcolor, Me.ToolStripSeparator5, Me.tsbold, Me.tsunderline, Me.tsitalize, Me.ToolStripSeparator3, Me.tsalignleft, Me.tsaligncenter, Me.tsalignright, Me.ToolStripSeparator4, Me.tsundo, Me.tsredo})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(553, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.tscontainerrtfeditor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsfontfamily, Me.tsfonsize, Me.tsfontcolor, Me.ToolStripSeparator5, Me.tsbold, Me.tsunderline, Me.tsitalize, Me.ToolStripSeparator3, Me.tsalignleft, Me.tsaligncenter, Me.tsalignright, Me.ToolStripSeparator4, Me.tsundo, Me.tsredo})
+        Me.tscontainerrtfeditor.Location = New System.Drawing.Point(0, 0)
+        Me.tscontainerrtfeditor.Name = "tscontainerrtfeditor"
+        Me.tscontainerrtfeditor.Size = New System.Drawing.Size(553, 25)
+        Me.tscontainerrtfeditor.TabIndex = 0
+        Me.tscontainerrtfeditor.Text = "ToolStrip1"
         '
         'tsfontfamily
         '
@@ -266,15 +313,139 @@ Partial Class frmtemplateRTF
         Me.tsfonsize.Size = New System.Drawing.Size(75, 25)
         Me.tsfonsize.ToolTipText = "Accepts 7 to 72 font sizes"
         '
+        'tsfontcolor
+        '
+        Me.tsfontcolor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsfontcolor.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_text_color_16
+        Me.tsfontcolor.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsfontcolor.Name = "tsfontcolor"
+        Me.tsfontcolor.Size = New System.Drawing.Size(23, 22)
+        Me.tsfontcolor.Text = "A"
+        Me.tsfontcolor.ToolTipText = "Font Color"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsbold
+        '
+        Me.tsbold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbold.Image = CType(resources.GetObject("tsbold.Image"), System.Drawing.Image)
+        Me.tsbold.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbold.Name = "tsbold"
+        Me.tsbold.Size = New System.Drawing.Size(23, 22)
+        Me.tsbold.Text = "ToolStripButton2"
+        Me.tsbold.ToolTipText = "Bold"
+        '
+        'tsunderline
+        '
+        Me.tsunderline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsunderline.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_underline_16
+        Me.tsunderline.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsunderline.Name = "tsunderline"
+        Me.tsunderline.Size = New System.Drawing.Size(23, 22)
+        Me.tsunderline.Text = "ToolStripButton2"
+        Me.tsunderline.ToolTipText = "Underline"
+        '
+        'tsitalize
+        '
+        Me.tsitalize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsitalize.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_italic_16
+        Me.tsitalize.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsitalize.Name = "tsitalize"
+        Me.tsitalize.Size = New System.Drawing.Size(23, 22)
+        Me.tsitalize.Text = "ToolStripButton2"
+        Me.tsitalize.ToolTipText = "Italize"
+        '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
+        'tsalignleft
+        '
+        Me.tsalignleft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsalignleft.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_left_16
+        Me.tsalignleft.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsalignleft.Name = "tsalignleft"
+        Me.tsalignleft.Size = New System.Drawing.Size(23, 22)
+        Me.tsalignleft.Text = "ToolStripButton2"
+        Me.tsalignleft.ToolTipText = "Align Left"
+        '
+        'tsaligncenter
+        '
+        Me.tsaligncenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsaligncenter.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_center_16
+        Me.tsaligncenter.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsaligncenter.Name = "tsaligncenter"
+        Me.tsaligncenter.Size = New System.Drawing.Size(23, 22)
+        Me.tsaligncenter.Text = "ToolStripButton2"
+        Me.tsaligncenter.ToolTipText = "Align Center"
+        '
+        'tsalignright
+        '
+        Me.tsalignright.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsalignright.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_right_16
+        Me.tsalignright.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsalignright.Name = "tsalignright"
+        Me.tsalignright.Size = New System.Drawing.Size(23, 22)
+        Me.tsalignright.Text = "ToolStripButton2"
+        Me.tsalignright.ToolTipText = "Align Right"
+        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'tsundo
+        '
+        Me.tsundo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsundo.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_undo_16
+        Me.tsundo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsundo.Name = "tsundo"
+        Me.tsundo.Size = New System.Drawing.Size(23, 22)
+        Me.tsundo.Text = "ToolStripButton2"
+        Me.tsundo.ToolTipText = "Undo"
+        '
+        'tsredo
+        '
+        Me.tsredo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsredo.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_redo_16
+        Me.tsredo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsredo.Name = "tsredo"
+        Me.tsredo.Size = New System.Drawing.Size(23, 22)
+        Me.tsredo.Text = "ToolStripButton2"
+        Me.tsredo.ToolTipText = "Redo"
+        '
+        'tscontainerwordeditor
+        '
+        Me.tscontainerwordeditor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tseditresultpdf, Me.tsreloadresultpdf})
+        Me.tscontainerwordeditor.Location = New System.Drawing.Point(0, 0)
+        Me.tscontainerwordeditor.Name = "tscontainerwordeditor"
+        Me.tscontainerwordeditor.Size = New System.Drawing.Size(553, 25)
+        Me.tscontainerwordeditor.TabIndex = 1
+        Me.tscontainerwordeditor.Text = "ToolStrip2"
+        Me.tscontainerwordeditor.Visible = False
+        '
+        'tseditresultpdf
+        '
+        Me.tseditresultpdf.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_edit_16
+        Me.tseditresultpdf.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tseditresultpdf.Name = "tseditresultpdf"
+        Me.tseditresultpdf.Size = New System.Drawing.Size(82, 22)
+        Me.tseditresultpdf.Text = "Edit Result"
+        Me.tseditresultpdf.ToolTipText = "Underline"
+        Me.tseditresultpdf.Visible = False
+        '
+        'tsreloadresultpdf
+        '
+        Me.tsreloadresultpdf.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_redo_16
+        Me.tsreloadresultpdf.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsreloadresultpdf.Name = "tsreloadresultpdf"
+        Me.tsreloadresultpdf.Size = New System.Drawing.Size(98, 22)
+        Me.tsreloadresultpdf.Text = "Reload Result"
+        Me.tsreloadresultpdf.ToolTipText = "Underline"
         '
         'TabPage2
         '
@@ -351,6 +522,34 @@ Partial Class frmtemplateRTF
         Me.dgvImageAddress.Size = New System.Drawing.Size(413, 421)
         Me.dgvImageAddress.TabIndex = 6
         '
+        'colimagename
+        '
+        Me.colimagename.HeaderText = "Image Name"
+        Me.colimagename.Name = "colimagename"
+        Me.colimagename.ReadOnly = True
+        Me.colimagename.Width = 160
+        '
+        'colimagedesc
+        '
+        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.colimagedesc.HeaderText = "Description"
+        Me.colimagedesc.Name = "colimagedesc"
+        '
+        'collocation
+        '
+        Me.collocation.HeaderText = "Location"
+        Me.collocation.Name = "collocation"
+        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.collocation.Visible = False
+        '
+        'colimageid
+        '
+        Me.colimageid.HeaderText = "colimageid"
+        Me.colimageid.Name = "colimageid"
+        Me.colimageid.ReadOnly = True
+        Me.colimageid.Visible = False
+        '
         'tsImageTools
         '
         Me.tsImageTools.AutoSize = False
@@ -362,15 +561,85 @@ Partial Class frmtemplateRTF
         Me.tsImageTools.TabIndex = 7
         Me.tsImageTools.Text = "ToolStrip2"
         '
+        'ToolStripButtonbrowswimage
+        '
+        Me.ToolStripButtonbrowswimage.Image = CType(resources.GetObject("ToolStripButtonbrowswimage.Image"), System.Drawing.Image)
+        Me.ToolStripButtonbrowswimage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonbrowswimage.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonbrowswimage.Name = "ToolStripButtonbrowswimage"
+        Me.ToolStripButtonbrowswimage.Size = New System.Drawing.Size(67, 27)
+        Me.ToolStripButtonbrowswimage.Text = "Browse"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 30)
         '
+        'ToolStripButtonremovethisimage
+        '
+        Me.ToolStripButtonremovethisimage.Image = CType(resources.GetObject("ToolStripButtonremovethisimage.Image"), System.Drawing.Image)
+        Me.ToolStripButtonremovethisimage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonremovethisimage.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonremovethisimage.Name = "ToolStripButtonremovethisimage"
+        Me.ToolStripButtonremovethisimage.Size = New System.Drawing.Size(71, 27)
+        Me.ToolStripButtonremovethisimage.Text = "Remove"
+        '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 30)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CenterImageToolStripMenuItem, Me.NormalToolStripMenuItem, Me.StretchImageToolStripMenuItem, Me.AutoSizeToolStripMenuItem, Me.ZoomToolStripMenuItem})
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(76, 27)
+        Me.ToolStripButton1.Text = "Option"
+        '
+        'CenterImageToolStripMenuItem
+        '
+        Me.CenterImageToolStripMenuItem.Name = "CenterImageToolStripMenuItem"
+        Me.CenterImageToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.CenterImageToolStripMenuItem.Text = "Center Image"
+        '
+        'NormalToolStripMenuItem
+        '
+        Me.NormalToolStripMenuItem.Name = "NormalToolStripMenuItem"
+        Me.NormalToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.NormalToolStripMenuItem.Text = "Normal"
+        '
+        'StretchImageToolStripMenuItem
+        '
+        Me.StretchImageToolStripMenuItem.Name = "StretchImageToolStripMenuItem"
+        Me.StretchImageToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.StretchImageToolStripMenuItem.Text = "Stretch Image"
+        '
+        'AutoSizeToolStripMenuItem
+        '
+        Me.AutoSizeToolStripMenuItem.Name = "AutoSizeToolStripMenuItem"
+        Me.AutoSizeToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.AutoSizeToolStripMenuItem.Text = "Auto Size"
+        '
+        'ZoomToolStripMenuItem
+        '
+        Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
+        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.ZoomToolStripMenuItem.Text = "Zoom"
+        '
+        'Picture
+        '
+        Me.Picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Picture.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Picture.Image = CType(resources.GetObject("Picture.Image"), System.Drawing.Image)
+        Me.Picture.Location = New System.Drawing.Point(422, 3)
+        Me.Picture.Name = "Picture"
+        Me.Picture.Size = New System.Drawing.Size(693, 451)
+        Me.Picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.Picture.TabIndex = 8
+        Me.Picture.TabStop = False
         '
         'TabPage3
         '
@@ -486,6 +755,24 @@ Partial Class frmtemplateRTF
         Me.colremove.Name = "colremove"
         Me.colremove.Width = 30
         '
+        'colitemcode
+        '
+        Me.colitemcode.HeaderText = "Item Code"
+        Me.colitemcode.Name = "colitemcode"
+        Me.colitemcode.ReadOnly = True
+        Me.colitemcode.Visible = False
+        '
+        'colfilmname
+        '
+        Me.colfilmname.HeaderText = "Film"
+        Me.colfilmname.Name = "colfilmname"
+        Me.colfilmname.ReadOnly = True
+        '
+        'colnooffilms
+        '
+        Me.colnooffilms.HeaderText = "No. of Film Used"
+        Me.colnooffilms.Name = "colnooffilms"
+        '
         'Column14
         '
         DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -494,6 +781,13 @@ Partial Class frmtemplateRTF
         Me.Column14.HeaderText = "Is Used?"
         Me.Column14.Name = "Column14"
         Me.Column14.Visible = False
+        '
+        'colchargedetailsid
+        '
+        Me.colchargedetailsid.HeaderText = "colchargedetailsid"
+        Me.colchargedetailsid.Name = "colchargedetailsid"
+        Me.colchargedetailsid.ReadOnly = True
+        Me.colchargedetailsid.Visible = False
         '
         'tsSave
         '
@@ -626,9 +920,9 @@ Partial Class frmtemplateRTF
         Me.dtDate.CustomFormat = ""
         Me.dtDate.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtDate.Location = New System.Drawing.Point(831, 9)
+        Me.dtDate.Location = New System.Drawing.Point(949, 40)
         Me.dtDate.Name = "dtDate"
-        Me.dtDate.Size = New System.Drawing.Size(130, 26)
+        Me.dtDate.Size = New System.Drawing.Size(156, 26)
         Me.dtDate.TabIndex = 269
         '
         'lblDate
@@ -637,7 +931,7 @@ Partial Class frmtemplateRTF
         Me.lblDate.BackColor = System.Drawing.Color.White
         Me.lblDate.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblDate.ForeColor = System.Drawing.Color.Black
-        Me.lblDate.Location = New System.Drawing.Point(760, 13)
+        Me.lblDate.Location = New System.Drawing.Point(885, 44)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(69, 18)
         Me.lblDate.TabIndex = 268
@@ -701,20 +995,12 @@ Partial Class frmtemplateRTF
         Me.Label4.TabIndex = 272
         Me.Label4.Text = "Examination:"
         '
-        'PrintDialog1
-        '
-        Me.PrintDialog1.Document = Me.MiscPrintDocu
-        Me.PrintDialog1.UseEXDialog = True
-        '
-        'MiscPrintDocu
-        '
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(400, 45)
+        Me.Label1.Location = New System.Drawing.Point(402, 45)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(152, 18)
         Me.Label1.TabIndex = 277
@@ -724,7 +1010,7 @@ Partial Class frmtemplateRTF
         '
         Me.cmbradiologist.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cmbradiologist.FormattingEnabled = True
-        Me.cmbradiologist.Location = New System.Drawing.Point(553, 41)
+        Me.cmbradiologist.Location = New System.Drawing.Point(555, 41)
         Me.cmbradiologist.Name = "cmbradiologist"
         Me.cmbradiologist.Size = New System.Drawing.Size(304, 26)
         Me.cmbradiologist.TabIndex = 276
@@ -737,7 +1023,7 @@ Partial Class frmtemplateRTF
         Me.cmbpreviousresult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbpreviousresult.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.cmbpreviousresult.FormattingEnabled = True
-        Me.cmbpreviousresult.Location = New System.Drawing.Point(831, 86)
+        Me.cmbpreviousresult.Location = New System.Drawing.Point(831, 94)
         Me.cmbpreviousresult.Name = "cmbpreviousresult"
         Me.cmbpreviousresult.Size = New System.Drawing.Size(304, 26)
         Me.cmbpreviousresult.TabIndex = 278
@@ -750,176 +1036,69 @@ Partial Class frmtemplateRTF
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(718, 89)
+        Me.Label2.Location = New System.Drawing.Point(718, 97)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(114, 18)
         Me.Label2.TabIndex = 279
         Me.Label2.Text = "Previous Results:"
         '
-        'ToolStripSeparator5
+        'CheckBox1
         '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.CheckBox1.Location = New System.Drawing.Point(867, 45)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(98, 22)
+        Me.CheckBox1.TabIndex = 280
+        Me.CheckBox1.Text = "E-Signature"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckBox1.Visible = False
         '
-        'tsbold
+        'Label3
         '
-        Me.tsbold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbold.Image = CType(resources.GetObject("tsbold.Image"), System.Drawing.Image)
-        Me.tsbold.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbold.Name = "tsbold"
-        Me.tsbold.Size = New System.Drawing.Size(23, 22)
-        Me.tsbold.Text = "ToolStripButton2"
-        Me.tsbold.ToolTipText = "Bold"
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(402, 73)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(112, 18)
+        Me.Label3.TabIndex = 281
+        Me.Label3.Text = "Chief Complaint:"
         '
-        'tsunderline
+        'lblchiefcomplaint
         '
-        Me.tsunderline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsunderline.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_underline_16
-        Me.tsunderline.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsunderline.Name = "tsunderline"
-        Me.tsunderline.Size = New System.Drawing.Size(23, 22)
-        Me.tsunderline.Text = "ToolStripButton2"
-        Me.tsunderline.ToolTipText = "Underline"
+        Me.lblchiefcomplaint.BackColor = System.Drawing.Color.Transparent
+        Me.lblchiefcomplaint.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.lblchiefcomplaint.ForeColor = System.Drawing.Color.Black
+        Me.lblchiefcomplaint.Location = New System.Drawing.Point(520, 73)
+        Me.lblchiefcomplaint.Name = "lblchiefcomplaint"
+        Me.lblchiefcomplaint.Size = New System.Drawing.Size(615, 18)
+        Me.lblchiefcomplaint.TabIndex = 282
+        Me.lblchiefcomplaint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'tsitalize
+        'lblrequestedby
         '
-        Me.tsitalize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsitalize.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_italic_16
-        Me.tsitalize.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsitalize.Name = "tsitalize"
-        Me.tsitalize.Size = New System.Drawing.Size(23, 22)
-        Me.tsitalize.Text = "ToolStripButton2"
-        Me.tsitalize.ToolTipText = "Italize"
+        Me.lblrequestedby.BackColor = System.Drawing.Color.Transparent
+        Me.lblrequestedby.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.lblrequestedby.ForeColor = System.Drawing.Color.Black
+        Me.lblrequestedby.Location = New System.Drawing.Point(851, 15)
+        Me.lblrequestedby.Name = "lblrequestedby"
+        Me.lblrequestedby.Size = New System.Drawing.Size(280, 18)
+        Me.lblrequestedby.TabIndex = 284
+        Me.lblrequestedby.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'tsalignleft
+        'Label6
         '
-        Me.tsalignleft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsalignleft.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_left_16
-        Me.tsalignleft.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsalignleft.Name = "tsalignleft"
-        Me.tsalignleft.Size = New System.Drawing.Size(23, 22)
-        Me.tsalignleft.Text = "ToolStripButton2"
-        Me.tsalignleft.ToolTipText = "Align Left"
-        '
-        'tsaligncenter
-        '
-        Me.tsaligncenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsaligncenter.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_center_16
-        Me.tsaligncenter.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsaligncenter.Name = "tsaligncenter"
-        Me.tsaligncenter.Size = New System.Drawing.Size(23, 22)
-        Me.tsaligncenter.Text = "ToolStripButton2"
-        Me.tsaligncenter.ToolTipText = "Align Center"
-        '
-        'tsalignright
-        '
-        Me.tsalignright.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsalignright.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_align_right_16
-        Me.tsalignright.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsalignright.Name = "tsalignright"
-        Me.tsalignright.Size = New System.Drawing.Size(23, 22)
-        Me.tsalignright.Text = "ToolStripButton2"
-        Me.tsalignright.ToolTipText = "Align Right"
-        '
-        'tsundo
-        '
-        Me.tsundo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsundo.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_undo_16
-        Me.tsundo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsundo.Name = "tsundo"
-        Me.tsundo.Size = New System.Drawing.Size(23, 22)
-        Me.tsundo.Text = "ToolStripButton2"
-        Me.tsundo.ToolTipText = "Undo"
-        '
-        'tsredo
-        '
-        Me.tsredo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsredo.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_redo_16
-        Me.tsredo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsredo.Name = "tsredo"
-        Me.tsredo.Size = New System.Drawing.Size(23, 22)
-        Me.tsredo.Text = "ToolStripButton2"
-        Me.tsredo.ToolTipText = "Redo"
-        '
-        'tsfontcolor
-        '
-        Me.tsfontcolor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsfontcolor.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_text_color_16
-        Me.tsfontcolor.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsfontcolor.Name = "tsfontcolor"
-        Me.tsfontcolor.Size = New System.Drawing.Size(23, 22)
-        Me.tsfontcolor.Text = "A"
-        Me.tsfontcolor.ToolTipText = "Font Color"
-        '
-        'ToolStripButtonbrowswimage
-        '
-        Me.ToolStripButtonbrowswimage.Image = CType(resources.GetObject("ToolStripButtonbrowswimage.Image"), System.Drawing.Image)
-        Me.ToolStripButtonbrowswimage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonbrowswimage.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonbrowswimage.Name = "ToolStripButtonbrowswimage"
-        Me.ToolStripButtonbrowswimage.Size = New System.Drawing.Size(67, 27)
-        Me.ToolStripButtonbrowswimage.Text = "Browse"
-        '
-        'ToolStripButtonremovethisimage
-        '
-        Me.ToolStripButtonremovethisimage.Image = CType(resources.GetObject("ToolStripButtonremovethisimage.Image"), System.Drawing.Image)
-        Me.ToolStripButtonremovethisimage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonremovethisimage.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonremovethisimage.Name = "ToolStripButtonremovethisimage"
-        Me.ToolStripButtonremovethisimage.Size = New System.Drawing.Size(71, 27)
-        Me.ToolStripButtonremovethisimage.Text = "Remove"
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CenterImageToolStripMenuItem, Me.NormalToolStripMenuItem, Me.StretchImageToolStripMenuItem, Me.AutoSizeToolStripMenuItem, Me.ZoomToolStripMenuItem})
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(76, 27)
-        Me.ToolStripButton1.Text = "Option"
-        '
-        'CenterImageToolStripMenuItem
-        '
-        Me.CenterImageToolStripMenuItem.Name = "CenterImageToolStripMenuItem"
-        Me.CenterImageToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.CenterImageToolStripMenuItem.Text = "Center Image"
-        '
-        'NormalToolStripMenuItem
-        '
-        Me.NormalToolStripMenuItem.Name = "NormalToolStripMenuItem"
-        Me.NormalToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.NormalToolStripMenuItem.Text = "Normal"
-        '
-        'StretchImageToolStripMenuItem
-        '
-        Me.StretchImageToolStripMenuItem.Name = "StretchImageToolStripMenuItem"
-        Me.StretchImageToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.StretchImageToolStripMenuItem.Text = "Stretch Image"
-        '
-        'AutoSizeToolStripMenuItem
-        '
-        Me.AutoSizeToolStripMenuItem.Name = "AutoSizeToolStripMenuItem"
-        Me.AutoSizeToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.AutoSizeToolStripMenuItem.Text = "Auto Size"
-        '
-        'ZoomToolStripMenuItem
-        '
-        Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
-        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.ZoomToolStripMenuItem.Text = "Zoom"
-        '
-        'Picture
-        '
-        Me.Picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Picture.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Picture.Image = CType(resources.GetObject("Picture.Image"), System.Drawing.Image)
-        Me.Picture.Location = New System.Drawing.Point(422, 3)
-        Me.Picture.Name = "Picture"
-        Me.Picture.Size = New System.Drawing.Size(693, 451)
-        Me.Picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.Picture.TabIndex = 8
-        Me.Picture.TabStop = False
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(754, 15)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(97, 18)
+        Me.Label6.TabIndex = 283
+        Me.Label6.Text = "Requested By:"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -986,59 +1165,6 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn8.Visible = False
         Me.DataGridViewTextBoxColumn8.Width = 132
         '
-        'colimagename
-        '
-        Me.colimagename.HeaderText = "Image Name"
-        Me.colimagename.Name = "colimagename"
-        Me.colimagename.ReadOnly = True
-        Me.colimagename.Width = 160
-        '
-        'colimagedesc
-        '
-        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.colimagedesc.HeaderText = "Description"
-        Me.colimagedesc.Name = "colimagedesc"
-        '
-        'collocation
-        '
-        Me.collocation.HeaderText = "Location"
-        Me.collocation.Name = "collocation"
-        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.collocation.Visible = False
-        '
-        'colimageid
-        '
-        Me.colimageid.HeaderText = "colimageid"
-        Me.colimageid.Name = "colimageid"
-        Me.colimageid.ReadOnly = True
-        Me.colimageid.Visible = False
-        '
-        'colitemcode
-        '
-        Me.colitemcode.HeaderText = "Item Code"
-        Me.colitemcode.Name = "colitemcode"
-        Me.colitemcode.ReadOnly = True
-        Me.colitemcode.Visible = False
-        '
-        'colfilmname
-        '
-        Me.colfilmname.HeaderText = "Film"
-        Me.colfilmname.Name = "colfilmname"
-        Me.colfilmname.ReadOnly = True
-        '
-        'colnooffilms
-        '
-        Me.colnooffilms.HeaderText = "No. of Film Used"
-        Me.colnooffilms.Name = "colnooffilms"
-        '
-        'colchargedetailsid
-        '
-        Me.colchargedetailsid.HeaderText = "colchargedetailsid"
-        Me.colchargedetailsid.Name = "colchargedetailsid"
-        Me.colchargedetailsid.ReadOnly = True
-        Me.colchargedetailsid.Visible = False
-        '
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.HeaderText = "Film"
@@ -1067,6 +1193,10 @@ Partial Class frmtemplateRTF
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1138, 611)
         Me.ControlBox = False
+        Me.Controls.Add(Me.lblrequestedby)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.lblchiefcomplaint)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cmbpreviousresult)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbradiologist)
@@ -1084,6 +1214,7 @@ Partial Class frmtemplateRTF
         Me.Controls.Add(Me.cmbRadTech)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.tbResult)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -1093,23 +1224,28 @@ Partial Class frmtemplateRTF
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.tbResult.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
+        Me.tbllayoutpanel.ResumeLayout(False)
+        Me.panelpreviousresult.ResumeLayout(False)
+        CType(Me.AxAcroPDFPrevious, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panelcurrentresult.ResumeLayout(False)
+        CType(Me.AxAcroPDFCurrent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.paneleditortools.ResumeLayout(False)
         Me.paneleditortools.PerformLayout()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        Me.tscontainerrtfeditor.ResumeLayout(False)
+        Me.tscontainerrtfeditor.PerformLayout()
+        Me.tscontainerwordeditor.ResumeLayout(False)
+        Me.tscontainerwordeditor.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         CType(Me.dgvImageAddress, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tsImageTools.ResumeLayout(False)
         Me.tsImageTools.PerformLayout()
+        CType(Me.Picture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.paneladdfilm.ResumeLayout(False)
         Me.paneladdfilm.PerformLayout()
         CType(Me.DGVFilm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Picture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1167,8 +1303,6 @@ Partial Class frmtemplateRTF
     Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents lblexamination As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintDialog
-    Friend WithEvents MiscPrintDocu As System.Drawing.Printing.PrintDocument
     Friend WithEvents colremove As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents colitemcode As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colfilmname As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1177,7 +1311,7 @@ Partial Class frmtemplateRTF
     Friend WithEvents colchargedetailsid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents paneladdfilm As System.Windows.Forms.Panel
     Friend WithEvents txtResult As System.Windows.Forms.RichTextBox
-    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents tbllayoutpanel As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents txtpreviousresult As System.Windows.Forms.RichTextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cmbradiologist As System.Windows.Forms.ComboBox
@@ -1189,10 +1323,17 @@ Partial Class frmtemplateRTF
     Friend WithEvents colimageid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cmbpreviousresult As System.Windows.Forms.ComboBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents panelcurrentresult As System.Windows.Forms.Panel
     Friend WithEvents paneleditortools As System.Windows.Forms.Panel
-    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents tscontainerrtfeditor As System.Windows.Forms.ToolStrip
     Friend WithEvents tsbold As System.Windows.Forms.ToolStripButton
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents lblchiefcomplaint As System.Windows.Forms.Label
+    Friend WithEvents tsfontfamily As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents tsfonsize As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents tsfontcolor As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents tsunderline As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsitalize As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
@@ -1202,8 +1343,12 @@ Partial Class frmtemplateRTF
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents tsundo As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsredo As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tsfontfamily As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents tsfonsize As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents tsfontcolor As System.Windows.Forms.ToolStripButton
+    Friend WithEvents panelpreviousresult As System.Windows.Forms.Panel
+    Friend WithEvents AxAcroPDFPrevious As AxAcroPDFLib.AxAcroPDF
+    Friend WithEvents AxAcroPDFCurrent As AxAcroPDFLib.AxAcroPDF
+    Friend WithEvents tscontainerwordeditor As System.Windows.Forms.ToolStrip
+    Friend WithEvents tseditresultpdf As System.Windows.Forms.ToolStripButton
+    Friend WithEvents lblrequestedby As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents tsreloadresultpdf As System.Windows.Forms.ToolStripButton
 End Class

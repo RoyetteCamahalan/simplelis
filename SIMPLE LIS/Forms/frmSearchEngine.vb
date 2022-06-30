@@ -152,8 +152,8 @@
                 .Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 .Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 .Columns(2).HeaderText = "Test Specification"
-                .Columns(3).Width = 100
-                .Columns(3).HeaderText = "Date Released"
+                .Columns(3).Width = 160
+                .Columns(3).HeaderText = "Date Requested"
             End If
         End With
     End Sub

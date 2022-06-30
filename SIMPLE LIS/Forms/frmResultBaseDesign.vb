@@ -21,7 +21,7 @@ Public Class frmResultBaseDesign
     Private patho As Long = 0
     Private dtPatientDetails As New DataTable
     Private dtNewBornResults As New DataTable
-    Private isLock As Boolean
+    Public isLock As Boolean
     Private baseForm As frmResultDesigner
 
     Public admissionid As Long
@@ -111,6 +111,7 @@ Public Class frmResultBaseDesign
         Me.txtmother.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("mothername").ToString)
         Me.txtcontactno.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("mobileno").ToString)
         Me.lblptno.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("ptno").ToString)
+        Me.lblbirthdate.Text = Utility.NullToDefaultDateFormat(dtPatientDetails.Rows(0).Item("Birth Date"))
         Me.lblpatientaddress.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("homeaddress").ToString)
         Me.txtgridremarks.Text = dtPatientDetails.Rows(0).Item("remarks")
     End Sub
@@ -672,6 +673,7 @@ Public Class frmResultBaseDesign
     End Sub
 
     Public Sub lock()
+        Me.isLock = True
         Dim dtdatenow As Date = Utility.GetServerDate()
         Me.lblprinttime.Text = dtdatenow.ToString(modGlobal.defaulttimeformat)
         Me.lblprintdate.Text = dtdatenow.ToString(modGlobal.defaultdateformat)
@@ -679,6 +681,8 @@ Public Class frmResultBaseDesign
         Me.cmbMedtech.Visible = False
         Me.lblpatho.Visible = True
         Me.lblmedtech.Visible = True
+        getEmployeeInfo(Me.cmbMedtech.SelectedValue, False)
+        getEmployeeInfo(Me.cmbPathologist.SelectedValue, True)
         If panelresultgrid.Visible = True Then
             For i As Integer = Me.dgvResult.Rows.Count - 1 To 0 Step -1
                 If Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colresult.Index).Value) = "" Then

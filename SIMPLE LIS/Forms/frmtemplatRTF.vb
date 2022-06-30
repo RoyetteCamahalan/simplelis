@@ -5,9 +5,11 @@ Imports System.Management.Instrumentation
 Imports System.Management
 Imports SIMPLE_LIS.Utility
 Imports System.Drawing.Imaging
+Imports System.Text.RegularExpressions
+
 Public Class frmtemplateRTF
 
-    Public Sub New(ByVal requestdetailno As Long, ByVal laboratoryid As Long, ByVal labname As String, ByVal Islock As Boolean, ByVal status As Integer)
+    Public Sub New(ByVal requestdetailno As Long, ByVal laboratoryid As Long, ByVal labname As String, ByVal Islock As Boolean, ByVal status As Integer, ByVal labformatid As Integer)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -16,6 +18,7 @@ Public Class frmtemplateRTF
         Me.requestdetailno = requestdetailno
         Me.laboratoryid = laboratoryid
         Me.labname = labname
+        Me.labformatid = labformatid
         Me.Islock = Islock
         Me.requestStatus = status
     End Sub
@@ -24,6 +27,7 @@ Public Class frmtemplateRTF
     Private laboratoryid As Long
     Private labname As String
     Private itemcode As String
+    Private labformatid As Integer
     Private Islock As Boolean
 
     Private admissionid As Long
@@ -33,10 +37,12 @@ Public Class frmtemplateRTF
     Private patientid As Long
     Private patientname As String
     Private patientbirthdate As Date = Date.Now
+    Private patientcontactno As String
     Private ptno As String
     Private patientaddress As String
     Private radiologistdesignation As String
     Private requestStatus As Integer
+    Private resultpdflocation As String
 
 
     Private tempfilename As String
@@ -44,7 +50,7 @@ Public Class frmtemplateRTF
 
     Private ImageStorage As String
     Private DocumentLocation As String
-    Public rtfLocation As String
+    Public resultlocation As String
 
     Dim dtHospitalInfo As New DataTable
 
@@ -103,6 +109,7 @@ Public Class frmtemplateRTF
     End Sub
     Private Sub frmRadiology_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         dtHospitalInfo = clsLaboratoryResult.getHospitalInfo()
+        Me.tbResult.TabPages.RemoveAt(2)
         Call LoadCombo()
         Call LoadRecord()
         If Islock Then
@@ -210,11 +217,6 @@ Public Class frmtemplateRTF
 
 #End Region
 #Region "Methods"
-    Public Sub testprint()
-        
-        Call generatePDF()
-        
-    End Sub
     Private Function BrowseFile() As Boolean
         Dim dlg As New OpenFileDialog()
         dlg.Filter = "Image Files|*.jpg;*.bmp;*.png;*.jpeg"
@@ -233,14 +235,18 @@ Public Class frmtemplateRTF
             Exit Sub
         End If
         If Me.cmbradiologist.Text = "" Then
-            SetErrorProvider(cmbRadTech, "Select doctor.")
+            SetErrorProvider(cmbradiologist, "Select doctor.")
             Exit Sub
         End If
+        SetErrorProvider(cmbRadTech, "", False)
+        SetErrorProvider(cmbradiologist, "", False)
 
         isSave = True
         Call SaveRecord()
         If Me.requestStatus = clsModel.RequestStatus.released Then
-            Call Me.generatePDF(False)
+            If Me.labformatid <> clsModel.LabFormats.EchoForms Then
+                Call Me.generatePDF()
+            End If
         End If
         'MsgBox("Laboratory result successfully " + action + "d.", MsgBoxStyle.OkOnly, modGlobal.msgboxTitle)
         Islock = True
@@ -301,27 +307,27 @@ Public Class frmtemplateRTF
     Private Sub LoadRecord()
         Try
             Call LoadFilms()
-            If Me.laboratoryid = 10 Then
+            Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
+            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                Me.Text = "VASCULAR"
+            ElseIf Me.laboratoryid = 10 Then
                 Me.Text = "RADIOLOGY"
             Else
                 Me.Text = "ULTRASOUND"
             End If
-            Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
             If dtResult.Rows(0).Item("gender").ToString = "M" Then
                 Me.txtGender.Text = "Male"
             Else
                 Me.txtGender.Text = "Female"
             End If
             Me.admissionid = dtResult.Rows(0).Item("admissionid").ToString
-            DocumentLocation = Utility.readSetting(appSettings.DocumentLocationEMR)
-            If DocumentLocation <> "" Then
-                ImageStorage = DocumentLocation & "\"
-            End If
-            rtfLocation = String.Format("{0}{1}\results\{2}.rtf", ImageStorage, Me.admissionid, Me.requestdetailno)
-            ImageStorage = String.Format("{0}{1}\results\", ImageStorage, Me.admissionid)
+
             Me.txtPatientname.Text = dtResult.Rows(0).Item("patient").ToString
             Me.txtAge.Text = dtResult.Rows(0).Item("age").ToString
             Me.lblexamination.Text = dtResult.Rows(0).Item("itemspecs").ToString
+            Me.lblchiefcomplaint.Text = dtResult.Rows(0).Item("chiefcomplaints").ToString
+            Me.patientcontactno = dtResult.Rows(0).Item("mobileno").ToString
+            Me.lblrequestedby.Text = dtResult.Rows(0).Item("requestingphysician").ToString
             Me.laboratoryresultid = dtResult.Rows(0).Item("laboratoryresultid")
             Me.labradiologyid = dtResult.Rows(0).Item("labradiologyid")
             If Me.laboratoryresultid = 0 Then
@@ -356,11 +362,42 @@ Public Class frmtemplateRTF
                 Me.DGVFilm.Rows(ctr).Cells(colnooffilms.Index).Value = dtChargeResultDetails.Rows(ctr).Item("quantity")
                 Me.chargeid = dtChargeResultDetails.Rows(ctr).Item("chargeid")
             Next
-
-            If File.Exists(rtfLocation) Then
-                txtResult.LoadFile(rtfLocation)
-            ElseIf File.Exists("templates\default.rtf") Then
-                txtResult.LoadFile("templates\default.rtf")
+            DocumentLocation = Utility.readSetting(appSettings.DocumentLocationEMR)
+            If DocumentLocation <> "" Then
+                ImageStorage = DocumentLocation & "\"
+            End If
+            Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.requestdetailno, Me.admissionid)
+            If (dt.Rows.Count > 0) Then
+                resultpdflocation = String.Format("{0}{1}\{2}", ImageStorage, Me.admissionid, dt.Rows(0).Item("documentname"))
+            Else
+                resultpdflocation = String.Format("{0}{1}\{2}.pdf", ImageStorage, Me.admissionid, generateFileName())
+            End If
+            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                resultlocation = String.Format("{0}{1}\results\{2}.docx", ImageStorage, Me.admissionid, Me.requestdetailno)
+                If File.Exists(resultpdflocation) Then
+                    AxAcroPDFCurrent.LoadFile(resultpdflocation)
+                    Me.tseditresultpdf.Visible = True
+                ElseIf File.Exists(resultlocation) Then
+                    Me.processWordDocument("", False)
+                    Me.tscontainerwordeditor.Visible = True
+                ElseIf File.Exists("templates\NoResult.pdf") Then
+                    AxAcroPDFCurrent.LoadFile("templates\NoResult.pdf")
+                End If
+                Me.tscontainerwordeditor.Visible = True
+                Me.txtResult.Visible = False
+                Me.tscontainerrtfeditor.Visible = False
+                Me.AxAcroPDFCurrent.Visible = True
+            Else
+                resultlocation = String.Format("{0}{1}\results\{2}.rtf", ImageStorage, Me.admissionid, Me.requestdetailno)
+                If File.Exists(resultlocation) Then
+                    txtResult.LoadFile(resultlocation)
+                ElseIf File.Exists("templates\default.rtf") Then
+                    txtResult.LoadFile("templates\default.rtf")
+                End If
+            End If
+            ImageStorage = String.Format("{0}{1}\results\", ImageStorage, Me.admissionid)
+            If Directory.Exists(ImageStorage) = False Then
+                Directory.CreateDirectory(ImageStorage)
             End If
         Catch ex As Exception
         End Try
@@ -457,10 +494,9 @@ Public Class frmtemplateRTF
             myRadiology.soperation = 0
             myRadiology.Save(False)
         End If
-        If Directory.Exists(ImageStorage) = False Then
-            Directory.CreateDirectory(ImageStorage)
+        If Me.labformatid <> clsModel.LabFormats.EchoForms Then
+            Me.txtResult.SaveFile(resultlocation)
         End If
-        Me.txtResult.SaveFile(rtfLocation)
 
         If Me.DGVFilm.Rows.Count > 0 Then
             '******************* save charges
@@ -541,17 +577,44 @@ Public Class frmtemplateRTF
     End Sub
 #End Region
 #Region "Printing"
-    Public Sub DisplayPrintPreview()
-        Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.requestdetailno, Me.admissionid)
-        If (dt.Rows.Count > 0) Then
-            If File.Exists(DocumentLocation & "\" & dt.Rows(0).Item("documentlocation")) Then
-                Process.Start(DocumentLocation & "\" & dt.Rows(0).Item("documentlocation"))
-                Exit Sub
+    Public Sub DisplayPrintPreview(Optional tool As Integer = 0)
+        'If Me.txtResult.Rtf.Contains("trowd") Then
+        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            processWordDocument("")
+        Else
+            Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.requestdetailno, Me.admissionid)
+            If (dt.Rows.Count > 0) Then
+                If File.Exists(DocumentLocation & "\" & dt.Rows(0).Item("documentlocation")) Then
+                    resultpdflocation = DocumentLocation & "\" & dt.Rows(0).Item("documentlocation")
+                Else
+                    Call generatePDF()
+                End If
+            Else
+                Call generatePDF()
             End If
         End If
-        Call generatePDF()
+        If tool = 0 Then
+            Dim f As New frmPDFViewer(resultpdflocation, True, True)
+            f.ShowDialog()
+        ElseIf tool = 1 Then
+            Process.Start(resultpdflocation)
+        ElseIf tool = 2 Then
+            Dim f As New frmReportHandler
+            Dim crv As New crptRadTemplate
+            Dim dt As DataTable = clsRadiology.genericcls(9, Me.requestdetailno)
+            dt.Rows(0).Item("result") = Me.txtResult.Rtf
+            crv.SetDataSource(dt)
+            f.crvPrinting.ReportSource = crv
+            f.ShowDialog()
+        End If
+        'Else
+       
+        'End If
     End Sub
-    Public Sub generatePDF(Optional openAfterExport As Boolean = True)
+    Public Function generateFileName() As String
+        Return Regex.Replace(Me.lblexamination.Text.Trim(), "[^A-Za-z0-9_. ]+", "") & "_" & requestdetailno
+    End Function
+    Public Sub generatePDF()
         Dim wordApplication As New Microsoft.Office.Interop.Word.Application
         Dim wordDocument As Microsoft.Office.Interop.Word.Document = Nothing
         Dim tempfilename = Application.StartupPath() & "\templates\temp\" & Utility.GetRandomString() & ".docx"
@@ -629,17 +692,14 @@ Public Class frmtemplateRTF
             Next
 
             wordApplication.Selection.Paste()
-            'Dim finfo As New FileInfo(rtfLocation)
-            'wordDocument.Range.InsertFile(finfo.FullName, Type.Missing, False, False, False)
             wordDocument.Save()
 
-            Dim outputFilename = String.Format("\{0}\{1}.pdf", admissionid, Me.lblexamination.Text.Replace("/", "").Replace("\", ""))
-            Dim fi As New FileInfo(DocumentLocation)
+            Dim fi As New FileInfo(resultpdflocation)
 
 
             If Not wordDocument Is Nothing Then
-                wordDocument.ExportAsFixedFormat(fi.FullName & outputFilename, Microsoft.Office.Interop.Word.WdExportFormat.wdExportFormatPDF, openAfterExport, Microsoft.Office.Interop.Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen, Microsoft.Office.Interop.Word.WdExportRange.wdExportAllDocument, 0, 0, Microsoft.Office.Interop.Word.WdExportItem.wdExportDocumentContent, True, True, Microsoft.Office.Interop.Word.WdExportCreateBookmarks.wdExportCreateNoBookmarks, True, True, False)
-                Call clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, Me.admissionid, outputFilename)
+                wordDocument.ExportAsFixedFormat(fi.FullName, Microsoft.Office.Interop.Word.WdExportFormat.wdExportFormatPDF, False, Microsoft.Office.Interop.Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen, Microsoft.Office.Interop.Word.WdExportRange.wdExportAllDocument, 0, 0, Microsoft.Office.Interop.Word.WdExportItem.wdExportDocumentContent, True, True, Microsoft.Office.Interop.Word.WdExportCreateBookmarks.wdExportCreateNoBookmarks, True, True, False)
+                Call clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, Me.admissionid, resultpdflocation)
             End If
         Catch ex As Exception
             'TODO: handle exception
@@ -660,32 +720,125 @@ Public Class frmtemplateRTF
 
         End Try
     End Sub
-    Private Function GetFormImage(ByVal include_borders As Boolean) As Bitmap
-        ' Make the bitmap.
-        Dim wid As Integer = Me.Width
-        Dim hgt As Integer = Me.Height
-        Dim bm As New Bitmap(wid, hgt)
-        ' Draw the form onto the bitmap.
-        Me.DrawToBitmap(bm, New Rectangle(0, 0, wid, hgt))
-        ' Make a smaller bitmap without borders.
-        wid = Me.ClientSize.Width
-        hgt = Me.ClientSize.Height
-        Dim bm2 As New Bitmap(wid, hgt)
-        ' Get the offset from the window's corner to its client
-        ' area's corner.
-        Dim pt As New Point(0, 0)
-        pt = PointToScreen(pt)
-        Dim dx As Integer = pt.X - Me.Left
-        Dim dy As Integer = pt.Y - Me.Top
-        ' Copy the part of the original bitmap that we want
-        ' into the bitmap.
-        Dim gr As Graphics = Graphics.FromImage(bm2)
-        gr.DrawImage(bm, 0, 0, New Rectangle(dx, dy, wid, hgt), GraphicsUnit.Pixel)
-        Return bm
-    End Function
+    Public Sub processWordDocument(sourceTemplate As String, Optional isEdit As Boolean = False)
+        If sourceTemplate <> "" AndAlso File.Exists(resultlocation) Then
+            If MsgBox("Do you want to replace existing result?", MsgBoxStyle.YesNo, msgboxTitle) <> MsgBoxResult.Yes Then
+                Exit Sub
+            End If
+        End If
+        Dim wordApplication As New Microsoft.Office.Interop.Word.Application
+        Dim wordDocument As Microsoft.Office.Interop.Word.Document = Nothing
+        Dim tempfilename = resultlocation
+        Try
+            If sourceTemplate <> "" Then
+                File.Copy(sourceTemplate, resultlocation, True)
+            End If
+            If Not isEdit Then
+                tempfilename = Application.StartupPath() & "\templates\temp\" & Utility.GetRandomString() & ".docx"
+                File.Copy(resultlocation, tempfilename, True)
+            End If
+            Dim finfo As New FileInfo(tempfilename)
+            wordDocument = wordApplication.Documents.Open(finfo.FullName)
+            wordDocument.Activate()
+            Try
+                With wordDocument
+                    If isEdit Then
+                        For Each field As Microsoft.Office.Interop.Word.FormField In wordDocument.FormFields
+                            Select Case field.Name
+                                Case "lblpatientname"
+                                    field.Result = txtPatientname.Text
+                                Case "lbldateprinted"
+                                    field.Result = Utility.GetServerDate().ToString(defaultdateformat)
+                                Case "lbltestdate"
+                                    field.Result = Me.dtDate.Value.ToString(defaultdateformat)
+                                Case "lblpatientaddress"
+                                    field.Result = Me.patientaddress
+                                Case "lblptno"
+                                    field.Result = Me.ptno
+                                Case "lblchiefcomplaint"
+                                    field.Result = Me.lblchiefcomplaint.Text
+                                Case "lblage"
+                                    field.Result = txtAge.Text
+                                Case "lblgender"
+                                    field.Result = txtGender.Text
+                                Case "lblrequestedby"
+                                    field.Result = Me.lblrequestedby.Text
+                                Case "lblcontactno"
+                                    field.Result = Me.patientcontactno
+                            End Select
+                        Next
+                    Else
+                        For Each field As Microsoft.Office.Interop.Word.FormField In wordDocument.FormFields
+                            Select Case field.Name
+                                Case "lblpatientname"
+                                    field.Range.Text = txtPatientname.Text
+                                Case "lbldateprinted"
+                                    field.Range.Text = Utility.GetServerDate().ToString(defaultdateformat)
+                                Case "lbltestdate"
+                                    field.Range.Text = Me.dtDate.Value.ToString(defaultdateformat)
+                                Case "lblpatientaddress"
+                                    field.Range.Text = Me.patientaddress
+                                Case "lblptno"
+                                    field.Result = Me.ptno
+                                Case "lblchiefcomplaint"
+                                    field.Range.Text = Me.lblchiefcomplaint.Text
+                                Case "lblage"
+                                    field.Range.Text = txtAge.Text
+                                Case "lblgender"
+                                    field.Range.Text = txtGender.Text
+                                Case "lblrequestedby"
+                                    field.Range.Text = Me.lblrequestedby.Text
+                                Case "lblcontactno"
+                                    field.Range.Text = Me.patientcontactno
+                            End Select
+                        Next
+                    End If
 
-    Private Sub MiscPrintDocu_PrintPage(sender As System.Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles MiscPrintDocu.PrintPage
-        e.Graphics.DrawImage(GetFormImage(False), New Point(15, 0))
+                End With
+            Catch ex As Exception
+
+            End Try
+            wordDocument.Save()
+            If Not isEdit Then
+                Dim fi As New FileInfo(resultpdflocation)
+                wordDocument.ExportAsFixedFormat(fi.FullName, Microsoft.Office.Interop.Word.WdExportFormat.wdExportFormatPDF, False, Microsoft.Office.Interop.Word.WdExportOptimizeFor.wdExportOptimizeForOnScreen, Microsoft.Office.Interop.Word.WdExportRange.wdExportAllDocument, 0, 0, Microsoft.Office.Interop.Word.WdExportItem.wdExportDocumentContent, True, True, Microsoft.Office.Interop.Word.WdExportCreateBookmarks.wdExportCreateNoBookmarks, True, True, False)
+                Call clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, Me.admissionid, resultpdflocation)
+            End If
+        Catch ex As Exception
+            'TODO: handle exception
+        Finally
+            If Not wordDocument Is Nothing Then
+                wordDocument.Close(False)
+                wordDocument = Nothing
+            End If
+
+            If Not wordApplication Is Nothing Then
+                wordApplication.Quit()
+                wordApplication = Nothing
+            End If
+        End Try
+        If isEdit Then
+            Try
+                System.Diagnostics.Process.Start(resultlocation)
+            Catch ex As Exception
+            End Try
+        Else
+            Try
+                Me.AxAcroPDFCurrent.LoadFile("Empty")
+                Me.AxAcroPDFCurrent.LoadFile(resultpdflocation)
+                'Me.AxAcroPDFCurrent.src = outputFilename
+                'Me.AxAcroPDFCurrent.Show()
+            Catch ex As Exception
+
+            End Try
+        End If
+        Try
+            If resultlocation <> tempfilename Then
+                File.Delete(tempfilename)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 #End Region
 
@@ -699,28 +852,30 @@ Public Class frmtemplateRTF
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs)
-        txtResult.LoadFile("C:\Users\Admin\Downloads\testrtf.rtf")
-    End Sub
-
-    Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs)
-        If txtResult.Text.Contains("{birthdate}") Then
-            MsgBox(txtResult.Text.IndexOf("{birthdate}"))
-        End If
-    End Sub
-
-    Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs)
-        DisplayPrintPreview()
-    End Sub
 
     Private Sub cmbpreviousresult_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbpreviousresult.SelectedValueChanged
         Try
             If Me.cmbpreviousresult.SelectedValue > 0 Then
-                Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(Me.cmbpreviousresult.SelectedValue, 9)
-                Dim prevrtfLocation = String.Format("{0}\{1}\results\{2}.rtf", DocumentLocation, dtResult.Rows(0).Item("admissionid"), Me.cmbpreviousresult.SelectedValue)
-                If File.Exists(prevrtfLocation) Then
-                    Me.txtpreviousresult.LoadFile(prevrtfLocation)
+                Dim dtResult As DataTable = clsExamination.genericcls(9, Me.cmbpreviousresult.SelectedValue)
+                If dtResult.Rows(0).Item("labformatid") = clsModel.LabFormats.EchoForms Then
+                    Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.cmbpreviousresult.SelectedValue, Me.admissionid)
+                    If (dt.Rows.Count > 0) Then
+                        Dim prevrtfLocation = String.Format("{0}\{1}\{2}", DocumentLocation, Me.admissionid, dt.Rows(0).Item("documentname"))
+                        If File.Exists(prevrtfLocation) Then
+                            Me.AxAcroPDFPrevious.LoadFile(prevrtfLocation)
+                        End If
+                    End If
+                    Me.AxAcroPDFPrevious.Visible = True
+                    Me.txtpreviousresult.Visible = False
+                Else
+                    Dim prevrtfLocation = String.Format("{0}\{1}\results\{2}.rtf", DocumentLocation, dtResult.Rows(0).Item("admissionid"), Me.cmbpreviousresult.SelectedValue)
+                    If File.Exists(prevrtfLocation) Then
+                        Me.txtpreviousresult.LoadFile(prevrtfLocation)
+                    End If
+                    Me.AxAcroPDFPrevious.Visible = False
+                    Me.txtpreviousresult.Visible = True
                 End If
+
             End If
         Catch ex As Exception
             Me.txtpreviousresult.Text = ""
@@ -875,8 +1030,6 @@ Public Class frmtemplateRTF
     Private Sub tsredo_Click(sender As System.Object, e As System.EventArgs) Handles tsredo.Click
         formatText(formating.redo)
     End Sub
-#End Region
-
     Private Sub txtResult_SelectionChanged(sender As System.Object, e As System.EventArgs) Handles txtResult.SelectionChanged
         Try
             If afterload Then
@@ -926,5 +1079,14 @@ Public Class frmtemplateRTF
         Catch ex As Exception
 
         End Try
+    End Sub
+#End Region
+
+    Private Sub tsreloadresultpdf_Click(sender As System.Object, e As System.EventArgs) Handles tsreloadresultpdf.Click
+        Call processWordDocument("", False)
+    End Sub
+
+    Private Sub tseditresultpdf_Click(sender As System.Object, e As System.EventArgs) Handles tseditresultpdf.Click
+        Call processWordDocument("", True)
     End Sub
 End Class

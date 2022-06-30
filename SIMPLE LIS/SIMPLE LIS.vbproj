@@ -132,6 +132,12 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
+    <Compile Include="Forms\frmPDFViewer.Designer.vb">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPDFViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmSearchEngine.designer.vb">
       <DependentUpon>frmSearchEngine.vb</DependentUpon>
     </Compile>
@@ -231,6 +237,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmPDFViewer.resx">
+      <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSearchEngine.resx">
       <DependentUpon>frmSearchEngine.vb</DependentUpon>
     </EmbeddedResource>
@@ -297,6 +306,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
+    <None Include="Resources\ic_edit_16.png" />
     <None Include="Resources\ic_gear_16.png" />
     <None Include="Resources\tools.png" />
     <None Include="Resources\Settings-4822.png" />
@@ -320,7 +330,25 @@
     <None Include="Resources\delete-16x16.png" />
     <None Include="Resources\add_16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

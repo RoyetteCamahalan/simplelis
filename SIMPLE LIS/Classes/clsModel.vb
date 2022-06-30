@@ -52,6 +52,7 @@
         Public Shared CROSSMATCHING As Integer = 5
         Public Shared NEWBORNSCREENING As Integer = 6
         Public Shared ECGREPORT As Integer = 7
+        Public Shared EchoForms As Integer = 8
     End Class
 
     Public Class EmployeeTypes
