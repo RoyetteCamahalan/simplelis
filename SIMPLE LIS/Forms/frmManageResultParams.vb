@@ -102,6 +102,7 @@ Public Class frmManageResultParams
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colsiref.Index).Value = row.Item("normalvaluessi")
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colsiunit.Index).Value = row.Item("unitsi")
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colconversion.Index).Value = CDbl(row.Item("siconversion"))
+            Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(coltexthighlight.Index).Value = row.Item("texthighlight")
         Next
         afterload = True
     End Sub
@@ -146,6 +147,7 @@ Public Class frmManageResultParams
             x.normalvaluessi = Utility.NullToEmptyString(row.Cells(colsiref.Index).Value)
             x.unitsi = Utility.NullToEmptyString(row.Cells(colsiunit.Index).Value)
             x.siconversion = Utility.NullToZero(row.Cells(colconversion.Index).Value)
+            x.texthighlight = Utility.NullToEmptyString(row.Cells(coltexthighlight.Index).Value)
             If x.laboratorydetailsid = 0 Then
                 x.saveDetails(True)
             Else

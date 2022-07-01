@@ -8,6 +8,7 @@
     Public fieldlocationy As Integer
     Public fieldwidth As Integer
     Public fieldheight As Integer
+    Public fieldhighlight As String
     Public issave As Boolean
 
     Public myformstatus As formstatus
@@ -18,7 +19,8 @@
 
     Private erp As New ErrorProvider
     Public Sub New(ByVal myformstatus As formstatus, ByVal fieldtype As Integer, ByVal fieldname As String, ByVal fieldoptions As String,
-                   ByVal fielddefault As String, ByVal labeltext As String, ByVal locx As Integer, ByVal locy As Integer, ByVal width As Integer, ByVal height As Integer)
+                   ByVal fielddefault As String, ByVal labeltext As String, ByVal locx As Integer, ByVal locy As Integer, ByVal width As Integer,
+                   ByVal height As Integer, ByVal fieldhighlight As String)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -34,6 +36,7 @@
         Me.fieldlocationy = locy
         Me.fieldwidth = width
         Me.fieldheight = height
+        Me.fieldhighlight = fieldhighlight
     End Sub
     Private Sub frmAddField_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         loadCombo()
@@ -50,6 +53,7 @@
         Me.txtY.Text = Me.fieldlocationy
         Me.txtwidth.Text = Me.fieldwidth
         Me.txtheight.Text = Me.fieldheight
+        Me.txttexthighlight.Text = Me.fieldhighlight
     End Sub
 
     Private Sub loadCombo()
@@ -97,6 +101,7 @@
         Me.fieldlocationy = Val(Me.txtY.Text)
         Me.fieldwidth = Val(Me.txtwidth.Text)
         Me.fieldheight = Val(Me.txtheight.Text)
+        Me.fieldhighlight = txttexthighlight.Text
         Me.Close()
     End Sub
 

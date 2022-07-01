@@ -213,7 +213,7 @@ getLabDetails:
                     End If
                     Call Me.addRow(row.Item("visible"), row.Item("description"), row.Item("controltype"), row.Item("optionvalues"),
                                    row.Item("laboratorydetailsid"), "", New Point(row.Item("x2"), row.Item("y2")), row.Item("defaultvalue"), 0,
-                                   row.Item("labeldescription"), row.Item("width2"), row.Item("height2"))
+                                   row.Item("labeldescription"), row.Item("width2"), row.Item("height2"), row.Item("texthighlight"))
                 End If
             Next
             If Me.labformatid = clsModel.LabFormats.ECGREPORT Then
@@ -240,6 +240,7 @@ getLabDetails:
                         fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colresult.Index).Value = Utility.NullToEmptyString(row.Item("result"))
                         fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabresultdetailid.Index).Value = row.Item("laboratoryresultdetailsid")
                         fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunits.Index).Value = row.Item("unit")
+                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.coltexthighlight.Index).Value = row.Item("texthighlight")
                         Call fbaseform.adjustForm()
                     End If
                 Next
@@ -254,11 +255,11 @@ getLabDetails:
                     If row.Item("controltype") > 0 Then
                         If row.Item("visible") Then
                             fbaseform.AddControl(row.Item("labeldescription"), row.Item("controltype"), New Point(row.Item("x2"), row.Item("y2")), row.Item("result"),
-                                                 row.Item("optionvalues"), row.Item("laboratorydetailsid"), row.Item("width2"), row.Item("height2"), row.Item("defaultvalue"), islock)
+                                                 row.Item("optionvalues"), row.Item("laboratorydetailsid"), row.Item("width2"), row.Item("height2"), row.Item("defaultvalue"), islock, row.Item("texthighlight"))
                         End If
                         Call Me.addRow(row.Item("visible"), row.Item("description"), row.Item("controltype"), row.Item("optionvalues"),
                                        row.Item("laboratorydetailsid"), "", New Point(row.Item("x2"), row.Item("y2")), row.Item("defaultvalue"),
-                                       row.Item("laboratoryresultdetailsid"), row.Item("labeldescription"), row.Item("width2"), row.Item("height2"))
+                                       row.Item("laboratoryresultdetailsid"), row.Item("labeldescription"), row.Item("width2"), row.Item("height2"), row.Item("texthighlight"))
                     End If
                 Next
             End If
@@ -270,7 +271,7 @@ getLabDetails:
     Private Sub addRow(ByVal visible As Boolean, ByVal fieldname As String, ByVal ctrtype As Integer, ByVal optvalue As String,
                        ByVal laboratorydetailsid As Long, ByVal uuid As String, ByVal loc As Point, ByVal defaultvalue As String,
                         ByVal laboratoryresultdetailid As String, ByVal labeltext As String,
-                        ByVal width As Long, ByVal height As Long)
+                        ByVal width As Long, ByVal height As Long, ByVal texthighlight As String)
         afterload = False
         Me.dgvResult.Rows.Add(1)
         With Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1)
@@ -288,6 +289,7 @@ getLabDetails:
             .Cells(collabeltext.Index).Value = labeltext
             .Cells(colwidth.Index).Value = width
             .Cells(colheight.Index).Value = height
+            .Cells(coltexthighlight.Index).Value = texthighlight
         End With
         afterload = True
     End Sub
@@ -324,6 +326,7 @@ getLabDetails:
                     x.controltype = row.Cells(colfieldtype.Index).Value
                     x.defaultvalue = row.Cells(coldefaultvalue.Index).Value
                     x.labeldescription = row.Cells(collabeltext.Index).Value
+                    x.texthighlight = row.Cells(coltexthighlight.Index).Value
                     If x.laboratorydetailsid = 0 Then
                         x.saveDetails(True)
                     Else
@@ -502,12 +505,12 @@ getLabDetails:
         Me.Close()
     End Sub
     Private Sub btnAdd_Click(sender As System.Object, e As System.EventArgs) Handles btnAdd.Click
-        Dim f As New frmAddField(frmAddField.formstatus.add, 0, "", "", "", "", 0, 0, clsModel.ConstrolTypes.DefaultPanelWidth, clsModel.ConstrolTypes.DefaultPanelHeight)
+        Dim f As New frmAddField(frmAddField.formstatus.add, 0, "", "", "", "", 0, 0, clsModel.ConstrolTypes.DefaultPanelWidth, clsModel.ConstrolTypes.DefaultPanelHeight, "")
         f.ShowDialog()
         If f.issave Then
             Dim uuid As String = Utility.GetRandomString
             fbaseform.AddControl(f.fieldlabel, f.fieldtype, New Point(0), f.fielddefaultval, f.fieldoptions, uuid, panelwidth:=0, panelheight:=0, defaultvalue:=f.fielddefaultval)
-            Call Me.addRow(True, f.fieldname, f.fieldtype, f.fieldoptions, 0, uuid, New Point(0), f.fielddefaultval, 0, f.fieldlabel, 0, 0)
+            Call Me.addRow(True, f.fieldname, f.fieldtype, f.fieldoptions, 0, uuid, New Point(0), f.fielddefaultval, 0, f.fieldlabel, 0, 0, f.fieldhighlight)
         End If
     End Sub
 
@@ -628,7 +631,8 @@ getLabDetails:
                                  .Cells(collocationx.Index).Value,
                                  .Cells(collocationy.Index).Value,
                                  .Cells(colwidth.Index).Value,
-                                 .Cells(colheight.Index).Value)
+                                 .Cells(colheight.Index).Value,
+                                 .Cells(coltexthighlight.Index).Value)
             f.ShowDialog()
             If f.issave Then
                 Dim uuid As String = .Cells(collaboratorydetailsid.Index).Value
@@ -641,13 +645,15 @@ getLabDetails:
                 .Cells(colwidth.Index).Value = f.fieldwidth
                 .Cells(colheight.Index).Value = f.fieldheight
                 fbaseform.AddControl(f.fieldlabel, f.fieldtype, New Point(.Cells(collocationx.Index).Value, .Cells(collocationy.Index).Value),
-                                     f.fielddefaultval, f.fieldoptions, uuid, .Cells(colwidth.Index).Value, .Cells(colheight.Index).Value, .Cells(coldefaultvalue.Index).Value)
+                                     f.fielddefaultval, f.fieldoptions, uuid, .Cells(colwidth.Index).Value, .Cells(colheight.Index).Value, .Cells(coldefaultvalue.Index).Value,
+                                     texthighlight:=f.fieldhighlight)
                 .Cells(colfieldname.Index).Value = f.fieldname
                 .Cells(colfieldtype.Index).Value = f.fieldtype
                 .Cells(colfieldtypedesc.Index).Value = clsModel.ConstrolTypes.getDescription(f.fieldtype)
                 .Cells(coloptionvalues.Index).Value = f.fieldoptions
                 .Cells(coldefaultvalue.Index).Value = f.fielddefaultval
                 .Cells(collabeltext.Index).Value = f.fieldlabel
+                .Cells(coltexthighlight.Index).Value = f.fieldhighlight
             End If
         End With
     End Sub

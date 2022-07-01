@@ -62,6 +62,7 @@ Partial Class frmResultBaseDesign
         Me.panelmanageparams = New System.Windows.Forms.Panel()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
+        Me.LineShape6 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape10 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape9 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape8 = New Microsoft.VisualBasic.PowerPacks.LineShape()
@@ -99,7 +100,6 @@ Partial Class frmResultBaseDesign
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lbltranstime = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.LineShape6 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.lblbirthdate = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -113,6 +113,7 @@ Partial Class frmResultBaseDesign
         Me.colref = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.collabdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.collabresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelmain.SuspendLayout()
         Me.panelsignatory.SuspendLayout()
         Me.panelpatho.SuspendLayout()
@@ -444,7 +445,7 @@ Partial Class frmResultBaseDesign
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colparameter, Me.colresult, Me.colunits, Me.colref, Me.collabdetailid, Me.collabresultdetailid})
+        Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colparameter, Me.colresult, Me.colunits, Me.colref, Me.collabdetailid, Me.collabresultdetailid, Me.coltexthighlight})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -492,6 +493,14 @@ Partial Class frmResultBaseDesign
         Me.ShapeContainer1.Size = New System.Drawing.Size(789, 396)
         Me.ShapeContainer1.TabIndex = 253
         Me.ShapeContainer1.TabStop = False
+        '
+        'LineShape6
+        '
+        Me.LineShape6.Name = "LineShape6"
+        Me.LineShape6.X1 = 644
+        Me.LineShape6.X2 = 735
+        Me.LineShape6.Y1 = 111
+        Me.LineShape6.Y2 = 111
         '
         'LineShape10
         '
@@ -877,14 +886,6 @@ Partial Class frmResultBaseDesign
         Me.Label10.TabIndex = 281
         Me.Label10.Text = "Birthdate:"
         '
-        'LineShape6
-        '
-        Me.LineShape6.Name = "LineShape6"
-        Me.LineShape6.X1 = 644
-        Me.LineShape6.X2 = 735
-        Me.LineShape6.Y1 = 111
-        Me.LineShape6.Y2 = 111
-        '
         'lblbirthdate
         '
         Me.lblbirthdate.BackColor = System.Drawing.Color.Transparent
@@ -1022,6 +1023,12 @@ Partial Class frmResultBaseDesign
         Me.collabresultdetailid.HeaderText = "collabresultdetailid"
         Me.collabresultdetailid.Name = "collabresultdetailid"
         Me.collabresultdetailid.Visible = False
+        '
+        'coltexthighlight
+        '
+        Me.coltexthighlight.HeaderText = "coltexthighlight"
+        Me.coltexthighlight.Name = "coltexthighlight"
+        Me.coltexthighlight.Visible = False
         '
         'frmResultBaseDesign
         '
@@ -1165,12 +1172,6 @@ Partial Class frmResultBaseDesign
     Friend WithEvents lbltranstime As System.Windows.Forms.Label
     Friend WithEvents panelresultgrid As System.Windows.Forms.Panel
     Friend WithEvents dgvResult As System.Windows.Forms.DataGridView
-    Friend WithEvents colparameter As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colresult As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colunits As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colref As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collabdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collabresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents panelmanageparams As System.Windows.Forms.Panel
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -1179,4 +1180,11 @@ Partial Class frmResultBaseDesign
     Friend WithEvents LineShape6 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents lblbirthdate As System.Windows.Forms.Label
+    Friend WithEvents colparameter As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colresult As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colunits As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colref As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents collabdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents collabresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

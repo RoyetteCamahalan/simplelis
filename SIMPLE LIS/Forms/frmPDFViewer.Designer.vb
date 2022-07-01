@@ -26,9 +26,9 @@ Partial Class frmPDFViewer
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tsmain = New System.Windows.Forms.ToolStrip()
+        Me.tsPrint = New System.Windows.Forms.ToolStripButton()
         Me.tsClose = New System.Windows.Forms.ToolStripButton()
         Me.AxAcroPDF1 = New AxAcroPDFLib.AxAcroPDF()
-        Me.tsPrint = New System.Windows.Forms.ToolStripButton()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,28 +52,9 @@ Partial Class frmPDFViewer
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsmain.Size = New System.Drawing.Size(922, 39)
+        Me.tsmain.Size = New System.Drawing.Size(922, 38)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
-        '
-        'tsClose
-        '
-        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
-        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 36)
-        Me.tsClose.Text = "Close"
-        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'AxAcroPDF1
-        '
-        Me.AxAcroPDF1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.AxAcroPDF1.Enabled = True
-        Me.AxAcroPDF1.Location = New System.Drawing.Point(0, 39)
-        Me.AxAcroPDF1.Name = "AxAcroPDF1"
-        Me.AxAcroPDF1.OcxState = CType(resources.GetObject("AxAcroPDF1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxAcroPDF1.Size = New System.Drawing.Size(922, 666)
-        Me.AxAcroPDF1.TabIndex = 233
         '
         'tsPrint
         '
@@ -87,6 +68,25 @@ Partial Class frmPDFViewer
         Me.tsPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.tsPrint.ToolTipText = "CTRL+P-Print"
         Me.tsPrint.Visible = False
+        '
+        'tsClose
+        '
+        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
+        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsClose.Name = "tsClose"
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
+        Me.tsClose.Text = "Close"
+        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'AxAcroPDF1
+        '
+        Me.AxAcroPDF1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AxAcroPDF1.Enabled = True
+        Me.AxAcroPDF1.Location = New System.Drawing.Point(0, 38)
+        Me.AxAcroPDF1.Name = "AxAcroPDF1"
+        Me.AxAcroPDF1.OcxState = CType(resources.GetObject("AxAcroPDF1.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxAcroPDF1.Size = New System.Drawing.Size(922, 667)
+        Me.AxAcroPDF1.TabIndex = 233
         '
         'DataGridViewTextBoxColumn1
         '

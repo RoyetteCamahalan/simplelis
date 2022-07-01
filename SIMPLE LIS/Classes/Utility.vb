@@ -1512,4 +1512,7 @@ Public Class Utility
 
 
     End Function
+    Public Shared Function IsColor(ByVal TextName As String) As Boolean
+        If [Enum].GetNames(GetType(KnownColor)).Contains(TextName) Then Return True Else Return False
+    End Function
 End Class

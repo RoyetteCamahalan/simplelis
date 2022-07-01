@@ -147,9 +147,84 @@ Public Class frmResultBaseDesign
         End If
 
     End Sub
+    Private Sub checkHighlight(ctrl As Control, dgcell As DataGridViewCell, texthighlight As String)
+        If texthighlight = "" Then
+            Exit Sub
+        End If
+        Dim value As String
+        If ctrl Is Nothing Then
+            value = Trim(dgcell.Value)
+        Else
+            value = Trim(ctrl.Text)
+        End If
+        Dim opt As String() = texthighlight.Split(";")
+        For Each str As String In opt
+            Dim optval As String() = str.Split(":")
+            Try
+                If (optval(0).Contains(">") Or optval(0).Contains("<") Or optval(0).Contains("<>")) Then
+                    If processCondition(value, Trim(optval(0))) Then
+                        If Utility.IsColor(optval(1)) Then
+                            If ctrl Is Nothing Then
+                                dgcell.Style.ForeColor = System.Drawing.Color.FromName(optval(1))
+                            Else
+                                ctrl.ForeColor = System.Drawing.Color.FromName(optval(1))
+                            End If
+                        Else
+                            If ctrl Is Nothing Then
+                                dgcell.Value = dgcell.Value & optval(1)
+                            Else
+                                ctrl.Text = ctrl.Text & optval(1)
+                            End If
+                        End If
+                    End If
+                ElseIf value = Trim(optval(0)) Then
+                    If Utility.IsColor(optval(1)) Then
+                        If ctrl Is Nothing Then
+                            dgcell.Style.ForeColor = System.Drawing.Color.FromName(optval(1))
+                        Else
+                            ctrl.ForeColor = System.Drawing.Color.FromName(optval(1))
+                        End If
+                    Else
+                        If ctrl Is Nothing Then
+                            dgcell.Value = dgcell.Value & optval(1)
+                        Else
+                            ctrl.Text = ctrl.Text & optval(1)
+                        End If
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
+        Next
+    End Sub
+    Private Function processCondition(value As String, condition As String) As Boolean
+        Dim isvalid As Boolean
+        Try
+            If condition.Contains(">") Then
+                condition = condition.Replace(">", "")
+                If CDbl(value) > CDbl(condition) Then
+                    Return True
+                End If
+            ElseIf condition.Contains("<") Then
+                condition = condition.Replace(">", "")
+                If CDbl(value) < CDbl(condition) Then
+                    Return True
+                End If
+            ElseIf condition.Contains("<>") Then
+                condition = condition.Replace("<>", "")
+                If CDbl(value) <> CDbl(condition) Then
+                    Return True
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+        Return isvalid
+    End Function
     Public Sub AddControl(ByVal labeltext As String, ByVal ctrtype As Integer, ByVal loc As Point, ByVal value As String,
                            ByVal optvalue As String, ByVal uuid As String,
-                           ByVal panelwidth As Long, panelheight As Long, ByVal defaultvalue As String, Optional ByVal islock As Boolean = False)
+                           ByVal panelwidth As Long, panelheight As Long, ByVal defaultvalue As String,
+                           Optional ByVal islock As Boolean = False, Optional ByVal texthighlight As String = "")
         Dim panel As New Panel()
         If Not isformedit AndAlso defaultvalue <> "" AndAlso dtPatientDetails.Columns.Contains(defaultvalue) Then
             value = Me.dtPatientDetails.Rows(0).Item(defaultvalue).ToString
@@ -204,6 +279,7 @@ Public Class frmResultBaseDesign
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
+                checkHighlight(lbldetail, Nothing, texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -274,6 +350,7 @@ Public Class frmResultBaseDesign
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
+                checkHighlight(lbldetail, Nothing, texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -358,6 +435,7 @@ Public Class frmResultBaseDesign
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
+                checkHighlight(lbldetail, Nothing, texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -415,6 +493,7 @@ Public Class frmResultBaseDesign
                 txt.BackColor = Color.White
                 txt.ReadOnly = True
                 txt.BorderStyle = BorderStyle.None
+                checkHighlight(txt, Nothing, texthighlight)
             End If
         ElseIf ctrtype = clsModel.ConstrolTypes.ParagraphField Then
             panel.Height = IIf(panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, panelheight)
@@ -467,6 +546,7 @@ Public Class frmResultBaseDesign
 
                 lbldetail.Left = locl
                 lbldetail.Top = 4
+                checkHighlight(lbldetail, Nothing, texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -643,6 +723,7 @@ Public Class frmResultBaseDesign
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colresult.Index).Value = Utility.NullToEmptyString(row.Item("result"))
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(collabresultdetailid.Index).Value = Utility.NullToZero(row.Item("laboratoryresultdetailsid"))
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colunits.Index).Value = row.Item("unit")
+                    Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(coltexthighlight.Index).Value = row.Item("texthighlight")
                     Call adjustForm()
                 End If
             Next
@@ -692,6 +773,7 @@ Public Class frmResultBaseDesign
                     End If
                 Else
                     Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                    checkHighlight(Nothing, Me.dgvResult.Rows(i).Cells(colunits.Index), Me.dgvResult.Rows(i).Cells(coltexthighlight.Index).Value)
                 End If
             Next
             Me.panelmanageparams.Visible = False
