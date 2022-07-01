@@ -62,10 +62,9 @@
         Public Shared pathologist As Integer = 777
     End Class
     Public Class RequestStatus
-        Public Shared encoded As Integer = 5
-        Public Shared posted As Integer = 5
-        Public Shared charged As Integer = 5
-        Public Shared resultencoded As Integer = 5
+        Public Shared posted As Integer = 3
+        Public Shared charged As Integer = 3
+        Public Shared resultencoded As Integer = 4
         Public Shared released As Integer = 5
         Public Shared cancelled As Integer = 6
     End Class

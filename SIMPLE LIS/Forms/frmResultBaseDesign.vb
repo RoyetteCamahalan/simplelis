@@ -117,16 +117,12 @@ Public Class frmResultBaseDesign
     End Sub
     Private Sub LoadCombo()
         afterload = False
-        If Me.laboratoryid = clsModel.LabFormats.ECGREPORT Then
-            Me.cmbPathologist.DataSource = clsECGReport.getCardio()
-            Me.cmbPathologist.DisplayMember = "cname"
-            Me.cmbPathologist.ValueMember = "employeeid"
-        ElseIf Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
+        If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
             Me.cmbPathologist.DataSource = clsNewBornScreening.getPediatrician()
             Me.cmbPathologist.DisplayMember = "cname"
             Me.cmbPathologist.ValueMember = "employeeid"
         Else
-            Me.cmbPathologist.DataSource = clsLaboratoryResult.getPathologist("777")
+            Me.cmbPathologist.DataSource = clsLaboratoryResult.getPathologist(clsModel.EmployeeTypes.pathologist)
             Me.cmbPathologist.DisplayMember = "radiologist"
             Me.cmbPathologist.ValueMember = "employeeid"
         End If
@@ -139,7 +135,7 @@ Public Class frmResultBaseDesign
         End If
 
         afterload = False
-        Me.cmbMedtech.DataSource = clsLaboratoryResult.getPathologist("666")
+        Me.cmbMedtech.DataSource = clsLaboratoryResult.getPathologist(clsModel.EmployeeTypes.medtech)
         Me.cmbMedtech.DisplayMember = "radiologist"
         Me.cmbMedtech.ValueMember = "employeeid"
         Me.cmbMedtech.SelectedIndex = -1

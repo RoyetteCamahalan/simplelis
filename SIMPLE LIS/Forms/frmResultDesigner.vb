@@ -14,7 +14,6 @@ Public Class frmResultDesigner
 
     Private fbaseform As frmResultBaseDesign
     Private fBloodChem As frmtemplatewithconversion
-    Private fCrossmatching As frmCrossMatchingNew
     Private frmRadiology As frmtemplateRTF
 
     Private afterload As Boolean
@@ -93,11 +92,6 @@ Public Class frmResultDesigner
                     fBloodChem.MdiParent = Me
                     fBloodChem.Show()
                     fBloodChem.Top = (Me.Height - fBloodChem.Height) / 2
-                Case clsModel.LabFormats.CROSSMATCHING
-                    fCrossmatching = New frmCrossMatchingNew(requestdetailno, Me.laboratoryid, Me.laboratoryttitle, Me.myFormaction <> formaction.manageResult)
-                    fCrossmatching.MdiParent = Me
-                    fCrossmatching.Show()
-                    fCrossmatching.Top = (Me.Height - fCrossmatching.Height) / 2
                 Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                     If Me.myFormaction = formaction.manageResult Then
                         tsradtemplatemain.Visible = True
@@ -343,11 +337,6 @@ getLabDetails:
                 Select Case labformatid
                     Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
                         fBloodChem.save()
-                    Case clsModel.LabFormats.CROSSMATCHING
-                        fCrossmatching.save()
-                        If Not fCrossmatching.issave Then
-                            Exit Sub
-                        End If
                     Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                         frmRadiology.saveNow(Me.tsSave.Text)
                         If Not frmRadiology.isSave Then
@@ -667,8 +656,6 @@ getLabDetails:
         Select Case Me.labformatid
             Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
                 fBloodChem.DisplayPrintPreview()
-            Case clsModel.LabFormats.CROSSMATCHING
-                fCrossmatching.DisplayPrintPreview()
             Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                 frmRadiology.DisplayPrintPreview()
             Case Else
