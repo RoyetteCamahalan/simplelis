@@ -25,23 +25,28 @@ Partial Class frmManageResultParams
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmManageResultParams))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dlgPrint = New System.Windows.Forms.PrintDialog()
         Me.dlgPrintPreview = New System.Windows.Forms.PrintPreviewDialog()
         Me.MiscPrintDocu = New System.Drawing.Printing.PrintDocument()
         Me.panelmain = New System.Windows.Forms.Panel()
         Me.panelresult = New System.Windows.Forms.Panel()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lblconversion = New System.Windows.Forms.Label()
@@ -56,23 +61,6 @@ Partial Class frmManageResultParams
         Me.btnup = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.tsSave = New System.Windows.Forms.ToolStripButton()
-        Me.tsClose = New System.Windows.Forms.ToolStripButton()
-        Me.lblMisc = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colchk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.colparameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colsiref = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,6 +70,19 @@ Partial Class frmManageResultParams
         Me.colunits = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.collabdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.tsSave = New System.Windows.Forms.ToolStripButton()
+        Me.tsClose = New System.Windows.Forms.ToolStripButton()
+        Me.lblMisc = New System.Windows.Forms.Label()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblseeavailablecolors = New System.Windows.Forms.Label()
         Me.panelmain.SuspendLayout()
         Me.panelresult.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +114,7 @@ Partial Class frmManageResultParams
         '
         'panelresult
         '
+        Me.panelresult.Controls.Add(Me.lblseeavailablecolors)
         Me.panelresult.Controls.Add(Me.Label17)
         Me.panelresult.Controls.Add(Me.Label16)
         Me.panelresult.Controls.Add(Me.Label14)
@@ -137,6 +139,61 @@ Partial Class frmManageResultParams
         Me.panelresult.Name = "panelresult"
         Me.panelresult.Size = New System.Drawing.Size(814, 376)
         Me.panelresult.TabIndex = 252
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label17.Location = New System.Drawing.Point(554, 347)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(131, 12)
+        Me.Label17.TabIndex = 251
+        Me.Label17.Text = "Ex. 3(Less Than)   <0.06:Red"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label16.Location = New System.Drawing.Point(554, 359)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(120, 12)
+        Me.Label16.TabIndex = 250
+        Me.Label16.Text = "Ex. 4(Not Equal) <>1:Red"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label14.Location = New System.Drawing.Point(554, 335)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(146, 12)
+        Me.Label14.TabIndex = 249
+        Me.Label14.Text = "Ex. 2(Greater Than)   >0.06:Red"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label15.Location = New System.Drawing.Point(554, 322)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(189, 12)
+        Me.Label15.TabIndex = 248
+        Me.Label15.Text = "Ex. 1(Equal)  Positive:Red;Negative:Blue"
+        '
+        'Label12
+        '
+        Me.Label12.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label12.Location = New System.Drawing.Point(205, 322)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(343, 25)
+        Me.Label12.TabIndex = 247
+        Me.Label12.Text = "Text Highlight Column:Specify text color for specific values. Format is [value]:[" & _
+    "color]. Separate each value with semi-colon "";"". "
         '
         'Label1
         '
@@ -341,171 +398,6 @@ Partial Class frmManageResultParams
         Me.dgvResult.Size = New System.Drawing.Size(800, 246)
         Me.dgvResult.TabIndex = 229
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsClose})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(854, 38)
-        Me.ToolStrip1.TabIndex = 254
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'tsSave
-        '
-        Me.tsSave.Image = CType(resources.GetObject("tsSave.Image"), System.Drawing.Image)
-        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 35)
-        Me.tsSave.Text = "Save"
-        Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsClose
-        '
-        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
-        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 35)
-        Me.tsClose.Text = "Close"
-        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'lblMisc
-        '
-        Me.lblMisc.BackColor = System.Drawing.Color.Transparent
-        Me.lblMisc.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMisc.ForeColor = System.Drawing.Color.Black
-        Me.lblMisc.Location = New System.Drawing.Point(20, 46)
-        Me.lblMisc.Name = "lblMisc"
-        Me.lblMisc.Size = New System.Drawing.Size(692, 17)
-        Me.lblMisc.TabIndex = 127
-        Me.lblMisc.Text = "HEMATOLOGY"
-        Me.lblMisc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label17.Location = New System.Drawing.Point(554, 347)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(131, 12)
-        Me.Label17.TabIndex = 251
-        Me.Label17.Text = "Ex. 3(Less Than)   <0.06:Red"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label16.Location = New System.Drawing.Point(554, 359)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(120, 12)
-        Me.Label16.TabIndex = 250
-        Me.Label16.Text = "Ex. 4(Not Equal) <>1:Red"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label14.Location = New System.Drawing.Point(554, 335)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(146, 12)
-        Me.Label14.TabIndex = 249
-        Me.Label14.Text = "Ex. 2(Greater Than)   >0.06:Red"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label15.Location = New System.Drawing.Point(554, 322)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(189, 12)
-        Me.Label15.TabIndex = 248
-        Me.Label15.Text = "Ex. 1(Equal)  Positive:Red;Negative:Blue"
-        '
-        'Label12
-        '
-        Me.Label12.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label12.Location = New System.Drawing.Point(205, 322)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(343, 25)
-        Me.Label12.TabIndex = 247
-        Me.Label12.Text = "Text Highlight Column:Specify text color for specific values. Format is [value]:[" & _
-    "color]. Separate each value with semi-colon "";"". "
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle9
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Parameter"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle10
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Result"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Width = 160
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle11
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Units"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        Me.DataGridViewTextBoxColumn3.Width = 220
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle12
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Reference  Range"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        Me.DataGridViewTextBoxColumn4.Visible = False
-        Me.DataGridViewTextBoxColumn4.Width = 190
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle13
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Reference  Range"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.Width = 118
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle14
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Units"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "collabdetailid"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.Visible = False
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Text Highlight"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.Width = 96
-        '
         'colchk
         '
         Me.colchk.HeaderText = "Visible?"
@@ -580,6 +472,127 @@ Partial Class frmManageResultParams
         Me.coltexthighlight.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.coltexthighlight.HeaderText = "Text Highlight"
         Me.coltexthighlight.Name = "coltexthighlight"
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSave, Me.tsClose})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStrip1.Size = New System.Drawing.Size(854, 38)
+        Me.ToolStrip1.TabIndex = 254
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'tsSave
+        '
+        Me.tsSave.Image = CType(resources.GetObject("tsSave.Image"), System.Drawing.Image)
+        Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsSave.Name = "tsSave"
+        Me.tsSave.Size = New System.Drawing.Size(35, 35)
+        Me.tsSave.Text = "Save"
+        Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsClose
+        '
+        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
+        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsClose.Name = "tsClose"
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
+        Me.tsClose.Text = "Close"
+        Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'lblMisc
+        '
+        Me.lblMisc.BackColor = System.Drawing.Color.Transparent
+        Me.lblMisc.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMisc.ForeColor = System.Drawing.Color.Black
+        Me.lblMisc.Location = New System.Drawing.Point(20, 46)
+        Me.lblMisc.Name = "lblMisc"
+        Me.lblMisc.Size = New System.Drawing.Size(692, 17)
+        Me.lblMisc.TabIndex = 127
+        Me.lblMisc.Text = "HEMATOLOGY"
+        Me.lblMisc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle9
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Parameter"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle10
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Result"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Width = 160
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Units"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.Width = 220
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Reference  Range"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.DataGridViewTextBoxColumn4.Visible = False
+        Me.DataGridViewTextBoxColumn4.Width = 190
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Reference  Range"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Width = 118
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Units"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "collabdetailid"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Visible = False
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Text Highlight"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.Width = 96
+        '
+        'lblseeavailablecolors
+        '
+        Me.lblseeavailablecolors.AutoSize = True
+        Me.lblseeavailablecolors.Font = New System.Drawing.Font("Cambria", 9.0!, CType((System.Drawing.FontStyle.Italic Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblseeavailablecolors.ForeColor = System.Drawing.Color.Blue
+        Me.lblseeavailablecolors.Location = New System.Drawing.Point(702, 358)
+        Me.lblseeavailablecolors.Name = "lblseeavailablecolors"
+        Me.lblseeavailablecolors.Size = New System.Drawing.Size(105, 14)
+        Me.lblseeavailablecolors.TabIndex = 252
+        Me.lblseeavailablecolors.Text = "See Available Colors"
         '
         'frmManageResultParams
         '
@@ -664,4 +677,5 @@ Partial Class frmManageResultParams
     Friend WithEvents colunits As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents collabdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lblseeavailablecolors As System.Windows.Forms.Label
 End Class

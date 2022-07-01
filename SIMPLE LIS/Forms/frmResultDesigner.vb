@@ -665,6 +665,32 @@ getLabDetails:
             Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
                 frmRadiology.DisplayPrintPreview()
             Case Else
+                If Me.labformatid = clsModel.LabFormats.GENERIC Then
+                    For Each row As DataGridViewRow In Me.dgvResult.Rows
+                        Dim uuid As String = row.Cells(collaboratorydetailsid.Index).Value
+                        If uuid = "0" Then
+                            uuid = row.Cells(coluuid.Index).Value
+                        End If
+                        If row.Cells(colchk.Index).Value AndAlso row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
+                            Dim panel = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel)
+                            If panel.Visible Then
+                                Try
+                                    Dim bmp As New Bitmap(panel.Width, panel.Height)
+                                    Dim gr = Graphics.FromImage(bmp)
+                                    gr.CopyFromScreen(panel.PointToScreen(Point.Empty), Point.Empty, panel.Size)
+                                    Dim img As New PictureBox
+                                    fbaseform.panelresult.Controls.Add(img)
+                                    panel.Visible = False
+                                    img.Location = panel.Location
+                                    img.Size = panel.Size
+                                    img.Image = bmp
+                                Catch ex As Exception
+
+                                End Try
+                            End If
+                        End If
+                    Next
+                End If
                 Me.fbaseform.DisplayPrintPreview()
         End Select
     End Sub

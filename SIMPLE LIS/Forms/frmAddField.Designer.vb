@@ -46,8 +46,6 @@ Partial Class frmAddField
         Me.txtwidth = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.paneltextrtf = New System.Windows.Forms.Panel()
@@ -56,25 +54,28 @@ Partial Class frmAddField
         Me.paneltextreg = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.panelfieldtype = New System.Windows.Forms.Panel()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.lblseeavailablecolors = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txttexthighlight = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel7.SuspendLayout()
-        Me.Panel6.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.paneltextrtf.SuspendLayout()
         Me.paneltextreg.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.panelfieldtype.SuspendLayout()
+        Me.Panel7.SuspendLayout()
+        Me.Panel6.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
@@ -298,30 +299,6 @@ Partial Class frmAddField
         Me.Panel1.Size = New System.Drawing.Size(448, 361)
         Me.Panel1.TabIndex = 254
         '
-        'Panel7
-        '
-        Me.Panel7.Controls.Add(Me.txtwidth)
-        Me.Panel7.Controls.Add(Me.Label9)
-        Me.Panel7.Controls.Add(Me.Label10)
-        Me.Panel7.Controls.Add(Me.txtheight)
-        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel7.Location = New System.Drawing.Point(0, 184)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(448, 39)
-        Me.Panel7.TabIndex = 6
-        '
-        'Panel6
-        '
-        Me.Panel6.Controls.Add(Me.txtY)
-        Me.Panel6.Controls.Add(Me.Label7)
-        Me.Panel6.Controls.Add(Me.txtX)
-        Me.Panel6.Controls.Add(Me.Label8)
-        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel6.Location = New System.Drawing.Point(0, 145)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(448, 39)
-        Me.Panel6.TabIndex = 5
-        '
         'Panel5
         '
         Me.Panel5.Controls.Add(Me.cmbDefaultValue)
@@ -360,7 +337,6 @@ Partial Class frmAddField
         Me.txtfieldlabelrtf.Name = "txtfieldlabelrtf"
         Me.txtfieldlabelrtf.Size = New System.Drawing.Size(310, 77)
         Me.txtfieldlabelrtf.TabIndex = 245
-        Me.txtfieldlabelrtf.Text = ""
         '
         'Label11
         '
@@ -402,6 +378,30 @@ Partial Class frmAddField
         Me.panelfieldtype.Size = New System.Drawing.Size(448, 39)
         Me.panelfieldtype.TabIndex = 0
         '
+        'Panel7
+        '
+        Me.Panel7.Controls.Add(Me.txtwidth)
+        Me.Panel7.Controls.Add(Me.Label9)
+        Me.Panel7.Controls.Add(Me.Label10)
+        Me.Panel7.Controls.Add(Me.txtheight)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel7.Location = New System.Drawing.Point(0, 184)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(448, 39)
+        Me.Panel7.TabIndex = 6
+        '
+        'Panel6
+        '
+        Me.Panel6.Controls.Add(Me.txtY)
+        Me.Panel6.Controls.Add(Me.Label7)
+        Me.Panel6.Controls.Add(Me.txtX)
+        Me.Panel6.Controls.Add(Me.Label8)
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel6.Location = New System.Drawing.Point(0, 145)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(448, 39)
+        Me.Panel6.TabIndex = 5
+        '
         'Panel3
         '
         Me.Panel3.AutoScroll = True
@@ -415,6 +415,7 @@ Partial Class frmAddField
         '
         'Panel8
         '
+        Me.Panel8.Controls.Add(Me.lblseeavailablecolors)
         Me.Panel8.Controls.Add(Me.Label17)
         Me.Panel8.Controls.Add(Me.Label16)
         Me.Panel8.Controls.Add(Me.Label14)
@@ -427,6 +428,61 @@ Partial Class frmAddField
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(448, 145)
         Me.Panel8.TabIndex = 4
+        '
+        'lblseeavailablecolors
+        '
+        Me.lblseeavailablecolors.AutoSize = True
+        Me.lblseeavailablecolors.Font = New System.Drawing.Font("Cambria", 9.0!, CType((System.Drawing.FontStyle.Italic Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblseeavailablecolors.ForeColor = System.Drawing.Color.Blue
+        Me.lblseeavailablecolors.Location = New System.Drawing.Point(320, 67)
+        Me.lblseeavailablecolors.Name = "lblseeavailablecolors"
+        Me.lblseeavailablecolors.Size = New System.Drawing.Size(105, 14)
+        Me.lblseeavailablecolors.TabIndex = 246
+        Me.lblseeavailablecolors.Text = "See Available Colors"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label17.Location = New System.Drawing.Point(111, 55)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(131, 12)
+        Me.Label17.TabIndex = 245
+        Me.Label17.Text = "Ex. 3(Less Than)   <0.06:Red"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label16.Location = New System.Drawing.Point(111, 67)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(120, 12)
+        Me.Label16.TabIndex = 244
+        Me.Label16.Text = "Ex. 4(Not Equal) <>1:Red"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label14.Location = New System.Drawing.Point(111, 43)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(146, 12)
+        Me.Label14.TabIndex = 243
+        Me.Label14.Text = "Ex. 2(Greater Than)   >0.06:Red"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label15.Location = New System.Drawing.Point(111, 30)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(189, 12)
+        Me.Label15.TabIndex = 242
+        Me.Label15.Text = "Ex. 1(Equal)  Positive:Red;Negative:Blue"
         '
         'Label12
         '
@@ -458,50 +514,6 @@ Partial Class frmAddField
         Me.txttexthighlight.Size = New System.Drawing.Size(310, 56)
         Me.txttexthighlight.TabIndex = 239
         '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label15.Location = New System.Drawing.Point(111, 30)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(189, 12)
-        Me.Label15.TabIndex = 242
-        Me.Label15.Text = "Ex. 1(Equal)  Positive:Red;Negative:Blue"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label14.Location = New System.Drawing.Point(111, 43)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(146, 12)
-        Me.Label14.TabIndex = 243
-        Me.Label14.Text = "Ex. 2(Greater Than)   >0.06:Red"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label16.Location = New System.Drawing.Point(111, 67)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(120, 12)
-        Me.Label16.TabIndex = 244
-        Me.Label16.Text = "Ex. 4(Not Equal) <>1:Red"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.Label17.Location = New System.Drawing.Point(111, 55)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(131, 12)
-        Me.Label17.TabIndex = 245
-        Me.Label17.Text = "Ex. 3(Less Than)   <0.06:Red"
-        '
         'frmAddField
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -519,10 +531,6 @@ Partial Class frmAddField
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
-        Me.Panel7.ResumeLayout(False)
-        Me.Panel7.PerformLayout()
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
         Me.Panel4.ResumeLayout(False)
@@ -535,6 +543,10 @@ Partial Class frmAddField
         Me.Panel2.PerformLayout()
         Me.panelfieldtype.ResumeLayout(False)
         Me.panelfieldtype.PerformLayout()
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel7.PerformLayout()
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel6.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
@@ -584,4 +596,5 @@ Partial Class frmAddField
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents lblseeavailablecolors As System.Windows.Forms.Label
 End Class

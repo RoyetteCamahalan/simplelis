@@ -179,4 +179,9 @@ Public Class frmManageResultParams
         Me.dgvResult.Rows(Me.dgvResult.RowCount - 1).Cells(colparameter.Index).Selected = True
         Me.dgvResult.Select()
     End Sub
+
+    Private Sub lblseeavailablecolors_Click(sender As System.Object, e As System.EventArgs) Handles lblseeavailablecolors.Click
+        Dim f As New frmAvailableColors
+        f.ShowDialog()
+    End Sub
 End Class

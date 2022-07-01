@@ -127,4 +127,15 @@
             Me.paneltextreg.Visible = True
         End If
     End Sub
+
+    Private Sub txtfieldlabelrtf_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtfieldlabelrtf.TextChanged
+        If txtfieldlabelrtf.Text = "" Then
+            txtfieldlabelrtf.Clear()
+        End If
+    End Sub
+
+    Private Sub lblseeavailablecolors_Click(sender As System.Object, e As System.EventArgs) Handles lblseeavailablecolors.Click
+        Dim f As New frmAvailableColors
+        f.ShowDialog()
+    End Sub
 End Class

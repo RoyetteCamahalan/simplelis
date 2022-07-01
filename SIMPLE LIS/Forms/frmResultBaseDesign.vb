@@ -635,6 +635,23 @@ Public Class frmResultBaseDesign
     Public Sub DisplayPrintPreview()
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         Me.Text = ""
+        'For Each ctr As Control In panelresult.Controls
+        '    If TypeOf ctr Is RichTextBox Then
+        '        Try
+        '            Dim bmp As New Bitmap(ctr.Width, ctr.Height)
+        '            Dim gr = Graphics.FromImage(bmp)
+        '            gr.CopyFromScreen(ctr.PointToScreen(Point.Empty), Point.Empty, ctr.Size)
+        '            Dim img As New PictureBox
+        '            panelresult.Controls.Add(img)
+        '            ctr.Visible = False
+        '            img.Location = ctr.Location
+        '            img.Size = ctr.Size
+        '            img.Image = bmp
+        '        Catch ex As Exception
+
+        '        End Try
+        '    End If
+        'Next
         Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, GetFormImage(True), "RadLab_" & Me.labname & "_")
         If PrintDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
             MiscPrintDocu.PrinterSettings = PrintDialog1.PrinterSettings

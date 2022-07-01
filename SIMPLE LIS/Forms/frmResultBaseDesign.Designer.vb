@@ -76,7 +76,6 @@ Partial Class frmResultBaseDesign
         Me.txtGender = New System.Windows.Forms.Label()
         Me.txtRequestedby = New System.Windows.Forms.Label()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
-        Me.pctrLogo = New System.Windows.Forms.PictureBox()
         Me.panelnewborn = New System.Windows.Forms.Panel()
         Me.txtcontactno = New System.Windows.Forms.Label()
         Me.txtmother = New System.Windows.Forms.Label()
@@ -101,12 +100,14 @@ Partial Class frmResultBaseDesign
         Me.lbltranstime = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lblbirthdate = New System.Windows.Forms.Label()
+        Me.pctrLogo = New System.Windows.Forms.PictureBox()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colparameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colresult = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colunits = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -122,8 +123,8 @@ Partial Class frmResultBaseDesign
         Me.Panel1.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelmanageparams.SuspendLayout()
-        CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelnewborn.SuspendLayout()
+        CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblMisc
@@ -573,7 +574,7 @@ Partial Class frmResultBaseDesign
         Me.txtPatientName.ForeColor = System.Drawing.Color.Black
         Me.txtPatientName.Location = New System.Drawing.Point(93, 93)
         Me.txtPatientName.Name = "txtPatientName"
-        Me.txtPatientName.Size = New System.Drawing.Size(511, 18)
+        Me.txtPatientName.Size = New System.Drawing.Size(482, 18)
         Me.txtPatientName.TabIndex = 257
         Me.txtPatientName.Text = "NAME"
         Me.txtPatientName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -618,16 +619,6 @@ Partial Class frmResultBaseDesign
         '
         Me.PrintDialog1.Document = Me.MiscPrintDocu
         Me.PrintDialog1.UseEXDialog = True
-        '
-        'pctrLogo
-        '
-        Me.pctrLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.pctrLogo.Location = New System.Drawing.Point(123, 7)
-        Me.pctrLogo.Name = "pctrLogo"
-        Me.pctrLogo.Size = New System.Drawing.Size(98, 86)
-        Me.pctrLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pctrLogo.TabIndex = 245
-        Me.pctrLogo.TabStop = False
         '
         'panelnewborn
         '
@@ -897,6 +888,16 @@ Partial Class frmResultBaseDesign
         Me.lblbirthdate.TabIndex = 282
         Me.lblbirthdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'pctrLogo
+        '
+        Me.pctrLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.pctrLogo.Location = New System.Drawing.Point(123, 7)
+        Me.pctrLogo.Name = "pctrLogo"
+        Me.pctrLogo.Size = New System.Drawing.Size(98, 86)
+        Me.pctrLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pctrLogo.TabIndex = 245
+        Me.pctrLogo.TabStop = False
+        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -959,6 +960,12 @@ Partial Class frmResultBaseDesign
         Me.DataGridViewTextBoxColumn6.HeaderText = "collabresultdetailid"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         Me.DataGridViewTextBoxColumn6.Visible = False
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "coltexthighlight"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Visible = False
         '
         'colparameter
         '
@@ -1085,9 +1092,9 @@ Partial Class frmResultBaseDesign
         Me.Panel1.PerformLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelmanageparams.ResumeLayout(False)
-        CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelnewborn.ResumeLayout(False)
         Me.panelnewborn.PerformLayout()
+        CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1187,4 +1194,5 @@ Partial Class frmResultBaseDesign
     Friend WithEvents collabdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents collabresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

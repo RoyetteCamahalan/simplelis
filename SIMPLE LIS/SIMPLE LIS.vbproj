@@ -104,7 +104,6 @@
     </Compile>
     <Compile Include="Classes\clsAdmission.vb" />
     <Compile Include="Classes\clsadmissiondocuments.vb" />
-    <Compile Include="Classes\clsAncillary.vb" />
     <Compile Include="Classes\clsCharges.vb" />
     <Compile Include="Classes\clsCrossmatching.vb" />
     <Compile Include="Classes\clsDoctor.vb" />
@@ -126,6 +125,12 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
+    <Compile Include="Forms\frmAvailableColors.Designer.vb">
+      <DependentUpon>frmAvailableColors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAvailableColors.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmPDFViewer.Designer.vb">
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
     </Compile>
@@ -219,6 +224,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmAvailableColors.resx">
+      <DependentUpon>frmAvailableColors.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPDFViewer.resx">
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
     </EmbeddedResource>
