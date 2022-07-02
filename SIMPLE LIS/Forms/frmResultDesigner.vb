@@ -222,6 +222,8 @@ getLabDetails:
                 Me.fbaseform.lblmedtechdesignation.Visible = False
                 Me.fbaseform.lblpathodesignation.Text = "Cardiologist"
             End If
+            Me.fbaseform.chkesigmedtech.Visible = False
+            Me.fbaseform.chkesigpatho.Visible = False
         Else
             Dim dt As DataTable = clsLaboratoryResultDetails.getLaboratoryResultDetails(Me.requestdetailno, "", Me.laboratoryid, 2)
             Dim islock As Boolean
@@ -367,6 +369,8 @@ getLabDetails:
                         x.releasedby = modGlobal.userid
                         x.datereleased = "01/01/1990"
                         x.remarks = fbaseform.txtgridremarks.Text
+                        x.esigmedtech = fbaseform.chkesigmedtech.Checked
+                        x.esigpatho = fbaseform.chkesigpatho.Checked
                         If x.Oldlaboratoryid = 0 Then
                             x.Oldlaboratoryid = x.Save(True)
                             Call SaveLog("Laboratory", "New " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)

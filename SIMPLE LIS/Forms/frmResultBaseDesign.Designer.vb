@@ -101,6 +101,8 @@ Partial Class frmResultBaseDesign
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lblbirthdate = New System.Windows.Forms.Label()
         Me.pctrLogo = New System.Windows.Forms.PictureBox()
+        Me.chkesigmedtech = New System.Windows.Forms.CheckBox()
+        Me.chkesigpatho = New System.Windows.Forms.CheckBox()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -292,6 +294,7 @@ Partial Class frmResultBaseDesign
         'panelpatho
         '
         Me.panelpatho.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.panelpatho.Controls.Add(Me.chkesigpatho)
         Me.panelpatho.Controls.Add(Me.lblpatho)
         Me.panelpatho.Location = New System.Drawing.Point(332, 6)
         Me.panelpatho.Name = "panelpatho"
@@ -329,6 +332,7 @@ Partial Class frmResultBaseDesign
         'panelmedtech
         '
         Me.panelmedtech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.panelmedtech.Controls.Add(Me.chkesigmedtech)
         Me.panelmedtech.Controls.Add(Me.lblmedtech)
         Me.panelmedtech.Location = New System.Drawing.Point(3, 6)
         Me.panelmedtech.Name = "panelmedtech"
@@ -898,6 +902,28 @@ Partial Class frmResultBaseDesign
         Me.pctrLogo.TabIndex = 245
         Me.pctrLogo.TabStop = False
         '
+        'chkesigmedtech
+        '
+        Me.chkesigmedtech.AutoSize = True
+        Me.chkesigmedtech.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkesigmedtech.Location = New System.Drawing.Point(276, 9)
+        Me.chkesigmedtech.Name = "chkesigmedtech"
+        Me.chkesigmedtech.Size = New System.Drawing.Size(52, 18)
+        Me.chkesigmedtech.TabIndex = 274
+        Me.chkesigmedtech.Text = "E-Sig"
+        Me.chkesigmedtech.UseVisualStyleBackColor = True
+        '
+        'chkesigpatho
+        '
+        Me.chkesigpatho.AutoSize = True
+        Me.chkesigpatho.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkesigpatho.Location = New System.Drawing.Point(310, 9)
+        Me.chkesigpatho.Name = "chkesigpatho"
+        Me.chkesigpatho.Size = New System.Drawing.Size(52, 18)
+        Me.chkesigpatho.TabIndex = 275
+        Me.chkesigpatho.Text = "E-Sig"
+        Me.chkesigpatho.UseVisualStyleBackColor = True
+        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -1086,7 +1112,9 @@ Partial Class frmResultBaseDesign
         Me.panelmain.ResumeLayout(False)
         Me.panelsignatory.ResumeLayout(False)
         Me.panelpatho.ResumeLayout(False)
+        Me.panelpatho.PerformLayout()
         Me.panelmedtech.ResumeLayout(False)
+        Me.panelmedtech.PerformLayout()
         Me.panelresultgrid.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -1195,4 +1223,6 @@ Partial Class frmResultBaseDesign
     Friend WithEvents collabresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents chkesigpatho As System.Windows.Forms.CheckBox
+    Friend WithEvents chkesigmedtech As System.Windows.Forms.CheckBox
 End Class

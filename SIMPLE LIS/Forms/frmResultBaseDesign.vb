@@ -114,6 +114,8 @@ Public Class frmResultBaseDesign
         Me.lblbirthdate.Text = Utility.NullToDefaultDateFormat(dtPatientDetails.Rows(0).Item("Birth Date"))
         Me.lblpatientaddress.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("homeaddress").ToString)
         Me.txtgridremarks.Text = dtPatientDetails.Rows(0).Item("remarks")
+        Me.chkesigmedtech.Checked = Utility.NullToBoolean(dtPatientDetails.Rows(0).Item("esigmedtech"))
+        Me.chkesigpatho.Checked = Utility.NullToBoolean(dtPatientDetails.Rows(0).Item("esigpatho"))
     End Sub
     Private Sub LoadCombo()
         afterload = False
@@ -596,7 +598,7 @@ Public Class frmResultBaseDesign
             Else
                 Me.lblpathodesignation.Text = dt.Rows(0).Item("designation")
             End If
-            If Me.isLock AndAlso Utility.getReference(clsModel.ReferenceKeys.lab_showpatho_sig) > 0 Then
+            If Me.isLock AndAlso Me.chkesigpatho.Checked Then
                 Try
                     Dim tempphoto As Byte() = dt.Rows(0).Item("usersign")
                     If IsDBNull(dt.Rows(0).Item("usersign")) Or tempphoto.Length = 0 Then
@@ -617,7 +619,7 @@ Public Class frmResultBaseDesign
             Else
                 Me.lblmedtechdesignation.Text = dt.Rows(0).Item("designation")
             End If
-            If Me.isLock AndAlso Utility.getReference(clsModel.ReferenceKeys.lab_showmedtech_sig) > 0 Then
+            If Me.isLock AndAlso Me.chkesigmedtech.Checked Then
                 Try
                     Dim tempphoto As Byte() = dt.Rows(0).Item("usersign")
                     If IsDBNull(dt.Rows(0).Item("usersign")) Or tempphoto.Length = 0 Then
@@ -775,6 +777,8 @@ Public Class frmResultBaseDesign
         Me.cmbMedtech.Visible = False
         Me.lblpatho.Visible = True
         Me.lblmedtech.Visible = True
+        Me.chkesigmedtech.Visible = False
+        Me.chkesigpatho.Visible = False
         getEmployeeInfo(Me.cmbMedtech.SelectedValue, False)
         getEmployeeInfo(Me.cmbPathologist.SelectedValue, True)
         If panelresultgrid.Visible = True Then
