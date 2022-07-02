@@ -171,9 +171,9 @@ Public Class frmResultBaseDesign
                             End If
                         Else
                             If ctrl Is Nothing Then
-                                dgcell.Value = dgcell.Value & optval(1)
+                                dgcell.Value = optval(1) & dgcell.Value
                             Else
-                                ctrl.Text = ctrl.Text & optval(1)
+                                ctrl.Text = optval(1) & ctrl.Text
                             End If
                         End If
                     End If
@@ -186,9 +186,9 @@ Public Class frmResultBaseDesign
                         End If
                     Else
                         If ctrl Is Nothing Then
-                            dgcell.Value = dgcell.Value & optval(1)
+                            dgcell.Value = optval(1) & dgcell.Value
                         Else
-                            ctrl.Text = ctrl.Text & optval(1)
+                            ctrl.Text = optval(1) & ctrl.Text
                         End If
                     End If
                 End If

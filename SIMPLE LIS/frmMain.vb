@@ -42,10 +42,10 @@ Public Class frmMain
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
         laboratoryid = 17
-        requestdetailno = 721
+        requestdetailno = 652
         employeeid = 1001
         myformaction = enformstatus.edit
-        target = targetmodule.updateformat
+        target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,
@@ -83,8 +83,6 @@ Public Class frmMain
                                         ";Database=" & .DatabaseName & _
                                         ";User ID=" & .UserId & _
                                         ";Password=" & .Password & "; Pooling=True; Max Pool Size=30;Min Pool Size=0; Pooling=True;Connect Timeout=90;"
-
-
             Else
                 modGlobal.gconnectionstring = "Data Source=" & .Host & ";Initial Catalog=" & .DatabaseName & ";Trusted_Connection=True;Connection Timeout=60"
             End If
