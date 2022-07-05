@@ -125,10 +125,28 @@
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
+    <Compile Include="Forms\frmCustomDialog.Designer.vb">
+      <DependentUpon>frmCustomDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCustomDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDashboard.Designer.vb">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmAvailableColors.Designer.vb">
       <DependentUpon>frmAvailableColors.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAvailableColors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLaboratoryItems.Designer.vb">
+      <DependentUpon>frmLaboratoryItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLaboratoryItems.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmPDFViewer.Designer.vb">
@@ -141,6 +159,12 @@
       <DependentUpon>frmSearchEngine.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmSearchEngine.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSearchLaboratoryItems.Designer.vb">
+      <DependentUpon>frmSearchLaboratoryItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSearchLaboratoryItems.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmtemplatRTF.designer.vb">
@@ -224,14 +248,26 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmCustomDialog.resx">
+      <DependentUpon>frmCustomDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDashboard.resx">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAvailableColors.resx">
       <DependentUpon>frmAvailableColors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLaboratoryItems.resx">
+      <DependentUpon>frmLaboratoryItems.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPDFViewer.resx">
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSearchEngine.resx">
       <DependentUpon>frmSearchEngine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSearchLaboratoryItems.resx">
+      <DependentUpon>frmSearchLaboratoryItems.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmtemplatRTF.resx">
       <DependentUpon>frmtemplatRTF.vb</DependentUpon>
@@ -290,6 +326,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\Application.myapp" />
+    <None Include="Resources\search_glyph.png" />
+    <None Include="Resources\view_maintoolstrip.png" />
+    <None Include="Resources\application_edit.png" />
+    <None Include="Resources\application_add.png" />
     <None Include="Resources\ic_edit_16.png" />
     <None Include="Resources\ic_gear_16.png" />
     <None Include="Resources\tools.png" />

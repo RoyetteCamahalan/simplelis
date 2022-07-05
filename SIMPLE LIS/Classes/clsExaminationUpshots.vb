@@ -37,6 +37,13 @@
 
         Return GenericDA.ManageQuery(strPar, strVal, "spExaminationUpshots", 0)
     End Function
+    Public Shared Function getExaminationUpshots(ByVal sop As Integer, ByVal search As String, ByVal destinationoffice As String, _
+                                                        ByVal requestStatus As Integer, ByVal sdate As Date) As DataTable
+        Dim strPar() As String = {"operation", "soperation", "search", "destinationoffice", "requestStatus", "userid", "sdate"}
+        Dim strVal() As String = {0, sop, search, destinationoffice, requestStatus, modGlobal.userid, sdate}
+
+        Return GenericDA.ManageQuery(strPar, strVal, "spExaminationUpshots", 0)
+    End Function
 
     Public Shared Function getPatientRequestStatus(ByVal search As Integer) As DataTable
         Dim strPar() As String = {"operation", "soperation", "search"}

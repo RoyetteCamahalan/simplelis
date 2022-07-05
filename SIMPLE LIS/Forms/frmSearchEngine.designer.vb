@@ -155,18 +155,19 @@ Partial Class frmSearchEngine
         '
         Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.Image = Global.SIMPLE_LIS.My.Resources.Resources.search_glyph
         Me.Button1.Location = New System.Drawing.Point(971, 13)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(52, 27)
         Me.Button1.TabIndex = 209
         Me.Button1.Text = "  "
-        Me.Button1.UseVisualStyleBackColor = false
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'cmbFilterby
         '
         Me.cmbFilterby.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmbFilterby.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbFilterby.FormattingEnabled = true
+        Me.cmbFilterby.FormattingEnabled = True
         Me.cmbFilterby.Location = New System.Drawing.Point(439, 16)
         Me.cmbFilterby.Name = "cmbFilterby"
         Me.cmbFilterby.Size = New System.Drawing.Size(176, 21)
@@ -179,7 +180,7 @@ Partial Class frmSearchEngine
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(1062, 2)
         Me.GroupBox4.TabIndex = 183
-        Me.GroupBox4.TabStop = false
+        Me.GroupBox4.TabStop = False
         '
         'StatusStrip1
         '
@@ -197,14 +198,11 @@ Partial Class frmSearchEngine
         Me.prgrefresh.Size = New System.Drawing.Size(482, 28)
         Me.prgrefresh.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.prgrefresh.TabIndex = 184
-        Me.prgrefresh.Visible = false
-        '
-        'BackgroundWorker1
-        '
+        Me.prgrefresh.Visible = False
         '
         'lblLoading
         '
-        Me.lblLoading.AutoSize = true
+        Me.lblLoading.AutoSize = True
         Me.lblLoading.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.lblLoading.ForeColor = System.Drawing.Color.Blue
         Me.lblLoading.Location = New System.Drawing.Point(641, 212)
@@ -212,10 +210,7 @@ Partial Class frmSearchEngine
         Me.lblLoading.Size = New System.Drawing.Size(164, 13)
         Me.lblLoading.TabIndex = 185
         Me.lblLoading.Text = "Retrieving record(s). Please wait"
-        Me.lblLoading.Visible = false
-        '
-        'Timer1
-        '
+        Me.lblLoading.Visible = False
         '
         'lblRecordCount
         '

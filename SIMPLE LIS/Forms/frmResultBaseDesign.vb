@@ -147,7 +147,6 @@ Public Class frmResultBaseDesign
         ElseIf Me.cmbMedtech.Items.Count > 0 Then
             Me.cmbMedtech.SelectedValue = modGlobal.userid
         End If
-
     End Sub
     Private Sub checkHighlight(ctrl As Control, dgcell As DataGridViewCell, texthighlight As String)
         If texthighlight = "" Then
@@ -208,7 +207,7 @@ Public Class frmResultBaseDesign
                     Return True
                 End If
             ElseIf condition.Contains("<") Then
-                condition = condition.Replace(">", "")
+                condition = condition.Replace("<", "")
                 If CDbl(value) < CDbl(condition) Then
                     Return True
                 End If

@@ -73,6 +73,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property application_add() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("application_add", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property application_edit() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("application_edit", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property delete_16x16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("delete-16x16", resourceCulture)
@@ -246,6 +266,26 @@ Namespace My.Resources
         Friend ReadOnly Property logo_his() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("logo_his", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property search_glyph() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("search_glyph", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property view_maintoolstrip() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("view_maintoolstrip", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

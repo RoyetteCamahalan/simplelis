@@ -27,6 +27,7 @@ Module modGlobal
 
     Public themecolor3 As Color = Color.MediumSeaGreen
 
+    Public delete_icon As Image = My.Resources.delete_16x16
     Public new_icon _
     , edit_icon _
     , cancel_icon _

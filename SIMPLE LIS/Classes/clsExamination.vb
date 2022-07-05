@@ -127,6 +127,11 @@
         Dim strVal() As String = {0, sop, s}
         Return GenericDA.ManageQuery(strPar, strVal, "spExamination", 0)
     End Function
+    Public Shared Function genericcls(ByVal sop As Integer, ByVal laboratoryid As Long, ByVal search As String) As DataTable
+        Dim strPar() As String = {"@operation", "@soperation", "@laboratoryid", "search"}
+        Dim strVal() As String = {0, sop, laboratoryid, search}
+        Return GenericDA.ManageQuery(strPar, strVal, "spExamination", 0)
+    End Function
     Public Shared Function getLabdetails(ByVal s As String) As DataTable
         Dim strPar() As String = {"@operation", "@soperation", "@search"}
         Dim strVal() As String = {0, 0, s}
@@ -208,6 +213,25 @@
         Dim strPar() As String = {"operation", "soperation", "laboratoryid", "labmasterdescription", "labresulttitle", "isactive"}
         Dim strVal() As Object = {operation, 3, laboratoryid, labdescription, resulttitle, isactive}
         GenericDA.ManageQuery(strPar, strVal, "spExamination", 2)
+    End Sub
+
+    Public Shared Sub addlabitem(ByVal labid As Long, ByVal itemcode As String)
+        Dim strPar() As String = {"@operation", _
+                                   "@soperation", _
+                                   "@laboratoryid", _
+                                   "@itemcode"}
+
+        Dim strVal() As String = {1, 1, labid, itemcode}
+        GenericDA.ManageQuery(strPar, strVal, "spExamination", 1)
+    End Sub
+    Public Shared Sub removelabitem(ByVal labid As Long, ByVal itemcode As String)
+        Dim strPar() As String = {"@operation", _
+                                   "@soperation", _
+                                   "@laboratoryid", _
+                                   "@itemcode"}
+
+        Dim strVal() As String = {3, 1, labid, itemcode}
+        GenericDA.ManageQuery(strPar, strVal, "spExamination", 1)
     End Sub
 
 #End Region

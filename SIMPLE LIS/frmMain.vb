@@ -23,6 +23,7 @@ Public Class frmMain
         manageresult = 0 'Encode/View/Release Result
         updateformat = 1 'Modify Test Format
         manageprocedure = 2 'Create or Update Lab/Rad Name
+        LISDashboard = 3
     End Enum
     Enum enformstatus
         add = 0
@@ -45,7 +46,7 @@ Public Class frmMain
         requestdetailno = 662
         employeeid = 1001
         myformaction = enformstatus.add
-        target = targetmodule.manageresult
+        target = targetmodule.LISDashboard
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,
@@ -143,6 +144,9 @@ getResultDetails:
             f.ShowDialog()
         ElseIf target = targetmodule.manageprocedure Then
             Dim f As New frmLaboratory(IIf(laboratoryid > 0, frmLaboratory.formstatus.edit, frmLaboratory.formstatus.add), laboratoryid)
+            f.ShowDialog()
+        ElseIf target = targetmodule.LISDashboard Then
+            Dim f As New frmDashboard
             f.ShowDialog()
         End If
         Me.Close()
