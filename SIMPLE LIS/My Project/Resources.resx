@@ -118,32 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ic_folder_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_folder_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="application_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_undo_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_undo_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_setting16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_setting16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_redo_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_redo_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_gear_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_gear_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_align_center_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_align_center_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_italic_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_italic_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ic_undo_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_undo_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="add_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ic_merge_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_merge_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_trash_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_trash_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ic_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_template.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_redo_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_redo_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_check_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_check_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_horizontal_line_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_horizontal_line_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_folder_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_folder_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_edit_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_edit_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_gear_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_gear_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_text_color_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_text_color_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_underline_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_underline_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_align_left_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_align_left_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,40 +172,37 @@
   <data name="view_maintoolstrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\view_maintoolstrip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_underline_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_underline_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_info_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_info_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_align_center_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_align_center_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="application_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="application_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo_his" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_his.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_glyph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_glyph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_align_right_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_align_right_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_setting16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_setting16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_his" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_his.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_bold_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_bold_161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_text_color_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_text_color_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete-16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete-16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_edit_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_edit_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_warning_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_warning_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_merge_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ic_merge_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search_glyph" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_glyph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_play_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_play_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

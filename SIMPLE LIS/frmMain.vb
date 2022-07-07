@@ -92,6 +92,7 @@ Public Class frmMain
         '    target = targetmodule.manageresult
         'End If
         setUserInfo()
+        LoadUserSubModules()
         Me.Hide()
         If target = targetmodule.manageresult Then
 getResultDetails:

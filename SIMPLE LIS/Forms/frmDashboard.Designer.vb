@@ -24,9 +24,10 @@ Partial Class frmDashboard
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDashboard))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDashboard))
         Me.tsmain = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
@@ -38,15 +39,7 @@ Partial Class frmDashboard
         Me.txtsearch = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.dgMain = New System.Windows.Forms.DataGridView()
-        Me.tsview = New System.Windows.Forms.ToolStripButton()
-        Me.tsnew = New System.Windows.Forms.ToolStripButton()
-        Me.tsedit = New System.Windows.Forms.ToolStripButton()
-        Me.tsoptions = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ExaminationSchemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DiagnosticTestMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsClose = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnsearch = New System.Windows.Forms.ToolStripButton()
-        Me.DiagnosticTestsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblmodulename = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -60,13 +53,23 @@ Partial Class frmDashboard
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.tsview = New System.Windows.Forms.ToolStripButton()
+        Me.tsnew = New System.Windows.Forms.ToolStripButton()
+        Me.tsedit = New System.Windows.Forms.ToolStripButton()
+        Me.tsoptions = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.tsExaminationSchema = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDiagnosticTestMapping = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDiagnosticTests = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsClose = New System.Windows.Forms.ToolStripButton()
+        Me.tsbtnsearch = New System.Windows.Forms.ToolStripButton()
         Me.tsmain.SuspendLayout()
         CType(Me.dgMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tsmain
         '
-        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsview, Me.ToolStripSeparator1, Me.tsnew, Me.ToolStripSeparator2, Me.tsedit, Me.ToolStripSeparator3, Me.tsoptions, Me.tsClose, Me.lblpreviousdate, Me.tsfilteryby, Me.tslblfilterby, Me.ToolStripSeparator4, Me.tsbtnsearch, Me.txtsearch, Me.ToolStripLabel1})
+        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.tsview, Me.ToolStripSeparator1, Me.tsnew, Me.ToolStripSeparator2, Me.tsedit, Me.ToolStripSeparator3, Me.tsoptions, Me.tsClose, Me.lblpreviousdate, Me.tsfilteryby, Me.tslblfilterby, Me.ToolStripSeparator4, Me.tsbtnsearch, Me.txtsearch, Me.ToolStripLabel1})
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.Padding = New System.Windows.Forms.Padding(0, 5, 1, 5)
@@ -137,23 +140,25 @@ Partial Class frmDashboard
         Me.dgMain.AllowUserToAddRows = False
         Me.dgMain.AllowUserToDeleteRows = False
         Me.dgMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgMain.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.dgMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgMain.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgMain.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.CadetBlue
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgMain.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgMain.Location = New System.Drawing.Point(0, 33)
         Me.dgMain.Name = "dgMain"
@@ -163,80 +168,23 @@ Partial Class frmDashboard
         Me.dgMain.Size = New System.Drawing.Size(922, 335)
         Me.dgMain.TabIndex = 44
         '
-        'tsview
+        'lblmodulename
         '
-        Me.tsview.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
-        Me.tsview.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsview.Name = "tsview"
-        Me.tsview.Size = New System.Drawing.Size(52, 20)
-        Me.tsview.Text = "View"
-        '
-        'tsnew
-        '
-        Me.tsnew.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_add
-        Me.tsnew.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsnew.Name = "tsnew"
-        Me.tsnew.Size = New System.Drawing.Size(51, 20)
-        Me.tsnew.Text = "New"
-        '
-        'tsedit
-        '
-        Me.tsedit.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_edit
-        Me.tsedit.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsedit.Name = "tsedit"
-        Me.tsedit.Size = New System.Drawing.Size(47, 20)
-        Me.tsedit.Text = "Edit"
-        '
-        'tsoptions
-        '
-        Me.tsoptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExaminationSchemaToolStripMenuItem, Me.DiagnosticTestMappingToolStripMenuItem, Me.DiagnosticTestsToolStripMenuItem})
-        Me.tsoptions.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_gear_16
-        Me.tsoptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsoptions.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsoptions.Name = "tsoptions"
-        Me.tsoptions.Size = New System.Drawing.Size(105, 20)
-        Me.tsoptions.Text = "Components"
-        '
-        'ExaminationSchemaToolStripMenuItem
-        '
-        Me.ExaminationSchemaToolStripMenuItem.Name = "ExaminationSchemaToolStripMenuItem"
-        Me.ExaminationSchemaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.ExaminationSchemaToolStripMenuItem.Text = "Examination Schema"
-        '
-        'DiagnosticTestMappingToolStripMenuItem
-        '
-        Me.DiagnosticTestMappingToolStripMenuItem.Name = "DiagnosticTestMappingToolStripMenuItem"
-        Me.DiagnosticTestMappingToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.DiagnosticTestMappingToolStripMenuItem.Text = "Diagnostic Test Mapping"
-        '
-        'tsClose
-        '
-        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
-        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(56, 20)
-        Me.tsClose.Text = "Close"
-        '
-        'tsbtnsearch
-        '
-        Me.tsbtnsearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.tsbtnsearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnsearch.Image = Global.SIMPLE_LIS.My.Resources.Resources.search_glyph
-        Me.tsbtnsearch.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnsearch.Name = "tsbtnsearch"
-        Me.tsbtnsearch.Size = New System.Drawing.Size(23, 20)
-        '
-        'DiagnosticTestsToolStripMenuItem
-        '
-        Me.DiagnosticTestsToolStripMenuItem.Name = "DiagnosticTestsToolStripMenuItem"
-        Me.DiagnosticTestsToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.DiagnosticTestsToolStripMenuItem.Text = "Diagnostic Tests"
+        Me.lblmodulename.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblmodulename.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblmodulename.ForeColor = System.Drawing.Color.CadetBlue
+        Me.lblmodulename.Location = New System.Drawing.Point(299, 6)
+        Me.lblmodulename.Name = "lblmodulename"
+        Me.lblmodulename.Size = New System.Drawing.Size(308, 20)
+        Me.lblmodulename.TabIndex = 45
+        Me.lblmodulename.Text = "Label1"
+        Me.lblmodulename.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTextBoxColumn1.HeaderText = "Name"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -244,8 +192,8 @@ Partial Class frmDashboard
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewTextBoxColumn2.HeaderText = "coloptionvalues"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
@@ -318,14 +266,93 @@ Partial Class frmDashboard
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.Visible = False
         '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(66, 20)
+        Me.ToolStripButton1.Text = "Viewqq"
+        '
+        'tsview
+        '
+        Me.tsview.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
+        Me.tsview.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsview.Name = "tsview"
+        Me.tsview.Size = New System.Drawing.Size(52, 20)
+        Me.tsview.Text = "View"
+        '
+        'tsnew
+        '
+        Me.tsnew.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_add
+        Me.tsnew.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsnew.Name = "tsnew"
+        Me.tsnew.Size = New System.Drawing.Size(51, 20)
+        Me.tsnew.Text = "New"
+        '
+        'tsedit
+        '
+        Me.tsedit.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_edit
+        Me.tsedit.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsedit.Name = "tsedit"
+        Me.tsedit.Size = New System.Drawing.Size(47, 20)
+        Me.tsedit.Text = "Edit"
+        '
+        'tsoptions
+        '
+        Me.tsoptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsExaminationSchema, Me.tsDiagnosticTestMapping, Me.tsDiagnosticTests})
+        Me.tsoptions.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_gear_16
+        Me.tsoptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsoptions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsoptions.Name = "tsoptions"
+        Me.tsoptions.Size = New System.Drawing.Size(105, 20)
+        Me.tsoptions.Text = "Components"
+        '
+        'tsExaminationSchema
+        '
+        Me.tsExaminationSchema.Name = "tsExaminationSchema"
+        Me.tsExaminationSchema.Size = New System.Drawing.Size(204, 22)
+        Me.tsExaminationSchema.Text = "Examination Schema"
+        '
+        'tsDiagnosticTestMapping
+        '
+        Me.tsDiagnosticTestMapping.Name = "tsDiagnosticTestMapping"
+        Me.tsDiagnosticTestMapping.Size = New System.Drawing.Size(204, 22)
+        Me.tsDiagnosticTestMapping.Text = "Diagnostic Test Mapping"
+        '
+        'tsDiagnosticTests
+        '
+        Me.tsDiagnosticTests.Name = "tsDiagnosticTests"
+        Me.tsDiagnosticTests.Size = New System.Drawing.Size(204, 22)
+        Me.tsDiagnosticTests.Text = "Diagnostic Tests"
+        '
+        'tsClose
+        '
+        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
+        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsClose.Name = "tsClose"
+        Me.tsClose.Size = New System.Drawing.Size(56, 20)
+        Me.tsClose.Text = "Close"
+        '
+        'tsbtnsearch
+        '
+        Me.tsbtnsearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.tsbtnsearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnsearch.Image = Global.SIMPLE_LIS.My.Resources.Resources.search_glyph
+        Me.tsbtnsearch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnsearch.Name = "tsbtnsearch"
+        Me.tsbtnsearch.Size = New System.Drawing.Size(23, 20)
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(922, 368)
+        Me.Controls.Add(Me.lblmodulename)
         Me.Controls.Add(Me.dgMain)
         Me.Controls.Add(Me.tsmain)
         Me.Name = "frmDashboard"
+        Me.Text = "LIS Dashboard"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.tsmain.ResumeLayout(False)
         Me.tsmain.PerformLayout()
@@ -351,8 +378,8 @@ Partial Class frmDashboard
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
     Public WithEvents tsoptions As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents ExaminationSchemaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DiagnosticTestMappingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsExaminationSchema As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsDiagnosticTestMapping As System.Windows.Forms.ToolStripMenuItem
     Public WithEvents tsview As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
@@ -366,5 +393,7 @@ Partial Class frmDashboard
     Friend WithEvents tsbtnsearch As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents DiagnosticTestsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsDiagnosticTests As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblmodulename As System.Windows.Forms.Label
+    Public WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
 End Class

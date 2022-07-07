@@ -18,8 +18,10 @@ Module modGlobal
     Public userName As String
     Public password As String
     Public designation As String
-    Public employeetype As String
+    Public employeetypeid As Integer
     Public msgboxTitle As String
+    Public alertaudio As String
+    Public alerttimeout As Integer
 
     Public ClinicID As Integer = 4
     Public gFilePrinterName As String = ConfigurationManager.AppSettings("FilePrinterName")
@@ -62,12 +64,262 @@ Module modGlobal
         DatabaseName = 0
         DocumentLocationEMR = 12
     End Enum
+    Public canAdd As Boolean
+    Public canEdit As Boolean
+    Public canView As Boolean
+    Public canDelete As Boolean
+    Public canApprove As Boolean
+    Public canInspect As Boolean
+    Public canCheck As Boolean
+    Public canReceive As Boolean
+    Public canIssue As Boolean
+    Public canVerify As Boolean
+    Enum AccountModule
+        modNone = 0
+        modPatients = 9
+        modDoctors = 10
+        modEmployees = 12
+        modItemCategory = 13
+        modOffices = 14
+        modOutpatient = 18
+        modEmergency = 17
+        modInpatients = 19
+        modItems = 22
+        modExaminationUpshots = 24
+        modSuppliers = 25
+        modPHICProcedures = 28
+        modICD10 = 29
+        modRegions = 48
+        modProvinces = 49
+        modMunicipality = 50
+        modNationality = 51
+        modReligion = 52
+        modOccupation = 53
+        modUsers = 54
+        modHCI = 60
+        modDiscountTypes = 61
+        modReasonForReferral = 66
+        modUnitOfMeasurement = 70
+        modItemTaxType = 71
+        modPackageCharge = 79
+        modAppointments = 93
+        'modAppointment = 2
+        'modCashiering = 8
+        'modClinics = 10
+        'modTransfer
+        'modRequestIssuance
+        'modAdjustment
+        'modSupplierReturns = 5
+        'modCashReceipts = 6
+        'modPurchaseRequest = 7
+        'modPurchaseOrder = 8
+        'modDivisions = 11
+        'modRooms = 15
+        'modRoomTypes = 16
+        'modAncillary = 20
+        'modNursingServices = 21
+        'modPatientRefunds = 23
+        'modOfficeItems = 26
+        'modPHICMembers = 30
+        'modTransmittals = 31
+        'modExtraction = 32
+        'modBanks = 33
+        'modRadiologyTemplates = 34
+        'modPHICPackage = 35
+        'modEmployeeAccountReceivable = 39
+        'modPatientAccountReceivable = 40
+        'modHMO = 41
+        'modReligiousGroups = 42
+        'modHMOAccountReceivable = 43
+        'modReligiousAcctReceivable = 44
+        'modSupplierPayments = 45
+        'modCF2 = 46
+        'modPHICCashReceipts = 47
+        'modManageUsers = 54
+        'modEmployeeCreditPayrollDeduction = 55
+        'modEmployeeSalaryDeductionBracket = 56
+        'modHospitalInformation = 57
+        'modReloadInventory = 58
+        'modOutGoingPayment = 59
+        'modDiscountTypes = 61
+        'modIndicationForCS = 62
+        'modItemTransferForReasons = 63
+        'modUserLogs = 64
+        'modUnsetBill = 65
+        'modHMOClaims = 67
+        'modBirthCertificate = 68
+        'modDeathCertificate = 69
+        'modPatientAROptions = 72
+        'modReligiousGroupsBilling = 73
+        'modEmployeeARCutOffDate = 74
+        'modPatientARCutOffDate = 75
+        'modHMOARCutOffDate = 76
+        'modReligiousARCutOffDate = 77
+        'modSupplierAPCutOffDate = 78
+        'modImportDataPatientAccountRecivables = 80
+        'modORControlNo = 81
+        'modOutGoingPaymentPayee = 82
+        'modCheckEncashment = 83
+        'modPettyCashVoucher = 84
+        'modCashierCollection = 85
+        'modDietaryService = 86
+        'modCheckVoucherEntry = 87
+        'modOtherCashierCollection = 88
+        'modCheckDeposit = 89
+    End Enum
+    Enum AccountSubModule
+        smodNone = 0
+        smodInpatientDetails = 1
+        smodPatientProfile = 2
+        smodCashReceipts = 3
+        smodCreditNotes = 4
+        smodDischarge = 5
+        smodPostCharges = 6
+        smodRequisition = 7
+        smodRenderingRequisition = 8
+        smodBilling = 9
+        smodDirectRender = 10
+        smodRelocation = 11
+        smodViewMedicines = 12
+        'smodCashRefunds = 12
+
+        smodPrintCharges = 13
+
+        smodCashTransaction = 14
+        smodMGH = 15
+        smodManageExamination = 16
+        smodReleaseExamination = 17
+        smodReturnMedicine = 18
+        smodCashReceiptList = 19
+        smodDiagnosis = 20
+        smodPhilHealthRequirements = 21
+        smodAdmissionHistory = 22
+        smodReturnCashTransaction = 23
+        smodSchemaExamination = 24
+        smodEmployeeCharges = 25
+        smodUntagasMGH = 26
+        smodAdmitPatient = 27
+        smodEmployeeCashReceipts = 47
+
+        '--items
+        smodItemStockCard = 28
+        smodReceivingHistory = 29
+        smodTransferHistory = 30  'transfer
+        smodIssuanceHistory = 52  'issuance
+        smodExtractionHistory = 53 'extraction
+        smodChargesHistory = 41
+        smodEmpChargesHistory = 42
+        smodAdjustmentHistory = 43
+        smodReturnToSupplierHistory = 44
+        smodExpenseIssuanceHistory = 45
+
+        '--items
+        '--REPORTS
+        'smodItemStockCard = 28
+        'smodReceivingHistory = 29
+        'smodTransferHistory = 30
+
+        smodCashierReports = 31
+        smodDOHReports = 32
+        smodFinanceReports = 33
+        smodInventoryReports = 34
+        smodLaboratoryReports = 35
+        smodMedicalRecordReports = 36
+        smodPharmacyRecordReports = 37
+        smodPhilHealthRecordReports = 38
+        smodRadUltraReports = 39
+        smodFormReports = 40
+        smodBillingReports = 46
+        smodPaymentSuppliers = 48
+        smodPaymentHistorySuppliers = 49
+
+        smodBirthCertificateEntryForm = 51
+        smodDeathCertificateEntryForm = 50
+
+        smodReligiousGroupsCharges = 52
+        smodReligiousGroupsReturn = 53
+        smodEmployeeChargeInvoice = 54
+        smodDiagnosticTestMapping = 62
+    End Enum
+    Dim dtModule As New DataTable
+    Dim dtsModule As New DataTable
+    Sub LoadUserModules()
+        Dim dpk(1) As DataColumn
+        dtModule = clsUsers.GetUser(2, "", "", modGlobal.userid)
+        dpk(0) = dtModule.Columns("modcode")
+        dtModule.PrimaryKey = dpk
+    End Sub
+    Sub LoadUserSubModules()
+        Dim dpk(1) As DataColumn
+        dtsModule = clsUsers.GetUser(3, "", "", modGlobal.userid)
+        dpk(0) = dtsModule.Columns("submodcode")
+        dtsModule.PrimaryKey = dpk
+    End Sub
+    Sub GetUserModules(ByVal accMod As Integer)
+        'Dim idx As Integer
+        'Dim dtModule As New DataTable
+
+        'dtModule = clsAuthentication.getUsersModules(authId)
+
+        If dtModule.Rows.Count > 0 Then
+            Dim row As DataRow = dtModule.Rows.Find(accMod)
+            If Not (row Is Nothing) Then
+                canAdd = row("canadd")
+                canEdit = row("canedit")
+                canDelete = row("candelete")
+                canView = row("canview")
+                canApprove = row("canapprove")
+                canInspect = row("caninspect")
+                canCheck = row("cancheck")
+                canReceive = row("canreceive")
+                canIssue = row("canissue")
+                canVerify = row("canverify")
+            Else
+                canAdd = False
+                canEdit = False
+                canDelete = False
+                canView = False
+                canApprove = False
+                canInspect = False
+                canCheck = False
+                canReceive = False
+                canIssue = False
+                canVerify = False
+            End If
+        End If
+    End Sub
+    Function GetUserSubModulesVisibility(ByVal accSubMod As Integer) As Boolean
+        Dim sw As Boolean
+        Try
+            If dtsModule.Rows.Count > 0 Then
+                Dim Row As DataRow = dtsModule.Rows.Find(accSubMod)
+                If Row Is Nothing Then
+                    sw = False
+                End If
+                If Row("canaccess") = False Then
+                    sw = False
+                Else
+                    sw = True
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
+        Return sw
+    End Function
     Sub setUserInfo()
         Dim dt As DataTable = clsUsers.GetUser(1, "", "", userid)
         sourceOfficeCode = dt.Rows(0).Item("officecode")
         ulastName = dt.Rows(0).Item("lastname")
         ufirstName = dt.Rows(0).Item("firstname")
         ufullName = ufirstName & " " & ulastName
+        employeetypeid = dt.Rows(0).Item("employeetypeid")
+        dt = clsOffices.getOfficeDefaults(0, sourceOfficeCode)
+        If dt.Rows.Count > 0 Then
+            alertaudio = dt.Rows(0).Item("alertaudio")
+            alerttimeout = dt.Rows(0).Item("alerttimeout")
+        End If
         Dim dtHospInfo As DataTable = clsHospitalInfo.getInfo(0, "")
         'Select Case IsDBNull(dtHospInfo.Rows(0)("new_icon"))
         '    Case True

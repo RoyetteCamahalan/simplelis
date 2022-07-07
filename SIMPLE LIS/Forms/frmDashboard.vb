@@ -16,15 +16,19 @@ Public Class frmDashboard
     End Enum
 #End Region
     Private Sub frmDashboard_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        loadFilterBy()
-        displayList()
+        loadPrivileges()
+        setFormTitle()
     End Sub
 #Region "Methods"
+    Private Sub loadPrivileges()
+        Me.tsExaminationSchema.Visible = modGlobal.GetUserSubModulesVisibility(modGlobal.AccountSubModule.smodSchemaExamination)
+        Me.tsDiagnosticTestMapping.Visible = modGlobal.GetUserSubModulesVisibility(modGlobal.AccountSubModule.smodDiagnosticTestMapping)
+    End Sub
     Private Sub setFormTitle()
         If selectedModule = enModule.diagnostics Then
-            Me.Text = "Diagnostic Tests"
+            Me.lblmodulename.Text = "Diagnostic Tests"
         ElseIf selectedModule = enModule.examinationschema Then
-            Me.Text = "Examination Schema"
+            Me.lblmodulename.Text = "Examination Schema"
         End If
         loadFilterBy()
         displayList()
@@ -55,6 +59,7 @@ Public Class frmDashboard
             End If
         ElseIf selectedModule = enModule.examinationschema Then
             Me.tsnew.Enabled = False
+            Me.tsedit.Enabled = True
             Me.tsview.Enabled = False
         End If
     End Sub
@@ -150,7 +155,7 @@ Public Class frmDashboard
         displayList()
     End Sub
 
-    Private Sub DiagnosticTestMappingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DiagnosticTestMappingToolStripMenuItem.Click
+    Private Sub DiagnosticTestMappingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsDiagnosticTestMapping.Click
         Dim f As New frmLaboratoryItems
         f.ShowDialog()
     End Sub
@@ -165,12 +170,12 @@ Public Class frmDashboard
         End Try
     End Sub
 
-    Private Sub ExaminationSchemaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExaminationSchemaToolStripMenuItem.Click
+    Private Sub ExaminationSchemaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsExaminationSchema.Click
         Me.selectedModule = enModule.examinationschema
         setFormTitle()
     End Sub
 
-    Private Sub DiagnosticTestsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DiagnosticTestsToolStripMenuItem.Click
+    Private Sub DiagnosticTestsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsDiagnosticTests.Click
         Me.selectedModule = enModule.diagnostics
         setFormTitle()
     End Sub
@@ -223,5 +228,13 @@ Public Class frmDashboard
 
     Private Sub tsbtnsearch_Click(sender As System.Object, e As System.EventArgs) Handles tsbtnsearch.Click
         displayList()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripButton1.Click
+        frmNotif.addItem("222", "test", Utility.GetRandomString)
+    End Sub
+
+    Private Sub frmDashboard_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
+        frmNotif.StartBroadCast()
     End Sub
 End Class
