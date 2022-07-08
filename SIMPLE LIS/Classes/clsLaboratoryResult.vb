@@ -222,8 +222,8 @@
         Return GenericDA.ManageQuery(strPar, strVal, "spLaboratoryResult", 2)
     End Function
     Public Shared Sub mergeResult(requestdetailno As Long, oldlabresultid As Long, newlabresultid As Long)
-        Dim strPar() As String = {"@operation", "@soperation", "@Oldlaboratoryid", "@search", "@search1"}
-        Dim strVal() As Object = {2, 2, oldlabresultid, requestdetailno, newlabresultid}
+        Dim strPar() As String = {"@operation", "@soperation", "@search", "@search1"}
+        Dim strVal() As Object = {2, 2, requestdetailno, newlabresultid}
         GenericDA.ManageQuery(strPar, strVal, "spLaboratoryResult", 1)
     End Sub
     Public Shared Sub unmergeResult(requestdetailno As Long, oldlabresultid As Long, newlabresultid As Long)

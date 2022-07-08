@@ -18,6 +18,7 @@
     Public mLastName As String
     Public mFirstName As String
     Public mAdmissionType As String
+    Public mRequestDetailNo As Long
     Public isbilling As Boolean
     Dim misAvailable As Boolean = True
     Dim afteritemsload As Boolean = True
@@ -31,6 +32,7 @@
     Public caseratetype As Byte
     Dim dtCharges As New DataTable()
     Public dt As New DataTable
+    Public dtSelectedRecords As New DataTable
     Private dtitems As New DataTable
 
     Public mrow As DataGridViewRow 
@@ -91,7 +93,8 @@
 
         Select Case mModule
             Case ModuleName.MergeResult
-                Me.dgGeneric.DataSource = clsLaboratoryResult.genericcls(16, Me.mKey)
+                Me.dgGeneric.DataSource = clsLaboratoryResult.genericcls(16, Me.mRequestDetailNo)
+                'Me.dgGeneric.DataSource = clsLaboratoryResult.genericcls(16, Me.mKey)
         End Select
 
         Me.lblRecordCount.Text = Me.dgGeneric.Rows.Count & " rows"
@@ -147,13 +150,25 @@
 
 
             If Me.mModule = ModuleName.MergeResult Then
-                .Columns(0).Visible = False
-                .Columns(1).HeaderText = "Test Description"
-                .Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                .ReadOnly = False
+                .Columns(0).Width = 40
+                .Columns(0).HeaderText = ""
+                .Columns(1).Visible = False
+                .Columns(2).HeaderText = "Test Description"
                 .Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                .Columns(2).HeaderText = "Test Specification"
-                .Columns(3).Width = 160
-                .Columns(3).HeaderText = "Date Requested"
+                .Columns(2).ReadOnly = True
+                .Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                .Columns(3).HeaderText = "Test Specification"
+                .Columns(3).ReadOnly = True
+                .Columns(4).Width = 160
+                .Columns(4).HeaderText = "Date Requested"
+                '.Columns(0).Visible = False
+                '.Columns(1).HeaderText = "Test Description"
+                '.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                '.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                '.Columns(2).HeaderText = "Test Specification"
+                '.Columns(3).Width = 160
+                '.Columns(3).HeaderText = "Date Requested"
             End If
         End With
     End Sub
@@ -237,10 +252,17 @@
     End Sub
     Private Sub SelectedRecord()
         Try
-            mKey = Me.dgGeneric.SelectedRows(0).Cells(0).Value
             Select Case mModule
                 Case ModuleName.MergeResult
-                    mKey = Me.dgGeneric.SelectedRows(0).Cells("patientrequestdetailno").Value
+                    dtSelectedRecords = New DataTable
+                    dtSelectedRecords.Columns.Add("patientrequestdetailno")
+                    dtSelectedRecords.Columns.Add("itemspecs")
+                    For Each row As DataGridViewRow In Me.dgGeneric.Rows
+                        If row.Cells(0).Value = True Then
+                            dtSelectedRecords.Rows.Add(row.Cells("patientrequestdetailno").Value, row.Cells("itemspecs").Value)
+                        End If
+                    Next
+                    mKey = dtSelectedRecords.Rows.Count
             End Select
             If mKey = "0" Then
                 MsgBox("No record selected. Please select from the list or search again.", vbInformation, modGlobal.msgboxTitle)

@@ -22,20 +22,29 @@ Partial Class frmDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDashboard))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDashboard))
         Me.tsmain = New System.Windows.Forms.ToolStrip()
+        Me.tsview = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsnew = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsedit = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsoptions = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.tsExaminationSchema = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDiagnosticTestMapping = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDiagnosticTests = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsClose = New System.Windows.Forms.ToolStripButton()
         Me.lblpreviousdate = New System.Windows.Forms.ToolStripLabel()
         Me.tsfilteryby = New System.Windows.Forms.ToolStripComboBox()
         Me.tslblfilterby = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbtnsearch = New System.Windows.Forms.ToolStripButton()
         Me.txtsearch = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.dgMain = New System.Windows.Forms.DataGridView()
@@ -53,23 +62,13 @@ Partial Class frmDashboard
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.tsview = New System.Windows.Forms.ToolStripButton()
-        Me.tsnew = New System.Windows.Forms.ToolStripButton()
-        Me.tsedit = New System.Windows.Forms.ToolStripButton()
-        Me.tsoptions = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.tsExaminationSchema = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsDiagnosticTestMapping = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsDiagnosticTests = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsClose = New System.Windows.Forms.ToolStripButton()
-        Me.tsbtnsearch = New System.Windows.Forms.ToolStripButton()
         Me.tsmain.SuspendLayout()
         CType(Me.dgMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tsmain
         '
-        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.tsview, Me.ToolStripSeparator1, Me.tsnew, Me.ToolStripSeparator2, Me.tsedit, Me.ToolStripSeparator3, Me.tsoptions, Me.tsClose, Me.lblpreviousdate, Me.tsfilteryby, Me.tslblfilterby, Me.ToolStripSeparator4, Me.tsbtnsearch, Me.txtsearch, Me.ToolStripLabel1})
+        Me.tsmain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsview, Me.ToolStripSeparator1, Me.tsnew, Me.ToolStripSeparator2, Me.tsedit, Me.ToolStripSeparator3, Me.tsoptions, Me.tsClose, Me.lblpreviousdate, Me.tsfilteryby, Me.tslblfilterby, Me.ToolStripSeparator4, Me.tsbtnsearch, Me.txtsearch, Me.ToolStripLabel1})
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.Padding = New System.Windows.Forms.Padding(0, 5, 1, 5)
@@ -78,20 +77,80 @@ Partial Class frmDashboard
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
         '
+        'tsview
+        '
+        Me.tsview.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
+        Me.tsview.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsview.Name = "tsview"
+        Me.tsview.Size = New System.Drawing.Size(52, 20)
+        Me.tsview.Text = "View"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 23)
+        '
+        'tsnew
+        '
+        Me.tsnew.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_add
+        Me.tsnew.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsnew.Name = "tsnew"
+        Me.tsnew.Size = New System.Drawing.Size(51, 20)
+        Me.tsnew.Text = "New"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 23)
         '
+        'tsedit
+        '
+        Me.tsedit.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_edit
+        Me.tsedit.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsedit.Name = "tsedit"
+        Me.tsedit.Size = New System.Drawing.Size(47, 20)
+        Me.tsedit.Text = "Edit"
+        '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 23)
+        '
+        'tsoptions
+        '
+        Me.tsoptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsExaminationSchema, Me.tsDiagnosticTestMapping, Me.tsDiagnosticTests})
+        Me.tsoptions.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_gear_16
+        Me.tsoptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.tsoptions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsoptions.Name = "tsoptions"
+        Me.tsoptions.Size = New System.Drawing.Size(105, 20)
+        Me.tsoptions.Text = "Components"
+        '
+        'tsExaminationSchema
+        '
+        Me.tsExaminationSchema.Name = "tsExaminationSchema"
+        Me.tsExaminationSchema.Size = New System.Drawing.Size(204, 22)
+        Me.tsExaminationSchema.Text = "Examination Schema"
+        '
+        'tsDiagnosticTestMapping
+        '
+        Me.tsDiagnosticTestMapping.Name = "tsDiagnosticTestMapping"
+        Me.tsDiagnosticTestMapping.Size = New System.Drawing.Size(204, 22)
+        Me.tsDiagnosticTestMapping.Text = "Diagnostic Test Mapping"
+        '
+        'tsDiagnosticTests
+        '
+        Me.tsDiagnosticTests.Name = "tsDiagnosticTests"
+        Me.tsDiagnosticTests.Size = New System.Drawing.Size(204, 22)
+        Me.tsDiagnosticTests.Text = "Diagnostic Tests"
+        '
+        'tsClose
+        '
+        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
+        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsClose.Name = "tsClose"
+        Me.tsClose.Size = New System.Drawing.Size(56, 20)
+        Me.tsClose.Text = "Close"
         '
         'lblpreviousdate
         '
@@ -121,6 +180,15 @@ Partial Class frmDashboard
         Me.ToolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 23)
+        '
+        'tsbtnsearch
+        '
+        Me.tsbtnsearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.tsbtnsearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbtnsearch.Image = Global.SIMPLE_LIS.My.Resources.Resources.search_glyph
+        Me.tsbtnsearch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbtnsearch.Name = "tsbtnsearch"
+        Me.tsbtnsearch.Size = New System.Drawing.Size(23, 20)
         '
         'txtsearch
         '
@@ -266,83 +334,6 @@ Partial Class frmDashboard
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.Visible = False
         '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(66, 20)
-        Me.ToolStripButton1.Text = "Viewqq"
-        '
-        'tsview
-        '
-        Me.tsview.Image = Global.SIMPLE_LIS.My.Resources.Resources.view_maintoolstrip
-        Me.tsview.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsview.Name = "tsview"
-        Me.tsview.Size = New System.Drawing.Size(52, 20)
-        Me.tsview.Text = "View"
-        '
-        'tsnew
-        '
-        Me.tsnew.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_add
-        Me.tsnew.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsnew.Name = "tsnew"
-        Me.tsnew.Size = New System.Drawing.Size(51, 20)
-        Me.tsnew.Text = "New"
-        '
-        'tsedit
-        '
-        Me.tsedit.Image = Global.SIMPLE_LIS.My.Resources.Resources.application_edit
-        Me.tsedit.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsedit.Name = "tsedit"
-        Me.tsedit.Size = New System.Drawing.Size(47, 20)
-        Me.tsedit.Text = "Edit"
-        '
-        'tsoptions
-        '
-        Me.tsoptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsExaminationSchema, Me.tsDiagnosticTestMapping, Me.tsDiagnosticTests})
-        Me.tsoptions.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_gear_16
-        Me.tsoptions.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.tsoptions.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsoptions.Name = "tsoptions"
-        Me.tsoptions.Size = New System.Drawing.Size(105, 20)
-        Me.tsoptions.Text = "Components"
-        '
-        'tsExaminationSchema
-        '
-        Me.tsExaminationSchema.Name = "tsExaminationSchema"
-        Me.tsExaminationSchema.Size = New System.Drawing.Size(204, 22)
-        Me.tsExaminationSchema.Text = "Examination Schema"
-        '
-        'tsDiagnosticTestMapping
-        '
-        Me.tsDiagnosticTestMapping.Name = "tsDiagnosticTestMapping"
-        Me.tsDiagnosticTestMapping.Size = New System.Drawing.Size(204, 22)
-        Me.tsDiagnosticTestMapping.Text = "Diagnostic Test Mapping"
-        '
-        'tsDiagnosticTests
-        '
-        Me.tsDiagnosticTests.Name = "tsDiagnosticTests"
-        Me.tsDiagnosticTests.Size = New System.Drawing.Size(204, 22)
-        Me.tsDiagnosticTests.Text = "Diagnostic Tests"
-        '
-        'tsClose
-        '
-        Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
-        Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(56, 20)
-        Me.tsClose.Text = "Close"
-        '
-        'tsbtnsearch
-        '
-        Me.tsbtnsearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.tsbtnsearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbtnsearch.Image = Global.SIMPLE_LIS.My.Resources.Resources.search_glyph
-        Me.tsbtnsearch.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbtnsearch.Name = "tsbtnsearch"
-        Me.tsbtnsearch.Size = New System.Drawing.Size(23, 20)
-        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -395,5 +386,4 @@ Partial Class frmDashboard
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents tsDiagnosticTests As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblmodulename As System.Windows.Forms.Label
-    Public WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
 End Class

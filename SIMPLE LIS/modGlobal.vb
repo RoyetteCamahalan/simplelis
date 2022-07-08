@@ -2,6 +2,7 @@
 
 Module modGlobal
     Public gconnectionstring = ""
+    Public cypherpassphrase As String = ""
     Public defaultdateformat As String = "MM/dd/yyyy"
     Public defaulttimeformat As String = "hh:mmtt"
     Public defaultdatetimeformat As String = "MM/dd/yyyy hh:mmtt"

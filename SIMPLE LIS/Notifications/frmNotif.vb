@@ -24,7 +24,7 @@
     End Sub
     Public Sub StartBroadCast()
         getNotifs()
-        Timer1.Interval = IIf(modGlobal.alerttimeout = 0, 6000, modGlobal.alerttimeout * 100)
+        Timer1.Interval = IIf(modGlobal.alerttimeout = 0, 30000, modGlobal.alerttimeout * 100)
         Timer1.Start()
     End Sub
     Public Sub getNotifs()

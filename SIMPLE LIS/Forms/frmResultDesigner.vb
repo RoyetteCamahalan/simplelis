@@ -117,6 +117,7 @@ Public Class frmResultDesigner
             If Me.myFormaction = formaction.View Then
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = testofficecode = modGlobal.sourceOfficeCode
+                Me.tsMerging.Visible = True
                 If Me.tsPrint.Visible And Me.isRTFForm() Then
                     Me.tsprintas.Visible = True
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
@@ -151,9 +152,9 @@ getLabDetails:
             Me.laboratoryresultid = dt.Rows(0).Item("laboratoryresultid")
             Me.itemdescription = dt.Rows(0).Item("itemdescription")
             Me.testofficecode = Utility.NullToEmptyString(dt.Rows(0).Item("destinationoffice"))
-            Me.tsoptions.Visible = True
             If Not ismergeresult Then
                 If dt.Rows(0).Item("mergetoresult") = 0 Then
+                    checkMergeResults()
                     Me.tsMergeWithOtherResultToolStripMenuItem.Tag = "0"
                 Else
                     Me.tsMergeWithOtherResultToolStripMenuItem.Tag = "1"
@@ -450,6 +451,8 @@ getLabDetails:
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
                     End If
+                Else
+                    Me.tsMerging.Visible = True
                 End If
             End If
         End If
@@ -734,15 +737,31 @@ getLabDetails:
 
     Private Sub tsMergeWithOtherResultToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles tsMergeWithOtherResultToolStripMenuItem.Click
         If tsMergeWithOtherResultToolStripMenuItem.Tag = "0" Then
+            'Dim f As New frmSearchEngine
+            'f.mModule = frmSearchEngine.ModuleName.MergeResult
+            'f.mKey = Me.requestdetailno
+            'f.ShowDialog()
+            'If f.issave Then
+            '    If MsgBox("Do you want to MERGE this result?", MsgBoxStyle.YesNo, msgboxTitle) = MsgBoxResult.Yes Then
+            '        Me.mergeToogle = 1
+            '        clsLaboratoryResult.mergeResult(Me.oldrequestdetailno, Me.laboratoryresultid, f.mKey)
+            '        Me.Close()
+            '    End If
+            'End If
             Dim f As New frmSearchEngine
             f.mModule = frmSearchEngine.ModuleName.MergeResult
-            f.mKey = Me.requestdetailno
+            f.mRequestDetailNo = Me.requestdetailno
             f.ShowDialog()
             If f.issave Then
-                If MsgBox("Do you want to MERGE this result?", MsgBoxStyle.YesNo, msgboxTitle) = MsgBoxResult.Yes Then
-                    Me.mergeToogle = 1
-                    clsLaboratoryResult.mergeResult(Me.oldrequestdetailno, Me.laboratoryresultid, f.mKey)
-                    Me.Close()
+                If MsgBox("Do you want to MERGE this result(s)?", MsgBoxStyle.YesNo, msgboxTitle) = MsgBoxResult.Yes Then
+                    For Each row As DataRow In f.dtSelectedRecords.Rows
+                        clsLaboratoryResult.mergeResult(Me.oldrequestdetailno, Me.laboratoryresultid, row.Item("patientrequestdetailno"))
+                        Dim tsResult As New ToolStripMenuItem
+                        tsResult.Text = "  ~ " & row.Item("itemspecs")
+                        tsResult.Tag = row.Item("patientrequestdetailno")
+                        Me.tsMerging.DropDownItems.Add(tsResult)
+                        Me.tsMerging.Text = "Result Merging(" & Me.tsMerging.DropDownItems.Count - 1 & ")"
+                    Next
                 End If
             End If
         Else
@@ -753,5 +772,24 @@ getLabDetails:
             End If
         End If
         
+    End Sub
+    Private Sub checkMergeResults()
+        Dim dt As DataTable = clsLaboratoryResult.genericcls(17, Me.requestdetailno)
+        If dt.Rows.Count > 0 Then
+            For Each row As DataRow In dt.Rows
+                Dim tsResult As New ToolStripMenuItem
+                tsResult.Text = "  ~ " & row.Item("itemspecs")
+                tsResult.Tag = row.Item("patientrequestdetailno")
+                Me.tsMerging.DropDownItems.Add(tsResult)
+            Next
+            Me.tsMerging.Text = "Result Merging(" & dt.Rows.Count & ")"
+        Else
+            Me.tsMerging.Text = "Result Merging"
+        End If
+        
+    End Sub
+
+    Private Sub ExportAsEmailAttachmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsEmailAttachmentToolStripMenuItem.Click
+
     End Sub
 End Class

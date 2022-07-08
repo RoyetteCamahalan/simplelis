@@ -43,10 +43,10 @@ Public Class frmMain
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
         laboratoryid = 17
-        requestdetailno = 662
+        requestdetailno = 1255
         employeeid = 1001
-        myformaction = enformstatus.add
-        target = targetmodule.LISDashboard
+        myformaction = enformstatus.edit
+        target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,
@@ -120,6 +120,14 @@ getResultDetails:
                 frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()
             ElseIf Me.myformaction = enformstatus.edit AndAlso (dt.Rows(0)(0) = 4 Or dt.Rows(0)(0) = 5) Then
+                If dt.Rows(0)(0) = 5 Then
+                    Dim foverride As New frmRequestedBy(frmRequestedBy.enPurpose.editResult, modGlobal.sourceOfficeCode)
+                    foverride.ShowDialog()
+                    If Not foverride.isLoginValid Then
+                        Me.Close()
+                        Exit Sub
+                    End If
+                End If
                 frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()
             ElseIf Me.myformaction = enformstatus.view_release Then

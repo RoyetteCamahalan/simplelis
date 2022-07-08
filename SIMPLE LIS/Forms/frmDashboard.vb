@@ -230,11 +230,7 @@ Public Class frmDashboard
         displayList()
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripButton1.Click
-        frmNotif.addItem("222", "test", Utility.GetRandomString)
-    End Sub
-
-    Private Sub frmDashboard_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
-        frmNotif.StartBroadCast()
-    End Sub
+    'Private Sub frmDashboard_Shown(sender As System.Object, e As System.EventArgs) Handles MyBase.Shown
+    '    frmNotif.StartBroadCast()
+    'End Sub
 End Class

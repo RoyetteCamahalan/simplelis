@@ -111,6 +111,7 @@
     <Compile Include="Classes\clsExamination.vb" />
     <Compile Include="Classes\clsExaminationUpshots.vb" />
     <Compile Include="Classes\clsHospitalInfo.vb" />
+    <Compile Include="Classes\clsJCypher.vb" />
     <Compile Include="Classes\clsLaboratoryResult.vb" />
     <Compile Include="Classes\clsLaboratoryResultDetails.vb" />
     <Compile Include="Classes\clsLabRadiology.vb" />
@@ -155,6 +156,12 @@
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmPDFViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRequestedBy.designer.vb">
+      <DependentUpon>frmRequestedBy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRequestedBy.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmSearchEngine.designer.vb">
@@ -282,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPDFViewer.resx">
       <DependentUpon>frmPDFViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRequestedBy.resx">
+      <DependentUpon>frmRequestedBy.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSearchEngine.resx">
       <DependentUpon>frmSearchEngine.vb</DependentUpon>
