@@ -43,9 +43,9 @@ Public Class frmMain
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
         laboratoryid = 17
-        requestdetailno = 1255
-        employeeid = 1001
-        myformaction = enformstatus.edit
+        requestdetailno = 1254
+        employeeid = 1011
+        myformaction = enformstatus.view_release
         target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub

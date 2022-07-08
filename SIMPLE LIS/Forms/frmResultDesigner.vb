@@ -117,12 +117,15 @@ Public Class frmResultDesigner
             If Me.myFormaction = formaction.View Then
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = testofficecode = modGlobal.sourceOfficeCode
+                Me.tsprintas.Visible = Me.tsPrint.Visible
                 Me.tsMerging.Visible = True
                 If Me.tsPrint.Visible And Me.isRTFForm() Then
-                    Me.tsprintas.Visible = True
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
                     End If
+                ElseIf Me.tsPrint.Visible And Not Me.isRTFForm() Then
+                    Me.DefaultPDFViewerToolStripMenuItem.Visible = False
+                    Me.CrystalReportToolStripMenuItem.Visible = False
                 End If
             ElseIf Me.myFormaction = formaction.Release Then
                 Me.tsSave.Text = "Release"
@@ -446,12 +449,14 @@ getLabDetails:
                 Me.myFormaction = formaction.View
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = True
+                Me.tsprintas.Visible = Me.tsPrint.Visible
                 If Me.isRTFForm() Then
-                    Me.tsprintas.Visible = True
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
                     End If
                 Else
+                    Me.DefaultPDFViewerToolStripMenuItem.Visible = False
+                    Me.CrystalReportToolStripMenuItem.Visible = False
                     Me.tsMerging.Visible = True
                 End If
             End If
@@ -791,5 +796,53 @@ getLabDetails:
 
     Private Sub ExportAsEmailAttachmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsEmailAttachmentToolStripMenuItem.Click
 
+        Dim fd As New SaveFileDialog()
+        fd.RestoreDirectory = True
+        fd.Filter = "PDF Files(*.pdf)|*pdf;"
+        If fd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Dim filename As String = fd.FileName
+            If filename.Contains(".pdf") = False Then
+                filename = filename & ".pdf"
+            End If
+            Dim newPDFDoc As New PdfSharp.Pdf.PdfDocument
+            Try
+                Select Case Me.labformatid
+                    Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+                        If Not File.Exists(frmRadiology.resultpdflocation) Then
+                            frmRadiology.DisplayPrintPreview(3)
+                        End If
+                        Dim sourcePDFDoc = PdfSharp.Pdf.IO.PdfReader.Open(frmRadiology.resultpdflocation, PdfSharp.Pdf.IO.PdfDocumentOpenMode.Import)
+                        For Pg As Integer = 0 To sourcePDFDoc.Pages.Count - 1
+                            newPDFDoc.AddPage(sourcePDFDoc.Pages(Pg))
+                        Next
+                        newPDFDoc.SecuritySettings.UserPassword = frmRadiology.patientbirthdate.ToString("yyyyMMdd")
+                        newPDFDoc.SecuritySettings.OwnerPassword = "owner"
+                    Case Else
+                        Dim page = newPDFDoc.AddPage()
+                        newPDFDoc.SecuritySettings.OwnerPassword = "owner"
+                        newPDFDoc.SecuritySettings.UserPassword = CDate(fbaseform.lblbirthdate.Text).ToString("yyyyMMdd")
+                        Dim sourceFileName = gDocumentLocationEMR & "\" & Me.admissionid & "\" & fbaseform.getResultFileName()
+                        If Not File.Exists(sourceFileName) Then
+                            Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName())
+                        End If
+                        'Create XImage object from file.
+                        Using xImg = PdfSharp.Drawing.XImage.FromFile(sourceFileName)
+                            'Resize page Width and Height to fit image size.
+                            page.Width = xImg.PixelWidth * 72 / xImg.HorizontalResolution
+                            page.Height = xImg.PixelHeight * 72 / xImg.HorizontalResolution
+
+                            'Draw current image file to page.
+                            Dim GR = PdfSharp.Drawing.XGraphics.FromPdfPage(page)
+                            GR.DrawImage(xImg, 0, 0, page.Width, page.Height)
+                        End Using
+                End Select
+                newPDFDoc.Save(filename)
+                MsgBox("PDF export successful!", MsgBoxStyle.OkOnly)
+            Catch ex As Exception
+
+            Finally
+                newPDFDoc = Nothing
+            End Try
+        End If
     End Sub
 End Class

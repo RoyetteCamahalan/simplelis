@@ -26,10 +26,10 @@ Partial Class frmResultDesigner
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tsmain = New System.Windows.Forms.ToolStrip()
         Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.tsPrint = New System.Windows.Forms.ToolStripButton()
@@ -46,6 +46,20 @@ Partial Class frmResultDesigner
         Me.ExternalTemplateManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
         Me.colchk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colfieldname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfieldtypedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coloptionvalues = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collaboratorydetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfieldtype = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coluuid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocationx = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocationy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coldefaultvalue = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collaboratoryresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collabeltext = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colwidth = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colheight = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelsidebar = New System.Windows.Forms.Panel()
         Me.btnpreview = New System.Windows.Forms.Button()
         Me.txtpanelheight = New System.Windows.Forms.TextBox()
@@ -65,20 +79,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtypedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coloptionvalues = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratorydetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtype = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coluuid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationx = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationy = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coldefaultvalue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratoryresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collabeltext = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colwidth = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colheight = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsmain.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelsidebar.SuspendLayout()
@@ -90,7 +90,7 @@ Partial Class frmResultDesigner
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsmain.Size = New System.Drawing.Size(922, 38)
+        Me.tsmain.Size = New System.Drawing.Size(922, 39)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
         '
@@ -99,7 +99,7 @@ Partial Class frmResultDesigner
         Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
         Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 35)
+        Me.tsSave.Size = New System.Drawing.Size(35, 36)
         Me.tsSave.Text = "Save"
         Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -155,7 +155,7 @@ Partial Class frmResultDesigner
         Me.tsMerging.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsMerging.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsMerging.Name = "tsMerging"
-        Me.tsMerging.Size = New System.Drawing.Size(100, 35)
+        Me.tsMerging.Size = New System.Drawing.Size(100, 36)
         Me.tsMerging.Text = "Result Merging"
         Me.tsMerging.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.tsMerging.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -173,7 +173,7 @@ Partial Class frmResultDesigner
         Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
         Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 35)
+        Me.tsClose.Size = New System.Drawing.Size(40, 36)
         Me.tsClose.Text = "Close"
         Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -183,7 +183,7 @@ Partial Class frmResultDesigner
         Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
         Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsradtemplatemain.Name = "tsradtemplatemain"
-        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
+        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 36)
         Me.tsradtemplatemain.Text = "Templates"
         Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.tsradtemplatemain.Visible = False
@@ -249,7 +249,7 @@ Partial Class frmResultDesigner
         Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(257, 330)
+        Me.dgvResult.Size = New System.Drawing.Size(257, 329)
         Me.dgvResult.TabIndex = 230
         '
         'colchk
@@ -259,6 +259,97 @@ Partial Class frmResultDesigner
         Me.colchk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.colchk.Width = 30
         '
+        'colfieldname
+        '
+        Me.colfieldname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.colfieldname.DefaultCellStyle = DataGridViewCellStyle2
+        Me.colfieldname.HeaderText = "Name"
+        Me.colfieldname.Name = "colfieldname"
+        Me.colfieldname.ReadOnly = True
+        '
+        'colfieldtypedesc
+        '
+        Me.colfieldtypedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.colfieldtypedesc.DefaultCellStyle = DataGridViewCellStyle3
+        Me.colfieldtypedesc.HeaderText = "Type"
+        Me.colfieldtypedesc.Name = "colfieldtypedesc"
+        Me.colfieldtypedesc.ReadOnly = True
+        Me.colfieldtypedesc.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'coloptionvalues
+        '
+        Me.coloptionvalues.HeaderText = "coloptionvalues"
+        Me.coloptionvalues.Name = "coloptionvalues"
+        Me.coloptionvalues.Visible = False
+        '
+        'collaboratorydetailsid
+        '
+        Me.collaboratorydetailsid.HeaderText = "laboratorydetailsid"
+        Me.collaboratorydetailsid.Name = "collaboratorydetailsid"
+        Me.collaboratorydetailsid.Visible = False
+        '
+        'colfieldtype
+        '
+        Me.colfieldtype.HeaderText = "colfieldtype"
+        Me.colfieldtype.Name = "colfieldtype"
+        Me.colfieldtype.Visible = False
+        '
+        'coluuid
+        '
+        Me.coluuid.HeaderText = "coluuid"
+        Me.coluuid.Name = "coluuid"
+        Me.coluuid.Visible = False
+        '
+        'collocationx
+        '
+        Me.collocationx.HeaderText = "collocationx"
+        Me.collocationx.Name = "collocationx"
+        Me.collocationx.Visible = False
+        '
+        'collocationy
+        '
+        Me.collocationy.HeaderText = "collocationy"
+        Me.collocationy.Name = "collocationy"
+        Me.collocationy.Visible = False
+        '
+        'coldefaultvalue
+        '
+        Me.coldefaultvalue.HeaderText = "coldefaultvalue"
+        Me.coldefaultvalue.Name = "coldefaultvalue"
+        Me.coldefaultvalue.Visible = False
+        '
+        'collaboratoryresultdetailid
+        '
+        Me.collaboratoryresultdetailid.HeaderText = "collaboratoryresultdetailid"
+        Me.collaboratoryresultdetailid.Name = "collaboratoryresultdetailid"
+        Me.collaboratoryresultdetailid.Visible = False
+        '
+        'collabeltext
+        '
+        Me.collabeltext.HeaderText = "collabeltext"
+        Me.collabeltext.Name = "collabeltext"
+        Me.collabeltext.Visible = False
+        '
+        'colwidth
+        '
+        Me.colwidth.HeaderText = "colwidth"
+        Me.colwidth.Name = "colwidth"
+        Me.colwidth.Visible = False
+        '
+        'colheight
+        '
+        Me.colheight.HeaderText = "colheight"
+        Me.colheight.Name = "colheight"
+        Me.colheight.Visible = False
+        '
+        'coltexthighlight
+        '
+        Me.coltexthighlight.HeaderText = "coltexthighlight"
+        Me.coltexthighlight.Name = "coltexthighlight"
+        Me.coltexthighlight.Visible = False
+        '
         'panelsidebar
         '
         Me.panelsidebar.Controls.Add(Me.btnpreview)
@@ -267,9 +358,9 @@ Partial Class frmResultDesigner
         Me.panelsidebar.Controls.Add(Me.btnAdd)
         Me.panelsidebar.Controls.Add(Me.dgvResult)
         Me.panelsidebar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.panelsidebar.Location = New System.Drawing.Point(659, 38)
+        Me.panelsidebar.Location = New System.Drawing.Point(659, 39)
         Me.panelsidebar.Name = "panelsidebar"
-        Me.panelsidebar.Size = New System.Drawing.Size(263, 330)
+        Me.panelsidebar.Size = New System.Drawing.Size(263, 329)
         Me.panelsidebar.TabIndex = 231
         '
         'btnpreview
@@ -409,97 +500,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn14.HeaderText = "coltexthighlight"
         Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
         Me.DataGridViewTextBoxColumn14.Visible = False
-        '
-        'colfieldname
-        '
-        Me.colfieldname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.colfieldname.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colfieldname.HeaderText = "Name"
-        Me.colfieldname.Name = "colfieldname"
-        Me.colfieldname.ReadOnly = True
-        '
-        'colfieldtypedesc
-        '
-        Me.colfieldtypedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.colfieldtypedesc.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colfieldtypedesc.HeaderText = "Type"
-        Me.colfieldtypedesc.Name = "colfieldtypedesc"
-        Me.colfieldtypedesc.ReadOnly = True
-        Me.colfieldtypedesc.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'coloptionvalues
-        '
-        Me.coloptionvalues.HeaderText = "coloptionvalues"
-        Me.coloptionvalues.Name = "coloptionvalues"
-        Me.coloptionvalues.Visible = False
-        '
-        'collaboratorydetailsid
-        '
-        Me.collaboratorydetailsid.HeaderText = "laboratorydetailsid"
-        Me.collaboratorydetailsid.Name = "collaboratorydetailsid"
-        Me.collaboratorydetailsid.Visible = False
-        '
-        'colfieldtype
-        '
-        Me.colfieldtype.HeaderText = "colfieldtype"
-        Me.colfieldtype.Name = "colfieldtype"
-        Me.colfieldtype.Visible = False
-        '
-        'coluuid
-        '
-        Me.coluuid.HeaderText = "coluuid"
-        Me.coluuid.Name = "coluuid"
-        Me.coluuid.Visible = False
-        '
-        'collocationx
-        '
-        Me.collocationx.HeaderText = "collocationx"
-        Me.collocationx.Name = "collocationx"
-        Me.collocationx.Visible = False
-        '
-        'collocationy
-        '
-        Me.collocationy.HeaderText = "collocationy"
-        Me.collocationy.Name = "collocationy"
-        Me.collocationy.Visible = False
-        '
-        'coldefaultvalue
-        '
-        Me.coldefaultvalue.HeaderText = "coldefaultvalue"
-        Me.coldefaultvalue.Name = "coldefaultvalue"
-        Me.coldefaultvalue.Visible = False
-        '
-        'collaboratoryresultdetailid
-        '
-        Me.collaboratoryresultdetailid.HeaderText = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Name = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Visible = False
-        '
-        'collabeltext
-        '
-        Me.collabeltext.HeaderText = "collabeltext"
-        Me.collabeltext.Name = "collabeltext"
-        Me.collabeltext.Visible = False
-        '
-        'colwidth
-        '
-        Me.colwidth.HeaderText = "colwidth"
-        Me.colwidth.Name = "colwidth"
-        Me.colwidth.Visible = False
-        '
-        'colheight
-        '
-        Me.colheight.HeaderText = "colheight"
-        Me.colheight.Name = "colheight"
-        Me.colheight.Visible = False
-        '
-        'coltexthighlight
-        '
-        Me.coltexthighlight.HeaderText = "coltexthighlight"
-        Me.coltexthighlight.Name = "coltexthighlight"
-        Me.coltexthighlight.Visible = False
         '
         'frmResultDesigner
         '

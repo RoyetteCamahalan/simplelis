@@ -121,8 +121,7 @@ Public Class clsadmissiondocuments
         End With
         Return dt
     End Function
-    Public Shared Sub SaveLabResultImage(ByVal requestdetailno As Long, ByVal admissionid As Long, ByRef img As Bitmap, ByVal initfilename As String)
-        Dim filename As String = initfilename & requestdetailno & ".jpg"
+    Public Shared Sub SaveLabResultImage(ByVal requestdetailno As Long, ByVal admissionid As Long, ByRef img As Bitmap, ByVal filename As String)
         Dim destfolder As String = "\" & admissionid
         Dim destfile As String = destfolder & "\" & filename
 

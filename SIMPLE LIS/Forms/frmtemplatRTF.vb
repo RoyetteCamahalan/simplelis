@@ -36,13 +36,13 @@ Public Class frmtemplateRTF
     Private chargeid As Long
     Private patientid As Long
     Private patientname As String
-    Private patientbirthdate As Date = Date.Now
+    Public patientbirthdate As Date = Date.Now
     Private patientcontactno As String
     Private ptno As String
     Private patientaddress As String
     Private radiologistdesignation As String
     Private requestStatus As Integer
-    Private resultpdflocation As String
+    Public resultpdflocation As String
 
 
     Private tempfilename As String

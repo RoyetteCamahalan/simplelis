@@ -633,27 +633,13 @@ Public Class frmResultBaseDesign
             End If
         End If
     End Sub
+    Public Function getResultFileName() As String
+        Return "RadLab_" & Me.labname & "_" & requestdetailno & ".jpg"
+    End Function
     Public Sub DisplayPrintPreview()
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         Me.Text = ""
-        'For Each ctr As Control In panelresult.Controls
-        '    If TypeOf ctr Is RichTextBox Then
-        '        Try
-        '            Dim bmp As New Bitmap(ctr.Width, ctr.Height)
-        '            Dim gr = Graphics.FromImage(bmp)
-        '            gr.CopyFromScreen(ctr.PointToScreen(Point.Empty), Point.Empty, ctr.Size)
-        '            Dim img As New PictureBox
-        '            panelresult.Controls.Add(img)
-        '            ctr.Visible = False
-        '            img.Location = ctr.Location
-        '            img.Size = ctr.Size
-        '            img.Image = bmp
-        '        Catch ex As Exception
-
-        '        End Try
-        '    End If
-        'Next
-        Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, GetFormImage(True), "RadLab_" & Me.labname & "_")
+        Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, GetFormImage(False), Me.getResultFileName())
         If PrintDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
             MiscPrintDocu.PrinterSettings = PrintDialog1.PrinterSettings
             MiscPrintDocu.Print()
@@ -662,8 +648,10 @@ Public Class frmResultBaseDesign
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
         Me.Text = getLabname()
     End Sub
-    Private Function GetFormImage(ByVal include_borders As Boolean) As Bitmap
-        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+    Public Function GetFormImage(ByVal include_borders As Boolean) As Bitmap
+        If Not include_borders Then
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        End If
         'Me.Text = ""
         ' Make the bitmap.
         Dim wid As Integer = Me.Width
@@ -687,6 +675,9 @@ Public Class frmResultBaseDesign
         gr.DrawImage(bm, 0, 0, New Rectangle(dx, dy, wid, hgt), GraphicsUnit.Pixel)
         'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
         'Me.Text = Labname
+        If Not include_borders Then
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
+        End If
         Return bm
     End Function
 #End Region
