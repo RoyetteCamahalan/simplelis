@@ -44,9 +44,9 @@ Public Class frmMain
         End With
         laboratoryid = 17
         requestdetailno = 1254
-        employeeid = 1011
+        employeeid = 1002
         myformaction = enformstatus.view_release
-        target = targetmodule.manageresult
+        target = targetmodule.LISDashboard
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,
@@ -127,6 +127,7 @@ getResultDetails:
                         Me.Close()
                         Exit Sub
                     End If
+                    modGlobal.SaveLog("Diagnostics", "Attempt to edit a released examination ReqNo: " & Me.requestdetailno & " (Override By: " & foverride.RequestedByID & ")")
                 End If
                 frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()

@@ -57,6 +57,7 @@
 
     Public Class EmployeeTypes
         Public Shared radtech As Integer = 901
+        Public Shared cardiologist As Integer = 902
         Public Shared radiologist As Integer = 999
         Public Shared medtech As Integer = 666
         Public Shared pathologist As Integer = 777

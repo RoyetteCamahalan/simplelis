@@ -216,6 +216,14 @@ Public Class frmDashboard
         Select Case Me.selectedModule
             Case enModule.diagnostics
                 Dim dt As DataTable = clsExaminationUpshots.getPatientRequestStatus(dgMain.SelectedRows(0).Cells("prdno").Value)
+                If dgMain.SelectedRows(0).Cells("status").Value = clsModel.RequestStatus.released Then
+                    Dim foverride As New frmRequestedBy(frmRequestedBy.enPurpose.editResult, modGlobal.sourceOfficeCode)
+                    foverride.ShowDialog()
+                    If Not foverride.isLoginValid Then
+                        Exit Sub
+                    End If
+                    modGlobal.SaveLog("Diagnostics", "Attempt to edit a released examination ReqNo: " & dgMain.SelectedRows(0).Cells("prdno").Value & " (Override By: " & foverride.RequestedByID & ")")
+                End If
                 Dim frmDesigner As frmResultDesigner
                 frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, dgMain.SelectedRows(0).Cells("prdno").Value, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()

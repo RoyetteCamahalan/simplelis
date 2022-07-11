@@ -649,6 +649,9 @@ Module modGlobal
     End Sub
     Sub SaveLog(ByVal userModule As String, ByVal userAction As String, Optional ByVal referenceNo As String = "0")
         Dim logs As New clsUserLogs
+        If referenceNo = "0" Then
+            referenceNo = modGlobal.userid
+        End If
 
         logs.username = ufullName & "(" & userName & ")"
         logs.referenceno = referenceNo

@@ -339,6 +339,7 @@ getLabDetails:
                         x.saveDetails(False)
                     End If
                 Next
+                Call SaveLog("Diagnostics", "Updated result format " & Me.laboratoryname)
                 Me.Close()
             End If
         ElseIf myFormaction = formaction.manageResult Then
@@ -377,11 +378,11 @@ getLabDetails:
                         x.esigpatho = fbaseform.chkesigpatho.Checked
                         If x.Oldlaboratoryid = 0 Then
                             x.Oldlaboratoryid = x.Save(True)
-                            Call SaveLog("Laboratory", "New " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)
+                            Call SaveLog("Diagnostics", "New " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)
                         Else
                             x.soperation = 0
                             x.Save(False)
-                            Call SaveLog("Laboratory", "Update " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)
+                            Call SaveLog("Diagnostics", "Update " & Me.laboratoryname & " result with request no.: " & x.patientrequestno & "", modGlobal.userid)
                         End If
                         If x.Oldlaboratoryid = 0 Then
                             Exit Sub
@@ -446,10 +447,12 @@ getLabDetails:
         ElseIf myFormaction = formaction.Release Then
             If MsgBox("Are you sure you want to release this examination?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
                 updateRequestStatus(5)
+                modGlobal.SaveLog("Diagnostics", "Released examination ReqNo: " & Me.requestdetailno)
                 Me.myFormaction = formaction.View
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = True
                 Me.tsprintas.Visible = Me.tsPrint.Visible
+                Me.tsradtemplatemain.Visible = False
                 If Me.isRTFForm() Then
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
@@ -795,7 +798,6 @@ getLabDetails:
     End Sub
 
     Private Sub ExportAsEmailAttachmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsEmailAttachmentToolStripMenuItem.Click
-
         Dim fd As New SaveFileDialog()
         fd.RestoreDirectory = True
         fd.Filter = "PDF Files(*.pdf)|*pdf;"

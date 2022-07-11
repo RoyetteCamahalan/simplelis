@@ -431,7 +431,11 @@ Public Class frmtemplateRTF
     End Sub
     Private Sub LoadCombo()
         Try
-            Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.radiologist)
+            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.cardiologist)
+            Else
+                Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.radiologist)
+            End If
             Me.cmbradiologist.DisplayMember = "radiologist"
             Me.cmbradiologist.ValueMember = "employeeid"
             Me.cmbradiologist.SelectedIndex = 0
