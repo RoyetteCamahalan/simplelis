@@ -44,9 +44,9 @@ Public Class frmMain
         End With
         laboratoryid = 17
         requestdetailno = 1254
-        employeeid = 1002
+        employeeid = 1001
         myformaction = enformstatus.view_release
-        target = targetmodule.LISDashboard
+        target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,

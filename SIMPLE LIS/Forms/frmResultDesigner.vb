@@ -118,7 +118,7 @@ Public Class frmResultDesigner
                 Me.tsSave.Visible = False
                 Me.tsPrint.Visible = testofficecode = modGlobal.sourceOfficeCode
                 Me.tsprintas.Visible = Me.tsPrint.Visible
-                Me.tsMerging.Visible = True
+                Me.tsMerging.Visible = Me.tsPrint.Visible
                 If Me.tsPrint.Visible And Me.isRTFForm() Then
                     If Me.labformatid = clsModel.LabFormats.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
@@ -796,8 +796,7 @@ getLabDetails:
         End If
         
     End Sub
-
-    Private Sub ExportAsEmailAttachmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsEmailAttachmentToolStripMenuItem.Click
+    Private Sub exportasPDF(lock As Boolean)
         Dim fd As New SaveFileDialog()
         fd.RestoreDirectory = True
         fd.Filter = "PDF Files(*.pdf)|*pdf;"
@@ -817,12 +816,16 @@ getLabDetails:
                         For Pg As Integer = 0 To sourcePDFDoc.Pages.Count - 1
                             newPDFDoc.AddPage(sourcePDFDoc.Pages(Pg))
                         Next
-                        newPDFDoc.SecuritySettings.UserPassword = frmRadiology.patientbirthdate.ToString("yyyyMMdd")
-                        newPDFDoc.SecuritySettings.OwnerPassword = "owner"
+                        If lock Then
+                            newPDFDoc.SecuritySettings.UserPassword = frmRadiology.patientbirthdate.ToString("yyyyMMdd")
+                            newPDFDoc.SecuritySettings.OwnerPassword = "owner"
+                        End If
                     Case Else
                         Dim page = newPDFDoc.AddPage()
-                        newPDFDoc.SecuritySettings.OwnerPassword = "owner"
-                        newPDFDoc.SecuritySettings.UserPassword = CDate(fbaseform.lblbirthdate.Text).ToString("yyyyMMdd")
+                        If lock Then
+                            newPDFDoc.SecuritySettings.OwnerPassword = "owner"
+                            newPDFDoc.SecuritySettings.UserPassword = CDate(fbaseform.lblbirthdate.Text).ToString("yyyyMMdd")
+                        End If
                         Dim sourceFileName = gDocumentLocationEMR & "\" & Me.admissionid & "\" & fbaseform.getResultFileName()
                         If Not File.Exists(sourceFileName) Then
                             Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName())
@@ -840,11 +843,19 @@ getLabDetails:
                 End Select
                 newPDFDoc.Save(filename)
                 MsgBox("PDF export successful!", MsgBoxStyle.OkOnly)
+                Process.Start(New FileInfo(filename).Directory.FullName)
             Catch ex As Exception
 
             Finally
                 newPDFDoc = Nothing
             End Try
         End If
+    End Sub
+    Private Sub ExportAsEmailAttachmentToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsEmailAttachmentToolStripMenuItem.Click
+        Call exportasPDF(True)
+    End Sub
+
+    Private Sub ExportAsPDFToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportAsPDFToolStripMenuItem.Click
+        Call exportasPDF(False)
     End Sub
 End Class
