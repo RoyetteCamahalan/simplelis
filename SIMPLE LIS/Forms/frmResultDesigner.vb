@@ -26,6 +26,7 @@ Public Class frmResultDesigner
     Public myFormaction As formaction
     Public mergeToogle As Integer = 0
     Private ismergeresult As Boolean
+    Private lstControls As New List(Of clsModel.LabControl)
 
     Enum formaction
         NONE = 0
@@ -206,19 +207,20 @@ getLabDetails:
         Return New Point(fbaseform.panelresult.Width / 2, fbaseform.panelresult.Height / 2)
     End Function
     Private Sub loadDesign()
+        Me.lstControls = New List(Of clsModel.LabControl)
         If myFormaction = formaction.updateFormat Then
             Dim dt As DataTable = clsExamination.genericcls(10, Me.laboratoryid)
             fbaseform.panelresultgrid.Visible = False
             For Each row As DataRow In dt.Rows
-                If row.Item("controltype") > 0 Then
-                    If row.Item("visible") Then
-                        fbaseform.AddControl(row.Item("labeldescription"), row.Item("controltype"), New Point(row.Item("x2"), row.Item("y2")), row.Item("defaultvalue"),
-                                             row.Item("optionvalues"), row.Item("laboratorydetailsid"), row.Item("width2"), row.Item("height2"), row.Item("defaultvalue"))
+                Dim field As New clsModel.LabControl(row)
+
+                If field.ctrtype > 0 Then
+                    If field.isvisible Then
+                        fbaseform.AddControl(field)
                     End If
-                    Call Me.addRow(row.Item("visible"), row.Item("description"), row.Item("controltype"), row.Item("optionvalues"),
-                                   row.Item("laboratorydetailsid"), "", New Point(row.Item("x2"), row.Item("y2")), row.Item("defaultvalue"), 0,
-                                   row.Item("labeldescription"), row.Item("width2"), row.Item("height2"), row.Item("texthighlight"))
+                    Me.lstControls.Add(field)
                 End If
+
             Next
             If Me.labformatid = clsModel.LabFormats.ECGREPORT Then
                 Me.fbaseform.cmbMedtech.Visible = False
@@ -226,6 +228,21 @@ getLabDetails:
                 Me.fbaseform.lblmedtechdesignation.Visible = False
                 Me.fbaseform.lblpathodesignation.Text = "Cardiologist"
             End If
+            Me.dgvResult.DataSource = Me.lstControls
+            For i As Integer = 0 To Me.dgvResult.Columns.Count - 1
+                If Me.dgvResult.Columns(i).Name = "isvisible" Then
+                    Me.dgvResult.Columns(i).HeaderText = "Visible?"
+                    Me.dgvResult.Columns(i).Width = 50
+                ElseIf Me.dgvResult.Columns(i).Name = "name" Then
+                    Me.dgvResult.Columns(i).HeaderText = "Field"
+                    Me.dgvResult.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                ElseIf Me.dgvResult.Columns(i).Name = "controlTypeDescription" Then
+                    Me.dgvResult.Columns(i).HeaderText = "Fielt Type"
+                    Me.dgvResult.Columns(i).Width = 90
+                Else
+                    Me.dgvResult.Columns(i).Visible = False
+                End If
+            Next
             Me.fbaseform.chkesigmedtech.Visible = False
             Me.fbaseform.chkesigpatho.Visible = False
         Else
@@ -234,6 +251,7 @@ getLabDetails:
 
             If Not myFormaction = formaction.manageResult Then
                 islock = True
+                Me.fbaseform.isLock = True
             End If
             If Me.labformatid = clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION Then
 
@@ -259,13 +277,11 @@ getLabDetails:
                 End If
                 For Each row As DataRow In dt.Rows
                     If row.Item("controltype") > 0 Then
+                        Dim field As New clsModel.LabControl(row, row.Item("laboratoryresultdetailsid"), row.Item("result"))
                         If row.Item("visible") Then
-                            fbaseform.AddControl(row.Item("labeldescription"), row.Item("controltype"), New Point(row.Item("x2"), row.Item("y2")), row.Item("result"),
-                                                 row.Item("optionvalues"), row.Item("laboratorydetailsid"), row.Item("width2"), row.Item("height2"), row.Item("defaultvalue"), islock, row.Item("texthighlight"))
+                            fbaseform.AddControl(field)
                         End If
-                        Call Me.addRow(row.Item("visible"), row.Item("description"), row.Item("controltype"), row.Item("optionvalues"),
-                                       row.Item("laboratorydetailsid"), "", New Point(row.Item("x2"), row.Item("y2")), row.Item("defaultvalue"),
-                                       row.Item("laboratoryresultdetailsid"), row.Item("labeldescription"), row.Item("width2"), row.Item("height2"), row.Item("texthighlight"))
+                        Me.lstControls.Add(field)
                     End If
                 Next
             End If
@@ -274,31 +290,18 @@ getLabDetails:
             End If
         End If
     End Sub
-    Private Sub addRow(ByVal visible As Boolean, ByVal fieldname As String, ByVal ctrtype As Integer, ByVal optvalue As String,
-                       ByVal laboratorydetailsid As Long, ByVal uuid As String, ByVal loc As Point, ByVal defaultvalue As String,
-                        ByVal laboratoryresultdetailid As String, ByVal labeltext As String,
-                        ByVal width As Long, ByVal height As Long, ByVal texthighlight As String)
-        afterload = False
-        Me.dgvResult.Rows.Add(1)
-        With Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1)
-            .Cells(colchk.Index).Value = visible
-            .Cells(collaboratorydetailsid.Index).Value = laboratorydetailsid
-            .Cells(coluuid.Index).Value = uuid
-            .Cells(colfieldname.Index).Value = fieldname
-            .Cells(colfieldtype.Index).Value = ctrtype
-            .Cells(coloptionvalues.Index).Value = optvalue
-            .Cells(colfieldtypedesc.Index).Value = clsModel.ConstrolTypes.getDescription(ctrtype)
-            .Cells(collocationx.Index).Value = loc.X
-            .Cells(collocationy.Index).Value = loc.Y
-            .Cells(coldefaultvalue.Index).Value = defaultvalue
-            .Cells(collaboratoryresultdetailid.Index).Value = laboratoryresultdetailid
-            .Cells(collabeltext.Index).Value = labeltext
-            .Cells(colwidth.Index).Value = width
-            .Cells(colheight.Index).Value = height
-            .Cells(coltexthighlight.Index).Value = texthighlight
-        End With
-        afterload = True
-    End Sub
+    'Private Sub addRow(ctrl As clsModel.LabControl)
+    '    afterload = False
+    '    Me.dgvResult.Rows.Add(1)
+    '    With Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1)
+    '        .Cells(colchk.Index).Value = ctrl.isvisible
+    '        .Cells(collaboratorydetailsid.Index).Value = ctrl.laboratorydetailsid
+    '        .Cells(coluuid.Index).Value = ctrl.uuid
+    '        .Cells(colfieldname.Index).Value = ctrl.name
+    '        .Cells(colfieldtypedesc.Index).Value = ctrl.getDescription()
+    '    End With
+    '    afterload = True
+    'End Sub
     Private Sub Save()
         If myFormaction = formaction.updateFormat Then
             If MsgBox("Do you want to update this format?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
@@ -306,16 +309,17 @@ getLabDetails:
                 x.laboratoryid = Me.laboratoryid
                 x.panelsize = Me.fbaseform.panelresult.Height
                 x.saveLaboratory()
-                For Each row As DataGridViewRow In Me.dgvResult.Rows
-                    x.laboratorydetailsid = row.Cells(collaboratorydetailsid.Index).Value
-                    x.labdetailsdescription = row.Cells(colfieldname.Index).Value
-                    x.visible = row.Cells(colchk.Index).Value
+                Dim idx As Integer = 0
+                For Each field As clsModel.LabControl In Me.lstControls
+                    x.laboratorydetailsid = field.laboratorydetailsid
+                    x.labdetailsdescription = field.name
+                    x.visible = field.isvisible
                     x.normalvalues = ""
                     x.unit = ""
-                    x.orderno = row.Index
-                    Dim uuid As String = row.Cells(collaboratorydetailsid.Index).Value
+                    x.orderno = idx
+                    Dim uuid As String = field.laboratorydetailsid
                     If uuid = "0" Then
-                        uuid = row.Cells(coluuid.Index).Value
+                        uuid = field.uuid
                     End If
                     If x.visible Then
                         x.x2 = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Location.X
@@ -323,16 +327,16 @@ getLabDetails:
                         x.width2 = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Size.Width
                         x.height2 = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Size.Height
                     Else
-                        x.x2 = row.Cells(collocationx.Index).Value
-                        x.y2 = row.Cells(collocationy.Index).Value
-                        x.width2 = row.Cells(colwidth.Index).Value
-                        x.height2 = row.Cells(colheight.Index).Value
+                        x.x2 = field.loc.X
+                        x.y2 = field.loc.Y
+                        x.width2 = field.panelwidth
+                        x.height2 = field.panelheight
                     End If
-                    x.optionvalues = row.Cells(coloptionvalues.Index).Value
-                    x.controltype = row.Cells(colfieldtype.Index).Value
-                    x.defaultvalue = row.Cells(coldefaultvalue.Index).Value
-                    x.labeldescription = row.Cells(collabeltext.Index).Value
-                    x.texthighlight = row.Cells(coltexthighlight.Index).Value
+                    x.optionvalues = field.optvalue
+                    x.controltype = field.ctrtype
+                    x.defaultvalue = field.defaultvalue
+                    x.labeldescription = field.labeltext
+                    x.texthighlight = field.texthighlight
                     If x.laboratorydetailsid = 0 Then
                         x.saveDetails(True)
                     Else
@@ -403,24 +407,24 @@ getLabDetails:
                             Next
                             fbaseform.lock()
                         Else
-                            For Each row As DataGridViewRow In Me.dgvResult.Rows
-                                Dim uuid As String = row.Cells(collaboratorydetailsid.Index).Value
+                            For Each field As clsModel.LabControl In Me.lstControls
+                                Dim uuid As String = field.laboratorydetailsid
                                 If uuid = "0" Then
-                                    uuid = row.Cells(coluuid.Index).Value
+                                    uuid = field.uuid
                                 End If
-                                If row.Cells(colchk.Index).Value AndAlso clsModel.ConstrolTypes.isInputField(row.Cells(colfieldtype.Index).Value) AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
-                                    xdetails.Oldlaboratoryresultid = row.Cells(collaboratoryresultdetailid.Index).Value
-                                    xdetails.laboratorydetailsid = row.Cells(collaboratorydetailsid.Index).Value
-                                    If row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.TextField Or row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.DoubleTextField Or
-                                     row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.ResizableTextField Then
+                                If field.isvisible AndAlso clsModel.ConstrolTypes.isInputField(field.ctrtype) AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
+                                    xdetails.Oldlaboratoryresultid = field.laboratoryresultdetailid
+                                    xdetails.laboratorydetailsid = field.laboratorydetailsid
+                                    If field.ctrtype = clsModel.ConstrolTypes.TextField Or field.ctrtype = clsModel.ConstrolTypes.DoubleTextField Or
+                                     field.ctrtype = clsModel.ConstrolTypes.ResizableTextField Then
                                         xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("txt_" & uuid, True).First, TextBox).Text
-                                    ElseIf row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.Dropdown Then
+                                    ElseIf field.ctrtype = clsModel.ConstrolTypes.Dropdown Then
                                         If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).SelectedValue
                                         Else
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).Text
                                         End If
-                                    ElseIf row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.DateTimePicker Then
+                                    ElseIf field.ctrtype = clsModel.ConstrolTypes.DateTimePicker Then
                                         xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("dtp_" & uuid, True).First, DateTimePicker).Value
                                     End If
                                     If xdetails.Oldlaboratoryresultid = 0 Then
@@ -520,12 +524,12 @@ getLabDetails:
         Me.Close()
     End Sub
     Private Sub btnAdd_Click(sender As System.Object, e As System.EventArgs) Handles btnAdd.Click
-        Dim f As New frmAddField(frmAddField.formstatus.add, 0, "", "", "", "", 0, 0, clsModel.ConstrolTypes.DefaultPanelWidth, clsModel.ConstrolTypes.DefaultPanelHeight, "")
+        Dim f As New frmAddField(frmAddField.formstatus.add, New clsModel.LabControl())
         f.ShowDialog()
         If f.issave Then
             Dim uuid As String = Utility.GetRandomString
-            fbaseform.AddControl(f.fieldlabel, f.fieldtype, New Point(0), f.fielddefaultval, f.fieldoptions, uuid, panelwidth:=0, panelheight:=0, defaultvalue:=f.fielddefaultval)
-            Call Me.addRow(True, f.fieldname, f.fieldtype, f.fieldoptions, 0, uuid, New Point(0), f.fielddefaultval, 0, f.fieldlabel, 0, 0, f.fieldhighlight)
+            fbaseform.AddControl(f.field)
+            Me.lstControls.Add(f.field)
         End If
     End Sub
 
@@ -553,70 +557,34 @@ getLabDetails:
             btnpreview.Text = "Close Preview"
             btnpreview.BackColor = Color.MistyRose
         End If
-        For Each row As DataGridViewRow In Me.dgvResult.Rows
-            If row.Cells(colchk.Index).Value = True Then
-                Dim uuid As String = row.Cells(collaboratorydetailsid.Index).Value
-                If row.Cells(collaboratorydetailsid.Index).Value = 0 Then
-                    uuid = row.Cells(coluuid.Index).Value
-                End If
-                CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).BorderStyle = style
+        For Each field As clsModel.LabControl In Me.lstControls
+            If field.isvisible Then
+                CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel).BorderStyle = style
             End If
         Next
         Me.fbaseform.panelresult.BorderStyle = style
     End Sub
 
-    Public Sub removeControl(ByVal ctrname As String, ByVal idx As Integer)
+    Public Sub removeControl(ByVal ctrname As String)
         Try
             Dim p As Panel = CType(Me.fbaseform.panelresult.Controls.Find(ctrname, True).First, Panel)
-            Me.dgvResult.Rows(idx).Cells(collocationx.Index).Value = p.Location.X
-            Me.dgvResult.Rows(idx).Cells(collocationy.Index).Value = p.Location.Y
-            Me.dgvResult.Rows(idx).Cells(colwidth.Index).Value = p.Size.Width
-            Me.dgvResult.Rows(idx).Cells(colheight.Index).Value = p.Size.Height
-            Me.fbaseform.panelresult.Controls.RemoveByKey(ctrname)
+            Me.fbaseform.panelresult.Controls.Remove(p)
         Catch ex As Exception
 
         End Try
     End Sub
     Private Sub dgvResult_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvResult.CellContentClick
         Try
-            If e.RowIndex >= 0 AndAlso e.ColumnIndex = colfieldname.Index Then
-                Call showFieldForm(Me.dgvResult.Rows(e.RowIndex))
-                'With Me.dgvResult.Rows(e.RowIndex)
-                '    Dim f As New frmAddField(frmAddField.formstatus.edit, .Cells(colfieldtype.Index).Value,
-                '                         .Cells(colfieldname.Index).Value,
-                '                         .Cells(coloptionvalues.Index).Value,
-                '                         .Cells(coldefaultvalue.Index).Value,
-                '                         .Cells(collabeltext.Index).Value)
-                '    f.ShowDialog()
-                '    If f.issave Then
-                '        Dim uuid As String = .Cells(collaboratorydetailsid.Index).Value
-                '        If .Cells(collaboratorydetailsid.Index).Value = 0 Then
-                '            uuid = .Cells(coluuid.Index).Value
-                '        End If
-                '        removeControl("panel_" & uuid, e.RowIndex)
-                '        fbaseform.AddControl(f.fieldlabel, f.fieldtype, New Point(.Cells(collocationx.Index).Value, .Cells(collocationy.Index).Value),
-                '                             f.fielddefaultval, f.fieldoptions, uuid, .Cells(colwidth.Index).Value, .Cells(colheight.Index).Value, .Cells(coldefaultvalue.Index).Value)
-                '        .Cells(colfieldname.Index).Value = f.fieldname
-                '        .Cells(colfieldtype.Index).Value = f.fieldtype
-                '        .Cells(colfieldtypedesc.Index).Value = clsModel.ConstrolTypes.getDescription(f.fieldtype)
-                '        .Cells(coloptionvalues.Index).Value = f.fieldoptions
-                '        .Cells(coldefaultvalue.Index).Value = f.fielddefaultval
-                '        .Cells(collabeltext.Index).Value = f.fieldlabel
-                '    End If
-                'End With
-            ElseIf e.RowIndex >= 0 AndAlso e.ColumnIndex = colchk.Index Then
+            If e.RowIndex >= 0 AndAlso e.ColumnIndex = 1 Then
+                Call showFieldForm(Me.dgvResult.Rows(e.RowIndex).Cells("uuid").Value)
+            ElseIf e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
                 Me.dgvResult.CommitEdit(DataGridViewDataErrorContexts.Commit)
                 With Me.dgvResult.Rows(e.RowIndex)
-                    Dim uuid As String = .Cells(collaboratorydetailsid.Index).Value
-                    If .Cells(collaboratorydetailsid.Index).Value = 0 Then
-                        uuid = .Cells(coluuid.Index).Value
-                    End If
-                    If .Cells(colchk.Index).Value = False Then
-                        removeControl("panel_" & uuid, e.RowIndex)
+                    Dim field As clsModel.LabControl = Me.lstControls.Where(Function(s) s.uuid = .Cells("uuid").Value).FirstOrDefault()
+                    If .Cells(e.ColumnIndex).Value = False Then
+                        removeControl("panel_" & field.uuid)
                     Else
-                        fbaseform.AddControl(.Cells(collabeltext.Index).Value, .Cells(colfieldtype.Index).Value,
-                                              New Point(.Cells(collocationx.Index).Value, .Cells(collocationy.Index).Value), .Cells(coldefaultvalue.Index).Value,
-                                              .Cells(collocationy.Index).Value, uuid, .Cells(colwidth.Index).Value, .Cells(colheight.Index).Value, .Cells(coldefaultvalue.Index).Value)
+                        fbaseform.AddControl(field)
                     End If
                 End With
             End If
@@ -625,52 +593,21 @@ getLabDetails:
         End Try
     End Sub
     Public Sub onPanelDoubleClick(uuid As String, locx As Integer, locy As Integer, width As Integer, length As Integer)
-        For Each row As DataGridViewRow In Me.dgvResult.Rows
-            If row.Cells(collaboratorydetailsid.Index).Value.ToString = uuid Or row.Cells(coluuid.Index).Value = uuid Then
-                row.Cells(collocationx.Index).Value = locx
-                row.Cells(collocationy.Index).Value = locy
-                row.Cells(colwidth.Index).Value = width
-                row.Cells(colheight.Index).Value = length
-                showFieldForm(row)
-                Exit For
-            End If
-        Next
+        Dim field = Me.lstControls.Where(Function(x) x.uuid = uuid).FirstOrDefault()
+        field.loc.X = locx
+        field.loc.Y = locy
+        field.panelwidth = width
+        field.panelheight = length
+        showFieldForm(uuid)
     End Sub
-    Private Sub showFieldForm(row As DataGridViewRow)
-        With row
-            Dim f As New frmAddField(frmAddField.formstatus.edit, .Cells(colfieldtype.Index).Value,
-                                 .Cells(colfieldname.Index).Value,
-                                 .Cells(coloptionvalues.Index).Value,
-                                 .Cells(coldefaultvalue.Index).Value,
-                                 .Cells(collabeltext.Index).Value,
-                                 .Cells(collocationx.Index).Value,
-                                 .Cells(collocationy.Index).Value,
-                                 .Cells(colwidth.Index).Value,
-                                 .Cells(colheight.Index).Value,
-                                 .Cells(coltexthighlight.Index).Value)
-            f.ShowDialog()
-            If f.issave Then
-                Dim uuid As String = .Cells(collaboratorydetailsid.Index).Value
-                If .Cells(collaboratorydetailsid.Index).Value = 0 Then
-                    uuid = .Cells(coluuid.Index).Value
-                End If
-                removeControl("panel_" & uuid, row.Index)
-                .Cells(collocationx.Index).Value = f.fieldlocationx
-                .Cells(collocationy.Index).Value = f.fieldlocationy
-                .Cells(colwidth.Index).Value = f.fieldwidth
-                .Cells(colheight.Index).Value = f.fieldheight
-                fbaseform.AddControl(f.fieldlabel, f.fieldtype, New Point(.Cells(collocationx.Index).Value, .Cells(collocationy.Index).Value),
-                                     f.fielddefaultval, f.fieldoptions, uuid, .Cells(colwidth.Index).Value, .Cells(colheight.Index).Value, .Cells(coldefaultvalue.Index).Value,
-                                     texthighlight:=f.fieldhighlight)
-                .Cells(colfieldname.Index).Value = f.fieldname
-                .Cells(colfieldtype.Index).Value = f.fieldtype
-                .Cells(colfieldtypedesc.Index).Value = clsModel.ConstrolTypes.getDescription(f.fieldtype)
-                .Cells(coloptionvalues.Index).Value = f.fieldoptions
-                .Cells(coldefaultvalue.Index).Value = f.fielddefaultval
-                .Cells(collabeltext.Index).Value = f.fieldlabel
-                .Cells(coltexthighlight.Index).Value = f.fieldhighlight
-            End If
-        End With
+    Private Sub showFieldForm(uuid As String)
+        Dim field = Me.lstControls.Where(Function(x) x.uuid = uuid).FirstOrDefault()
+        Dim f As New frmAddField(frmAddField.formstatus.edit, field)
+        f.ShowDialog()
+        If f.issave Then
+            removeControl("panel_" & uuid)
+            fbaseform.AddControl(field)
+        End If
     End Sub
 
     Private Sub tsPrint_Click(sender As System.Object, e As System.EventArgs) Handles tsPrint.Click
@@ -681,13 +618,9 @@ getLabDetails:
                 frmRadiology.DisplayPrintPreview()
             Case Else
                 If Me.labformatid = clsModel.LabFormats.GENERIC Then
-                    For Each row As DataGridViewRow In Me.dgvResult.Rows
-                        Dim uuid As String = row.Cells(collaboratorydetailsid.Index).Value
-                        If uuid = "0" Then
-                            uuid = row.Cells(coluuid.Index).Value
-                        End If
-                        If row.Cells(colchk.Index).Value AndAlso row.Cells(colfieldtype.Index).Value = clsModel.ConstrolTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
-                            Dim panel = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel)
+                    For Each field As clsModel.LabControl In Me.lstControls
+                        If field.isvisible AndAlso field.ctrtype = clsModel.ConstrolTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel).Tag <> "1" Then
+                            Dim panel = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel)
                             If panel.Visible Then
                                 Try
                                     Dim bmp As New Bitmap(panel.Width, panel.Height)

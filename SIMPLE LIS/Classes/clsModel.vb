@@ -28,6 +28,8 @@
                     Return "Double Text Field"
                 Case clsModel.ConstrolTypes.ResizableTextField
                     Return "Resizable Text Field"
+                Case clsModel.ConstrolTypes.ParagraphField
+                    Return "Paragraph Field"
                 Case clsModel.ConstrolTypes.DateTimePicker
                     Return "Date & Time Picker"
                 Case Else
@@ -36,6 +38,86 @@
         End Function
         Public Shared Function isInputField(ByVal ctrtype As Integer) As Boolean
             If ctrtype = TextField Or ctrtype = Dropdown Or ctrtype = DoubleTextField Or ctrtype = ResizableTextField Or ctrtype = DateTimePicker Then
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+    End Class
+    Public Class LabControl
+        Public laboratoryresultdetailid As Long
+        Public laboratorydetailsid As Long
+        Public mname As String
+        Public labeltext As String
+        Public ctrtype As Integer
+        Public loc As Point
+        Public value As String
+        Public optvalue As String
+        Public muuid As String
+        Public panelwidth As Long
+        Public panelheight As Long
+        Public defaultvalue As String
+        Public texthighlight As String = ""
+        Public misvisible As Boolean
+        Public Property isvisible() As Boolean
+            Get
+                Return misvisible
+            End Get
+            Set(ByVal value As Boolean)
+                misvisible = value
+            End Set
+        End Property
+        Public Property uuid() As String
+            Get
+                Return muuid
+            End Get
+            Set(ByVal value As String)
+                muuid = value
+            End Set
+        End Property
+        Public Property name() As String
+            Get
+                Return mname
+            End Get
+            Set(ByVal value As String)
+                mname = value
+            End Set
+        End Property
+        Public Property controlTypeDescription() As String
+            Get
+                Return clsModel.ConstrolTypes.getDescription(Me.ctrtype)
+            End Get
+            Set(ByVal value As String)
+
+            End Set
+        End Property
+
+
+        Public Sub New()
+            Me.uuid = Utility.GetRandomString()
+            Me.panelwidth = clsModel.ConstrolTypes.DefaultPanelWidth
+            Me.panelheight = clsModel.ConstrolTypes.DefaultPanelHeight
+        End Sub
+        Public Sub New(row As DataRow, Optional laboratoryresultdetailid As Long = 0, Optional value As String = "")
+            Me.laboratoryresultdetailid = laboratoryresultdetailid
+            Me.laboratorydetailsid = row.Item("laboratorydetailsid")
+            Me.name = row.Item("description")
+            Me.labeltext = row.Item("labeldescription")
+            Me.ctrtype = row.Item("controltype")
+            Me.loc = New Point(row.Item("x2"), row.Item("y2"))
+            Me.value = value
+            Me.optvalue = row.Item("optionvalues")
+            Me.uuid = IIf(Me.laboratorydetailsid > 0, Me.laboratorydetailsid, Utility.GetRandomString())
+            Me.panelwidth = row.Item("width2")
+            Me.panelheight = row.Item("height2")
+            Me.defaultvalue = row.Item("defaultvalue")
+            Me.texthighlight = row.Item("texthighlight")
+            Me.isvisible = row.Item("visible")
+        End Sub
+        Public Function isLabel() As Boolean
+            If ctrtype = clsModel.ConstrolTypes.LabelH1 Or ctrtype = clsModel.ConstrolTypes.LabelH2 Or
+                ctrtype = clsModel.ConstrolTypes.LabelH3 Or ctrtype = clsModel.ConstrolTypes.LabelH4 Or
+                ctrtype = clsModel.ConstrolTypes.LabelH5 Then
                 Return True
             Else
                 Return False

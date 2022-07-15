@@ -222,31 +222,28 @@ Public Class frmResultBaseDesign
         End Try
         Return isvalid
     End Function
-    Public Sub AddControl(ByVal labeltext As String, ByVal ctrtype As Integer, ByVal loc As Point, ByVal value As String,
-                           ByVal optvalue As String, ByVal uuid As String,
-                           ByVal panelwidth As Long, panelheight As Long, ByVal defaultvalue As String,
-                           Optional ByVal islock As Boolean = False, Optional ByVal texthighlight As String = "")
+    Public Sub AddControl(ctr As clsModel.LabControl)
         Dim panel As New Panel()
-        If Not isformedit AndAlso defaultvalue <> "" AndAlso dtPatientDetails.Columns.Contains(defaultvalue) Then
-            value = Me.dtPatientDetails.Rows(0).Item(defaultvalue).ToString
-            islock = True
+        If Not isformedit AndAlso ctr.defaultvalue <> "" AndAlso dtPatientDetails.Columns.Contains(ctr.defaultvalue) Then
+            ctr.value = Me.dtPatientDetails.Rows(0).Item(ctr.defaultvalue).ToString
+            isLock = True
             panel.Tag = "1" 'used to disregard lock fields
         End If
-        panel.Size = New Size(IIf(panelwidth = 0, clsModel.ConstrolTypes.DefaultPanelWidth, panelwidth), clsModel.ConstrolTypes.DefaultPanelHeight)
+        panel.Size = New Size(IIf(ctr.panelwidth = 0, clsModel.ConstrolTypes.DefaultPanelWidth, ctr.panelwidth), clsModel.ConstrolTypes.DefaultPanelHeight)
         If Me.isformedit Then
             panel.BorderStyle = BorderStyle.FixedSingle
         End If
         panel.Font = New Font("Cambria", 9)
-        panel.Name = "panel_" & uuid
+        panel.Name = "panel_" & ctr.uuid
         Me.panelresult.Controls.Add(panel)
-        If ctrtype = clsModel.ConstrolTypes.Dropdown Then
+        If ctr.ctrtype = clsModel.ConstrolTypes.Dropdown Then
             Dim locleft As Integer = 137
-            If labeltext = "" Then
+            If ctr.labeltext = "" Then
                 locleft = 19
                 'panel.Width = 202
             Else
                 Dim lbl As New Label
-                lbl.Text = labeltext
+                lbl.Text = ctr.labeltext
                 lbl.AutoSize = False
                 lbl.Width = 118
                 lbl.TextAlign = ContentAlignment.MiddleRight
@@ -254,33 +251,33 @@ Public Class frmResultBaseDesign
 
                 lbl.Left = 19
                 lbl.Top = 2
-                lbl.Name = "lbl_" & uuid
+                lbl.Name = "lbl_" & ctr.uuid
                 If Me.isformedit Then
                     AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
                 End If
             End If
 
-            If islock Then
+            If isLock Then
                 Dim lbldetail As New Label
                 lbldetail.AutoSize = False
                 lbldetail.Size = New Size(panel.Width - locleft - 3, 20)
                 lbldetail.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 lbldetail.Font = New Font("Cambria", 9, FontStyle.Bold)
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
-                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso labeltext.ToLower().Contains("result") Then
+                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
                     For Each row As DataRow In Me.dtNewBornResults.Rows
-                        If row.Item("newbornscreeningresultid").ToString = value Then
-                            value = row.Item("results")
+                        If row.Item("newbornscreeningresultid").ToString = ctr.value Then
+                            ctr.value = row.Item("results")
                             Exit For
                         End If
                     Next
                 End If
-                lbldetail.Text = value
+                lbldetail.Text = ctr.value
                 panel.Controls.Add(lbldetail)
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
-                checkHighlight(lbldetail, Nothing, texthighlight)
+                checkHighlight(lbldetail, Nothing, ctr.texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -293,34 +290,34 @@ Public Class frmResultBaseDesign
                 panel.Controls.Add(sh)
             Else
                 Dim cmb As New ComboBox
-                cmb.Name = "cmb_" & uuid
+                cmb.Name = "cmb_" & ctr.uuid
                 cmb.Size = New Size(panel.Width - locleft - 3, 20)
                 cmb.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 panel.Controls.Add(cmb)
-                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso labeltext.ToLower().Contains("result") Then
+                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
                     cmb.DropDownStyle = ComboBoxStyle.DropDownList
                     cmb.DataSource = Me.dtNewBornResults
                     cmb.ValueMember = "newbornscreeningresultid"
                     cmb.DisplayMember = "results"
-                    cmb.SelectedValue = Val(value)
+                    cmb.SelectedValue = Val(ctr.value)
                 Else
-                    Dim opt As String() = optvalue.Split(";")
+                    Dim opt As String() = ctr.optvalue.Split(";")
                     For Each str As String In opt
                         cmb.Items.Add(str)
                     Next
-                    cmb.Text = value
+                    cmb.Text = ctr.value
                 End If
                 cmb.Left = locleft
                 cmb.Top = 1
             End If
-        ElseIf ctrtype = clsModel.ConstrolTypes.DateTimePicker Then
+        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.DateTimePicker Then
             Dim locleft As Integer = 137
-            If labeltext = "" Then
+            If ctr.labeltext = "" Then
                 locleft = 19
                 'panel.Width = 202
             Else
                 Dim lbl As New Label
-                lbl.Text = labeltext
+                lbl.Text = ctr.labeltext
                 lbl.AutoSize = False
                 lbl.Width = 118
                 lbl.TextAlign = ContentAlignment.MiddleRight
@@ -328,14 +325,14 @@ Public Class frmResultBaseDesign
 
                 lbl.Left = 19
                 lbl.Top = 2
-                lbl.Name = "lbl_" & uuid
+                lbl.Name = "lbl_" & ctr.uuid
 
                 If Me.isformedit Then
                     AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
                 End If
             End If
 
-            If islock Then
+            If isLock Then
                 Dim lbldetail As New Label
                 lbldetail.AutoSize = False
                 lbldetail.Size = New Size(panel.Width - locleft - 3, 20)
@@ -343,7 +340,7 @@ Public Class frmResultBaseDesign
                 lbldetail.Font = New Font("Cambria", 9, FontStyle.Bold)
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
                 Try
-                    lbldetail.Text = CDate(value).ToString(clsModel.ConstrolTypes.yyyyMMddhhmmtt)
+                    lbldetail.Text = CDate(ctr.value).ToString(clsModel.ConstrolTypes.yyyyMMddhhmmtt)
                 Catch ex As Exception
                     lbldetail.Text = ""
                 End Try
@@ -351,7 +348,7 @@ Public Class frmResultBaseDesign
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
-                checkHighlight(lbldetail, Nothing, texthighlight)
+                checkHighlight(lbldetail, Nothing, ctr.texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -369,7 +366,7 @@ Public Class frmResultBaseDesign
                 dtp.Format = DateTimePickerFormat.Custom
                 dtp.CustomFormat = clsModel.ConstrolTypes.yyyyMMddhhmmtt
                 Try
-                    dtp.Value = CDate(value)
+                    dtp.Value = CDate(ctr.value)
                 Catch ex As Exception
 
                 End Try
@@ -377,24 +374,23 @@ Public Class frmResultBaseDesign
 
                 dtp.Left = locleft
                 dtp.Top = 1
-                dtp.Name = "dtp_" & uuid
+                dtp.Name = "dtp_" & ctr.uuid
             End If
-        ElseIf ctrtype = clsModel.ConstrolTypes.LabelH1 Or ctrtype = clsModel.ConstrolTypes.LabelH2 Or ctrtype = clsModel.ConstrolTypes.LabelH3 Or
-             ctrtype = clsModel.ConstrolTypes.LabelH4 Or ctrtype = clsModel.ConstrolTypes.LabelH5 Then
+        ElseIf ctr.isLabel Then
             Dim lbl As New Label
-            lbl.Text = labeltext
+            lbl.Text = ctr.labeltext
             lbl.AutoSize = True
             lbl.TextAlign = ContentAlignment.MiddleCenter
 
-            If ctrtype = clsModel.ConstrolTypes.LabelH1 Then
+            If ctr.ctrtype = clsModel.ConstrolTypes.LabelH1 Then
                 panel.Font = New Font("Cambria", 14, FontStyle.Bold)
-            ElseIf ctrtype = clsModel.ConstrolTypes.LabelH2 Then
+            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH2 Then
                 panel.Font = New Font("Cambria", 12, FontStyle.Bold)
-            ElseIf ctrtype = clsModel.ConstrolTypes.LabelH3 Then
+            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH3 Then
                 panel.Font = New Font("Cambria", 10, FontStyle.Bold)
-            ElseIf ctrtype = clsModel.ConstrolTypes.LabelH4 Then
+            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH4 Then
                 panel.Font = New Font("Cambria", 10, FontStyle.Regular)
-            ElseIf ctrtype = clsModel.ConstrolTypes.LabelH5 Then
+            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH5 Then
                 panel.Font = New Font("Cambria", 8, FontStyle.Regular)
             End If
             panel.Controls.Add(lbl)
@@ -402,41 +398,41 @@ Public Class frmResultBaseDesign
 
             lbl.Left = 5
             lbl.Top = 5
-            lbl.Name = "lbl_" & uuid
+            lbl.Name = "lbl_" & ctr.uuid
             If Me.isformedit Then
                 AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
             End If
-        ElseIf ctrtype = clsModel.ConstrolTypes.DoubleTextField Then
+        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.DoubleTextField Then
             panel.Height = clsModel.ConstrolTypes.DoubleTextFieldHeight
             Dim locleft As Integer = 137
-            If labeltext = "" Then
+            If ctr.labeltext = "" Then
                 locleft = 19
                 panel.Width = 202
             Else
                 Dim lbl As New Label
-                lbl.Text = labeltext
+                lbl.Text = ctr.labeltext
                 lbl.AutoSize = False
                 lbl.Width = 118
                 lbl.TextAlign = ContentAlignment.MiddleRight
                 panel.Controls.Add(lbl)
                 lbl.Left = 19
                 lbl.Top = 2
-                lbl.Name = "lbl_" & uuid
+                lbl.Name = "lbl_" & ctr.uuid
                 If Me.isformedit Then
                     AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
                 End If
             End If
-            If islock Then
+            If isLock Then
                 Dim lbldetail As New Label
                 lbldetail.AutoSize = False
                 lbldetail.Size = New Size(180, 40)
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
-                lbldetail.Text = value
+                lbldetail.Text = ctr.value
                 panel.Controls.Add(lbldetail)
 
                 lbldetail.Left = locleft
                 lbldetail.Top = 4
-                checkHighlight(lbldetail, Nothing, texthighlight)
+                checkHighlight(lbldetail, Nothing, ctr.texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -452,28 +448,28 @@ Public Class frmResultBaseDesign
                 txt.Multiline = True
                 txt.Size = New Size(180, 40)
                 panel.Controls.Add(txt)
-                txt.Text = value
+                txt.Text = ctr.value
                 txt.Left = locleft
                 txt.Top = 1
-                txt.Name = "txt_" & uuid
+                txt.Name = "txt_" & ctr.uuid
             End If
-        ElseIf ctrtype = clsModel.ConstrolTypes.ResizableTextField Then
-            panel.Height = IIf(panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, panelheight)
+        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.ResizableTextField Then
+            panel.Height = IIf(ctr.panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, ctr.panelheight)
             Dim loctop As Integer = 20
             Dim locl As Integer = 19
-            If labeltext = "" Then
+            If ctr.labeltext = "" Then
                 loctop = 1
             Else
                 Dim lbl As New Label
                 lbl.AutoSize = True
-                lbl.Text = labeltext
+                lbl.Text = ctr.labeltext
                 lbl.Width = 118
                 lbl.TextAlign = ContentAlignment.MiddleLeft
                 lbl.Font = New Font("Cambria", 10, FontStyle.Bold)
                 panel.Controls.Add(lbl)
                 lbl.Left = 18
                 lbl.Top = 2
-                lbl.Name = "lbl_" & uuid
+                lbl.Name = "lbl_" & ctr.uuid
 
                 If Me.isformedit Then
                     AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
@@ -485,19 +481,19 @@ Public Class frmResultBaseDesign
             txt.Size = New Size(panel.Width - locl - 4, panel.Height - loctop - 4)
             txt.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
             panel.Controls.Add(txt)
-            txt.Text = value
+            txt.Text = ctr.value
             txt.Left = locl
             txt.Top = loctop
-            txt.Name = "txt_" & uuid
+            txt.Name = "txt_" & ctr.uuid
             txt.BringToFront()
-            If islock Then
+            If isLock Then
                 txt.BackColor = Color.White
                 txt.ReadOnly = True
                 txt.BorderStyle = BorderStyle.None
-                checkHighlight(txt, Nothing, texthighlight)
+                checkHighlight(txt, Nothing, ctr.texthighlight)
             End If
-        ElseIf ctrtype = clsModel.ConstrolTypes.ParagraphField Then
-            panel.Height = IIf(panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, panelheight)
+        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+            panel.Height = IIf(ctr.panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, ctr.panelheight)
             Dim loctop As Integer = 20
             Dim locl As Integer = 19
 
@@ -506,10 +502,10 @@ Public Class frmResultBaseDesign
             txt.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
             panel.Controls.Add(txt)
 
-            txt.Rtf = labeltext
+            txt.Rtf = ctr.labeltext
             txt.Left = locl
             txt.Top = loctop
-            txt.Name = "txt_" & uuid
+            txt.Name = "txt_" & ctr.uuid
             txt.BringToFront()
             'If islock Then
             txt.BackColor = Color.White
@@ -518,36 +514,36 @@ Public Class frmResultBaseDesign
             'End If
         Else
             Dim locl As Integer = 137
-            If labeltext = "" Then
+            If ctr.labeltext = "" Then
                 locl = 19
                 'panel.Width = 202
             Else
                 Dim lbl As New Label
-                lbl.Text = labeltext
+                lbl.Text = ctr.labeltext
                 lbl.AutoSize = False
                 lbl.Width = 118
                 lbl.TextAlign = ContentAlignment.MiddleRight
                 panel.Controls.Add(lbl)
                 lbl.Left = 19
                 lbl.Top = 2
-                lbl.Name = "lbl_" & uuid
+                lbl.Name = "lbl_" & ctr.uuid
                 If Me.isformedit Then
                     AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
                 End If
             End If
 
-            If islock Then
+            If isLock Then
                 Dim lbldetail As New Label
                 lbldetail.AutoSize = False
                 lbldetail.Size = New Size(panel.Width - locl - 3, 20)
                 lbldetail.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
-                lbldetail.Text = value
+                lbldetail.Text = ctr.value
                 panel.Controls.Add(lbldetail)
 
                 lbldetail.Left = locl
                 lbldetail.Top = 4
-                checkHighlight(lbldetail, Nothing, texthighlight)
+                checkHighlight(lbldetail, Nothing, ctr.texthighlight)
                 Dim line1 As New PowerPacks.LineShape
                 line1.X1 = lbldetail.Location.X
                 line1.X2 = lbldetail.Location.X + lbldetail.Width
@@ -563,14 +559,14 @@ Public Class frmResultBaseDesign
                 txt.Size = New Size(panel.Width - locl - 3, 20)
                 txt.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 panel.Controls.Add(txt)
-                txt.Text = value
+                txt.Text = ctr.value
                 txt.Left = locl
                 txt.Top = 1
-                txt.Name = "txt_" & uuid
+                txt.Name = "txt_" & ctr.uuid
             End If
             'Dim rezi As ResizeableControl = New ResizeableControl(txt)
         End If
-        panel.Location = loc
+        panel.Location = ctr.loc
         If Me.isformedit Then
             AddHandler panel.DoubleClick, AddressOf panel_MouseDoubleClick
             Dim rezi2 As ResizeableControl = New ResizeableControl(panel)

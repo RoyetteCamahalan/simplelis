@@ -1,14 +1,5 @@
 ﻿Public Class frmAddField
-    Public fieldtype As Integer
-    Public fieldname As String
-    Public fieldoptions As String
-    Public fielddefaultval As String
-    Public fieldlabel As String
-    Public fieldlocationx As Integer
-    Public fieldlocationy As Integer
-    Public fieldwidth As Integer
-    Public fieldheight As Integer
-    Public fieldhighlight As String
+    Public field As clsModel.LabControl
     Public issave As Boolean
 
     Public myformstatus As formstatus
@@ -18,42 +9,31 @@
     End Enum
 
     Private erp As New ErrorProvider
-    Public Sub New(ByVal myformstatus As formstatus, ByVal fieldtype As Integer, ByVal fieldname As String, ByVal fieldoptions As String,
-                   ByVal fielddefault As String, ByVal labeltext As String, ByVal locx As Integer, ByVal locy As Integer, ByVal width As Integer,
-                   ByVal height As Integer, ByVal fieldhighlight As String)
+    Public Sub New(myformstatus As formstatus, ByRef field As clsModel.LabControl)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         Me.myformstatus = myformstatus
-        Me.fieldtype = fieldtype
-        Me.fieldname = fieldname
-        Me.fieldoptions = fieldoptions
-        Me.fielddefaultval = fielddefault
-        Me.fieldlabel = labeltext
-        Me.fieldlocationx = locx
-        Me.fieldlocationy = locy
-        Me.fieldwidth = width
-        Me.fieldheight = height
-        Me.fieldhighlight = fieldhighlight
+        Me.field = field
     End Sub
     Private Sub frmAddField_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         loadCombo()
-        Me.cmbFieldType.SelectedValue = Me.fieldtype
-        Me.txtfieldname.Text = Me.fieldname
-        Me.txtvalue.Text = Me.fieldoptions
-        If Me.fieldtype = clsModel.ConstrolTypes.ParagraphField Then
-            Me.txtfieldlabelrtf.Rtf = Me.fieldlabel
+        Me.cmbFieldType.SelectedValue = Me.field.ctrtype
+        Me.txtfieldname.Text = Me.field.name 
+        Me.txtvalue.Text = Me.field.optvalue
+        If Me.field.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+            Me.txtfieldlabelrtf.Rtf = Me.field.labeltext
         Else
-            Me.txtLabelText.Text = Me.fieldlabel
+            Me.txtLabelText.Text = Me.field.labeltext
         End If
-        Me.cmbDefaultValue.Text = Me.fielddefaultval
-        Me.txtX.Text = Me.fieldlocationx
-        Me.txtY.Text = Me.fieldlocationy
-        Me.txtwidth.Text = Me.fieldwidth
-        Me.txtheight.Text = Me.fieldheight
-        Me.txttexthighlight.Text = Me.fieldhighlight
+        Me.cmbDefaultValue.Text = Me.field.defaultvalue
+        Me.txtX.Text = Me.field.loc.X
+        Me.txtY.Text = Me.field.loc.Y
+        Me.txtwidth.Text = Me.field.panelwidth
+        Me.txtheight.Text = Me.field.panelheight
+        Me.txttexthighlight.Text = Me.field.texthighlight
     End Sub
 
     Private Sub loadCombo()
@@ -88,20 +68,20 @@
             Exit Sub
         End If
         Me.issave = True
-        Me.fieldtype = Me.cmbFieldType.SelectedValue
-        Me.fieldname = Me.txtfieldname.Text
-        Me.fieldoptions = Me.txtvalue.Text
-        Me.fielddefaultval = Me.cmbDefaultValue.Text
-        If fieldtype = clsModel.ConstrolTypes.ParagraphField Then
-            Me.fieldlabel = Me.txtfieldlabelrtf.Rtf
+        Me.field.ctrtype = Me.cmbFieldType.SelectedValue
+        Me.field.name = Me.txtfieldname.Text
+        Me.field.optvalue = Me.txtvalue.Text
+        Me.field.defaultvalue = Me.cmbDefaultValue.Text
+        If Me.field.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+            Me.field.labeltext = Me.txtfieldlabelrtf.Rtf
         Else
-            Me.fieldlabel = Me.txtLabelText.Text()
+            Me.field.labeltext = Me.txtLabelText.Text()
         End If
-        Me.fieldlocationx = Val(Me.txtX.Text)
-        Me.fieldlocationy = Val(Me.txtY.Text)
-        Me.fieldwidth = Val(Me.txtwidth.Text)
-        Me.fieldheight = Val(Me.txtheight.Text)
-        Me.fieldhighlight = txttexthighlight.Text
+        Me.field.loc.X = Val(Me.txtX.Text)
+        Me.field.loc.Y = Val(Me.txtY.Text)
+        Me.field.panelwidth = Val(Me.txtwidth.Text)
+        Me.field.panelheight = Val(Me.txtheight.Text)
+        Me.field.texthighlight = txttexthighlight.Text
         Me.Close()
     End Sub
 

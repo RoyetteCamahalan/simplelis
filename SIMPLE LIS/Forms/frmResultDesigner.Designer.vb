@@ -24,12 +24,10 @@ Partial Class frmResultDesigner
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmResultDesigner))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tsmain = New System.Windows.Forms.ToolStrip()
         Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.tsPrint = New System.Windows.Forms.ToolStripButton()
@@ -37,6 +35,7 @@ Partial Class frmResultDesigner
         Me.DefaultPDFViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CrystalReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportAsEmailAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAsPDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMerging = New System.Windows.Forms.ToolStripDropDownButton()
         Me.tsMergeWithOtherResultToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsClose = New System.Windows.Forms.ToolStripButton()
@@ -45,21 +44,6 @@ Partial Class frmResultDesigner
         Me.SaveAsNewTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExternalTemplateManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
-        Me.colchk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colfieldname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtypedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coloptionvalues = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratorydetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfieldtype = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coluuid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationx = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocationy = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coldefaultvalue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collaboratoryresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collabeltext = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colwidth = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colheight = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelsidebar = New System.Windows.Forms.Panel()
         Me.btnpreview = New System.Windows.Forms.Button()
         Me.txtpanelheight = New System.Windows.Forms.TextBox()
@@ -79,7 +63,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ExportAsPDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmain.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelsidebar.SuspendLayout()
@@ -91,7 +74,7 @@ Partial Class frmResultDesigner
         Me.tsmain.Location = New System.Drawing.Point(0, 0)
         Me.tsmain.Name = "tsmain"
         Me.tsmain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsmain.Size = New System.Drawing.Size(922, 39)
+        Me.tsmain.Size = New System.Drawing.Size(922, 38)
         Me.tsmain.TabIndex = 43
         Me.tsmain.Text = "ToolStrip1"
         '
@@ -100,7 +83,7 @@ Partial Class frmResultDesigner
         Me.tsSave.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_save
         Me.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsSave.Name = "tsSave"
-        Me.tsSave.Size = New System.Drawing.Size(35, 36)
+        Me.tsSave.Size = New System.Drawing.Size(35, 35)
         Me.tsSave.Text = "Save"
         Me.tsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -149,6 +132,12 @@ Partial Class frmResultDesigner
         Me.ExportAsEmailAttachmentToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
         Me.ExportAsEmailAttachmentToolStripMenuItem.Text = "Export as Email Attachment (Lock)"
         '
+        'ExportAsPDFToolStripMenuItem
+        '
+        Me.ExportAsPDFToolStripMenuItem.Name = "ExportAsPDFToolStripMenuItem"
+        Me.ExportAsPDFToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.ExportAsPDFToolStripMenuItem.Text = "Export as PDF"
+        '
         'tsMerging
         '
         Me.tsMerging.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsMergeWithOtherResultToolStripMenuItem})
@@ -156,7 +145,7 @@ Partial Class frmResultDesigner
         Me.tsMerging.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsMerging.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsMerging.Name = "tsMerging"
-        Me.tsMerging.Size = New System.Drawing.Size(100, 36)
+        Me.tsMerging.Size = New System.Drawing.Size(100, 35)
         Me.tsMerging.Text = "Result Merging"
         Me.tsMerging.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.tsMerging.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
@@ -174,7 +163,7 @@ Partial Class frmResultDesigner
         Me.tsClose.Image = CType(resources.GetObject("tsClose.Image"), System.Drawing.Image)
         Me.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsClose.Name = "tsClose"
-        Me.tsClose.Size = New System.Drawing.Size(40, 36)
+        Me.tsClose.Size = New System.Drawing.Size(40, 35)
         Me.tsClose.Text = "Close"
         Me.tsClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -184,7 +173,7 @@ Partial Class frmResultDesigner
         Me.tsradtemplatemain.Image = Global.SIMPLE_LIS.My.Resources.Resources.ic_template
         Me.tsradtemplatemain.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsradtemplatemain.Name = "tsradtemplatemain"
-        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 36)
+        Me.tsradtemplatemain.Size = New System.Drawing.Size(73, 35)
         Me.tsradtemplatemain.Text = "Templates"
         Me.tsradtemplatemain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.tsradtemplatemain.Visible = False
@@ -221,135 +210,36 @@ Partial Class frmResultDesigner
         Me.dgvResult.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colchk, Me.colfieldname, Me.colfieldtypedesc, Me.coloptionvalues, Me.collaboratorydetailsid, Me.colfieldtype, Me.coluuid, Me.collocationx, Me.collocationy, Me.coldefaultvalue, Me.collaboratoryresultdetailid, Me.collabeltext, Me.colwidth, Me.colheight, Me.coltexthighlight})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvResult.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.dgvResult.Location = New System.Drawing.Point(3, 93)
         Me.dgvResult.Name = "dgvResult"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(257, 329)
+        Me.dgvResult.Size = New System.Drawing.Size(279, 330)
         Me.dgvResult.TabIndex = 230
-        '
-        'colchk
-        '
-        Me.colchk.Name = "colchk"
-        Me.colchk.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colchk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colchk.Width = 30
-        '
-        'colfieldname
-        '
-        Me.colfieldname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.colfieldname.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colfieldname.HeaderText = "Name"
-        Me.colfieldname.Name = "colfieldname"
-        Me.colfieldname.ReadOnly = True
-        '
-        'colfieldtypedesc
-        '
-        Me.colfieldtypedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.colfieldtypedesc.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colfieldtypedesc.HeaderText = "Type"
-        Me.colfieldtypedesc.Name = "colfieldtypedesc"
-        Me.colfieldtypedesc.ReadOnly = True
-        Me.colfieldtypedesc.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'coloptionvalues
-        '
-        Me.coloptionvalues.HeaderText = "coloptionvalues"
-        Me.coloptionvalues.Name = "coloptionvalues"
-        Me.coloptionvalues.Visible = False
-        '
-        'collaboratorydetailsid
-        '
-        Me.collaboratorydetailsid.HeaderText = "laboratorydetailsid"
-        Me.collaboratorydetailsid.Name = "collaboratorydetailsid"
-        Me.collaboratorydetailsid.Visible = False
-        '
-        'colfieldtype
-        '
-        Me.colfieldtype.HeaderText = "colfieldtype"
-        Me.colfieldtype.Name = "colfieldtype"
-        Me.colfieldtype.Visible = False
-        '
-        'coluuid
-        '
-        Me.coluuid.HeaderText = "coluuid"
-        Me.coluuid.Name = "coluuid"
-        Me.coluuid.Visible = False
-        '
-        'collocationx
-        '
-        Me.collocationx.HeaderText = "collocationx"
-        Me.collocationx.Name = "collocationx"
-        Me.collocationx.Visible = False
-        '
-        'collocationy
-        '
-        Me.collocationy.HeaderText = "collocationy"
-        Me.collocationy.Name = "collocationy"
-        Me.collocationy.Visible = False
-        '
-        'coldefaultvalue
-        '
-        Me.coldefaultvalue.HeaderText = "coldefaultvalue"
-        Me.coldefaultvalue.Name = "coldefaultvalue"
-        Me.coldefaultvalue.Visible = False
-        '
-        'collaboratoryresultdetailid
-        '
-        Me.collaboratoryresultdetailid.HeaderText = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Name = "collaboratoryresultdetailid"
-        Me.collaboratoryresultdetailid.Visible = False
-        '
-        'collabeltext
-        '
-        Me.collabeltext.HeaderText = "collabeltext"
-        Me.collabeltext.Name = "collabeltext"
-        Me.collabeltext.Visible = False
-        '
-        'colwidth
-        '
-        Me.colwidth.HeaderText = "colwidth"
-        Me.colwidth.Name = "colwidth"
-        Me.colwidth.Visible = False
-        '
-        'colheight
-        '
-        Me.colheight.HeaderText = "colheight"
-        Me.colheight.Name = "colheight"
-        Me.colheight.Visible = False
-        '
-        'coltexthighlight
-        '
-        Me.coltexthighlight.HeaderText = "coltexthighlight"
-        Me.coltexthighlight.Name = "coltexthighlight"
-        Me.coltexthighlight.Visible = False
         '
         'panelsidebar
         '
@@ -359,9 +249,9 @@ Partial Class frmResultDesigner
         Me.panelsidebar.Controls.Add(Me.btnAdd)
         Me.panelsidebar.Controls.Add(Me.dgvResult)
         Me.panelsidebar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.panelsidebar.Location = New System.Drawing.Point(659, 39)
+        Me.panelsidebar.Location = New System.Drawing.Point(637, 38)
         Me.panelsidebar.Name = "panelsidebar"
-        Me.panelsidebar.Size = New System.Drawing.Size(263, 329)
+        Me.panelsidebar.Size = New System.Drawing.Size(285, 330)
         Me.panelsidebar.TabIndex = 231
         '
         'btnpreview
@@ -373,7 +263,7 @@ Partial Class frmResultDesigner
         Me.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnpreview.Location = New System.Drawing.Point(3, 3)
         Me.btnpreview.Name = "btnpreview"
-        Me.btnpreview.Size = New System.Drawing.Size(256, 31)
+        Me.btnpreview.Size = New System.Drawing.Size(279, 31)
         Me.btnpreview.TabIndex = 235
         Me.btnpreview.Text = "Preview Design"
         Me.btnpreview.UseVisualStyleBackColor = False
@@ -383,7 +273,7 @@ Partial Class frmResultDesigner
         Me.txtpanelheight.Font = New System.Drawing.Font("Cambria", 9.25!)
         Me.txtpanelheight.Location = New System.Drawing.Point(89, 40)
         Me.txtpanelheight.Name = "txtpanelheight"
-        Me.txtpanelheight.Size = New System.Drawing.Size(170, 22)
+        Me.txtpanelheight.Size = New System.Drawing.Size(193, 22)
         Me.txtpanelheight.TabIndex = 234
         '
         'Label2
@@ -403,7 +293,7 @@ Partial Class frmResultDesigner
         Me.btnAdd.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAdd.Image = Global.SIMPLE_LIS.My.Resources.Resources.add_16
         Me.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAdd.Location = New System.Drawing.Point(171, 68)
+        Me.btnAdd.Location = New System.Drawing.Point(194, 68)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(88, 23)
         Me.btnAdd.TabIndex = 232
@@ -413,8 +303,8 @@ Partial Class frmResultDesigner
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTextBoxColumn1.HeaderText = "Name"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -422,8 +312,8 @@ Partial Class frmResultDesigner
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewTextBoxColumn2.HeaderText = "coloptionvalues"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
@@ -502,12 +392,6 @@ Partial Class frmResultDesigner
         Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
         Me.DataGridViewTextBoxColumn14.Visible = False
         '
-        'ExportAsPDFToolStripMenuItem
-        '
-        Me.ExportAsPDFToolStripMenuItem.Name = "ExportAsPDFToolStripMenuItem"
-        Me.ExportAsPDFToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
-        Me.ExportAsPDFToolStripMenuItem.Text = "Export as PDF"
-        '
         'frmResultDesigner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -559,21 +443,6 @@ Partial Class frmResultDesigner
     Public WithEvents tsprintas As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents DefaultPDFViewerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrystalReportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents colchk As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents colfieldname As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colfieldtypedesc As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents coloptionvalues As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collaboratorydetailsid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colfieldtype As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents coluuid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collocationx As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collocationy As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents coldefaultvalue As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collaboratoryresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents collabeltext As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colwidth As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colheight As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ExportAsEmailAttachmentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ExportAsPDFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
