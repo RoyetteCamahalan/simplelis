@@ -121,7 +121,7 @@ Public Class clsadmissiondocuments
         End With
         Return dt
     End Function
-    Public Shared Sub SaveLabResultImage(ByVal requestdetailno As Long, ByVal admissionid As Long, ByRef img As Bitmap, ByVal filename As String)
+    Public Shared Sub SaveLabResultImage(ByVal requestdetailno As Long, ByVal admissionid As Long, ByRef img As Bitmap, ByVal filename As String, ByVal overwrite As Boolean)
         Dim destfolder As String = "\" & admissionid
         Dim destfile As String = destfolder & "\" & filename
 
@@ -130,11 +130,14 @@ Public Class clsadmissiondocuments
             Directory.CreateDirectory(gDocumentLocationEMR & destfolder)
         End If
         If File.Exists(gDocumentLocationEMR & destfile) Then
-            Exit Sub
+            If overwrite Then
+                img.Save(gDocumentLocationEMR & destfile, ImageFormat.Jpeg)
+            End If
+        Else
+            img.Save(gDocumentLocationEMR & destfile, ImageFormat.Jpeg)
+            clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, admissionid, destfile)
         End If
-        img.Save(gDocumentLocationEMR & destfile, ImageFormat.Jpeg)
 
-        clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, admissionid, destfile)
     End Sub
     Public Shared Sub SaveAdmissionDocument(ByVal requestdetailno As Long, ByVal admissionid As Long, ByVal destfile As String)
         Dim odocuments As New clsadmissiondocuments

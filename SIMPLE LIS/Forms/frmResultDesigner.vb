@@ -444,6 +444,10 @@ getLabDetails:
                 End Select
                 updateRequestStatus(4)
                 MsgBox("Record successfully saved.", vbInformation, modGlobal.msgboxTitle)
+
+                If Me.requestStatus = clsModel.RequestStatus.released Then
+                    Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName(), True)
+                End If
                 Me.myFormaction = formaction.Release
                 Me.tsSave.Text = "Release"
                 'Me.Close()
@@ -760,9 +764,7 @@ getLabDetails:
                             newPDFDoc.SecuritySettings.UserPassword = CDate(fbaseform.lblbirthdate.Text).ToString("yyyyMMdd")
                         End If
                         Dim sourceFileName = gDocumentLocationEMR & "\" & Me.admissionid & "\" & fbaseform.getResultFileName()
-                        If Not File.Exists(sourceFileName) Then
-                            Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName())
-                        End If
+                        Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName(), True)
                         'Create XImage object from file.
                         Using xImg = PdfSharp.Drawing.XImage.FromFile(sourceFileName)
                             'Resize page Width and Height to fit image size.

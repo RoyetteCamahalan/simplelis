@@ -43,9 +43,9 @@ Public Class frmMain
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
         laboratoryid = 17
-        requestdetailno = 1053
-        employeeid = 1001
-        myformaction = enformstatus.edit
+        requestdetailno = 1742
+        employeeid = 1002
+        myformaction = enformstatus.view_release
         target = targetmodule.manageresult
         modGlobal.userid = employeeid
     End Sub
@@ -132,13 +132,13 @@ getResultDetails:
                 frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.manageResult, requestdetailno, 0, dt.Rows(0)(0))
                 frmDesigner.ShowDialog()
             ElseIf Me.myformaction = enformstatus.view_release Then
-                If dt.Rows(0)(0) = 4 Then
+                If dt.Rows(0)(0) = 4 And modGlobal.sourceOfficeCode = dt.Rows(0).Item("destinationoffice") Then
                     frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.Release, requestdetailno, 0, dt.Rows(0)(0))
                     frmDesigner.ShowDialog()
                 ElseIf dt.Rows(0)(0) = 5 Or dt.Rows(0)(0) = 6 Then
                     frmDesigner = New frmResultDesigner(frmResultDesigner.formaction.View, requestdetailno, 0, dt.Rows(0)(0))
                     frmDesigner.ShowDialog()
-                ElseIf dt.Rows(0)(0) = 3 Then
+                Else 'If dt.Rows(0)(0) = 3 Then
                     MsgBox("Request doesn't have result yet", MsgBoxStyle.Information)
                 End If
             End If

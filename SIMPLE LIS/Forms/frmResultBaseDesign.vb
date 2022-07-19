@@ -635,7 +635,7 @@ Public Class frmResultBaseDesign
     Public Sub DisplayPrintPreview()
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         Me.Text = ""
-        Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, GetFormImage(False), Me.getResultFileName())
+        Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, GetFormImage(False), Me.getResultFileName(), False)
         If PrintDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
             MiscPrintDocu.PrinterSettings = PrintDialog1.PrinterSettings
             MiscPrintDocu.Print()
