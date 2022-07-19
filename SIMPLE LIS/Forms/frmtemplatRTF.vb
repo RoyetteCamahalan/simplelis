@@ -431,7 +431,7 @@ Public Class frmtemplateRTF
     End Sub
     Private Sub LoadCombo()
         Try
-            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            If Me.labformatid = clsModel.LabFormats.EchoForms Or labformatid = clsModel.LabFormats.ECGREPORT Then
                 Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.cardiologist)
             Else
                 Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.radiologist)
