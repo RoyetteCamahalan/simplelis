@@ -440,14 +440,14 @@ getLabDetails:
                             loadDesign()
 
                         End If
+                        If Me.requestStatus = clsModel.RequestStatus.released Then
+                            Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName(), True)
+                        End If
 
                 End Select
                 updateRequestStatus(4)
                 MsgBox("Record successfully saved.", vbInformation, modGlobal.msgboxTitle)
 
-                If Me.requestStatus = clsModel.RequestStatus.released Then
-                    Call clsadmissiondocuments.SaveLabResultImage(requestdetailno, Me.admissionid, fbaseform.GetFormImage(False), fbaseform.getResultFileName(), True)
-                End If
                 Me.myFormaction = formaction.Release
                 Me.tsSave.Text = "Release"
                 'Me.Close()

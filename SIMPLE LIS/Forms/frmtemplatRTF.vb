@@ -343,6 +343,7 @@ Public Class frmtemplateRTF
             Me.patientaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
             Me.radiologistdesignation = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistdesignation"))
             Me.dtDate.Value = Utility.NullToCurrentDate(dtResult.Rows(0).Item("dateencoded"))
+            Me.chkesig.Checked = Utility.NullToBoolean(dtResult.Rows(0).Item("esigradiologist"))
 
             Dim dtResultImages As DataTable = clsRadiology.getRadiologyResultDetailsImages(requestdetailno, 4)
             For i = 0 To dtResultImages.Rows.Count - 1
@@ -467,6 +468,7 @@ Public Class frmtemplateRTF
             .encodedby = userid
             .medtech = cmbRadTech.SelectedValue
             .medicaltechnologist = .medtech
+            .esigpatho = Me.chkesig.Checked
             .releasedby = 1
             .datereleased = GetServerDate() '"01/01/1990"
             .pathologist = Me.cmbradiologist.SelectedValue
@@ -603,13 +605,17 @@ Public Class frmtemplateRTF
         ElseIf tool = 1 Then
             Process.Start(resultpdflocation)
         ElseIf tool = 2 Then
-            Dim f As New frmReportHandler
-            Dim crv As New crptRadTemplate
-            Dim dt As DataTable = clsRadiology.genericcls(9, Me.requestdetailno)
-            dt.Rows(0).Item("result") = Me.txtResult.Rtf
-            crv.SetDataSource(dt)
-            f.crvPrinting.ReportSource = crv
-            f.ShowDialog()
+            Try
+                Dim f As New frmReportHandler
+                Dim crv As New crptRadTemplate
+                Dim dt As DataTable = clsRadiology.genericcls(9, Me.requestdetailno)
+                dt.Rows(0).Item("result") = Me.txtResult.Rtf
+                crv.SetDataSource(dt)
+                f.crvPrinting.ReportSource = crv
+                f.ShowDialog()
+            Catch ex As Exception
+
+            End Try
         End If
         'Else
        

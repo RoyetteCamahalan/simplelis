@@ -23,6 +23,18 @@ Module modGlobal
     Public msgboxTitle As String
     Public alertaudio As String
     Public alerttimeout As Integer
+    'Private _conn As New SqlClient.SqlConnection
+    'Public ReadOnly Property conn() As SqlClient.SqlConnection
+    '    Get
+    '        If _conn.ConnectionString = "" Then
+    '            _conn.ConnectionString = gconnectionstring
+    '        End If
+    '        If _conn.State <> ConnectionState.Open Then
+    '            _conn.Open()
+    '        End If
+    '        Return _conn
+    '    End Get
+    'End Property
 
     Public ClinicID As Integer = 4
     Public gFilePrinterName As String = ConfigurationManager.AppSettings("FilePrinterName")

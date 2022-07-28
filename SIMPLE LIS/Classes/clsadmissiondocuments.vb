@@ -76,65 +76,46 @@ Public Class clsadmissiondocuments
         Return GenericDA.ManageQuery(strPar, strVal, "spAdmissionDocuments", 0)
     End Function
 
-    Public Function saveAdmissionDocuments(ByVal dtadmissiondocuments As DataTable) As DataTable
-
-        Dim cConn As New clsDBConnection
-        cConn.CreateOpenConnection()
-        'Create a command object that calls the stored proc
-        Dim sqlDA As New SqlDataAdapter
-        Dim dtResult As New DataTable
-        Dim command As New SqlCommand("spadmissiondocuments", cConn.GDBConn)
-        command.CommandType = CommandType.StoredProcedure
-
-        'Create a parameter using the new type 
-        With command
-            Dim param1 As SqlParameter = .Parameters.AddWithValue("@operation", 1)
-            param1.SqlDbType = SqlDbType.Int
-
-            Dim param2 As SqlParameter = .Parameters.AddWithValue("@soperation", 0)
-            param2.SqlDbType = SqlDbType.Int
-
-            Dim param3 As SqlParameter = .Parameters.AddWithValue("@dtadmissiondocuments", dtadmissiondocuments)
-            param3.SqlDbType = SqlDbType.Structured
-
-        End With
-
-        sqlDA = New SqlDataAdapter(command)
-        sqlDA.Fill(dtResult)
-        cConn.CloseDestroyConnection()
-        Return dtResult
-    End Function
+    Public Sub saveAdmissionDocuments(ByVal dtadmissiondocuments As DataTable)
+        Dim strPar() As String = {"operation", "sOperation", "dtadmissiondocuments"}
+        Dim strVal() As Object = {1, 0, dtadmissiondocuments}
+        GenericDA.ManageQuery(strPar, strVal, "spAdmissionDocuments", 1)
+        'Dim strPar() As String = {"operation", "sOperation", "dtadmissiondocuments"}
+        'Dim strVal() As Object = {1, 0, dtadmissiondocuments}
+        'Dim s As New sqlbridge
+        's.Transact("spAdmissionDocuments", strPar, strVal)
+    End Sub
 
     Private Shared Function createDataTable() As DataTable
         Dim dt As New DataTable
         With dt.Columns
-            .Add(New DataColumn("[admissionid]", GetType(Integer)))
-            .Add(New DataColumn("[documentcode]", GetType(String)))
-            .Add(New DataColumn("[documentlocation]", GetType(String)))
-            .Add(New DataColumn("[documentname]", GetType(String)))
-            .Add(New DataColumn("[documenturl]", GetType(String)))
-            .Add(New DataColumn("[documenttype]", GetType(String)))
+            .Add(New DataColumn("admissionid", GetType(Integer)))
+            .Add(New DataColumn("documentcode", GetType(String)))
+            .Add(New DataColumn("documentlocation", GetType(String)))
+            .Add(New DataColumn("documentname", GetType(String)))
+            .Add(New DataColumn("documenturl", GetType(String)))
+            .Add(New DataColumn("documenttype", GetType(String)))
             .Add(New DataColumn("createdbyid", GetType(Integer)))
             .Add(New DataColumn("datecreated", GetType(Date)))
-            .Add(New DataColumn("[uploadsequence]", GetType(Integer)))
-            .Add(New DataColumn("[isuploaded]", GetType(Boolean)))
+            .Add(New DataColumn("uploadsequence", GetType(Integer)))
+            .Add(New DataColumn("isuploaded", GetType(Boolean)))
         End With
         Return dt
     End Function
     Public Shared Sub SaveLabResultImage(ByVal requestdetailno As Long, ByVal admissionid As Long, ByRef img As Bitmap, ByVal filename As String, ByVal overwrite As Boolean)
-        Dim destfolder As String = "\" & admissionid
+        Dim destfolder As String = gDocumentLocationEMR & "\" & admissionid
         Dim destfile As String = destfolder & "\" & filename
 
 
-        If Not Directory.Exists(gDocumentLocationEMR & destfolder) Then
-            Directory.CreateDirectory(gDocumentLocationEMR & destfolder)
+        If Not Directory.Exists(destfolder) Then
+            Directory.CreateDirectory(destfolder)
         End If
-        If File.Exists(gDocumentLocationEMR & destfile) Then
+        If File.Exists(destfile) Then
             If overwrite Then
-                img.Save(gDocumentLocationEMR & destfile, ImageFormat.Jpeg)
+                img.Save(destfile, ImageFormat.Jpeg)
             End If
         Else
-            img.Save(gDocumentLocationEMR & destfile, ImageFormat.Jpeg)
+            img.Save(destfile, ImageFormat.Jpeg)
             clsadmissiondocuments.SaveAdmissionDocument(requestdetailno, admissionid, destfile)
         End If
 
@@ -145,7 +126,7 @@ Public Class clsadmissiondocuments
 
         dtadmissiondocuments.Rows.Add(admissionid,
                                                       requestdetailno,
-                                                      destfile,
+                                                      "\" & destfile,
                                                       Path.GetFileName(destfile),
                                                       "",
                                                       "RadLab",
