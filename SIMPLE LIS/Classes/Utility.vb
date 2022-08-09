@@ -1515,4 +1515,8 @@ Public Class Utility
     Public Shared Function IsColor(ByVal TextName As String) As Boolean
         If [Enum].GetNames(GetType(KnownColor)).Contains(TextName) Then Return True Else Return False
     End Function
+    Public Shared Function RemoveIllegalFileNameChars(input As String, Optional replacement As String = "") As String
+        Return Regex.Replace(input.Trim(), "[^A-Za-z0-9_. ]+", replacement)
+    End Function
+
 End Class

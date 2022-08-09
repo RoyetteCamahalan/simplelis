@@ -622,7 +622,7 @@ Public Class frmtemplateRTF
         'End If
     End Sub
     Public Function generateFileName() As String
-        Return Regex.Replace(Me.lblexamination.Text.Trim(), "[^A-Za-z0-9_. ]+", "") & "_" & requestdetailno
+        Return Utility.RemoveIllegalFileNameChars(Me.lblexamination.Text, "_") & "_" & requestdetailno
     End Function
     Public Sub generatePDF()
         Dim wordApplication As New Microsoft.Office.Interop.Word.Application

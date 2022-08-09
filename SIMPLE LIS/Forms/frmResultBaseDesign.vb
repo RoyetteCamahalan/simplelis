@@ -630,7 +630,7 @@ Public Class frmResultBaseDesign
         End If
     End Sub
     Public Function getResultFileName() As String
-        Return "RadLab_" & Me.labname & "_" & requestdetailno & ".jpg"
+        Return "RadLab_" & Utility.RemoveIllegalFileNameChars(Me.labname, "_") & "_" & requestdetailno & ".jpg"
     End Function
     Public Sub DisplayPrintPreview()
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
