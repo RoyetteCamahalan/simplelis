@@ -66,6 +66,15 @@ Partial Class frmAddField
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txttexthighlight = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -337,6 +346,7 @@ Partial Class frmAddField
         Me.txtfieldlabelrtf.Name = "txtfieldlabelrtf"
         Me.txtfieldlabelrtf.Size = New System.Drawing.Size(310, 77)
         Me.txtfieldlabelrtf.TabIndex = 245
+        Me.txtfieldlabelrtf.Text = ""
         '
         'Label11
         '
@@ -385,7 +395,7 @@ Partial Class frmAddField
         Me.Panel7.Controls.Add(Me.Label10)
         Me.Panel7.Controls.Add(Me.txtheight)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel7.Location = New System.Drawing.Point(0, 184)
+        Me.Panel7.Location = New System.Drawing.Point(0, 303)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(448, 39)
         Me.Panel7.TabIndex = 6
@@ -397,7 +407,7 @@ Partial Class frmAddField
         Me.Panel6.Controls.Add(Me.txtX)
         Me.Panel6.Controls.Add(Me.Label8)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel6.Location = New System.Drawing.Point(0, 145)
+        Me.Panel6.Location = New System.Drawing.Point(0, 264)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(448, 39)
         Me.Panel6.TabIndex = 5
@@ -415,6 +425,15 @@ Partial Class frmAddField
         '
         'Panel8
         '
+        Me.Panel8.Controls.Add(Me.Label25)
+        Me.Panel8.Controls.Add(Me.Label26)
+        Me.Panel8.Controls.Add(Me.Label22)
+        Me.Panel8.Controls.Add(Me.Label23)
+        Me.Panel8.Controls.Add(Me.Label24)
+        Me.Panel8.Controls.Add(Me.Label21)
+        Me.Panel8.Controls.Add(Me.Label20)
+        Me.Panel8.Controls.Add(Me.Label19)
+        Me.Panel8.Controls.Add(Me.Label18)
         Me.Panel8.Controls.Add(Me.lblseeavailablecolors)
         Me.Panel8.Controls.Add(Me.Label17)
         Me.Panel8.Controls.Add(Me.Label16)
@@ -426,7 +445,7 @@ Partial Class frmAddField
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(448, 145)
+        Me.Panel8.Size = New System.Drawing.Size(448, 264)
         Me.Panel8.TabIndex = 4
         '
         'lblseeavailablecolors
@@ -434,7 +453,7 @@ Partial Class frmAddField
         Me.lblseeavailablecolors.AutoSize = True
         Me.lblseeavailablecolors.Font = New System.Drawing.Font("Cambria", 9.0!, CType((System.Drawing.FontStyle.Italic Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblseeavailablecolors.ForeColor = System.Drawing.Color.Blue
-        Me.lblseeavailablecolors.Location = New System.Drawing.Point(320, 67)
+        Me.lblseeavailablecolors.Location = New System.Drawing.Point(320, 189)
         Me.lblseeavailablecolors.Name = "lblseeavailablecolors"
         Me.lblseeavailablecolors.Size = New System.Drawing.Size(105, 14)
         Me.lblseeavailablecolors.TabIndex = 246
@@ -499,7 +518,7 @@ Partial Class frmAddField
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Cambria", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(5, 85)
+        Me.Label13.Location = New System.Drawing.Point(5, 207)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(104, 15)
         Me.Label13.TabIndex = 238
@@ -508,11 +527,110 @@ Partial Class frmAddField
         'txttexthighlight
         '
         Me.txttexthighlight.Font = New System.Drawing.Font("Cambria", 9.25!)
-        Me.txttexthighlight.Location = New System.Drawing.Point(113, 82)
+        Me.txttexthighlight.Location = New System.Drawing.Point(113, 204)
         Me.txttexthighlight.Multiline = True
         Me.txttexthighlight.Name = "txttexthighlight"
         Me.txttexthighlight.Size = New System.Drawing.Size(310, 56)
         Me.txttexthighlight.TabIndex = 239
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label18.Location = New System.Drawing.Point(111, 104)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(96, 12)
+        Me.Label18.TabIndex = 247
+        Me.Label18.Text = "Ex. 7(Gender Based)"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label19.Location = New System.Drawing.Point(125, 116)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(49, 12)
+        Me.Label19.TabIndex = 248
+        Me.Label19.Text = "For Male:"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label20.Location = New System.Drawing.Point(164, 128)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(148, 12)
+        Me.Label20.TabIndex = 249
+        Me.Label20.Text = "Ex. a(Less Than)   M(<0.06:Red)"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label21.Location = New System.Drawing.Point(164, 142)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(163, 12)
+        Me.Label21.TabIndex = 250
+        Me.Label21.Text = "Ex. b(Greater Than)   M(>0.06:Red)"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label22.Location = New System.Drawing.Point(164, 182)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(160, 12)
+        Me.Label22.TabIndex = 253
+        Me.Label22.Text = "Ex. d(Greater Than)   F(>0.06:Red)"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label23.Location = New System.Drawing.Point(164, 168)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(144, 12)
+        Me.Label23.TabIndex = 252
+        Me.Label23.Text = "Ex. c(Less Than)   F(<0.06:Red)"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label24.Location = New System.Drawing.Point(125, 156)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(60, 12)
+        Me.Label24.TabIndex = 251
+        Me.Label24.Text = "For Female:"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label25.Location = New System.Drawing.Point(111, 91)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(158, 12)
+        Me.Label25.TabIndex = 265
+        Me.Label25.Text = "Ex. 6(Not in Range) 130!-150:Red"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.ForeColor = System.Drawing.Color.CornflowerBlue
+        Me.Label26.Location = New System.Drawing.Point(111, 79)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(125, 12)
+        Me.Label26.TabIndex = 264
+        Me.Label26.Text = "Ex. 5(Range) 130-150:Red"
         '
         'frmAddField
         '
@@ -597,4 +715,13 @@ Partial Class frmAddField
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents lblseeavailablecolors As System.Windows.Forms.Label
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents Label26 As System.Windows.Forms.Label
 End Class

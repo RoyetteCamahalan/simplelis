@@ -1,5 +1,5 @@
 ﻿Public Class clsModel
-    Public Class ConstrolTypes
+    Public Class ControlTypes
         Public Shared TextField As Integer = 1
         Public Shared Dropdown As Integer = 2
         Public Shared LabelH1 As Integer = 3
@@ -20,28 +20,27 @@
         Public Shared yyyyMMddhhmmtt As String = "yyyy/MM/dd hh:mm: tt"
         Public Shared Function getDescription(ByVal ctrtype As Integer) As String
             Select Case ctrtype
-                Case clsModel.ConstrolTypes.TextField
+                Case clsModel.ControlTypes.TextField
                     Return "TextField"
-                Case clsModel.ConstrolTypes.Dropdown
+                Case clsModel.ControlTypes.Dropdown
                     Return "Dropdown"
-                Case clsModel.ConstrolTypes.DoubleTextField
+                Case clsModel.ControlTypes.DoubleTextField
                     Return "Double Text Field"
-                Case clsModel.ConstrolTypes.ResizableTextField
+                Case clsModel.ControlTypes.ResizableTextField
                     Return "Resizable Text Field"
-                Case clsModel.ConstrolTypes.ParagraphField
+                Case clsModel.ControlTypes.ParagraphField
                     Return "Paragraph Field"
-                Case clsModel.ConstrolTypes.DateTimePicker
+                Case clsModel.ControlTypes.DateTimePicker
                     Return "Date & Time Picker"
                 Case Else
                     Return "Label"
             End Select
         End Function
         Public Shared Function isInputField(ByVal ctrtype As Integer) As Boolean
-            If ctrtype = TextField Or ctrtype = Dropdown Or ctrtype = DoubleTextField Or ctrtype = ResizableTextField Or ctrtype = DateTimePicker Then
-                Return True
-            Else
-                Return False
-            End If
+            Return ctrtype = TextField Or ctrtype = Dropdown Or ctrtype = DoubleTextField Or ctrtype = ResizableTextField Or ctrtype = DateTimePicker
+        End Function
+        Public Shared Function isLabel(ByVal ctrtype As Integer) As Boolean
+            Return ctrtype = LabelH1 Or ctrtype = LabelH2 Or ctrtype = LabelH3 Or ctrtype = LabelH4 Or ctrtype = LabelH5
         End Function
     End Class
     Public Class LabControl
@@ -85,7 +84,7 @@
         End Property
         Public Property controlTypeDescription() As String
             Get
-                Return clsModel.ConstrolTypes.getDescription(Me.ctrtype)
+                Return clsModel.ControlTypes.getDescription(Me.ctrtype)
             End Get
             Set(ByVal value As String)
 
@@ -95,8 +94,8 @@
 
         Public Sub New()
             Me.uuid = Utility.GetRandomString()
-            Me.panelwidth = clsModel.ConstrolTypes.DefaultPanelWidth
-            Me.panelheight = clsModel.ConstrolTypes.DefaultPanelHeight
+            Me.panelwidth = clsModel.ControlTypes.DefaultPanelWidth
+            Me.panelheight = clsModel.ControlTypes.DefaultPanelHeight
         End Sub
         Public Sub New(row As DataRow, Optional laboratoryresultdetailid As Long = 0, Optional value As String = "")
             Me.laboratoryresultdetailid = laboratoryresultdetailid
@@ -115,9 +114,9 @@
             Me.isvisible = row.Item("visible")
         End Sub
         Public Function isLabel() As Boolean
-            If ctrtype = clsModel.ConstrolTypes.LabelH1 Or ctrtype = clsModel.ConstrolTypes.LabelH2 Or
-                ctrtype = clsModel.ConstrolTypes.LabelH3 Or ctrtype = clsModel.ConstrolTypes.LabelH4 Or
-                ctrtype = clsModel.ConstrolTypes.LabelH5 Then
+            If ctrtype = clsModel.ControlTypes.LabelH1 Or ctrtype = clsModel.ControlTypes.LabelH2 Or
+                ctrtype = clsModel.ControlTypes.LabelH3 Or ctrtype = clsModel.ControlTypes.LabelH4 Or
+                ctrtype = clsModel.ControlTypes.LabelH5 Then
                 Return True
             Else
                 Return False

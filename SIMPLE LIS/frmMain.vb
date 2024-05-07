@@ -42,11 +42,11 @@ Public Class frmMain
             .UserId = ConfigurationManager.AppSettings("gUsername")
             .Password = Utility.Decrypt(ConfigurationManager.AppSettings("gPassword"))
         End With
-        laboratoryid = 17
-        requestdetailno = 2347 '1628 maceda '1156 maceda '1569 cabebe '1572 PERPETUA '1575 Martinez '1582 Nobleza
-        employeeid = 1001
-        myformaction = enformstatus.view_release
-        target = targetmodule.manageresult
+        laboratoryid = 1
+        requestdetailno = 61014 '1628 maceda '1156 maceda '1569 cabebe '1572 PERPETUA '1575 Martinez '1582 Nobleza
+        employeeid = 1693
+        myformaction = enformstatus.edit
+        target = targetmodule.LISDashboard
         modGlobal.userid = employeeid
     End Sub
     Public Sub New(ByVal Host As String,

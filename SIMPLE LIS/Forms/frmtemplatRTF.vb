@@ -629,7 +629,9 @@ Public Class frmtemplateRTF
         Dim wordDocument As Microsoft.Office.Interop.Word.Document = Nothing
         Dim tempfilename = Application.StartupPath() & "\templates\temp\" & Utility.GetRandomString() & ".docx"
         Dim mastertemplate As String = "templates\headertemplatedoc_generic.docx"
-        If File.Exists("templates\headertemplatedoc_" & cmbradiologist.SelectedValue & ".docx") Then
+        If Not chkesig.Checked And File.Exists("templates\headertemplatedoc_" & cmbradiologist.SelectedValue & "_noesig.docx") Then
+            mastertemplate = "templates\headertemplatedoc_" & cmbradiologist.SelectedValue & "_noesig.docx"
+        ElseIf File.Exists("templates\headertemplatedoc_" & cmbradiologist.SelectedValue & ".docx") Then
             mastertemplate = "templates\headertemplatedoc_" & cmbradiologist.SelectedValue & ".docx"
         End If
         Try

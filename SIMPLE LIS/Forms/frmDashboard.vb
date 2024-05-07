@@ -73,10 +73,10 @@ Public Class frmDashboard
                 .Items.Add("For Result Entry")
                 .Items.Add("For Update/Releasing")
                 .Items.Add("Released Examinations")
-                .Items.Add("Cancelled")
-                .Items.Add("View All")
-                .Items.Add("Today")
-                .Items.Add("Go To Previous Date")
+                '.Items.Add("Cancelled")
+                '.Items.Add("View All")
+                '.Items.Add("Today")
+                '.Items.Add("Go To Previous Date")
                 .DataSource = .Items
                 afterload = True
                 .SelectedIndex = 0
@@ -94,7 +94,7 @@ Public Class frmDashboard
         End If
         With dgMain
             If Me.selectedModule = enModule.diagnostics Then
-                .DataSource = clsExaminationUpshots.getExaminationUpshots(2, txtsearch.Text, modGlobal.sourceOfficeCode, tsfilteryby.SelectedIndex, IIf(lblpreviousdate.Text = "", Date.Now, lblpreviousdate.Text))
+                .DataSource = clsExaminationUpshots.getExaminationUpshots(txtsearch.Text, modGlobal.sourceOfficeCode, tsfilteryby.SelectedIndex) ', IIf(lblpreviousdate.Text = "", Date.Now, lblpreviousdate.Text))
                 formatColumn("prdno", "Request No.", 60, DataGridViewContentAlignment.MiddleCenter)
                 formatColumn("patientrequestno", "", 0)
                 formatColumn("ptno", "PTNo", 80, DataGridViewContentAlignment.MiddleCenter)
@@ -107,11 +107,11 @@ Public Class frmDashboard
                 formatColumn("office", "Requesting Department", 160)
                 formatColumn("Request", "Request", -1)
                 formatColumn("admissionid", "", 0)
-                If tsfilteryby.SelectedIndex < 5 And tsfilteryby.SelectedIndex <> enFilterBy.viewAll Then
-                    formatColumn("requestStatus", "Status", 0)
-                Else
-                    formatColumn("requestStatus", "Status", 120, DataGridViewContentAlignment.MiddleCenter)
-                End If
+                'If tsfilteryby.SelectedIndex < 5 And tsfilteryby.SelectedIndex <> enFilterBy.viewAll Then
+                '    formatColumn("requestStatus", "Status", 0)
+                'Else
+                '    formatColumn("requestStatus", "Status", 120, DataGridViewContentAlignment.MiddleCenter)
+                'End If
                 formatColumn("Paid", "Paid", 40, DataGridViewContentAlignment.MiddleCenter)
                 formatColumn("status", "", 0)
             ElseIf Me.selectedModule = enModule.examinationschema Then

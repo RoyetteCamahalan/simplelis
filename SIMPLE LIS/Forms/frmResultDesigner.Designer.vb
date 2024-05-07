@@ -238,7 +238,7 @@ Partial Class frmResultDesigner
         Me.dgvResult.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 26
-        Me.dgvResult.Size = New System.Drawing.Size(279, 330)
+        Me.dgvResult.Size = New System.Drawing.Size(279, 234)
         Me.dgvResult.TabIndex = 230
         '
         'panelsidebar

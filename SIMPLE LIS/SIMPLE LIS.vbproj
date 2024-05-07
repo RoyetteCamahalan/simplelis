@@ -123,6 +123,10 @@
     <Compile Include="Classes\clsRadiologyLaboratory.vb" />
     <Compile Include="Classes\clsUserLogs.vb" />
     <Compile Include="Classes\clsUsers.vb" />
+    <Compile Include="Classes\Constant.vb" />
+    <Compile Include="Classes\CustomGrid.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\ResizeableControl.vb" />
     <Compile Include="Classes\Utility.vb" />
     <Compile Include="Data Access\clsDBConnection.vb" />

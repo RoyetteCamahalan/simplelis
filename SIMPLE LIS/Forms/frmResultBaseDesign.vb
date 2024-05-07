@@ -17,8 +17,9 @@ Public Class frmResultBaseDesign
     Private laboratoryid As Long
     Private labname As String
     Private requestdetailno As Long
-    Private medtech As Long = 0
-    Private patho As Long = 0
+    Public medtech As Long = 0
+    Public verifiedby As Long = 0
+    Public patho As Long = 0
     Private dtPatientDetails As New DataTable
     Private dtNewBornResults As New DataTable
     Public isLock As Boolean
@@ -28,10 +29,15 @@ Public Class frmResultBaseDesign
     Public itemcode As String
     Public laboratoryresultid As Long
     Public labexaminationno As Long
+    Private gender As String
 
     'default grid height
     Private rowheight As Integer = 20
-
+    Public Enum signatory
+        medtech
+        verifiedby
+        patho
+    End Enum
 #End Region
 #Region "Constructor"
     Public Sub New(baseForm As frmResultDesigner, ByVal isformedit As Boolean, ByVal laboratoryid As Long, ByVal labname As String, ByVal isLock As Boolean)
@@ -99,7 +105,8 @@ Public Class frmResultBaseDesign
         Me.txtRequestedby.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("requestedby").ToString)
         Me.txtPatientName.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("patient").ToString)
         Me.txtAge.Text = dtPatientDetails.Rows(0).Item("age").ToString
-        Me.txtGender.Text = dtPatientDetails.Rows(0).Item("gender").ToString
+        Me.gender = dtPatientDetails.Rows(0).Item("gender").ToString
+        Me.txtGender.Text = Me.gender
 
         Me.lblMisc.Text = getLabname()
         Me.lbltransdate.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("daterequested")).ToString(modGlobal.defaultdateformat)
@@ -107,6 +114,7 @@ Public Class frmResultBaseDesign
         Me.lbldateencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaultdateformat)
         Me.lbltimeencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaulttimeformat)
         Me.medtech = dtPatientDetails.Rows(0).Item("medicaltechnologist")
+        Me.verifiedby = Utility.NullToZero(dtPatientDetails.Rows(0).Item("verifiedby"))
         Me.patho = dtPatientDetails.Rows(0).Item("pathologist")
         Me.txtmother.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("mothername").ToString)
         Me.txtcontactno.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("mobileno").ToString)
@@ -115,6 +123,7 @@ Public Class frmResultBaseDesign
         Me.lblpatientaddress.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("homeaddress").ToString)
         Me.txtgridremarks.Text = dtPatientDetails.Rows(0).Item("remarks")
         Me.chkesigmedtech.Checked = Utility.NullToBoolean(dtPatientDetails.Rows(0).Item("esigmedtech"))
+        Me.chkesigverifiedby.Checked = Utility.NullToBoolean(dtPatientDetails.Rows(0).Item("esigverifiedby"))
         Me.chkesigpatho.Checked = Utility.NullToBoolean(dtPatientDetails.Rows(0).Item("esigpatho"))
     End Sub
     Private Sub LoadCombo()
@@ -147,6 +156,22 @@ Public Class frmResultBaseDesign
         ElseIf Me.cmbMedtech.Items.Count > 0 Then
             Me.cmbMedtech.SelectedValue = modGlobal.userid
         End If
+        afterload = False
+        Me.cmbverifiedby.DataSource = clsLaboratoryResult.getPathologist(clsModel.EmployeeTypes.medtech)
+        Me.cmbverifiedby.DisplayMember = "radiologist"
+        Me.cmbverifiedby.ValueMember = "employeeid"
+        Me.cmbverifiedby.SelectedIndex = -1
+        afterload = True
+        If verifiedby > 0 Then
+            Me.cmbverifiedby.SelectedValue = verifiedby
+        ElseIf Me.cmbverifiedby.Items.Count > 0 Then
+            Me.cmbverifiedby.SelectedValue = modGlobal.userid
+        End If
+        If Not isLock Then
+            FormatSignatory(signatory.medtech, True, Utility.getReference(Constant.ReferenceKey.lab_showmedtech_sig) = 1)
+            FormatSignatory(signatory.verifiedby, Utility.getReference(Constant.ReferenceKey.lab_showverifiedby) = 1, Utility.getReference(Constant.ReferenceKey.lab_showverifiedby_sig) = 1)
+            FormatSignatory(signatory.patho, True, Utility.getReference(Constant.ReferenceKey.lab_showpatho_sig) = 1)
+        End If
     End Sub
     Private Sub checkHighlight(ctrl As Control, dgcell As DataGridViewCell, texthighlight As String)
         If texthighlight = "" Then
@@ -162,8 +187,14 @@ Public Class frmResultBaseDesign
         For Each str As String In opt
             Dim optval As String() = str.Split(":")
             Try
-                If (optval(0).Contains(">") Or optval(0).Contains("<") Or optval(0).Contains("<>")) Then
-                    If processCondition(value, Trim(optval(0))) Then
+                Dim isGender = ""
+                If optval(0).Substring(0, 2) = "M(" Or optval(0).Substring(0, 2) = "F(" Then
+                    isGender = optval(0).Substring(0, 1)
+                    optval(0) = optval(0).Replace("M(", "").Replace("F(", "")
+                    optval(1) = optval(1).Replace(")", "")
+                End If
+                If (optval(0).Contains(">") Or optval(0).Contains("<") Or optval(0).Contains("<>") Or optval(0).Contains("-") Or optval(0).Contains("!-")) Then
+                    If (processCondition(value, Trim(optval(0))) And (isGender = Me.gender Or isGender = "")) Then
                         If Utility.IsColor(optval(1)) Then
                             If ctrl Is Nothing Then
                                 dgcell.Style.ForeColor = System.Drawing.Color.FromName(optval(1))
@@ -179,7 +210,7 @@ Public Class frmResultBaseDesign
                         End If
                     End If
                 ElseIf value = Trim(optval(0)) Then
-                    If Utility.IsColor(optval(1)) Then
+                    If (Utility.IsColor(optval(1)) And (isGender = Me.gender Or isGender = "")) Then
                         If ctrl Is Nothing Then
                             dgcell.Style.ForeColor = System.Drawing.Color.FromName(optval(1))
                         Else
@@ -199,8 +230,8 @@ Public Class frmResultBaseDesign
         Next
     End Sub
     Private Function processCondition(value As String, condition As String) As Boolean
-        Dim isvalid As Boolean
         Try
+            value = value.Replace("%", "")
             If condition.Contains(">") Then
                 condition = condition.Replace(">", "")
                 If CDbl(value) > CDbl(condition) Then
@@ -216,11 +247,22 @@ Public Class frmResultBaseDesign
                 If CDbl(value) <> CDbl(condition) Then
                     Return True
                 End If
+            ElseIf condition.Contains("!-") Then
+                condition = condition.Replace("!-", "-")
+                Dim range = condition.Split("-")
+                If (CDbl(value) < CDbl(range(0)) Or CDbl(value) > CDbl(range(1))) Then
+                    Return True
+                End If
+            ElseIf condition.Contains("-") Then
+                Dim range = condition.Split("-")
+                If (CDbl(value) >= CDbl(range(0)) And CDbl(value) <= CDbl(range(1))) Then
+                    Return True
+                End If
             End If
         Catch ex As Exception
 
         End Try
-        Return isvalid
+        Return False
     End Function
     Public Sub AddControl(ctr As clsModel.LabControl)
         Dim panel As New Panel()
@@ -229,14 +271,14 @@ Public Class frmResultBaseDesign
             isLock = True
             panel.Tag = "1" 'used to disregard lock fields
         End If
-        panel.Size = New Size(IIf(ctr.panelwidth = 0, clsModel.ConstrolTypes.DefaultPanelWidth, ctr.panelwidth), clsModel.ConstrolTypes.DefaultPanelHeight)
+        panel.Size = New Size(IIf(ctr.panelwidth = 0, clsModel.ControlTypes.DefaultPanelWidth, ctr.panelwidth), clsModel.ControlTypes.DefaultPanelHeight)
         If Me.isformedit Then
             panel.BorderStyle = BorderStyle.FixedSingle
         End If
         panel.Font = New Font("Cambria", 9)
         panel.Name = "panel_" & ctr.uuid
         Me.panelresult.Controls.Add(panel)
-        If ctr.ctrtype = clsModel.ConstrolTypes.Dropdown Then
+        If ctr.ctrtype = clsModel.ControlTypes.Dropdown Then
             Dim locleft As Integer = 137
             If ctr.labeltext = "" Then
                 locleft = 19
@@ -310,7 +352,7 @@ Public Class frmResultBaseDesign
                 cmb.Left = locleft
                 cmb.Top = 1
             End If
-        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.DateTimePicker Then
+        ElseIf ctr.ctrtype = clsModel.ControlTypes.DateTimePicker Then
             Dim locleft As Integer = 137
             If ctr.labeltext = "" Then
                 locleft = 19
@@ -340,7 +382,7 @@ Public Class frmResultBaseDesign
                 lbldetail.Font = New Font("Cambria", 9, FontStyle.Bold)
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
                 Try
-                    lbldetail.Text = CDate(ctr.value).ToString(clsModel.ConstrolTypes.yyyyMMddhhmmtt)
+                    lbldetail.Text = CDate(ctr.value).ToString(clsModel.ControlTypes.yyyyMMddhhmmtt)
                 Catch ex As Exception
                     lbldetail.Text = ""
                 End Try
@@ -364,7 +406,7 @@ Public Class frmResultBaseDesign
                 dtp.Size = New Size(panel.Width - locleft - 3, 20)
                 dtp.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 dtp.Format = DateTimePickerFormat.Custom
-                dtp.CustomFormat = clsModel.ConstrolTypes.yyyyMMddhhmmtt
+                dtp.CustomFormat = clsModel.ControlTypes.yyyyMMddhhmmtt
                 Try
                     dtp.Value = CDate(ctr.value)
                 Catch ex As Exception
@@ -382,15 +424,15 @@ Public Class frmResultBaseDesign
             lbl.AutoSize = True
             lbl.TextAlign = ContentAlignment.MiddleCenter
 
-            If ctr.ctrtype = clsModel.ConstrolTypes.LabelH1 Then
+            If ctr.ctrtype = clsModel.ControlTypes.LabelH1 Then
                 panel.Font = New Font("Cambria", 14, FontStyle.Bold)
-            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH2 Then
+            ElseIf ctr.ctrtype = clsModel.ControlTypes.LabelH2 Then
                 panel.Font = New Font("Cambria", 12, FontStyle.Bold)
-            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH3 Then
+            ElseIf ctr.ctrtype = clsModel.ControlTypes.LabelH3 Then
                 panel.Font = New Font("Cambria", 10, FontStyle.Bold)
-            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH4 Then
+            ElseIf ctr.ctrtype = clsModel.ControlTypes.LabelH4 Then
                 panel.Font = New Font("Cambria", 10, FontStyle.Regular)
-            ElseIf ctr.ctrtype = clsModel.ConstrolTypes.LabelH5 Then
+            ElseIf ctr.ctrtype = clsModel.ControlTypes.LabelH5 Then
                 panel.Font = New Font("Cambria", 8, FontStyle.Regular)
             End If
             panel.Controls.Add(lbl)
@@ -402,8 +444,8 @@ Public Class frmResultBaseDesign
             If Me.isformedit Then
                 AddHandler lbl.DoubleClick, AddressOf label_MouseDoubleClick
             End If
-        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.DoubleTextField Then
-            panel.Height = clsModel.ConstrolTypes.DoubleTextFieldHeight
+        ElseIf ctr.ctrtype = clsModel.ControlTypes.DoubleTextField Then
+            panel.Height = clsModel.ControlTypes.DoubleTextFieldHeight
             Dim locleft As Integer = 137
             If ctr.labeltext = "" Then
                 locleft = 19
@@ -453,8 +495,8 @@ Public Class frmResultBaseDesign
                 txt.Top = 1
                 txt.Name = "txt_" & ctr.uuid
             End If
-        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.ResizableTextField Then
-            panel.Height = IIf(ctr.panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, ctr.panelheight)
+        ElseIf ctr.ctrtype = clsModel.ControlTypes.ResizableTextField Then
+            panel.Height = IIf(ctr.panelheight = 0, clsModel.ControlTypes.ResizableTextFieldHeight, ctr.panelheight)
             Dim loctop As Integer = 20
             Dim locl As Integer = 19
             If ctr.labeltext = "" Then
@@ -492,8 +534,8 @@ Public Class frmResultBaseDesign
                 txt.BorderStyle = BorderStyle.None
                 checkHighlight(txt, Nothing, ctr.texthighlight)
             End If
-        ElseIf ctr.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
-            panel.Height = IIf(ctr.panelheight = 0, clsModel.ConstrolTypes.ResizableTextFieldHeight, ctr.panelheight)
+        ElseIf ctr.ctrtype = clsModel.ControlTypes.ParagraphField Then
+            panel.Height = IIf(ctr.panelheight = 0, clsModel.ControlTypes.ResizableTextFieldHeight, ctr.panelheight)
             Dim loctop As Integer = 20
             Dim locl As Integer = 19
 
@@ -580,12 +622,12 @@ Public Class frmResultBaseDesign
         Dim panel As Control = CType(sender, Control).Parent
         Me.baseForm.onPanelDoubleClick(panel.Name.Replace("panel_", ""), panel.Location.X, panel.Location.Y, panel.Width, panel.Height)
     End Sub
-    Private Sub getEmployeeInfo(ByVal employeeid As String, ByVal ispatho As Boolean)
+    Private Sub getEmployeeInfo(ByVal employeeid As String, ByVal t As signatory)
         Dim dt As DataTable = clsRadiology.genericcls(8, employeeid)
         If dt.Rows.Count = 0 Then
             Exit Sub
         End If
-        If ispatho Then 'Patho
+        If t = signatory.patho Then 'Patho
             Me.lblpatho.Text = Me.cmbPathologist.Text
             Me.lblpatholicense.Text = "License No. " & dt.Rows(0).Item("prcno")
             If Utility.NullToEmptyString(dt.Rows(0).Item("designation")) = "" Then
@@ -605,6 +647,27 @@ Public Class frmResultBaseDesign
                 End Try
             Else
                 panelpatho.BackgroundImage = Nothing
+            End If
+        ElseIf t = signatory.verifiedby Then
+            Me.lblverifiedby.Text = Me.cmbverifiedby.Text
+            Me.lblverifiedbylicense.Text = "License No. " & dt.Rows(0).Item("prcno")
+            If Utility.NullToEmptyString(dt.Rows(0).Item("designation")) = "" Then
+                Me.lblverifiedbydesignation.Text = "Medical Technologist"
+            Else
+                Me.lblverifiedbydesignation.Text = dt.Rows(0).Item("designation")
+            End If
+            If Me.isLock AndAlso Me.chkesigverifiedby.Checked Then
+                Try
+                    Dim tempphoto As Byte() = dt.Rows(0).Item("usersign")
+                    If IsDBNull(dt.Rows(0).Item("usersign")) Or tempphoto.Length = 0 Then
+                        panelverifiedby.BackgroundImage = Nothing
+                    Else
+                        panelverifiedby.BackgroundImage = Utility.convertImage(dt.Rows(0).Item("usersign")) 'image here
+                    End If
+                Catch ex As Exception
+                End Try
+            Else
+                panelverifiedby.BackgroundImage = Nothing
             End If
         Else 'Medtech
             Me.lblmedtech.Text = Me.cmbMedtech.Text
@@ -676,17 +739,42 @@ Public Class frmResultBaseDesign
         End If
         Return bm
     End Function
+    Public Sub FormatSignatory(ByVal t As signatory, ByVal show As Boolean, ByVal showEsig As Boolean)
+        If t = signatory.medtech Then
+            chkesigmedtech.Visible = showEsig
+            If Not show Then
+                tblpanelsignatory.ColumnStyles(t).SizeType = SizeType.Absolute
+                tblpanelsignatory.ColumnStyles(t).Width = 0
+            End If
+        ElseIf t = signatory.verifiedby Then
+            chkesigverifiedby.Visible = showEsig
+            If Not show Then
+                tblpanelsignatory.ColumnStyles(t).SizeType = SizeType.Absolute
+                tblpanelsignatory.ColumnStyles(t).Width = 0
+                tblpanelsignatory.ColumnStyles(signatory.medtech).Width = IIf(tblpanelsignatory.ColumnStyles(signatory.medtech).Width > 0, 50, 0)
+                tblpanelsignatory.ColumnStyles(signatory.patho).Width = 50
+            End If
+        Else
+            chkesigpatho.Visible = showEsig
+        End If
+    End Sub
 #End Region
 
     Private Sub cmbMedtech_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbMedtech.SelectedValueChanged
         If afterload AndAlso cmbMedtech.SelectedIndex >= 0 Then
-            Call getEmployeeInfo(cmbMedtech.SelectedValue, False)
+            Call getEmployeeInfo(cmbMedtech.SelectedValue, signatory.medtech)
+        End If
+    End Sub
+
+    Private Sub cmbverifiedby_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbverifiedby.SelectedValueChanged
+        If afterload AndAlso cmbverifiedby.SelectedIndex >= 0 Then
+            Call getEmployeeInfo(cmbverifiedby.SelectedValue, signatory.verifiedby)
         End If
     End Sub
 
     Private Sub txtPathologist_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbPathologist.SelectedValueChanged
         If afterload AndAlso cmbPathologist.SelectedIndex >= 0 Then
-            Call getEmployeeInfo(cmbPathologist.SelectedValue, True)
+            Call getEmployeeInfo(cmbPathologist.SelectedValue, signatory.patho)
         End If
     End Sub
 
@@ -761,12 +849,21 @@ Public Class frmResultBaseDesign
         Me.lblprintdate.Text = dtdatenow.ToString(modGlobal.defaultdateformat)
         Me.cmbPathologist.Visible = False
         Me.cmbMedtech.Visible = False
+        Me.cmbverifiedby.Visible = False
         Me.lblpatho.Visible = True
         Me.lblmedtech.Visible = True
+        Me.lblverifiedby.Visible = True
         Me.chkesigmedtech.Visible = False
+        Me.chkesigverifiedby.Visible = False
         Me.chkesigpatho.Visible = False
-        getEmployeeInfo(Me.cmbMedtech.SelectedValue, False)
-        getEmployeeInfo(Me.cmbPathologist.SelectedValue, True)
+
+        getEmployeeInfo(Me.medtech, signatory.medtech)
+        If Me.verifiedby > 0 Then
+            getEmployeeInfo(Me.cmbverifiedby.SelectedValue, signatory.verifiedby)
+        Else
+            FormatSignatory(signatory.verifiedby, False, False)
+        End If
+        getEmployeeInfo(Me.patho, signatory.patho)
         If panelresultgrid.Visible = True Then
             For i As Integer = Me.dgvResult.Rows.Count - 1 To 0 Step -1
                 If Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colresult.Index).Value) = "" Then
@@ -794,5 +891,20 @@ Public Class frmResultBaseDesign
             Me.dgvResult.Columns(colunits.Index).DefaultCellStyle.Font = New Font("Cambria", 9, FontStyle.Bold)
             Me.dgvResult.Columns(colunits.Index).HeaderText = "Result"
         End If
+    End Sub
+    Private currentRow, currentCell As Integer
+    Private resetRow As Boolean = False
+
+    Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles dgvResult.SelectionChanged
+        If resetRow Then
+            resetRow = False
+            dgvResult.CurrentCell = dgvResult.Rows(currentRow).Cells(currentCell)
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResult.CellEndEdit
+        resetRow = True
+        currentRow = e.RowIndex
+        currentCell = e.ColumnIndex
     End Sub
 End Class

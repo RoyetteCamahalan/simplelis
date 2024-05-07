@@ -23,7 +23,7 @@
         Me.cmbFieldType.SelectedValue = Me.field.ctrtype
         Me.txtfieldname.Text = Me.field.name 
         Me.txtvalue.Text = Me.field.optvalue
-        If Me.field.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+        If Me.field.ctrtype = clsModel.ControlTypes.ParagraphField Then
             Me.txtfieldlabelrtf.Rtf = Me.field.labeltext
         Else
             Me.txtLabelText.Text = Me.field.labeltext
@@ -38,17 +38,17 @@
 
     Private Sub loadCombo()
         With cmbFieldType
-            .Items.Add(New DictionaryEntry("Text Field", clsModel.ConstrolTypes.TextField))
-            .Items.Add(New DictionaryEntry("Double Text Field", clsModel.ConstrolTypes.DoubleTextField))
-            .Items.Add(New DictionaryEntry("Resizable Text Field", clsModel.ConstrolTypes.ResizableTextField))
-            .Items.Add(New DictionaryEntry("Paragraph Label", clsModel.ConstrolTypes.ParagraphField))
-            .Items.Add(New DictionaryEntry("Dropdown Field", clsModel.ConstrolTypes.Dropdown))
-            .Items.Add(New DictionaryEntry("Date & Time Picker", clsModel.ConstrolTypes.DateTimePicker))
-            .Items.Add(New DictionaryEntry("Label H1 (Bold)", clsModel.ConstrolTypes.LabelH1))
-            .Items.Add(New DictionaryEntry("Label H2 (Bold)", clsModel.ConstrolTypes.LabelH2))
-            .Items.Add(New DictionaryEntry("Label H3 (Bold)", clsModel.ConstrolTypes.LabelH3))
-            .Items.Add(New DictionaryEntry("Label H4", clsModel.ConstrolTypes.LabelH4))
-            .Items.Add(New DictionaryEntry("Label H5", clsModel.ConstrolTypes.LabelH5))
+            .Items.Add(New DictionaryEntry("Text Field", clsModel.ControlTypes.TextField))
+            .Items.Add(New DictionaryEntry("Double Text Field", clsModel.ControlTypes.DoubleTextField))
+            .Items.Add(New DictionaryEntry("Resizable Text Field", clsModel.ControlTypes.ResizableTextField))
+            .Items.Add(New DictionaryEntry("Paragraph Label", clsModel.ControlTypes.ParagraphField))
+            .Items.Add(New DictionaryEntry("Dropdown Field", clsModel.ControlTypes.Dropdown))
+            .Items.Add(New DictionaryEntry("Date & Time Picker", clsModel.ControlTypes.DateTimePicker))
+            .Items.Add(New DictionaryEntry("Label H1 (Bold)", clsModel.ControlTypes.LabelH1))
+            .Items.Add(New DictionaryEntry("Label H2 (Bold)", clsModel.ControlTypes.LabelH2))
+            .Items.Add(New DictionaryEntry("Label H3 (Bold)", clsModel.ControlTypes.LabelH3))
+            .Items.Add(New DictionaryEntry("Label H4", clsModel.ControlTypes.LabelH4))
+            .Items.Add(New DictionaryEntry("Label H5", clsModel.ControlTypes.LabelH5))
             .DisplayMember = "Key"
             .ValueMember = "Value"
             .DataSource = .Items
@@ -63,16 +63,31 @@
     End Sub
 
     Private Sub tsSave_Click(sender As System.Object, e As System.EventArgs) Handles tsSave.Click
+        Dim isvalid = True
+        erp.SetError(Me.cmbFieldType, "")
+        If Me.cmbFieldType.SelectedIndex = -1 Then
+            erp.SetError(Me.cmbFieldType, "This field is required")
+            isvalid = False
+        End If
+        erp.SetError(Me.txtfieldname, "")
         If Me.txtfieldname.Text = "" Then
-            MsgBox("This field is required", MsgBoxStyle.Critical, "")
-            Exit Sub
+            erp.SetError(Me.txtfieldname, "This field is required")
+            isvalid = False
+        End If
+        erp.SetError(Me.txtLabelText, "")
+        If Me.cmbFieldType.SelectedIndex >= 0 AndAlso clsModel.ControlTypes.isLabel(Me.cmbFieldType.SelectedValue) AndAlso Me.txtLabelText.Text = "" Then
+            erp.SetError(Me.txtLabelText, "This field is required")
+            isvalid = False
+        End If
+        If Not isvalid Then
+            Return
         End If
         Me.issave = True
         Me.field.ctrtype = Me.cmbFieldType.SelectedValue
         Me.field.name = Me.txtfieldname.Text
         Me.field.optvalue = Me.txtvalue.Text
         Me.field.defaultvalue = Me.cmbDefaultValue.Text
-        If Me.field.ctrtype = clsModel.ConstrolTypes.ParagraphField Then
+        If Me.field.ctrtype = clsModel.ControlTypes.ParagraphField Then
             Me.field.labeltext = Me.txtfieldlabelrtf.Rtf
         Else
             Me.field.labeltext = Me.txtLabelText.Text()
@@ -90,15 +105,15 @@
     End Sub
 
     Private Sub cmbFieldType_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbFieldType.SelectedValueChanged
-        If cmbFieldType.SelectedValue = clsModel.ConstrolTypes.DoubleTextField Then
+        If cmbFieldType.SelectedValue = clsModel.ControlTypes.DoubleTextField Then
             Me.txtheight.Enabled = True
-        ElseIf cmbFieldType.SelectedValue = clsModel.ConstrolTypes.ResizableTextField Then
+        ElseIf cmbFieldType.SelectedValue = clsModel.ControlTypes.ResizableTextField Then
             Me.txtheight.Enabled = True
         Else
-            Me.txtheight.Text = clsModel.ConstrolTypes.DefaultPanelHeight
+            Me.txtheight.Text = clsModel.ControlTypes.DefaultPanelHeight
             Me.txtheight.Enabled = False
         End If
-        If cmbFieldType.SelectedValue = clsModel.ConstrolTypes.ParagraphField Then
+        If cmbFieldType.SelectedValue = clsModel.ControlTypes.ParagraphField Then
             Me.txtheight.Enabled = True
             Me.paneltextrtf.Visible = True
             Me.paneltextreg.Visible = False

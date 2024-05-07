@@ -44,15 +44,29 @@ Partial Class frmResultBaseDesign
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.panelmain = New System.Windows.Forms.Panel()
         Me.panelsignatory = New System.Windows.Forms.Panel()
-        Me.cmbPathologist = New System.Windows.Forms.ComboBox()
-        Me.lblmedtechdesignation = New System.Windows.Forms.Label()
-        Me.panelpatho = New System.Windows.Forms.Panel()
-        Me.lblpatho = New System.Windows.Forms.Label()
-        Me.lblpathodesignation = New System.Windows.Forms.Label()
+        Me.tblpanelsignatory = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.cmbverifiedby = New System.Windows.Forms.ComboBox()
+        Me.panelverifiedby = New System.Windows.Forms.Panel()
+        Me.chkesigverifiedby = New System.Windows.Forms.CheckBox()
+        Me.lblverifiedby = New System.Windows.Forms.Label()
+        Me.lblverifiedbylicense = New System.Windows.Forms.Label()
+        Me.lblverifiedbydesignation = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.panelmedtech = New System.Windows.Forms.Panel()
+        Me.chkesigmedtech = New System.Windows.Forms.CheckBox()
         Me.lblmedtech = New System.Windows.Forms.Label()
-        Me.lblpatholicense = New System.Windows.Forms.Label()
         Me.lblmedtechlicense = New System.Windows.Forms.Label()
+        Me.lblmedtechdesignation = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.lblpathodesignation = New System.Windows.Forms.Label()
+        Me.cmbPathologist = New System.Windows.Forms.ComboBox()
+        Me.lblpatholicense = New System.Windows.Forms.Label()
+        Me.panelpatho = New System.Windows.Forms.Panel()
+        Me.chkesigpatho = New System.Windows.Forms.CheckBox()
+        Me.lblpatho = New System.Windows.Forms.Label()
         Me.panelresult = New System.Windows.Forms.Panel()
         Me.panelresultgrid = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -101,8 +115,7 @@ Partial Class frmResultBaseDesign
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lblbirthdate = New System.Windows.Forms.Label()
         Me.pctrLogo = New System.Windows.Forms.PictureBox()
-        Me.chkesigmedtech = New System.Windows.Forms.CheckBox()
-        Me.chkesigpatho = New System.Windows.Forms.CheckBox()
+        Me.cmverifiedby = New System.Windows.Forms.ComboBox()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -119,8 +132,13 @@ Partial Class frmResultBaseDesign
         Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelmain.SuspendLayout()
         Me.panelsignatory.SuspendLayout()
-        Me.panelpatho.SuspendLayout()
+        Me.tblpanelsignatory.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.panelverifiedby.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.panelmedtech.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.panelpatho.SuspendLayout()
         Me.panelresultgrid.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,14 +161,14 @@ Partial Class frmResultBaseDesign
         '
         'cmbMedtech
         '
-        Me.cmbMedtech.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cmbMedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbMedtech.BackColor = System.Drawing.Color.White
         Me.cmbMedtech.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMedtech.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cmbMedtech.FormattingEnabled = True
-        Me.cmbMedtech.Location = New System.Drawing.Point(3, 32)
+        Me.cmbMedtech.Location = New System.Drawing.Point(4, 38)
         Me.cmbMedtech.Name = "cmbMedtech"
-        Me.cmbMedtech.Size = New System.Drawing.Size(320, 26)
+        Me.cmbMedtech.Size = New System.Drawing.Size(215, 26)
         Me.cmbMedtech.TabIndex = 222
         '
         'lblpatientid
@@ -247,97 +265,184 @@ Partial Class frmResultBaseDesign
         Me.panelmain.Controls.Add(Me.panelresultgrid)
         Me.panelmain.Location = New System.Drawing.Point(44, 176)
         Me.panelmain.Name = "panelmain"
-        Me.panelmain.Size = New System.Drawing.Size(692, 213)
+        Me.panelmain.Size = New System.Drawing.Size(692, 233)
         Me.panelmain.TabIndex = 250
         '
         'panelsignatory
         '
-        Me.panelsignatory.Controls.Add(Me.cmbPathologist)
-        Me.panelsignatory.Controls.Add(Me.cmbMedtech)
-        Me.panelsignatory.Controls.Add(Me.lblmedtechdesignation)
-        Me.panelsignatory.Controls.Add(Me.panelpatho)
-        Me.panelsignatory.Controls.Add(Me.lblpathodesignation)
-        Me.panelsignatory.Controls.Add(Me.panelmedtech)
-        Me.panelsignatory.Controls.Add(Me.lblpatholicense)
-        Me.panelsignatory.Controls.Add(Me.lblmedtechlicense)
+        Me.panelsignatory.Controls.Add(Me.tblpanelsignatory)
         Me.panelsignatory.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelsignatory.Location = New System.Drawing.Point(0, 237)
         Me.panelsignatory.Name = "panelsignatory"
-        Me.panelsignatory.Size = New System.Drawing.Size(692, 90)
+        Me.panelsignatory.Size = New System.Drawing.Size(692, 110)
         Me.panelsignatory.TabIndex = 253
         '
-        'cmbPathologist
+        'tblpanelsignatory
         '
-        Me.cmbPathologist.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.cmbPathologist.BackColor = System.Drawing.Color.White
-        Me.cmbPathologist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPathologist.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.cmbPathologist.FormattingEnabled = True
-        Me.cmbPathologist.Location = New System.Drawing.Point(357, 32)
-        Me.cmbPathologist.Name = "cmbPathologist"
-        Me.cmbPathologist.Size = New System.Drawing.Size(331, 26)
-        Me.cmbPathologist.TabIndex = 257
+        Me.tblpanelsignatory.ColumnCount = 3
+        Me.tblpanelsignatory.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.0!))
+        Me.tblpanelsignatory.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.0!))
+        Me.tblpanelsignatory.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.0!))
+        Me.tblpanelsignatory.Controls.Add(Me.Panel4, 1, 0)
+        Me.tblpanelsignatory.Controls.Add(Me.Panel2, 0, 0)
+        Me.tblpanelsignatory.Controls.Add(Me.Panel3, 2, 0)
+        Me.tblpanelsignatory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tblpanelsignatory.Location = New System.Drawing.Point(0, 0)
+        Me.tblpanelsignatory.Name = "tblpanelsignatory"
+        Me.tblpanelsignatory.RowCount = 1
+        Me.tblpanelsignatory.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblpanelsignatory.Size = New System.Drawing.Size(692, 110)
+        Me.tblpanelsignatory.TabIndex = 283
         '
-        'lblmedtechdesignation
+        'Panel4
         '
-        Me.lblmedtechdesignation.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblmedtechdesignation.BackColor = System.Drawing.Color.Transparent
-        Me.lblmedtechdesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
-        Me.lblmedtechdesignation.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtechdesignation.Location = New System.Drawing.Point(3, 71)
-        Me.lblmedtechdesignation.Name = "lblmedtechdesignation"
-        Me.lblmedtechdesignation.Size = New System.Drawing.Size(320, 18)
-        Me.lblmedtechdesignation.TabIndex = 252
-        Me.lblmedtechdesignation.Text = "Medical Technologist"
-        Me.lblmedtechdesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Panel4.Controls.Add(Me.Label13)
+        Me.Panel4.Controls.Add(Me.cmbverifiedby)
+        Me.Panel4.Controls.Add(Me.panelverifiedby)
+        Me.Panel4.Controls.Add(Me.lblverifiedbylicense)
+        Me.Panel4.Controls.Add(Me.lblverifiedbydesignation)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel4.Location = New System.Drawing.Point(231, 3)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(222, 104)
+        Me.Panel4.TabIndex = 278
         '
-        'panelpatho
+        'Label13
         '
-        Me.panelpatho.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.panelpatho.Controls.Add(Me.chkesigpatho)
-        Me.panelpatho.Controls.Add(Me.lblpatho)
-        Me.panelpatho.Location = New System.Drawing.Point(332, 6)
-        Me.panelpatho.Name = "panelpatho"
-        Me.panelpatho.Size = New System.Drawing.Size(360, 54)
-        Me.panelpatho.TabIndex = 274
+        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
+        Me.Label13.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.Label13.ForeColor = System.Drawing.Color.Black
+        Me.Label13.Location = New System.Drawing.Point(4, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(98, 18)
+        Me.Label13.TabIndex = 276
+        Me.Label13.Text = "Verified By:"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblpatho
+        'cmbverifiedby
         '
-        Me.lblpatho.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.cmbverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbverifiedby.BackColor = System.Drawing.Color.White
+        Me.cmbverifiedby.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbverifiedby.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.cmbverifiedby.FormattingEnabled = True
+        Me.cmbverifiedby.Location = New System.Drawing.Point(4, 38)
+        Me.cmbverifiedby.Name = "cmbverifiedby"
+        Me.cmbverifiedby.Size = New System.Drawing.Size(215, 26)
+        Me.cmbverifiedby.TabIndex = 222
+        '
+        'panelverifiedby
+        '
+        Me.panelverifiedby.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.panelverifiedby.Controls.Add(Me.chkesigverifiedby)
+        Me.panelverifiedby.Controls.Add(Me.lblverifiedby)
+        Me.panelverifiedby.Location = New System.Drawing.Point(3, 13)
+        Me.panelverifiedby.Name = "panelverifiedby"
+        Me.panelverifiedby.Size = New System.Drawing.Size(219, 54)
+        Me.panelverifiedby.TabIndex = 275
+        '
+        'chkesigverifiedby
+        '
+        Me.chkesigverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkesigverifiedby.AutoSize = True
+        Me.chkesigverifiedby.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkesigverifiedby.Location = New System.Drawing.Point(164, 9)
+        Me.chkesigverifiedby.Name = "chkesigverifiedby"
+        Me.chkesigverifiedby.Size = New System.Drawing.Size(52, 18)
+        Me.chkesigverifiedby.TabIndex = 274
+        Me.chkesigverifiedby.Text = "E-Sig"
+        Me.chkesigverifiedby.UseVisualStyleBackColor = True
+        '
+        'lblverifiedby
+        '
+        Me.lblverifiedby.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblpatho.BackColor = System.Drawing.Color.Transparent
-        Me.lblpatho.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.lblpatho.ForeColor = System.Drawing.Color.Black
-        Me.lblpatho.Location = New System.Drawing.Point(25, 31)
-        Me.lblpatho.Name = "lblpatho"
-        Me.lblpatho.Size = New System.Drawing.Size(329, 19)
-        Me.lblpatho.TabIndex = 273
-        Me.lblpatho.Text = "Pathologist Name"
-        Me.lblpatho.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lblpatho.Visible = False
+        Me.lblverifiedby.BackColor = System.Drawing.Color.Transparent
+        Me.lblverifiedby.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.lblverifiedby.ForeColor = System.Drawing.Color.Black
+        Me.lblverifiedby.Location = New System.Drawing.Point(8, 31)
+        Me.lblverifiedby.Name = "lblverifiedby"
+        Me.lblverifiedby.Size = New System.Drawing.Size(202, 19)
+        Me.lblverifiedby.TabIndex = 273
+        Me.lblverifiedby.Text = "Medtech Name"
+        Me.lblverifiedby.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblverifiedby.Visible = False
         '
-        'lblpathodesignation
+        'lblverifiedbylicense
         '
-        Me.lblpathodesignation.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblpathodesignation.BackColor = System.Drawing.Color.Transparent
-        Me.lblpathodesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
-        Me.lblpathodesignation.ForeColor = System.Drawing.Color.Black
-        Me.lblpathodesignation.Location = New System.Drawing.Point(364, 71)
-        Me.lblpathodesignation.Name = "lblpathodesignation"
-        Me.lblpathodesignation.Size = New System.Drawing.Size(326, 18)
-        Me.lblpathodesignation.TabIndex = 255
-        Me.lblpathodesignation.Text = "Clinical Pathologist"
-        Me.lblpathodesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblverifiedbylicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblverifiedbylicense.BackColor = System.Drawing.Color.Transparent
+        Me.lblverifiedbylicense.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblverifiedbylicense.ForeColor = System.Drawing.Color.Black
+        Me.lblverifiedbylicense.Location = New System.Drawing.Point(6, 62)
+        Me.lblverifiedbylicense.Name = "lblverifiedbylicense"
+        Me.lblverifiedbylicense.Size = New System.Drawing.Size(216, 18)
+        Me.lblverifiedbylicense.TabIndex = 253
+        Me.lblverifiedbylicense.Text = "License No."
+        Me.lblverifiedbylicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblverifiedbydesignation
+        '
+        Me.lblverifiedbydesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblverifiedbydesignation.BackColor = System.Drawing.Color.Transparent
+        Me.lblverifiedbydesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblverifiedbydesignation.ForeColor = System.Drawing.Color.Black
+        Me.lblverifiedbydesignation.Location = New System.Drawing.Point(7, 77)
+        Me.lblverifiedbydesignation.Name = "lblverifiedbydesignation"
+        Me.lblverifiedbydesignation.Size = New System.Drawing.Size(213, 27)
+        Me.lblverifiedbydesignation.TabIndex = 252
+        Me.lblverifiedbydesignation.Text = "Medical Technologist"
+        Me.lblverifiedbydesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Label12)
+        Me.Panel2.Controls.Add(Me.cmbMedtech)
+        Me.Panel2.Controls.Add(Me.panelmedtech)
+        Me.Panel2.Controls.Add(Me.lblmedtechlicense)
+        Me.Panel2.Controls.Add(Me.lblmedtechdesignation)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(3, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(222, 104)
+        Me.Panel2.TabIndex = 276
+        '
+        'Label12
+        '
+        Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.Label12.ForeColor = System.Drawing.Color.Black
+        Me.Label12.Location = New System.Drawing.Point(4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(98, 18)
+        Me.Label12.TabIndex = 276
+        Me.Label12.Text = "Processed By:"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'panelmedtech
         '
+        Me.panelmedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelmedtech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.panelmedtech.Controls.Add(Me.chkesigmedtech)
         Me.panelmedtech.Controls.Add(Me.lblmedtech)
-        Me.panelmedtech.Location = New System.Drawing.Point(3, 6)
+        Me.panelmedtech.Location = New System.Drawing.Point(3, 13)
         Me.panelmedtech.Name = "panelmedtech"
-        Me.panelmedtech.Size = New System.Drawing.Size(323, 54)
+        Me.panelmedtech.Size = New System.Drawing.Size(219, 54)
         Me.panelmedtech.TabIndex = 275
+        '
+        'chkesigmedtech
+        '
+        Me.chkesigmedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkesigmedtech.AutoSize = True
+        Me.chkesigmedtech.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkesigmedtech.Location = New System.Drawing.Point(164, 9)
+        Me.chkesigmedtech.Name = "chkesigmedtech"
+        Me.chkesigmedtech.Size = New System.Drawing.Size(52, 18)
+        Me.chkesigmedtech.TabIndex = 274
+        Me.chkesigmedtech.Text = "E-Sig"
+        Me.chkesigmedtech.UseVisualStyleBackColor = True
         '
         'lblmedtech
         '
@@ -346,39 +451,127 @@ Partial Class frmResultBaseDesign
         Me.lblmedtech.BackColor = System.Drawing.Color.Transparent
         Me.lblmedtech.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.lblmedtech.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtech.Location = New System.Drawing.Point(0, 31)
+        Me.lblmedtech.Location = New System.Drawing.Point(8, 31)
         Me.lblmedtech.Name = "lblmedtech"
-        Me.lblmedtech.Size = New System.Drawing.Size(320, 19)
+        Me.lblmedtech.Size = New System.Drawing.Size(202, 19)
         Me.lblmedtech.TabIndex = 273
         Me.lblmedtech.Text = "Medtech Name"
         Me.lblmedtech.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lblmedtech.Visible = False
         '
+        'lblmedtechlicense
+        '
+        Me.lblmedtechlicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblmedtechlicense.BackColor = System.Drawing.Color.Transparent
+        Me.lblmedtechlicense.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblmedtechlicense.ForeColor = System.Drawing.Color.Black
+        Me.lblmedtechlicense.Location = New System.Drawing.Point(6, 62)
+        Me.lblmedtechlicense.Name = "lblmedtechlicense"
+        Me.lblmedtechlicense.Size = New System.Drawing.Size(216, 18)
+        Me.lblmedtechlicense.TabIndex = 253
+        Me.lblmedtechlicense.Text = "License No."
+        Me.lblmedtechlicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblmedtechdesignation
+        '
+        Me.lblmedtechdesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblmedtechdesignation.BackColor = System.Drawing.Color.Transparent
+        Me.lblmedtechdesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblmedtechdesignation.ForeColor = System.Drawing.Color.Black
+        Me.lblmedtechdesignation.Location = New System.Drawing.Point(7, 77)
+        Me.lblmedtechdesignation.Name = "lblmedtechdesignation"
+        Me.lblmedtechdesignation.Size = New System.Drawing.Size(213, 27)
+        Me.lblmedtechdesignation.TabIndex = 252
+        Me.lblmedtechdesignation.Text = "Medical Technologist"
+        Me.lblmedtechdesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.lblpathodesignation)
+        Me.Panel3.Controls.Add(Me.cmbPathologist)
+        Me.Panel3.Controls.Add(Me.lblpatholicense)
+        Me.Panel3.Controls.Add(Me.panelpatho)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(459, 3)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(230, 104)
+        Me.Panel3.TabIndex = 277
+        '
+        'lblpathodesignation
+        '
+        Me.lblpathodesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblpathodesignation.BackColor = System.Drawing.Color.Transparent
+        Me.lblpathodesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblpathodesignation.ForeColor = System.Drawing.Color.Black
+        Me.lblpathodesignation.Location = New System.Drawing.Point(3, 77)
+        Me.lblpathodesignation.Name = "lblpathodesignation"
+        Me.lblpathodesignation.Size = New System.Drawing.Size(229, 27)
+        Me.lblpathodesignation.TabIndex = 255
+        Me.lblpathodesignation.Text = "Clinical Pathologist"
+        Me.lblpathodesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cmbPathologist
+        '
+        Me.cmbPathologist.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbPathologist.BackColor = System.Drawing.Color.White
+        Me.cmbPathologist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPathologist.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.cmbPathologist.FormattingEnabled = True
+        Me.cmbPathologist.Location = New System.Drawing.Point(4, 38)
+        Me.cmbPathologist.Name = "cmbPathologist"
+        Me.cmbPathologist.Size = New System.Drawing.Size(223, 26)
+        Me.cmbPathologist.TabIndex = 257
+        '
         'lblpatholicense
         '
-        Me.lblpatholicense.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblpatholicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblpatholicense.BackColor = System.Drawing.Color.Transparent
         Me.lblpatholicense.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblpatholicense.ForeColor = System.Drawing.Color.Black
-        Me.lblpatholicense.Location = New System.Drawing.Point(367, 56)
+        Me.lblpatholicense.Location = New System.Drawing.Point(6, 62)
         Me.lblpatholicense.Name = "lblpatholicense"
-        Me.lblpatholicense.Size = New System.Drawing.Size(319, 18)
+        Me.lblpatholicense.Size = New System.Drawing.Size(222, 18)
         Me.lblpatholicense.TabIndex = 256
         Me.lblpatholicense.Text = "License No."
         Me.lblpatholicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lblmedtechlicense
+        'panelpatho
         '
-        Me.lblmedtechlicense.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.lblmedtechlicense.BackColor = System.Drawing.Color.Transparent
-        Me.lblmedtechlicense.Font = New System.Drawing.Font("Calibri", 11.25!)
-        Me.lblmedtechlicense.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtechlicense.Location = New System.Drawing.Point(0, 56)
-        Me.lblmedtechlicense.Name = "lblmedtechlicense"
-        Me.lblmedtechlicense.Size = New System.Drawing.Size(323, 18)
-        Me.lblmedtechlicense.TabIndex = 253
-        Me.lblmedtechlicense.Text = "License No."
-        Me.lblmedtechlicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.panelpatho.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelpatho.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.panelpatho.Controls.Add(Me.chkesigpatho)
+        Me.panelpatho.Controls.Add(Me.lblpatho)
+        Me.panelpatho.Location = New System.Drawing.Point(3, 13)
+        Me.panelpatho.Name = "panelpatho"
+        Me.panelpatho.Size = New System.Drawing.Size(226, 54)
+        Me.panelpatho.TabIndex = 274
+        '
+        'chkesigpatho
+        '
+        Me.chkesigpatho.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkesigpatho.AutoSize = True
+        Me.chkesigpatho.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkesigpatho.Location = New System.Drawing.Point(176, 9)
+        Me.chkesigpatho.Name = "chkesigpatho"
+        Me.chkesigpatho.Size = New System.Drawing.Size(52, 18)
+        Me.chkesigpatho.TabIndex = 275
+        Me.chkesigpatho.Text = "E-Sig"
+        Me.chkesigpatho.UseVisualStyleBackColor = True
+        '
+        'lblpatho
+        '
+        Me.lblpatho.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblpatho.BackColor = System.Drawing.Color.Transparent
+        Me.lblpatho.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.lblpatho.ForeColor = System.Drawing.Color.Black
+        Me.lblpatho.Location = New System.Drawing.Point(3, 31)
+        Me.lblpatho.Name = "lblpatho"
+        Me.lblpatho.Size = New System.Drawing.Size(217, 19)
+        Me.lblpatho.TabIndex = 273
+        Me.lblpatho.Text = "Pathologist Name"
+        Me.lblpatho.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblpatho.Visible = False
         '
         'panelresult
         '
@@ -495,7 +688,7 @@ Partial Class frmResultBaseDesign
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape6, Me.LineShape10, Me.LineShape9, Me.LineShape8, Me.LineShape2, Me.LineShape4, Me.LineShape3, Me.lineage, Me.LineShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(789, 396)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(789, 406)
         Me.ShapeContainer1.TabIndex = 253
         Me.ShapeContainer1.TabStop = False
         '
@@ -902,27 +1095,17 @@ Partial Class frmResultBaseDesign
         Me.pctrLogo.TabIndex = 245
         Me.pctrLogo.TabStop = False
         '
-        'chkesigmedtech
+        'cmverifiedby
         '
-        Me.chkesigmedtech.AutoSize = True
-        Me.chkesigmedtech.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkesigmedtech.Location = New System.Drawing.Point(276, 9)
-        Me.chkesigmedtech.Name = "chkesigmedtech"
-        Me.chkesigmedtech.Size = New System.Drawing.Size(52, 18)
-        Me.chkesigmedtech.TabIndex = 274
-        Me.chkesigmedtech.Text = "E-Sig"
-        Me.chkesigmedtech.UseVisualStyleBackColor = True
-        '
-        'chkesigpatho
-        '
-        Me.chkesigpatho.AutoSize = True
-        Me.chkesigpatho.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkesigpatho.Location = New System.Drawing.Point(310, 9)
-        Me.chkesigpatho.Name = "chkesigpatho"
-        Me.chkesigpatho.Size = New System.Drawing.Size(52, 18)
-        Me.chkesigpatho.TabIndex = 275
-        Me.chkesigpatho.Text = "E-Sig"
-        Me.chkesigpatho.UseVisualStyleBackColor = True
+        Me.cmverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmverifiedby.BackColor = System.Drawing.Color.White
+        Me.cmverifiedby.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmverifiedby.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.cmverifiedby.FormattingEnabled = True
+        Me.cmverifiedby.Location = New System.Drawing.Point(4, 38)
+        Me.cmverifiedby.Name = "cmverifiedby"
+        Me.cmverifiedby.Size = New System.Drawing.Size(215, 26)
+        Me.cmverifiedby.TabIndex = 222
         '
         'DataGridViewTextBoxColumn1
         '
@@ -1011,7 +1194,7 @@ Partial Class frmResultBaseDesign
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro
         DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.colresult.DefaultCellStyle = DataGridViewCellStyle3
         Me.colresult.HeaderText = "Result"
@@ -1067,7 +1250,7 @@ Partial Class frmResultBaseDesign
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(789, 396)
+        Me.ClientSize = New System.Drawing.Size(789, 406)
         Me.ControlBox = False
         Me.Controls.Add(Me.lblbirthdate)
         Me.Controls.Add(Me.Label10)
@@ -1111,10 +1294,16 @@ Partial Class frmResultBaseDesign
         Me.Text = "TEST"
         Me.panelmain.ResumeLayout(False)
         Me.panelsignatory.ResumeLayout(False)
-        Me.panelpatho.ResumeLayout(False)
-        Me.panelpatho.PerformLayout()
+        Me.tblpanelsignatory.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.panelverifiedby.ResumeLayout(False)
+        Me.panelverifiedby.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
         Me.panelmedtech.ResumeLayout(False)
         Me.panelmedtech.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.panelpatho.ResumeLayout(False)
+        Me.panelpatho.PerformLayout()
         Me.panelresultgrid.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -1210,11 +1399,27 @@ Partial Class frmResultBaseDesign
     Friend WithEvents panelmanageparams As System.Windows.Forms.Panel
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents txtgridremarks As System.Windows.Forms.TextBox
     Friend WithEvents LineShape6 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents lblbirthdate As System.Windows.Forms.Label
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents chkesigpatho As System.Windows.Forms.CheckBox
+    Friend WithEvents chkesigmedtech As System.Windows.Forms.CheckBox
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents tblpanelsignatory As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents cmbverifiedby As System.Windows.Forms.ComboBox
+    Friend WithEvents panelverifiedby As System.Windows.Forms.Panel
+    Friend WithEvents chkesigverifiedby As System.Windows.Forms.CheckBox
+    Friend WithEvents lblverifiedby As System.Windows.Forms.Label
+    Friend WithEvents lblverifiedbylicense As System.Windows.Forms.Label
+    Friend WithEvents lblverifiedbydesignation As System.Windows.Forms.Label
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents cmverifiedby As System.Windows.Forms.ComboBox
     Friend WithEvents colparameter As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colresult As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colunits As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1222,7 +1427,4 @@ Partial Class frmResultBaseDesign
     Friend WithEvents collabdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents collabresultdetailid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents coltexthighlight As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents chkesigpatho As System.Windows.Forms.CheckBox
-    Friend WithEvents chkesigmedtech As System.Windows.Forms.CheckBox
 End Class

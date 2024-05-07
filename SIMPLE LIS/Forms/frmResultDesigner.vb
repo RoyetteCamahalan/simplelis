@@ -223,27 +223,13 @@ getLabDetails:
 
             Next
             If Me.labformatid = clsModel.LabFormats.ECGREPORT Then
-                Me.fbaseform.cmbMedtech.Visible = False
-                Me.fbaseform.lblmedtechlicense.Visible = False
-                Me.fbaseform.lblmedtechdesignation.Visible = False
+                Me.fbaseform.FormatSignatory(frmResultBaseDesign.signatory.medtech, False, False)
+                Me.fbaseform.FormatSignatory(frmResultBaseDesign.signatory.verifiedby, False, False)
                 Me.fbaseform.lblpathodesignation.Text = "Cardiologist"
             End If
-            Me.dgvResult.DataSource = Me.lstControls
-            For i As Integer = 0 To Me.dgvResult.Columns.Count - 1
-                If Me.dgvResult.Columns(i).Name = "isvisible" Then
-                    Me.dgvResult.Columns(i).HeaderText = "Visible?"
-                    Me.dgvResult.Columns(i).Width = 50
-                ElseIf Me.dgvResult.Columns(i).Name = "name" Then
-                    Me.dgvResult.Columns(i).HeaderText = "Field"
-                    Me.dgvResult.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                ElseIf Me.dgvResult.Columns(i).Name = "controlTypeDescription" Then
-                    Me.dgvResult.Columns(i).HeaderText = "Fielt Type"
-                    Me.dgvResult.Columns(i).Width = 90
-                Else
-                    Me.dgvResult.Columns(i).Visible = False
-                End If
-            Next
+            BindResultGrid()
             Me.fbaseform.chkesigmedtech.Visible = False
+            Me.fbaseform.chkesigverifiedby.Visible = False
             Me.fbaseform.chkesigpatho.Visible = False
         Else
             Dim dt As DataTable = clsLaboratoryResultDetails.getLaboratoryResultDetails(Me.requestdetailno, "", Me.laboratoryid, 2)
@@ -290,18 +276,24 @@ getLabDetails:
             End If
         End If
     End Sub
-    'Private Sub addRow(ctrl As clsModel.LabControl)
-    '    afterload = False
-    '    Me.dgvResult.Rows.Add(1)
-    '    With Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1)
-    '        .Cells(colchk.Index).Value = ctrl.isvisible
-    '        .Cells(collaboratorydetailsid.Index).Value = ctrl.laboratorydetailsid
-    '        .Cells(coluuid.Index).Value = ctrl.uuid
-    '        .Cells(colfieldname.Index).Value = ctrl.name
-    '        .Cells(colfieldtypedesc.Index).Value = ctrl.getDescription()
-    '    End With
-    '    afterload = True
-    'End Sub
+    Private Sub BindResultGrid()
+        Me.dgvResult.DataSource = Nothing
+        Me.dgvResult.DataSource = Me.lstControls
+        For i As Integer = 0 To Me.dgvResult.Columns.Count - 1
+            If Me.dgvResult.Columns(i).Name = "isvisible" Then
+                Me.dgvResult.Columns(i).HeaderText = "Visible?"
+                Me.dgvResult.Columns(i).Width = 50
+            ElseIf Me.dgvResult.Columns(i).Name = "name" Then
+                Me.dgvResult.Columns(i).HeaderText = "Field"
+                Me.dgvResult.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            ElseIf Me.dgvResult.Columns(i).Name = "controlTypeDescription" Then
+                Me.dgvResult.Columns(i).HeaderText = "Fielt Type"
+                Me.dgvResult.Columns(i).Width = 90
+            Else
+                Me.dgvResult.Columns(i).Visible = False
+            End If
+        Next
+    End Sub
     Private Sub Save()
         If myFormaction = formaction.updateFormat Then
             If MsgBox("Do you want to update this format?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
@@ -372,13 +364,18 @@ getLabDetails:
                         x.dateencoded = Utility.GetServerDate()
                         x.datesubmitted = x.dateencoded
                         x.encodedby = modGlobal.userid
-                        x.pathologist = fbaseform.cmbPathologist.SelectedValue
-                        x.medtech = fbaseform.cmbMedtech.SelectedValue
+                        fbaseform.medtech = fbaseform.cmbMedtech.SelectedValue
+                        fbaseform.verifiedby = fbaseform.cmbverifiedby.SelectedValue
+                        fbaseform.patho = fbaseform.cmbPathologist.SelectedValue
+                        x.pathologist = fbaseform.patho
+                        x.verifiedby = fbaseform.verifiedby
+                        x.medtech = fbaseform.medtech
                         x.medicaltechnologist = x.medtech
                         x.releasedby = modGlobal.userid
                         x.datereleased = "01/01/1990"
                         x.remarks = fbaseform.txtgridremarks.Text
                         x.esigmedtech = fbaseform.chkesigmedtech.Checked
+                        x.esigverifiedby = fbaseform.chkesigverifiedby.Checked
                         x.esigpatho = fbaseform.chkesigpatho.Checked
                         If x.Oldlaboratoryid = 0 Then
                             x.Oldlaboratoryid = x.Save(True)
@@ -412,19 +409,19 @@ getLabDetails:
                                 If uuid = "0" Then
                                     uuid = field.uuid
                                 End If
-                                If field.isvisible AndAlso clsModel.ConstrolTypes.isInputField(field.ctrtype) AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
+                                If field.isvisible AndAlso clsModel.ControlTypes.isInputField(field.ctrtype) AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & uuid, True).First, Panel).Tag <> "1" Then
                                     xdetails.Oldlaboratoryresultid = field.laboratoryresultdetailid
                                     xdetails.laboratorydetailsid = field.laboratorydetailsid
-                                    If field.ctrtype = clsModel.ConstrolTypes.TextField Or field.ctrtype = clsModel.ConstrolTypes.DoubleTextField Or
-                                     field.ctrtype = clsModel.ConstrolTypes.ResizableTextField Then
+                                    If field.ctrtype = clsModel.ControlTypes.TextField Or field.ctrtype = clsModel.ControlTypes.DoubleTextField Or
+                                     field.ctrtype = clsModel.ControlTypes.ResizableTextField Then
                                         xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("txt_" & uuid, True).First, TextBox).Text
-                                    ElseIf field.ctrtype = clsModel.ConstrolTypes.Dropdown Then
+                                    ElseIf field.ctrtype = clsModel.ControlTypes.Dropdown Then
                                         If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).SelectedValue
                                         Else
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).Text
                                         End If
-                                    ElseIf field.ctrtype = clsModel.ConstrolTypes.DateTimePicker Then
+                                    ElseIf field.ctrtype = clsModel.ControlTypes.DateTimePicker Then
                                         xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("dtp_" & uuid, True).First, DateTimePicker).Value
                                     End If
                                     If xdetails.Oldlaboratoryresultid = 0 Then
@@ -531,9 +528,10 @@ getLabDetails:
         Dim f As New frmAddField(frmAddField.formstatus.add, New clsModel.LabControl())
         f.ShowDialog()
         If f.issave Then
-            Dim uuid As String = Utility.GetRandomString
+            f.field.isvisible = True
             fbaseform.AddControl(f.field)
             Me.lstControls.Add(f.field)
+            BindResultGrid()
         End If
     End Sub
 
@@ -579,7 +577,7 @@ getLabDetails:
     End Sub
     Private Sub dgvResult_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvResult.CellContentClick
         Try
-            If e.RowIndex >= 0 AndAlso e.ColumnIndex = 1 Then
+            If e.RowIndex >= 0 AndAlso e.ColumnIndex = dgvResult.Columns("name").Index Then
                 Call showFieldForm(Me.dgvResult.Rows(e.RowIndex).Cells("uuid").Value)
             ElseIf e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
                 Me.dgvResult.CommitEdit(DataGridViewDataErrorContexts.Commit)
@@ -623,7 +621,7 @@ getLabDetails:
             Case Else
                 If Me.labformatid = clsModel.LabFormats.GENERIC Then
                     For Each field As clsModel.LabControl In Me.lstControls
-                        If field.isvisible AndAlso field.ctrtype = clsModel.ConstrolTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel).Tag <> "1" Then
+                        If field.isvisible AndAlso field.ctrtype = clsModel.ControlTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel).Tag <> "1" Then
                             Dim panel = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel)
                             If panel.Visible Then
                                 Try

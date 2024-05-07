@@ -15,10 +15,12 @@
     Dim mpathologist As Long
     Dim mmedicaltechnologist As Long
     Dim mmedtech As Long
+    Dim mverifiedby As Long
     Dim mreleasedby As Long
     Dim mdatereleased As Date
     Dim mremarks As String
     Dim mesigmedtech As Boolean
+    Dim mesigverifiedby As Boolean
     Dim mesigpatho As Boolean
 #End Region
 #Region "Properties"
@@ -134,6 +136,14 @@
             mmedtech = value
         End Set
     End Property
+    Public Property verifiedby() As Long
+        Get
+            Return mverifiedby
+        End Get
+        Set(ByVal value As Long)
+            mverifiedby = value
+        End Set
+    End Property
     Public Property releasedby() As Long
         Get
             Return mreleasedby
@@ -164,6 +174,14 @@
         End Get
         Set(ByVal value As Boolean)
             mesigmedtech = value
+        End Set
+    End Property
+    Public Property esigverifiedby() As Boolean
+        Get
+            Return mesigverifiedby
+        End Get
+        Set(ByVal value As Boolean)
+            mesigverifiedby = value
         End Set
     End Property
     Public Property esigpatho() As Boolean
@@ -216,9 +234,9 @@
             operation = 2
         End If
         Dim strPar() As String = {"@operation", "@soperation", "@Oldlaboratoryid", "@laboratoryid", "@itemcode", "@admissionid", "@patientrequestno", "@specimen", "@labno", "@datesubmitted", "@dateencoded", _
-                                  "@encodedby", "@pathologist", "@medicaltechnologist", "@medtech", "@releasedby", "@datereleased", "@remarks", "esigmedtech", "esigpatho", "NewPK"}
+                                  "@encodedby", "@pathologist", "@medicaltechnologist", "@medtech", "@verifiedby", "@releasedby", "@datereleased", "@remarks", "esigmedtech", "esigverifiedby", "esigpatho", "NewPK"}
         Dim strVal() As Object = {operation, soperation, Me.Oldlaboratoryid, Me.laboratoryid, Me.itemcode, Me.admissionid, Me.patientrequestno, Me.specimen, Me.labno, Me.datesubmitted, Me.dateencoded, _
-                                    Me.encodedby, Me.pathologist, Me.medicaltechnologist, Me.medtech, Me.releasedby, Me.datereleased, Me.remarks, esigmedtech, esigpatho, 1}
+                                    Me.encodedby, Me.pathologist, Me.medicaltechnologist, Me.medtech, Me.verifiedby, Me.releasedby, Me.datereleased, Me.remarks, esigmedtech, esigverifiedby, esigpatho, 1}
         Return GenericDA.ManageQuery(strPar, strVal, "spLaboratoryResult", 2)
     End Function
     Public Shared Sub mergeResult(requestdetailno As Long, oldlabresultid As Long, newlabresultid As Long)
