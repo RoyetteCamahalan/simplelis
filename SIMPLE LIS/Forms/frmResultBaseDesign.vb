@@ -892,19 +892,10 @@ Public Class frmResultBaseDesign
             Me.dgvResult.Columns(colunits.Index).HeaderText = "Result"
         End If
     End Sub
-    Private currentRow, currentCell As Integer
-    Private resetRow As Boolean = False
-
-    Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles dgvResult.SelectionChanged
-        If resetRow Then
-            resetRow = False
-            dgvResult.CurrentCell = dgvResult.Rows(currentRow).Cells(currentCell)
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, keyData As System.Windows.Forms.Keys) As Boolean
+        If (keyData = Keys.Enter Or keyData = Keys.Down Or keyData = Keys.Up Or keyData = Keys.Tab) And Not dgvResult.EditingControl Is Nothing Then
+            Return True
         End If
-    End Sub
-
-    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResult.CellEndEdit
-        resetRow = True
-        currentRow = e.RowIndex
-        currentCell = e.ColumnIndex
-    End Sub
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
 End Class
