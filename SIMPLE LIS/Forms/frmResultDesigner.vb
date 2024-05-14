@@ -21,7 +21,7 @@ Public Class frmResultDesigner
     Private initpanelmainheight As Integer
     Private initformheight As Integer
 
-    Private labformatid As Integer
+    Private labformatid As LabFormat
     Private requestStatus As Integer
     Public myFormaction As formaction
     Public mergeToogle As Integer = 0
@@ -55,30 +55,24 @@ Public Class frmResultDesigner
         If myFormaction = formaction.updateFormat Then
             Me.Text = "Lab Result Designer"
             Select Case labformatid
-                Case clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION
+                Case LabFormat.GRID_SI
                     Me.tsSave.Visible = False
                     Me.tsClose.Visible = False
-                    Dim f As New frmManageResultParams
-                    f.labid = Me.laboratoryid
-                    f.lblMisc.Text = Me.laboratoryttitle
-                    f.hasSIvalue = False
+                    Dim f As New frmManageResultParams(Me.laboratoryid, Me.laboratoryttitle, Me.labformatid)
                     f.ShowDialog()
                     Me.Close()
                     Exit Sub
-                Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
-                    Dim f As New frmManageResultParams
-                    f.labid = Me.laboratoryid
-                    f.lblMisc.Text = Me.laboratoryttitle
-                    f.hasSIvalue = True
+                Case LabFormat.GRID_WITH_CONVERSION
+                    Dim f As New frmManageResultParams(Me.laboratoryid, Me.laboratoryttitle, Me.labformatid)
                     f.ShowDialog()
                     Me.Close()
                     Exit Sub
-                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.CROSSMATCHING, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+                Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.CROSSMATCHING, LabFormat.ECGREPORT, LabFormat.EchoForms
                     MsgBox("Diagnostic Format is not available for editing!", MsgBoxStyle.Information + MsgBoxStyle.Information, modGlobal.msgboxTitle)
                     Me.Close()
                     Exit Sub
                 Case Else
-                    fbaseform = New frmResultBaseDesign(Me, True, Me.laboratoryid, Me.laboratoryttitle, False)
+                    fbaseform = New frmResultBaseDesign(Me, True, Me.laboratoryid, Me.laboratoryttitle, False, Me.labformatid)
                     loadForm()
             End Select
         ElseIf myFormaction = formaction.NONE Then
@@ -88,12 +82,7 @@ Public Class frmResultDesigner
             Me.Text = Me.laboratoryname & Me.Text
             Me.panelsidebar.Visible = False
             Select Case Me.labformatid
-                Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
-                    fBloodChem = New frmtemplatewithconversion(requestdetailno, Me.laboratoryid, Me.laboratoryttitle, Me.myFormaction <> formaction.manageResult)
-                    fBloodChem.MdiParent = Me
-                    fBloodChem.Show()
-                    fBloodChem.Top = (Me.Height - fBloodChem.Height) / 2
-                Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+                Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                     If Me.myFormaction = formaction.manageResult Then
                         tsradtemplatemain.Visible = True
                         loadTemplateList()
@@ -102,16 +91,8 @@ Public Class frmResultDesigner
                     frmRadiology.MdiParent = Me
                     frmRadiology.Dock = DockStyle.Fill
                     frmRadiology.Show()
-                Case clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION
-                    fbaseform = New frmResultBaseDesign(Me, False, Me.laboratoryid, Me.laboratoryttitle, Me.myFormaction <> formaction.manageResult)
-                    fbaseform.panelresult.Visible = False
-                    fbaseform.panelresultgrid.BorderStyle = BorderStyle.None
-                    fbaseform.loadRequestDetails(Me.requestdetailno)
-                    loadForm()
                 Case Else
-                    fbaseform = New frmResultBaseDesign(Me, False, Me.laboratoryid, Me.laboratoryttitle, Me.myFormaction <> formaction.manageResult)
-                    fbaseform.panelresult.BorderStyle = BorderStyle.None
-                    fbaseform.panelresultgrid.Visible = False
+                    fbaseform = New frmResultBaseDesign(Me, False, Me.laboratoryid, Me.laboratoryttitle, Me.myFormaction <> formaction.manageResult, Me.labformatid)
                     fbaseform.loadRequestDetails(Me.requestdetailno)
                     loadForm()
             End Select
@@ -121,7 +102,7 @@ Public Class frmResultDesigner
                 Me.tsprintas.Visible = Me.tsPrint.Visible
                 Me.tsMerging.Visible = Me.tsPrint.Visible
                 If Me.tsPrint.Visible And Me.isRTFForm() Then
-                    If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                    If Me.labformatid = LabFormat.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
                     End If
                 ElseIf Me.tsPrint.Visible And Not Me.isRTFForm() Then
@@ -135,10 +116,10 @@ Public Class frmResultDesigner
         afterload = True
     End Sub
     Private Function isRTFForm() As Boolean
-        Return Me.labformatid = clsModel.LabFormats.RADIOLOGY Or
-            Me.labformatid = clsModel.LabFormats.ULTRASOUND Or
-            Me.labformatid = clsModel.LabFormats.ECGREPORT Or
-            Me.labformatid = clsModel.LabFormats.EchoForms
+        Return Me.labformatid = LabFormat.RADIOLOGY Or
+            Me.labformatid = LabFormat.ULTRASOUND Or
+            Me.labformatid = LabFormat.ECGREPORT Or
+            Me.labformatid = LabFormat.EchoForms
     End Function
     Private Sub getLabResultDetails()
         Dim dt As DataTable
@@ -183,6 +164,11 @@ getLabDetails:
         Me.initpanelresultheight = fbaseform.panelresult.Height
         Me.initpanelmainheight = fbaseform.panelmain.Height
         Me.initformheight = fbaseform.Height
+        If Me.labformatid = LabFormat.GRID_WITH_CONVERSION Then
+            Me.initpanelresultheight += fbaseform.panelresultwithconversion.Height
+            Me.initpanelmainheight += fbaseform.panelresultwithconversion.Height
+            Me.initformheight += fbaseform.panelresultwithconversion.Height
+        End If
         Call adjustPanelSize()
         'Me.txtpanelheight.Text = Me.initpanelresultheight
         'fbaseform.Top = (Me.Height - fbaseform.Height) / 2
@@ -222,7 +208,7 @@ getLabDetails:
                 End If
 
             Next
-            If Me.labformatid = clsModel.LabFormats.ECGREPORT Then
+            If Me.labformatid = LabFormat.ECGREPORT Then
                 Me.fbaseform.FormatSignatory(frmResultBaseDesign.signatory.medtech, False, False)
                 Me.fbaseform.FormatSignatory(frmResultBaseDesign.signatory.verifiedby, False, False)
                 Me.fbaseform.lblpathodesignation.Text = "Cardiologist"
@@ -239,23 +225,54 @@ getLabDetails:
                 islock = True
                 Me.fbaseform.isLock = True
             End If
-            If Me.labformatid = clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION Then
-
-                For Each row As DataRow In dt.Rows
-                    If row.Item("visible") Then
-                        fbaseform.dgvResult.Rows.Add(1)
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabdetailid.Index).Value = row.Item("laboratorydetailsid")
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colparameter.Index).Value = row.Item("description")
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colref.Index).Value = row.Item("normalvalues")
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colresult.Index).Value = Utility.NullToEmptyString(row.Item("result"))
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabresultdetailid.Index).Value = row.Item("laboratoryresultdetailsid")
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunits.Index).Value = row.Item("unit")
-                        fbaseform.dgvResult.Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.coltexthighlight.Index).Value = row.Item("texthighlight")
-                        Call fbaseform.adjustForm()
-                    End If
-                Next
+            If Me.labformatid = LabFormat.GRID_SI Then
+                fbaseform.panelresultgrid.BorderStyle = BorderStyle.None
+                fbaseform.panelresult.Visible = False
+                fbaseform.panelresultwithconversion.Visible = False
+                With fbaseform.dgvResult
+                    .Columns(fbaseform.colresult.Index).Width = 160
+                    .Columns(fbaseform.colunits.Index).Width = 100
+                    .Columns(fbaseform.colref.Index).Width = 190
+                    .Columns(fbaseform.colresultconversion.Index).Visible = False
+                    .Columns(fbaseform.colunitsconversion.Index).Visible = False
+                    .Columns(fbaseform.colrefconversion.Index).Visible = False
+                    For Each row As DataRow In dt.Rows
+                        If row.Item("visible") Then
+                            .Rows.Add(1)
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabdetailid.Index).Value = row.Item("laboratorydetailsid")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colparameter.Index).Value = row.Item("description")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colref.Index).Value = row.Item("normalvalues")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colresult.Index).Value = Utility.NullToEmptyString(row.Item("result"))
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabresultdetailid.Index).Value = row.Item("laboratoryresultdetailsid")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunits.Index).Value = row.Item("unit")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.coltexthighlight.Index).Value = row.Item("texthighlight")
+                            Call fbaseform.adjustForm()
+                        End If
+                    Next
+                End With
+            ElseIf Me.labformatid = LabFormat.GRID_WITH_CONVERSION Then
+                fbaseform.panelresultgrid.BorderStyle = BorderStyle.None
+                fbaseform.panelresult.Visible = False
+                With (fbaseform.dgvResult)
+                    .ColumnHeadersVisible = False
+                    For Each row As DataRow In dt.Rows
+                        If row.Item("visible") Then
+                            .Rows.Add(1)
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabdetailid.Index).Value = row.Item("laboratorydetailsid")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colparameter.Index).Value = row.Item("description")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colref.Index).Value = row.Item("normalvalues")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colresult.Index).Value = Utility.NullToEmptyString(row.Item("result"))
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabresultdetailid.Index).Value = row.Item("laboratoryresultdetailsid")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunits.Index).Value = row.Item("unit")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.coltexthighlight.Index).Value = row.Item("texthighlight")
+                            Call fbaseform.adjustForm()
+                        End If
+                    Next
+                End With
             Else
-                If Me.labformatid = clsModel.LabFormats.ECGREPORT Then
+                fbaseform.panelresult.BorderStyle = BorderStyle.None
+                fbaseform.panelresultgrid.Visible = False
+                If Me.labformatid = LabFormat.ECGREPORT Then
                     Me.fbaseform.cmbMedtech.Visible = False
                     Me.fbaseform.lblmedtechlicense.Visible = False
                     Me.fbaseform.lblmedtechdesignation.Visible = False
@@ -341,9 +358,9 @@ getLabDetails:
         ElseIf myFormaction = formaction.manageResult Then
             If MsgBox("Are you sure you want to save this examination result?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
                 Select Case labformatid
-                    Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
+                    Case LabFormat.GRID_WITH_CONVERSION
                         fBloodChem.save()
-                    Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+                    Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                         frmRadiology.saveNow(Me.tsSave.Text)
                         If Not frmRadiology.isSave Then
                             Exit Sub
@@ -390,7 +407,7 @@ getLabDetails:
                         End If
                         Dim xdetails As New clsLaboratoryResultDetails
                         xdetails.laboratoryresultid = x.Oldlaboratoryid
-                        If Me.labformatid = clsModel.LabFormats.WITHSIORCONVENTIONALNOCONVERSION Then
+                        If Me.labformatid = LabFormat.GRID_SI Then
                             fbaseform.dgvResult.EndEdit()
                             For Each row As DataGridViewRow In fbaseform.dgvResult.Rows
                                 xdetails.laboratorydetailsid = row.Cells(fbaseform.collabdetailid.Index).Value
@@ -416,7 +433,7 @@ getLabDetails:
                                      field.ctrtype = clsModel.ControlTypes.ResizableTextField Then
                                         xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("txt_" & uuid, True).First, TextBox).Text
                                     ElseIf field.ctrtype = clsModel.ControlTypes.Dropdown Then
-                                        If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
+                                        If Me.laboratoryid = LabFormat.NEWBORNSCREENING Then
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).SelectedValue
                                         Else
                                             xdetails.result = CType(Me.fbaseform.panelresult.Controls.Find("cmb_" & uuid, True).First, ComboBox).Text
@@ -459,7 +476,7 @@ getLabDetails:
                 Me.tsprintas.Visible = Me.tsPrint.Visible
                 Me.tsradtemplatemain.Visible = False
                 If Me.isRTFForm() Then
-                    If Me.labformatid = clsModel.LabFormats.EchoForms Then
+                    If Me.labformatid = LabFormat.EchoForms Then
                         Me.CrystalReportToolStripMenuItem.Visible = False
                     End If
                 Else
@@ -482,7 +499,7 @@ getLabDetails:
             MsgBox("Unable to locate template folder", MsgBoxStyle.Critical, msgboxTitle)
             Exit Sub
         End If
-        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+        If Me.labformatid = LabFormat.EchoForms Then
             generateTS("templates", LoadFromTemplateToolStripMenuItem, ".docx")
         Else
             generateTS("templates", LoadFromTemplateToolStripMenuItem, ".rtf")
@@ -515,7 +532,7 @@ getLabDetails:
         Next
     End Sub
     Private Sub tsTemplate_Click(sender As System.Object, e As System.EventArgs)
-        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+        If Me.labformatid = LabFormat.EchoForms Then
             frmRadiology.processWordDocument(sender.Tag, True)
         Else
             frmRadiology.txtResult.LoadFile(sender.Tag, RichTextBoxStreamType.RichText)
@@ -614,12 +631,12 @@ getLabDetails:
 
     Private Sub tsPrint_Click(sender As System.Object, e As System.EventArgs) Handles tsPrint.Click
         Select Case Me.labformatid
-            Case clsModel.LabFormats.WITHSIANDCONVENTIONALWITHCONVERSION
+            Case LabFormat.GRID_WITH_CONVERSION
                 fBloodChem.DisplayPrintPreview()
-            Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+            Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                 frmRadiology.DisplayPrintPreview()
             Case Else
-                If Me.labformatid = clsModel.LabFormats.GENERIC Then
+                If Me.labformatid = LabFormat.GENERIC Then
                     For Each field As clsModel.LabControl In Me.lstControls
                         If field.isvisible AndAlso field.ctrtype = clsModel.ControlTypes.ParagraphField AndAlso CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel).Tag <> "1" Then
                             Dim panel = CType(Me.fbaseform.panelresult.Controls.Find("panel_" & field.uuid, True).First, Panel)
@@ -714,7 +731,7 @@ getLabDetails:
                 Me.Close()
             End If
         End If
-        
+
     End Sub
     Private Sub checkMergeResults()
         Dim dt As DataTable = clsLaboratoryResult.genericcls(17, Me.requestdetailno)
@@ -729,7 +746,7 @@ getLabDetails:
         Else
             Me.tsMerging.Text = "Result Merging"
         End If
-        
+
     End Sub
     Private Sub exportasPDF(lock As Boolean)
         Dim fd As New SaveFileDialog()
@@ -743,7 +760,7 @@ getLabDetails:
             Dim newPDFDoc As New PdfSharp.Pdf.PdfDocument
             Try
                 Select Case Me.labformatid
-                    Case clsModel.LabFormats.RADIOLOGY, clsModel.LabFormats.ULTRASOUND, clsModel.LabFormats.ECGREPORT, clsModel.LabFormats.EchoForms
+                    Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                         If Not File.Exists(frmRadiology.resultpdflocation) Then
                             frmRadiology.DisplayPrintPreview(3)
                         End If

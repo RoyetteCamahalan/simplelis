@@ -416,10 +416,7 @@ Public Class frmtemplatewithconversion
     End Sub
 
     Private Sub btnEdit_Click(sender As System.Object, e As System.EventArgs) Handles btnEdit.Click
-        Dim f As New frmManageResultParams
-        f.labid = Me.laboratoryid
-        f.Labname = Me.labname
-        f.hasSIvalue = True
+        Dim f As New frmManageResultParams(Me.laboratoryid, Me.labname, LabFormat.GRID_WITH_CONVERSION)
         f.ShowDialog()
         If f.issave Then
             afterload = False

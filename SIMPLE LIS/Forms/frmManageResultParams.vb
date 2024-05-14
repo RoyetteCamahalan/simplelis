@@ -3,10 +3,11 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Public Class frmManageResultParams
 #Region "Variables"
+    Private labid As Long
+    Private labname As String
+    Private hasConversion As Boolean
 
     Public myFormStatus As enFormStatus
-    Public Labname As String
-    Public labid As Long
     Public itemcode As String
     Public itemname As String
 
@@ -14,7 +15,6 @@ Public Class frmManageResultParams
     Private rowheight As Integer = 26
     Private afterload As Boolean
     Public issave As Boolean
-    Public hasSIvalue As Boolean
 #End Region
 #Region "Constructor"
     Enum enFormStatus
@@ -23,6 +23,16 @@ Public Class frmManageResultParams
         add = 1
         edit = 2
     End Enum
+    Sub New(ByVal labid As Long, ByVal labname As String, ByVal labformatid As LabFormat)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Me.labid = labid
+        Me.labname = labname
+        Me.hasConversion = labformatid = LabFormat.GRID_WITH_CONVERSION
+    End Sub
 
 #End Region
 #Region "Events"
@@ -72,7 +82,7 @@ Public Class frmManageResultParams
 
 #Region "Methods"
     Private Sub RefreshDesign()
-        If Not hasSIvalue Then
+        If Not hasConversion Then
             Me.lblconventional.Visible = False
             Me.lblSI.Visible = False
             Me.lblconversion.Visible = False
@@ -82,8 +92,8 @@ Public Class frmManageResultParams
             Me.lblrefval2.Height = Me.lbltest.Height
             Me.lblunit2.Height = Me.lbltest.Height
             Me.dgvResult.Columns(colconversion.Index).Visible = False
-            Me.dgvResult.Columns(colsiref.Index).Visible = False
-            Me.dgvResult.Columns(colsiunit.Index).Visible = False
+            Me.dgvResult.Columns(colrefconversion.Index).Visible = False
+            Me.dgvResult.Columns(colunitconversion.Index).Visible = False
             Me.dgvResult.Columns(colparameter.Index).Width = 445
         End If
     End Sub
@@ -99,8 +109,8 @@ Public Class frmManageResultParams
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colparameter.Index).Value = row.Item("description")
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colref.Index).Value = row.Item("normalvalues")
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colunits.Index).Value = row.Item("unit")
-            Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colsiref.Index).Value = row.Item("normalvaluessi")
-            Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colsiunit.Index).Value = row.Item("unitsi")
+            Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colrefconversion.Index).Value = row.Item("normalvaluessi")
+            Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colunitconversion.Index).Value = row.Item("unitsi")
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colconversion.Index).Value = CDbl(row.Item("siconversion"))
             Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(coltexthighlight.Index).Value = row.Item("texthighlight")
         Next
@@ -144,9 +154,9 @@ Public Class frmManageResultParams
             x.normalvalues = Utility.NullToEmptyString(row.Cells(colref.Index).Value)
             x.unit = Utility.NullToEmptyString(row.Cells(colunits.Index).Value)
             x.orderno = row.Index
-            x.normalvaluessi = Utility.NullToEmptyString(row.Cells(colsiref.Index).Value)
-            x.unitsi = Utility.NullToEmptyString(row.Cells(colsiunit.Index).Value)
-            x.siconversion = Utility.NullToZero(row.Cells(colconversion.Index).Value)
+            x.normalvalueconversion = Utility.NullToEmptyString(row.Cells(colrefconversion.Index).Value)
+            x.unitconversion = Utility.NullToEmptyString(row.Cells(colunitconversion.Index).Value)
+            x.conversion = Utility.NullToZero(row.Cells(colconversion.Index).Value)
             x.texthighlight = Utility.NullToEmptyString(row.Cells(coltexthighlight.Index).Value)
             If x.laboratorydetailsid = 0 Then
                 x.saveDetails(True)

@@ -4,6 +4,7 @@
     Private mlaboratoryresultid As Long
     Private mlaboratorydetailsid As Long
     Private mresult As String
+    Private mresultconversion As String
 #End Region
 #Region "Properties"
     Public Property Oldlaboratoryresultid() As Long
@@ -38,6 +39,14 @@
             mresult = value
         End Set
     End Property
+    Public Property resultconversion() As String
+        Get
+            Return mresultconversion
+        End Get
+        Set(ByVal value As String)
+            mresultconversion = value
+        End Set
+    End Property
 #End Region
 #Region "Methods"
     Public Shared Function getLaboratoryResultDetails(ByVal requestdetailno As String, ByVal labID As String, ByVal labType As String, ByVal isNew As Integer) As DataTable
@@ -52,8 +61,8 @@
         Else
             operation = 2
         End If
-        Dim strPar() As String = {"@operation", "@soperation", "@Oldlaboratoryresultid", "@laboratoryresultid", "@laboratorydetailsid", "@result"}
-        Dim strVal() As Object = {operation, 0, Me.Oldlaboratoryresultid, Me.laboratoryresultid, Me.laboratorydetailsid, Me.result}
+        Dim strPar() As String = {"@operation", "@soperation", "@Oldlaboratoryresultid", "@laboratoryresultid", "@laboratorydetailsid", "@result", "resultconversion"}
+        Dim strVal() As Object = {operation, 0, Me.Oldlaboratoryresultid, Me.laboratoryresultid, Me.laboratorydetailsid, Me.result, Me.resultconversion}
         Return GenericDA.ManageQuery(strPar, strVal, "spLaboratoryResultdetails", 2)
     End Function
 #End Region

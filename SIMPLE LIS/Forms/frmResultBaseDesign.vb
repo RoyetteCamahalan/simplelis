@@ -24,6 +24,7 @@ Public Class frmResultBaseDesign
     Private dtNewBornResults As New DataTable
     Public isLock As Boolean
     Private baseForm As frmResultDesigner
+    Private labformatid As LabFormat
 
     Public admissionid As Long
     Public itemcode As String
@@ -40,7 +41,7 @@ Public Class frmResultBaseDesign
     End Enum
 #End Region
 #Region "Constructor"
-    Public Sub New(baseForm As frmResultDesigner, ByVal isformedit As Boolean, ByVal laboratoryid As Long, ByVal labname As String, ByVal isLock As Boolean)
+    Public Sub New(baseForm As frmResultDesigner, ByVal isformedit As Boolean, ByVal laboratoryid As Long, ByVal labname As String, ByVal isLock As Boolean, ByVal format As LabFormat)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -51,6 +52,7 @@ Public Class frmResultBaseDesign
         Me.labname = labname
         Me.isLock = isLock
         Me.baseForm = baseForm
+        Me.labformatid = format
     End Sub
 
 #End Region
@@ -72,9 +74,9 @@ Public Class frmResultBaseDesign
             End If
         Catch ex As Exception
         End Try
-        If Me.laboratoryid = clsModel.LabFormats.ECGREPORT Then
+        If Me.laboratoryid = LabFormat.ECGREPORT Then
             Me.lblpathodesignation.Text = "Cardiologist"
-        ElseIf Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
+        ElseIf Me.laboratoryid = LabFormat.NEWBORNSCREENING Then
             Me.panelnewborn.Visible = True
             Me.lblpathodesignation.Text = "Pediatrician"
             Me.dtNewBornResults = clsNewBornScreening.getNBSresults()
@@ -128,7 +130,7 @@ Public Class frmResultBaseDesign
     End Sub
     Private Sub LoadCombo()
         afterload = False
-        If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING Then
+        If Me.laboratoryid = LabFormat.NEWBORNSCREENING Then
             Me.cmbPathologist.DataSource = clsNewBornScreening.getPediatrician()
             Me.cmbPathologist.DisplayMember = "cname"
             Me.cmbPathologist.ValueMember = "employeeid"
@@ -306,7 +308,7 @@ Public Class frmResultBaseDesign
                 lbldetail.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 lbldetail.Font = New Font("Cambria", 9, FontStyle.Bold)
                 lbldetail.TextAlign = ContentAlignment.MiddleCenter
-                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
+                If Me.laboratoryid = LabFormat.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
                     For Each row As DataRow In Me.dtNewBornResults.Rows
                         If row.Item("newbornscreeningresultid").ToString = ctr.value Then
                             ctr.value = row.Item("results")
@@ -336,7 +338,7 @@ Public Class frmResultBaseDesign
                 cmb.Size = New Size(panel.Width - locleft - 3, 20)
                 cmb.Anchor = AnchorStyles.Bottom Or AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
                 panel.Controls.Add(cmb)
-                If Me.laboratoryid = clsModel.LabFormats.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
+                If Me.laboratoryid = LabFormat.NEWBORNSCREENING AndAlso ctr.labeltext.ToLower().Contains("result") Then
                     cmb.DropDownStyle = ComboBoxStyle.DropDownList
                     cmb.DataSource = Me.dtNewBornResults
                     cmb.ValueMember = "newbornscreeningresultid"
@@ -783,10 +785,7 @@ Public Class frmResultBaseDesign
     End Sub
 
     Private Sub btnEdit_Click(sender As System.Object, e As System.EventArgs) Handles btnEdit.Click
-        Dim f As New frmManageResultParams
-        f.labid = Me.laboratoryid
-        f.Labname = Me.labname
-        f.hasSIvalue = False
+        Dim f As New frmManageResultParams(Me.laboratoryid, Me.labname, Me.labformatid)
         f.ShowDialog()
         If f.issave Then
             Dim dt As DataTable = clsExamination.getLabdetails(Me.laboratoryid)

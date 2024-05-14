@@ -24,9 +24,9 @@
     Public defaultvalue As String
     Public labeldescription As String
     Public panelsize As Integer
-    Public normalvaluessi As String
-    Public unitsi As String
-    Public siconversion As Double
+    Public normalvalueconversion As String
+    Public unitconversion As String
+    Public conversion As Double
     Public texthighlight As String
 #End Region
 
@@ -194,7 +194,7 @@
 
         Dim strVal() As String = {operation, 2, Me.laboratorydetailsid, Me.laboratoryid, Me.labdetailsdescription, Me.normalvalues, Me.visible,
                                   Me.unit, Me.orderno, x2, y2, height2, width2, optionvalues, controltype, defaultvalue, labeldescription,
-                                  normalvaluessi, unitsi, siconversion, texthighlight}
+                                  normalvalueconversion, unitconversion, conversion, texthighlight}
         GenericDA.ManageQuery(strPar, strVal, "spExamination", 1)
 
     End Sub

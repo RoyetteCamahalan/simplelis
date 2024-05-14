@@ -124,18 +124,6 @@
         End Function
     End Class
 
-    Public Class LabFormats
-        Public Shared GENERIC As Integer = 0 'Drag and Drop
-        Public Shared WITHSIORCONVENTIONALNOCONVERSION As Integer = 1
-        Public Shared WITHSIANDCONVENTIONALWITHCONVERSION As Integer = 2
-        Public Shared RADIOLOGY As Integer = 3
-        Public Shared ULTRASOUND As Integer = 4
-        Public Shared CROSSMATCHING As Integer = 5
-        Public Shared NEWBORNSCREENING As Integer = 6
-        Public Shared ECGREPORT As Integer = 7
-        Public Shared EchoForms As Integer = 8
-    End Class
-
     Public Class EmployeeTypes
         Public Shared radtech As Integer = 901
         Public Shared cardiologist As Integer = 902

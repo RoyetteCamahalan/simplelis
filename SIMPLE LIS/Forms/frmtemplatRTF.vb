@@ -244,7 +244,7 @@ Public Class frmtemplateRTF
         isSave = True
         Call SaveRecord()
         If Me.requestStatus = clsModel.RequestStatus.released Then
-            If Me.labformatid <> clsModel.LabFormats.EchoForms Then
+            If Me.labformatid <> LabFormat.EchoForms Then
                 Call Me.generatePDF()
             End If
         End If
@@ -308,7 +308,7 @@ Public Class frmtemplateRTF
         Try
             Call LoadFilms()
             Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
-            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            If Me.labformatid = LabFormat.EchoForms Then
                 Me.Text = "VASCULAR"
             ElseIf Me.laboratoryid = 10 Then
                 Me.Text = "RADIOLOGY"
@@ -373,7 +373,7 @@ Public Class frmtemplateRTF
             Else
                 resultpdflocation = String.Format("{0}{1}\{2}.pdf", ImageStorage, Me.admissionid, generateFileName())
             End If
-            If Me.labformatid = clsModel.LabFormats.EchoForms Then
+            If Me.labformatid = LabFormat.EchoForms Then
                 resultlocation = String.Format("{0}{1}\results\{2}.docx", ImageStorage, Me.admissionid, Me.requestdetailno)
                 If File.Exists(resultpdflocation) Then
                     AxAcroPDFCurrent.LoadFile(resultpdflocation)
@@ -432,7 +432,7 @@ Public Class frmtemplateRTF
     End Sub
     Private Sub LoadCombo()
         Try
-            If Me.labformatid = clsModel.LabFormats.EchoForms Or labformatid = clsModel.LabFormats.ECGREPORT Then
+            If Me.labformatid = LabFormat.EchoForms Or labformatid = LabFormat.ECGREPORT Then
                 Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.cardiologist)
             Else
                 Me.cmbradiologist.DataSource = clsRadiology.getRadiologist(clsModel.EmployeeTypes.radiologist)
@@ -500,7 +500,7 @@ Public Class frmtemplateRTF
             myRadiology.soperation = 0
             myRadiology.Save(False)
         End If
-        If Me.labformatid <> clsModel.LabFormats.EchoForms Then
+        If Me.labformatid <> LabFormat.EchoForms Then
             Me.txtResult.SaveFile(resultlocation)
         End If
 
@@ -585,7 +585,7 @@ Public Class frmtemplateRTF
 #Region "Printing"
     Public Sub DisplayPrintPreview(Optional tool As Integer = 0)
         'If Me.txtResult.Rtf.Contains("trowd") Then
-        If Me.labformatid = clsModel.LabFormats.EchoForms Then
+        If Me.labformatid = LabFormat.EchoForms Then
             processWordDocument("")
         Else
             Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.requestdetailno, Me.admissionid)
@@ -618,7 +618,7 @@ Public Class frmtemplateRTF
             End Try
         End If
         'Else
-       
+
         'End If
     End Sub
     Public Function generateFileName() As String
@@ -869,7 +869,7 @@ Public Class frmtemplateRTF
         Try
             If Me.cmbpreviousresult.SelectedValue > 0 Then
                 Dim dtResult As DataTable = clsExamination.genericcls(9, Me.cmbpreviousresult.SelectedValue)
-                If dtResult.Rows(0).Item("labformatid") = clsModel.LabFormats.EchoForms Then
+                If dtResult.Rows(0).Item("labformatid") = LabFormat.EchoForms Then
                     Dim dt As DataTable = clsadmissiondocuments.getDocument(6, Me.cmbpreviousresult.SelectedValue, Me.admissionid)
                     If (dt.Rows.Count > 0) Then
                         Dim prevrtfLocation = String.Format("{0}\{1}\{2}", DocumentLocation, Me.admissionid, dt.Rows(0).Item("documentname"))
