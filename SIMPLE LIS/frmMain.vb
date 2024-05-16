@@ -44,7 +44,7 @@ Public Class frmMain
         End With
         laboratoryid = 1
         requestdetailno = 61014 '1628 maceda '1156 maceda '1569 cabebe '1572 PERPETUA '1575 Martinez '1582 Nobleza
-        employeeid = 1693
+        employeeid = 1031 '1693
         myformaction = enformstatus.edit
         target = targetmodule.LISDashboard
         modGlobal.userid = employeeid
@@ -91,6 +91,8 @@ Public Class frmMain
         'If Me.requestdetailno > 0 Then
         '    target = targetmodule.manageresult
         'End If
+        frmNotif.Show()
+        frmNotif.StartBroadCast()
         setUserInfo()
         LoadUserSubModules()
         Me.Hide()

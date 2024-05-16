@@ -310,6 +310,7 @@ Public Class frmtemplateRTF
             Dim dtResult As DataTable = clsRadiology.getRadiologyResultDetails(requestdetailno, 9)
             If Me.labformatid = LabFormat.EchoForms Then
                 Me.Text = "VASCULAR"
+                Me.chkesig.Visible = False
             ElseIf Me.laboratoryid = 10 Then
                 Me.Text = "RADIOLOGY"
             Else
