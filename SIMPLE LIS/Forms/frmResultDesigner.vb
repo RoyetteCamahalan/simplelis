@@ -233,6 +233,7 @@ getLabDetails:
                     .Columns(fbaseform.colresult.Index).Width = 160
                     .Columns(fbaseform.colunits.Index).Width = 100
                     .Columns(fbaseform.colref.Index).Width = 190
+                    .Columns(fbaseform.colparameter.Index).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                     .Columns(fbaseform.colresultconversion.Index).Visible = False
                     .Columns(fbaseform.colunitsconversion.Index).Visible = False
                     .Columns(fbaseform.colrefconversion.Index).Visible = False
