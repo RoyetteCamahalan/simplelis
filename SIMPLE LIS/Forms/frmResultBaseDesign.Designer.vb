@@ -168,7 +168,7 @@ Partial Class frmResultBaseDesign
         Me.cmbMedtech.FormattingEnabled = True
         Me.cmbMedtech.Location = New System.Drawing.Point(4, 38)
         Me.cmbMedtech.Name = "cmbMedtech"
-        Me.cmbMedtech.Size = New System.Drawing.Size(215, 26)
+        Me.cmbMedtech.Size = New System.Drawing.Size(234, 26)
         Me.cmbMedtech.TabIndex = 222
         '
         'lblpatientid
@@ -177,7 +177,7 @@ Partial Class frmResultBaseDesign
         Me.lblpatientid.BackColor = System.Drawing.Color.Transparent
         Me.lblpatientid.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblpatientid.ForeColor = System.Drawing.Color.Black
-        Me.lblpatientid.Location = New System.Drawing.Point(259, 113)
+        Me.lblpatientid.Location = New System.Drawing.Point(248, 113)
         Me.lblpatientid.Name = "lblpatientid"
         Me.lblpatientid.Size = New System.Drawing.Size(75, 18)
         Me.lblpatientid.TabIndex = 214
@@ -189,7 +189,7 @@ Partial Class frmResultBaseDesign
         Me.lblGender.BackColor = System.Drawing.Color.Transparent
         Me.lblGender.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblGender.ForeColor = System.Drawing.Color.Black
-        Me.lblGender.Location = New System.Drawing.Point(44, 114)
+        Me.lblGender.Location = New System.Drawing.Point(33, 114)
         Me.lblGender.Name = "lblGender"
         Me.lblGender.Size = New System.Drawing.Size(34, 18)
         Me.lblGender.TabIndex = 212
@@ -201,7 +201,7 @@ Partial Class frmResultBaseDesign
         Me.lblAge.BackColor = System.Drawing.Color.Transparent
         Me.lblAge.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblAge.ForeColor = System.Drawing.Color.Black
-        Me.lblAge.Location = New System.Drawing.Point(159, 114)
+        Me.lblAge.Location = New System.Drawing.Point(148, 114)
         Me.lblAge.Name = "lblAge"
         Me.lblAge.Size = New System.Drawing.Size(36, 18)
         Me.lblAge.TabIndex = 210
@@ -213,7 +213,7 @@ Partial Class frmResultBaseDesign
         Me.lblPatientname.BackColor = System.Drawing.Color.Transparent
         Me.lblPatientname.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblPatientname.ForeColor = System.Drawing.Color.Black
-        Me.lblPatientname.Location = New System.Drawing.Point(44, 94)
+        Me.lblPatientname.Location = New System.Drawing.Point(33, 94)
         Me.lblPatientname.Name = "lblPatientname"
         Me.lblPatientname.Size = New System.Drawing.Size(49, 18)
         Me.lblPatientname.TabIndex = 206
@@ -263,9 +263,9 @@ Partial Class frmResultBaseDesign
         Me.panelmain.Controls.Add(Me.panelsignatory)
         Me.panelmain.Controls.Add(Me.panelresult)
         Me.panelmain.Controls.Add(Me.panelresultgrid)
-        Me.panelmain.Location = New System.Drawing.Point(44, 176)
+        Me.panelmain.Location = New System.Drawing.Point(20, 175)
         Me.panelmain.Name = "panelmain"
-        Me.panelmain.Size = New System.Drawing.Size(692, 233)
+        Me.panelmain.Size = New System.Drawing.Size(750, 233)
         Me.panelmain.TabIndex = 250
         '
         'panelsignatory
@@ -274,7 +274,7 @@ Partial Class frmResultBaseDesign
         Me.panelsignatory.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelsignatory.Location = New System.Drawing.Point(0, 237)
         Me.panelsignatory.Name = "panelsignatory"
-        Me.panelsignatory.Size = New System.Drawing.Size(692, 110)
+        Me.panelsignatory.Size = New System.Drawing.Size(750, 110)
         Me.panelsignatory.TabIndex = 253
         '
         'tblpanelsignatory
@@ -291,7 +291,7 @@ Partial Class frmResultBaseDesign
         Me.tblpanelsignatory.Name = "tblpanelsignatory"
         Me.tblpanelsignatory.RowCount = 1
         Me.tblpanelsignatory.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblpanelsignatory.Size = New System.Drawing.Size(692, 110)
+        Me.tblpanelsignatory.Size = New System.Drawing.Size(750, 110)
         Me.tblpanelsignatory.TabIndex = 283
         '
         'Panel4
@@ -302,20 +302,21 @@ Partial Class frmResultBaseDesign
         Me.Panel4.Controls.Add(Me.lblverifiedbylicense)
         Me.Panel4.Controls.Add(Me.lblverifiedbydesignation)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(231, 3)
+        Me.Panel4.Location = New System.Drawing.Point(250, 3)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(222, 104)
+        Me.Panel4.Size = New System.Drawing.Size(241, 104)
         Me.Panel4.TabIndex = 278
         '
         'Label13
         '
         Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.Label13.ForeColor = System.Drawing.Color.Black
         Me.Label13.Location = New System.Drawing.Point(4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(98, 18)
+        Me.Label13.Size = New System.Drawing.Size(79, 18)
         Me.Label13.TabIndex = 276
         Me.Label13.Text = "Verified By:"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -329,17 +330,18 @@ Partial Class frmResultBaseDesign
         Me.cmbverifiedby.FormattingEnabled = True
         Me.cmbverifiedby.Location = New System.Drawing.Point(4, 38)
         Me.cmbverifiedby.Name = "cmbverifiedby"
-        Me.cmbverifiedby.Size = New System.Drawing.Size(215, 26)
+        Me.cmbverifiedby.Size = New System.Drawing.Size(234, 26)
         Me.cmbverifiedby.TabIndex = 222
         '
         'panelverifiedby
         '
+        Me.panelverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelverifiedby.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.panelverifiedby.Controls.Add(Me.chkesigverifiedby)
         Me.panelverifiedby.Controls.Add(Me.lblverifiedby)
         Me.panelverifiedby.Location = New System.Drawing.Point(3, 13)
         Me.panelverifiedby.Name = "panelverifiedby"
-        Me.panelverifiedby.Size = New System.Drawing.Size(219, 54)
+        Me.panelverifiedby.Size = New System.Drawing.Size(238, 54)
         Me.panelverifiedby.TabIndex = 275
         '
         'chkesigverifiedby
@@ -347,7 +349,7 @@ Partial Class frmResultBaseDesign
         Me.chkesigverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkesigverifiedby.AutoSize = True
         Me.chkesigverifiedby.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkesigverifiedby.Location = New System.Drawing.Point(164, 9)
+        Me.chkesigverifiedby.Location = New System.Drawing.Point(183, 9)
         Me.chkesigverifiedby.Name = "chkesigverifiedby"
         Me.chkesigverifiedby.Size = New System.Drawing.Size(52, 18)
         Me.chkesigverifiedby.TabIndex = 274
@@ -361,9 +363,9 @@ Partial Class frmResultBaseDesign
         Me.lblverifiedby.BackColor = System.Drawing.Color.Transparent
         Me.lblverifiedby.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.lblverifiedby.ForeColor = System.Drawing.Color.Black
-        Me.lblverifiedby.Location = New System.Drawing.Point(8, 31)
+        Me.lblverifiedby.Location = New System.Drawing.Point(-3, 31)
         Me.lblverifiedby.Name = "lblverifiedby"
-        Me.lblverifiedby.Size = New System.Drawing.Size(202, 19)
+        Me.lblverifiedby.Size = New System.Drawing.Size(241, 19)
         Me.lblverifiedby.TabIndex = 273
         Me.lblverifiedby.Text = "Medtech Name"
         Me.lblverifiedby.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -377,7 +379,7 @@ Partial Class frmResultBaseDesign
         Me.lblverifiedbylicense.ForeColor = System.Drawing.Color.Black
         Me.lblverifiedbylicense.Location = New System.Drawing.Point(6, 62)
         Me.lblverifiedbylicense.Name = "lblverifiedbylicense"
-        Me.lblverifiedbylicense.Size = New System.Drawing.Size(216, 18)
+        Me.lblverifiedbylicense.Size = New System.Drawing.Size(235, 18)
         Me.lblverifiedbylicense.TabIndex = 253
         Me.lblverifiedbylicense.Text = "License No."
         Me.lblverifiedbylicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -390,7 +392,7 @@ Partial Class frmResultBaseDesign
         Me.lblverifiedbydesignation.ForeColor = System.Drawing.Color.Black
         Me.lblverifiedbydesignation.Location = New System.Drawing.Point(7, 77)
         Me.lblverifiedbydesignation.Name = "lblverifiedbydesignation"
-        Me.lblverifiedbydesignation.Size = New System.Drawing.Size(213, 27)
+        Me.lblverifiedbydesignation.Size = New System.Drawing.Size(232, 27)
         Me.lblverifiedbydesignation.TabIndex = 252
         Me.lblverifiedbydesignation.Text = "Medical Technologist"
         Me.lblverifiedbydesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -405,18 +407,19 @@ Partial Class frmResultBaseDesign
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(222, 104)
+        Me.Panel2.Size = New System.Drawing.Size(241, 104)
         Me.Panel2.TabIndex = 276
         '
         'Label12
         '
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.Label12.ForeColor = System.Drawing.Color.Black
         Me.Label12.Location = New System.Drawing.Point(4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(98, 18)
+        Me.Label12.Size = New System.Drawing.Size(93, 18)
         Me.Label12.TabIndex = 276
         Me.Label12.Text = "Processed By:"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -429,7 +432,7 @@ Partial Class frmResultBaseDesign
         Me.panelmedtech.Controls.Add(Me.lblmedtech)
         Me.panelmedtech.Location = New System.Drawing.Point(3, 13)
         Me.panelmedtech.Name = "panelmedtech"
-        Me.panelmedtech.Size = New System.Drawing.Size(219, 54)
+        Me.panelmedtech.Size = New System.Drawing.Size(238, 54)
         Me.panelmedtech.TabIndex = 275
         '
         'chkesigmedtech
@@ -437,7 +440,7 @@ Partial Class frmResultBaseDesign
         Me.chkesigmedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkesigmedtech.AutoSize = True
         Me.chkesigmedtech.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkesigmedtech.Location = New System.Drawing.Point(164, 9)
+        Me.chkesigmedtech.Location = New System.Drawing.Point(183, 9)
         Me.chkesigmedtech.Name = "chkesigmedtech"
         Me.chkesigmedtech.Size = New System.Drawing.Size(52, 18)
         Me.chkesigmedtech.TabIndex = 274
@@ -451,9 +454,9 @@ Partial Class frmResultBaseDesign
         Me.lblmedtech.BackColor = System.Drawing.Color.Transparent
         Me.lblmedtech.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.lblmedtech.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtech.Location = New System.Drawing.Point(8, 31)
+        Me.lblmedtech.Location = New System.Drawing.Point(-3, 31)
         Me.lblmedtech.Name = "lblmedtech"
-        Me.lblmedtech.Size = New System.Drawing.Size(202, 19)
+        Me.lblmedtech.Size = New System.Drawing.Size(244, 19)
         Me.lblmedtech.TabIndex = 273
         Me.lblmedtech.Text = "Medtech Name"
         Me.lblmedtech.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -467,7 +470,7 @@ Partial Class frmResultBaseDesign
         Me.lblmedtechlicense.ForeColor = System.Drawing.Color.Black
         Me.lblmedtechlicense.Location = New System.Drawing.Point(6, 62)
         Me.lblmedtechlicense.Name = "lblmedtechlicense"
-        Me.lblmedtechlicense.Size = New System.Drawing.Size(216, 18)
+        Me.lblmedtechlicense.Size = New System.Drawing.Size(235, 18)
         Me.lblmedtechlicense.TabIndex = 253
         Me.lblmedtechlicense.Text = "License No."
         Me.lblmedtechlicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -480,7 +483,7 @@ Partial Class frmResultBaseDesign
         Me.lblmedtechdesignation.ForeColor = System.Drawing.Color.Black
         Me.lblmedtechdesignation.Location = New System.Drawing.Point(7, 77)
         Me.lblmedtechdesignation.Name = "lblmedtechdesignation"
-        Me.lblmedtechdesignation.Size = New System.Drawing.Size(213, 27)
+        Me.lblmedtechdesignation.Size = New System.Drawing.Size(232, 27)
         Me.lblmedtechdesignation.TabIndex = 252
         Me.lblmedtechdesignation.Text = "Medical Technologist"
         Me.lblmedtechdesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -492,9 +495,9 @@ Partial Class frmResultBaseDesign
         Me.Panel3.Controls.Add(Me.lblpatholicense)
         Me.Panel3.Controls.Add(Me.panelpatho)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(459, 3)
+        Me.Panel3.Location = New System.Drawing.Point(497, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(230, 104)
+        Me.Panel3.Size = New System.Drawing.Size(250, 104)
         Me.Panel3.TabIndex = 277
         '
         'lblpathodesignation
@@ -505,7 +508,7 @@ Partial Class frmResultBaseDesign
         Me.lblpathodesignation.ForeColor = System.Drawing.Color.Black
         Me.lblpathodesignation.Location = New System.Drawing.Point(3, 77)
         Me.lblpathodesignation.Name = "lblpathodesignation"
-        Me.lblpathodesignation.Size = New System.Drawing.Size(229, 27)
+        Me.lblpathodesignation.Size = New System.Drawing.Size(249, 27)
         Me.lblpathodesignation.TabIndex = 255
         Me.lblpathodesignation.Text = "Clinical Pathologist"
         Me.lblpathodesignation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -519,7 +522,7 @@ Partial Class frmResultBaseDesign
         Me.cmbPathologist.FormattingEnabled = True
         Me.cmbPathologist.Location = New System.Drawing.Point(4, 38)
         Me.cmbPathologist.Name = "cmbPathologist"
-        Me.cmbPathologist.Size = New System.Drawing.Size(223, 26)
+        Me.cmbPathologist.Size = New System.Drawing.Size(243, 26)
         Me.cmbPathologist.TabIndex = 257
         '
         'lblpatholicense
@@ -530,7 +533,7 @@ Partial Class frmResultBaseDesign
         Me.lblpatholicense.ForeColor = System.Drawing.Color.Black
         Me.lblpatholicense.Location = New System.Drawing.Point(6, 62)
         Me.lblpatholicense.Name = "lblpatholicense"
-        Me.lblpatholicense.Size = New System.Drawing.Size(222, 18)
+        Me.lblpatholicense.Size = New System.Drawing.Size(242, 18)
         Me.lblpatholicense.TabIndex = 256
         Me.lblpatholicense.Text = "License No."
         Me.lblpatholicense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -543,7 +546,7 @@ Partial Class frmResultBaseDesign
         Me.panelpatho.Controls.Add(Me.lblpatho)
         Me.panelpatho.Location = New System.Drawing.Point(3, 13)
         Me.panelpatho.Name = "panelpatho"
-        Me.panelpatho.Size = New System.Drawing.Size(226, 54)
+        Me.panelpatho.Size = New System.Drawing.Size(246, 54)
         Me.panelpatho.TabIndex = 274
         '
         'chkesigpatho
@@ -551,7 +554,7 @@ Partial Class frmResultBaseDesign
         Me.chkesigpatho.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkesigpatho.AutoSize = True
         Me.chkesigpatho.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkesigpatho.Location = New System.Drawing.Point(176, 9)
+        Me.chkesigpatho.Location = New System.Drawing.Point(196, 9)
         Me.chkesigpatho.Name = "chkesigpatho"
         Me.chkesigpatho.Size = New System.Drawing.Size(52, 18)
         Me.chkesigpatho.TabIndex = 275
@@ -565,9 +568,9 @@ Partial Class frmResultBaseDesign
         Me.lblpatho.BackColor = System.Drawing.Color.Transparent
         Me.lblpatho.Font = New System.Drawing.Font("Calibri", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.lblpatho.ForeColor = System.Drawing.Color.Black
-        Me.lblpatho.Location = New System.Drawing.Point(3, 31)
+        Me.lblpatho.Location = New System.Drawing.Point(-3, 31)
         Me.lblpatho.Name = "lblpatho"
-        Me.lblpatho.Size = New System.Drawing.Size(217, 19)
+        Me.lblpatho.Size = New System.Drawing.Size(251, 19)
         Me.lblpatho.TabIndex = 273
         Me.lblpatho.Text = "Pathologist Name"
         Me.lblpatho.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -579,7 +582,7 @@ Partial Class frmResultBaseDesign
         Me.panelresult.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelresult.Location = New System.Drawing.Point(0, 120)
         Me.panelresult.Name = "panelresult"
-        Me.panelresult.Size = New System.Drawing.Size(692, 117)
+        Me.panelresult.Size = New System.Drawing.Size(750, 117)
         Me.panelresult.TabIndex = 252
         '
         'panelresultgrid
@@ -592,7 +595,7 @@ Partial Class frmResultBaseDesign
         Me.panelresultgrid.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelresultgrid.Location = New System.Drawing.Point(0, 0)
         Me.panelresultgrid.Name = "panelresultgrid"
-        Me.panelresultgrid.Size = New System.Drawing.Size(692, 120)
+        Me.panelresultgrid.Size = New System.Drawing.Size(750, 120)
         Me.panelresultgrid.TabIndex = 253
         '
         'Panel1
@@ -602,14 +605,14 @@ Partial Class frmResultBaseDesign
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 78)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(690, 41)
+        Me.Panel1.Size = New System.Drawing.Size(748, 41)
         Me.Panel1.TabIndex = 257
         '
         'txtgridremarks
         '
         Me.txtgridremarks.BackColor = System.Drawing.Color.White
         Me.txtgridremarks.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtgridremarks.Location = New System.Drawing.Point(78, 4)
+        Me.txtgridremarks.Location = New System.Drawing.Point(95, 4)
         Me.txtgridremarks.Multiline = True
         Me.txtgridremarks.Name = "txtgridremarks"
         Me.txtgridremarks.Size = New System.Drawing.Size(607, 33)
@@ -621,7 +624,7 @@ Partial Class frmResultBaseDesign
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calisto MT", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(13, 4)
+        Me.Label3.Location = New System.Drawing.Point(30, 4)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(69, 17)
         Me.Label3.TabIndex = 265
@@ -658,7 +661,7 @@ Partial Class frmResultBaseDesign
         Me.dgvResult.Name = "dgvResult"
         Me.dgvResult.RowHeadersVisible = False
         Me.dgvResult.RowTemplate.Height = 20
-        Me.dgvResult.Size = New System.Drawing.Size(690, 51)
+        Me.dgvResult.Size = New System.Drawing.Size(748, 51)
         Me.dgvResult.TabIndex = 255
         '
         'panelmanageparams
@@ -667,7 +670,7 @@ Partial Class frmResultBaseDesign
         Me.panelmanageparams.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelmanageparams.Location = New System.Drawing.Point(0, 0)
         Me.panelmanageparams.Name = "panelmanageparams"
-        Me.panelmanageparams.Size = New System.Drawing.Size(690, 27)
+        Me.panelmanageparams.Size = New System.Drawing.Size(748, 27)
         Me.panelmanageparams.TabIndex = 256
         '
         'btnEdit
@@ -675,7 +678,7 @@ Partial Class frmResultBaseDesign
         Me.btnEdit.BackColor = System.Drawing.Color.White
         Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEdit.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEdit.Location = New System.Drawing.Point(563, 2)
+        Me.btnEdit.Location = New System.Drawing.Point(620, 2)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(123, 23)
         Me.btnEdit.TabIndex = 230
@@ -696,7 +699,7 @@ Partial Class frmResultBaseDesign
         '
         Me.LineShape6.Name = "LineShape6"
         Me.LineShape6.X1 = 644
-        Me.LineShape6.X2 = 735
+        Me.LineShape6.X2 = 746
         Me.LineShape6.Y1 = 111
         Me.LineShape6.Y2 = 111
         '
@@ -704,7 +707,7 @@ Partial Class frmResultBaseDesign
         '
         Me.LineShape10.Name = "LineShape10"
         Me.LineShape10.X1 = 660
-        Me.LineShape10.X2 = 735
+        Me.LineShape10.X2 = 746
         Me.LineShape10.Y1 = 153
         Me.LineShape10.Y2 = 153
         '
@@ -712,7 +715,7 @@ Partial Class frmResultBaseDesign
         '
         Me.LineShape9.Name = "LineShape9"
         Me.LineShape9.X1 = 660
-        Me.LineShape9.X2 = 735
+        Me.LineShape9.X2 = 746
         Me.LineShape9.Y1 = 132
         Me.LineShape9.Y2 = 132
         '
@@ -727,7 +730,7 @@ Partial Class frmResultBaseDesign
         'LineShape2
         '
         Me.LineShape2.Name = "LineShape2"
-        Me.LineShape2.X1 = 110
+        Me.LineShape2.X1 = 98
         Me.LineShape2.X2 = 574
         Me.LineShape2.Y1 = 153
         Me.LineShape2.Y2 = 153
@@ -735,7 +738,7 @@ Partial Class frmResultBaseDesign
         'LineShape4
         '
         Me.LineShape4.Name = "LineShape4"
-        Me.LineShape4.X1 = 330
+        Me.LineShape4.X1 = 319
         Me.LineShape4.X2 = 574
         Me.LineShape4.Y1 = 132
         Me.LineShape4.Y2 = 132
@@ -743,23 +746,23 @@ Partial Class frmResultBaseDesign
         'LineShape3
         '
         Me.LineShape3.Name = "LineShape3"
-        Me.LineShape3.X1 = 79
-        Me.LineShape3.X2 = 151
+        Me.LineShape3.X1 = 68
+        Me.LineShape3.X2 = 140
         Me.LineShape3.Y1 = 132
         Me.LineShape3.Y2 = 132
         '
         'lineage
         '
         Me.lineage.Name = "lineage"
-        Me.lineage.X1 = 192
-        Me.lineage.X2 = 254
+        Me.lineage.X1 = 181
+        Me.lineage.X2 = 243
         Me.lineage.Y1 = 132
         Me.lineage.Y2 = 132
         '
         'LineShape1
         '
         Me.LineShape1.Name = "LineShape1"
-        Me.LineShape1.X1 = 89
+        Me.LineShape1.X1 = 78
         Me.LineShape1.X2 = 574
         Me.LineShape1.Y1 = 111
         Me.LineShape1.Y2 = 111
@@ -769,9 +772,9 @@ Partial Class frmResultBaseDesign
         Me.txtPatientName.BackColor = System.Drawing.Color.Transparent
         Me.txtPatientName.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.txtPatientName.ForeColor = System.Drawing.Color.Black
-        Me.txtPatientName.Location = New System.Drawing.Point(93, 93)
+        Me.txtPatientName.Location = New System.Drawing.Point(82, 93)
         Me.txtPatientName.Name = "txtPatientName"
-        Me.txtPatientName.Size = New System.Drawing.Size(482, 18)
+        Me.txtPatientName.Size = New System.Drawing.Size(494, 18)
         Me.txtPatientName.TabIndex = 257
         Me.txtPatientName.Text = "NAME"
         Me.txtPatientName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -781,7 +784,7 @@ Partial Class frmResultBaseDesign
         Me.txtAge.BackColor = System.Drawing.Color.Transparent
         Me.txtAge.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.txtAge.ForeColor = System.Drawing.Color.Black
-        Me.txtAge.Location = New System.Drawing.Point(194, 114)
+        Me.txtAge.Location = New System.Drawing.Point(183, 114)
         Me.txtAge.Name = "txtAge"
         Me.txtAge.Size = New System.Drawing.Size(63, 18)
         Me.txtAge.TabIndex = 258
@@ -793,7 +796,7 @@ Partial Class frmResultBaseDesign
         Me.txtGender.BackColor = System.Drawing.Color.Transparent
         Me.txtGender.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.txtGender.ForeColor = System.Drawing.Color.Black
-        Me.txtGender.Location = New System.Drawing.Point(79, 114)
+        Me.txtGender.Location = New System.Drawing.Point(68, 114)
         Me.txtGender.Name = "txtGender"
         Me.txtGender.Size = New System.Drawing.Size(73, 18)
         Me.txtGender.TabIndex = 259
@@ -805,9 +808,9 @@ Partial Class frmResultBaseDesign
         Me.txtRequestedby.BackColor = System.Drawing.Color.Transparent
         Me.txtRequestedby.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.txtRequestedby.ForeColor = System.Drawing.Color.Black
-        Me.txtRequestedby.Location = New System.Drawing.Point(331, 113)
+        Me.txtRequestedby.Location = New System.Drawing.Point(320, 113)
         Me.txtRequestedby.Name = "txtRequestedby"
-        Me.txtRequestedby.Size = New System.Drawing.Size(244, 18)
+        Me.txtRequestedby.Size = New System.Drawing.Size(256, 18)
         Me.txtRequestedby.TabIndex = 260
         Me.txtRequestedby.Text = "DR."
         Me.txtRequestedby.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -823,9 +826,9 @@ Partial Class frmResultBaseDesign
         Me.panelnewborn.Controls.Add(Me.txtmother)
         Me.panelnewborn.Controls.Add(Me.Label2)
         Me.panelnewborn.Controls.Add(Me.ShapeContainer2)
-        Me.panelnewborn.Location = New System.Drawing.Point(263, 113)
+        Me.panelnewborn.Location = New System.Drawing.Point(252, 113)
         Me.panelnewborn.Name = "panelnewborn"
-        Me.panelnewborn.Size = New System.Drawing.Size(312, 26)
+        Me.panelnewborn.Size = New System.Drawing.Size(323, 26)
         Me.panelnewborn.TabIndex = 263
         Me.panelnewborn.Visible = False
         '
@@ -848,7 +851,7 @@ Partial Class frmResultBaseDesign
         Me.txtmother.ForeColor = System.Drawing.Color.Black
         Me.txtmother.Location = New System.Drawing.Point(111, 2)
         Me.txtmother.Name = "txtmother"
-        Me.txtmother.Size = New System.Drawing.Size(202, 18)
+        Me.txtmother.Size = New System.Drawing.Size(212, 18)
         Me.txtmother.TabIndex = 259
         Me.txtmother.Text = "NAME"
         Me.txtmother.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -871,7 +874,7 @@ Partial Class frmResultBaseDesign
         Me.ShapeContainer2.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer2.Name = "ShapeContainer2"
         Me.ShapeContainer2.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape5})
-        Me.ShapeContainer2.Size = New System.Drawing.Size(312, 26)
+        Me.ShapeContainer2.Size = New System.Drawing.Size(323, 26)
         Me.ShapeContainer2.TabIndex = 260
         Me.ShapeContainer2.TabStop = False
         '
@@ -879,7 +882,7 @@ Partial Class frmResultBaseDesign
         '
         Me.LineShape5.Name = "LineShape5"
         Me.LineShape5.X1 = 107
-        Me.LineShape5.X2 = 313
+        Me.LineShape5.X2 = 317
         Me.LineShape5.Y1 = 20
         Me.LineShape5.Y2 = 20
         '
@@ -889,7 +892,7 @@ Partial Class frmResultBaseDesign
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(44, 136)
+        Me.Label1.Location = New System.Drawing.Point(33, 136)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(62, 18)
         Me.Label1.TabIndex = 264
@@ -900,9 +903,9 @@ Partial Class frmResultBaseDesign
         Me.lblpatientaddress.BackColor = System.Drawing.Color.Transparent
         Me.lblpatientaddress.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblpatientaddress.ForeColor = System.Drawing.Color.Black
-        Me.lblpatientaddress.Location = New System.Drawing.Point(107, 135)
+        Me.lblpatientaddress.Location = New System.Drawing.Point(98, 135)
         Me.lblpatientaddress.Name = "lblpatientaddress"
-        Me.lblpatientaddress.Size = New System.Drawing.Size(470, 18)
+        Me.lblpatientaddress.Size = New System.Drawing.Size(479, 18)
         Me.lblpatientaddress.TabIndex = 265
         Me.lblpatientaddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1003,7 +1006,7 @@ Partial Class frmResultBaseDesign
         Me.lbldateencoded.ForeColor = System.Drawing.Color.Black
         Me.lbldateencoded.Location = New System.Drawing.Point(660, 114)
         Me.lbldateencoded.Name = "lbldateencoded"
-        Me.lbldateencoded.Size = New System.Drawing.Size(76, 18)
+        Me.lbldateencoded.Size = New System.Drawing.Size(87, 18)
         Me.lbldateencoded.TabIndex = 275
         Me.lbldateencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -1014,7 +1017,7 @@ Partial Class frmResultBaseDesign
         Me.lbltimeencoded.ForeColor = System.Drawing.Color.Black
         Me.lbltimeencoded.Location = New System.Drawing.Point(663, 135)
         Me.lbltimeencoded.Name = "lbltimeencoded"
-        Me.lbltimeencoded.Size = New System.Drawing.Size(73, 18)
+        Me.lbltimeencoded.Size = New System.Drawing.Size(84, 18)
         Me.lbltimeencoded.TabIndex = 276
         Me.lbltimeencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -1081,7 +1084,7 @@ Partial Class frmResultBaseDesign
         Me.lblbirthdate.ForeColor = System.Drawing.Color.Black
         Me.lblbirthdate.Location = New System.Drawing.Point(644, 93)
         Me.lblbirthdate.Name = "lblbirthdate"
-        Me.lblbirthdate.Size = New System.Drawing.Size(92, 18)
+        Me.lblbirthdate.Size = New System.Drawing.Size(103, 18)
         Me.lblbirthdate.TabIndex = 282
         Me.lblbirthdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -1296,9 +1299,11 @@ Partial Class frmResultBaseDesign
         Me.panelsignatory.ResumeLayout(False)
         Me.tblpanelsignatory.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.panelverifiedby.ResumeLayout(False)
         Me.panelverifiedby.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.panelmedtech.ResumeLayout(False)
         Me.panelmedtech.PerformLayout()
         Me.Panel3.ResumeLayout(False)

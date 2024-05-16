@@ -67,6 +67,10 @@ Partial Class frmtemplateRTF
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.dgvImageAddress = New System.Windows.Forms.DataGridView()
+        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsImageTools = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButtonbrowswimage = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -86,7 +90,11 @@ Partial Class frmtemplateRTF
         Me.Label18 = New System.Windows.Forms.Label()
         Me.DGVFilm = New System.Windows.Forms.DataGridView()
         Me.colremove = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.colitemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colfilmname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colnooffilms = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colchargedetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tsSave = New System.Windows.Forms.ToolStripButton()
         Me.tsCancel = New System.Windows.Forms.ToolStripButton()
         Me.tsPrint = New System.Windows.Forms.ToolStripButton()
@@ -124,14 +132,6 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagename = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimagedesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colimageid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colitemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colfilmname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colnooffilms = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colchargedetailsid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -522,6 +522,34 @@ Partial Class frmtemplateRTF
         Me.dgvImageAddress.Size = New System.Drawing.Size(413, 421)
         Me.dgvImageAddress.TabIndex = 6
         '
+        'colimagename
+        '
+        Me.colimagename.HeaderText = "Image Name"
+        Me.colimagename.Name = "colimagename"
+        Me.colimagename.ReadOnly = True
+        Me.colimagename.Width = 160
+        '
+        'colimagedesc
+        '
+        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.colimagedesc.HeaderText = "Description"
+        Me.colimagedesc.Name = "colimagedesc"
+        '
+        'collocation
+        '
+        Me.collocation.HeaderText = "Location"
+        Me.collocation.Name = "collocation"
+        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.collocation.Visible = False
+        '
+        'colimageid
+        '
+        Me.colimageid.HeaderText = "colimageid"
+        Me.colimageid.Name = "colimageid"
+        Me.colimageid.ReadOnly = True
+        Me.colimageid.Visible = False
+        '
         'tsImageTools
         '
         Me.tsImageTools.AutoSize = False
@@ -727,6 +755,24 @@ Partial Class frmtemplateRTF
         Me.colremove.Name = "colremove"
         Me.colremove.Width = 30
         '
+        'colitemcode
+        '
+        Me.colitemcode.HeaderText = "Item Code"
+        Me.colitemcode.Name = "colitemcode"
+        Me.colitemcode.ReadOnly = True
+        Me.colitemcode.Visible = False
+        '
+        'colfilmname
+        '
+        Me.colfilmname.HeaderText = "Film"
+        Me.colfilmname.Name = "colfilmname"
+        Me.colfilmname.ReadOnly = True
+        '
+        'colnooffilms
+        '
+        Me.colnooffilms.HeaderText = "No. of Film Used"
+        Me.colnooffilms.Name = "colnooffilms"
+        '
         'Column14
         '
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -735,6 +781,13 @@ Partial Class frmtemplateRTF
         Me.Column14.HeaderText = "Is Used?"
         Me.Column14.Name = "Column14"
         Me.Column14.Visible = False
+        '
+        'colchargedetailsid
+        '
+        Me.colchargedetailsid.HeaderText = "colchargedetailsid"
+        Me.colchargedetailsid.Name = "colchargedetailsid"
+        Me.colchargedetailsid.ReadOnly = True
+        Me.colchargedetailsid.Visible = False
         '
         'tsSave
         '
@@ -1110,59 +1163,6 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn8.ReadOnly = True
         Me.DataGridViewTextBoxColumn8.Visible = False
         Me.DataGridViewTextBoxColumn8.Width = 132
-        '
-        'colimagename
-        '
-        Me.colimagename.HeaderText = "Image Name"
-        Me.colimagename.Name = "colimagename"
-        Me.colimagename.ReadOnly = True
-        Me.colimagename.Width = 160
-        '
-        'colimagedesc
-        '
-        Me.colimagedesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.colimagedesc.HeaderText = "Description"
-        Me.colimagedesc.Name = "colimagedesc"
-        '
-        'collocation
-        '
-        Me.collocation.HeaderText = "Location"
-        Me.collocation.Name = "collocation"
-        Me.collocation.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.collocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.collocation.Visible = False
-        '
-        'colimageid
-        '
-        Me.colimageid.HeaderText = "colimageid"
-        Me.colimageid.Name = "colimageid"
-        Me.colimageid.ReadOnly = True
-        Me.colimageid.Visible = False
-        '
-        'colitemcode
-        '
-        Me.colitemcode.HeaderText = "Item Code"
-        Me.colitemcode.Name = "colitemcode"
-        Me.colitemcode.ReadOnly = True
-        Me.colitemcode.Visible = False
-        '
-        'colfilmname
-        '
-        Me.colfilmname.HeaderText = "Film"
-        Me.colfilmname.Name = "colfilmname"
-        Me.colfilmname.ReadOnly = True
-        '
-        'colnooffilms
-        '
-        Me.colnooffilms.HeaderText = "No. of Film Used"
-        Me.colnooffilms.Name = "colnooffilms"
-        '
-        'colchargedetailsid
-        '
-        Me.colchargedetailsid.HeaderText = "colchargedetailsid"
-        Me.colchargedetailsid.Name = "colchargedetailsid"
-        Me.colchargedetailsid.ReadOnly = True
-        Me.colchargedetailsid.Visible = False
         '
         'DataGridViewTextBoxColumn9
         '
