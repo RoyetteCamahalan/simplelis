@@ -790,11 +790,13 @@ Public Class frmResultBaseDesign
         If f.issave Then
             Dim dt As DataTable = clsExamination.getLabdetails(Me.laboratoryid)
             dt.Columns.Add("result")
+            dt.Columns.Add("resultconversion")
             dt.Columns.Add("laboratoryresultdetailsid")
             For i As Integer = 0 To dt.Rows.Count - 1
                 For j As Integer = 0 To Me.dgvResult.Rows.Count - 1
                     If dt.Rows(i).Item("laboratorydetailsid") = Me.dgvResult.Rows(j).Cells(collabdetailid.Index).Value Then
                         dt.Rows(i).Item("result") = Utility.NullToEmptyString(Me.dgvResult.Rows(j).Cells(colresult.Index).Value)
+                        dt.Rows(i).Item("resultconversion") = Utility.NullToEmptyString(Me.dgvResult.Rows(j).Cells(colresultconversion.Index).Value)
                         dt.Rows(i).Item("laboratoryresultdetailsid") = Utility.NullToZero(Me.dgvResult.Rows(j).Cells(collabresultdetailid.Index).Value)
                         Me.dgvResult.Rows.RemoveAt(j)
                         reduceForm()
@@ -816,6 +818,10 @@ Public Class frmResultBaseDesign
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(collabresultdetailid.Index).Value = Utility.NullToZero(row.Item("laboratoryresultdetailsid"))
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(colunits.Index).Value = row.Item("unit")
                     Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(coltexthighlight.Index).Value = row.Item("texthighlight")
+                    Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(Me.colresultconversion.Index).Value = row.Item("resultconversion")
+                    Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(Me.colrefconversion.Index).Value = Utility.NullToEmptyString(row.Item("normalvaluessi"))
+                    Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(Me.colunitsconversion.Index).Value = row.Item("unitsi")
+                    Me.dgvResult.Rows(Me.dgvResult.Rows.Count - 1).Cells(Me.colconversion.Index).Value = row.Item("siconversion")
                     Call adjustForm()
                 End If
             Next
@@ -871,12 +877,26 @@ Public Class frmResultBaseDesign
                         Utility.NullToEmptyString(Me.dgvResult.Rows(i + 1).Cells(colparameter.Index).Value).Contains("   ") Then
                         Me.dgvResult.Rows(i).Cells(colref.Index).Value = ""
                     Else
-                        Me.dgvResult.Rows.RemoveAt(i)
-                        Call reduceForm()
+                        If Me.labformatid = LabFormat.GRID_WITH_CONVERSION And Utility.NullToEmptyString(Me.dgvResult.Rows(i).Cells(colresultconversion.Index).Value) <> "" Then
+                            Me.dgvResult.Rows(i).Cells(colref.Index).Value = Me.dgvResult.Rows(i).Cells(colref.Index).Value & " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                            Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                            Me.dgvResult.Rows(i).Cells(colrefconversion.Index).Value = Me.dgvResult.Rows(i).Cells(colrefconversion.Index).Value & " " & Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Value
+                            Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Value = Me.dgvResult.Rows(i).Cells(colresultconversion.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                            Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Style.ForeColor = Me.dgvResult.Rows(i).Cells(colunits.Index).Style.ForeColor
+                        Else
+                            Me.dgvResult.Rows.RemoveAt(i)
+                            Call reduceForm()
+                        End If
                     End If
                 Else
+                    Me.dgvResult.Rows(i).Cells(colref.Index).Value = Me.dgvResult.Rows(i).Cells(colref.Index).Value & " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
                     Me.dgvResult.Rows(i).Cells(colunits.Index).Value = Me.dgvResult.Rows(i).Cells(colresult.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
                     checkHighlight(Nothing, Me.dgvResult.Rows(i).Cells(colunits.Index), Me.dgvResult.Rows(i).Cells(coltexthighlight.Index).Value)
+                    If labformatid = LabFormat.GRID_WITH_CONVERSION Then
+                        Me.dgvResult.Rows(i).Cells(colrefconversion.Index).Value = Me.dgvResult.Rows(i).Cells(colrefconversion.Index).Value & " " & Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Value
+                        Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Value = Me.dgvResult.Rows(i).Cells(colresultconversion.Index).Value '& " " & Me.dgvResult.Rows(i).Cells(colunits.Index).Value
+                        Me.dgvResult.Rows(i).Cells(colunitsconversion.Index).Style.ForeColor = Me.dgvResult.Rows(i).Cells(colunits.Index).Style.ForeColor
+                    End If
                 End If
             Next
             Me.panelmanageparams.Visible = False
@@ -884,11 +904,20 @@ Public Class frmResultBaseDesign
             Me.Height = Me.Height - Me.panelmanageparams.Height
             Me.txtgridremarks.ReadOnly = True
             Me.txtgridremarks.BorderStyle = BorderStyle.None
-            Me.dgvResult.Columns(colunits.Index).Width = CInt(Me.dgvResult.Columns(colunits.Index).Width + (Me.dgvResult.Columns(colresult.Index).Width / 2))
             Me.dgvResult.Columns(colresult.Index).Visible = False
             Me.dgvResult.Columns(colunits.Index).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             Me.dgvResult.Columns(colunits.Index).DefaultCellStyle.Font = New Font("Cambria", 9, FontStyle.Bold)
             Me.dgvResult.Columns(colunits.Index).HeaderText = "Result"
+            If Me.labformatid = LabFormat.GRID_SI Then
+                Me.dgvResult.Columns(colunits.Index).Width = CInt(Me.dgvResult.Columns(colunits.Index).Width + (Me.dgvResult.Columns(colresult.Index).Width / 2))
+            Else
+                Me.dgvResult.Columns(colunits.Index).Width = CInt(Me.dgvResult.Columns(colunits.Index).Width + (Me.dgvResult.Columns(colresult.Index).Width))
+                Me.dgvResult.Columns(colunitsconversion.Index).Width = CInt(Me.dgvResult.Columns(colunitsconversion.Index).Width + (Me.dgvResult.Columns(colresultconversion.Index).Width))
+                Me.dgvResult.Columns(colresultconversion.Index).Visible = False
+                Me.dgvResult.Columns(colunitsconversion.Index).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Me.dgvResult.Columns(colunitsconversion.Index).DefaultCellStyle.Font = New Font("Cambria", 9, FontStyle.Bold)
+                Me.dgvResult.Columns(colunitsconversion.Index).HeaderText = "Result"
+            End If
         End If
     End Sub
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, keyData As System.Windows.Forms.Keys) As Boolean
@@ -897,4 +926,21 @@ Public Class frmResultBaseDesign
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
+
+    Private Sub dgvResult_CellEndEdit(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvResult.CellEndEdit
+        If dgvResult.CurrentCell.RowIndex >= 0 AndAlso (e.ColumnIndex = colresult.Index Or e.ColumnIndex = colresultconversion.Index) Then
+            Try
+                Dim conversionFactor As Double = Val(dgvResult.CurrentRow.Cells(colconversion.Index).Value)
+                If conversionFactor > 0 Then
+                    If dgvResult.CurrentCell.ColumnIndex = colresult.Index Then
+                        dgvResult.Rows(e.RowIndex).Cells(colresultconversion.Index).Value = Math.Round(Convert.ToDouble(dgvResult.CurrentCell.Value) * conversionFactor, 2)
+                    ElseIf dgvResult.CurrentCell.ColumnIndex = colresultconversion.Index Then
+                        dgvResult.Rows(e.RowIndex).Cells(colresult.Index).Value = Math.Round(Convert.ToDouble(dgvResult.CurrentCell.Value) / conversionFactor, 2)
+                    End If
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
 End Class

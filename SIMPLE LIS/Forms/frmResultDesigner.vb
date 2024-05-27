@@ -266,6 +266,10 @@ getLabDetails:
                             .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.collabresultdetailid.Index).Value = row.Item("laboratoryresultdetailsid")
                             .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunits.Index).Value = row.Item("unit")
                             .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.coltexthighlight.Index).Value = row.Item("texthighlight")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colresultconversion.Index).Value = row.Item("resultconversion")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colrefconversion.Index).Value = Utility.NullToEmptyString(row.Item("normalvaluessi"))
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colunitsconversion.Index).Value = row.Item("unitsi")
+                            .Rows(fbaseform.dgvResult.Rows.Count - 1).Cells(fbaseform.colconversion.Index).Value = row.Item("siconversion")
                             Call fbaseform.adjustForm()
                         End If
                     Next
@@ -359,8 +363,6 @@ getLabDetails:
         ElseIf myFormaction = formaction.manageResult Then
             If MsgBox("Are you sure you want to save this examination result?", MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
                 Select Case labformatid
-                    Case LabFormat.GRID_WITH_CONVERSION
-                        fBloodChem.save()
                     Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                         frmRadiology.saveNow(Me.tsSave.Text)
                         If Not frmRadiology.isSave Then
@@ -408,12 +410,13 @@ getLabDetails:
                         End If
                         Dim xdetails As New clsLaboratoryResultDetails
                         xdetails.laboratoryresultid = x.Oldlaboratoryid
-                        If Me.labformatid = LabFormat.GRID_SI Then
+                        If Me.labformatid = LabFormat.GRID_SI Or Me.labformatid = LabFormat.GRID_WITH_CONVERSION Then
                             fbaseform.dgvResult.EndEdit()
                             For Each row As DataGridViewRow In fbaseform.dgvResult.Rows
                                 xdetails.laboratorydetailsid = row.Cells(fbaseform.collabdetailid.Index).Value
                                 xdetails.Oldlaboratoryresultid = row.Cells(fbaseform.collabresultdetailid.Index).Value
                                 xdetails.result = row.Cells(fbaseform.colresult.Index).Value
+                                xdetails.resultconversion = row.Cells(fbaseform.colresultconversion.Index).Value
                                 If xdetails.Oldlaboratoryresultid = 0 Then
                                     xdetails.Save(True)
                                 Else
@@ -632,8 +635,6 @@ getLabDetails:
 
     Private Sub tsPrint_Click(sender As System.Object, e As System.EventArgs) Handles tsPrint.Click
         Select Case Me.labformatid
-            Case LabFormat.GRID_WITH_CONVERSION
-                fBloodChem.DisplayPrintPreview()
             Case LabFormat.RADIOLOGY, LabFormat.ULTRASOUND, LabFormat.ECGREPORT, LabFormat.EchoForms
                 frmRadiology.DisplayPrintPreview()
             Case Else
