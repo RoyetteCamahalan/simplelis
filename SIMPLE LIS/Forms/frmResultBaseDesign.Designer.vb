@@ -22,16 +22,16 @@ Partial Class frmResultBaseDesign
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblMisc = New System.Windows.Forms.Label()
         Me.cmbMedtech = New System.Windows.Forms.ComboBox()
         Me.lblpatientid = New System.Windows.Forms.Label()
@@ -73,6 +73,13 @@ Partial Class frmResultBaseDesign
         Me.txtgridremarks = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvResult = New System.Windows.Forms.DataGridView()
+        Me.colparameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colresult = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colunits = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colref = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collabdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.collabresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelmanageparams = New System.Windows.Forms.Panel()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
@@ -123,13 +130,6 @@ Partial Class frmResultBaseDesign
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colparameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colresult = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colunits = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colref = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collabdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.collabresultdetailid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.coltexthighlight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelmain.SuspendLayout()
         Me.panelsignatory.SuspendLayout()
         Me.tblpanelsignatory.SuspendLayout()
@@ -161,12 +161,13 @@ Partial Class frmResultBaseDesign
         '
         'cmbMedtech
         '
-        Me.cmbMedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbMedtech.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbMedtech.BackColor = System.Drawing.Color.White
         Me.cmbMedtech.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMedtech.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cmbMedtech.FormattingEnabled = True
-        Me.cmbMedtech.Location = New System.Drawing.Point(4, 38)
+        Me.cmbMedtech.Location = New System.Drawing.Point(4, 43)
         Me.cmbMedtech.Name = "cmbMedtech"
         Me.cmbMedtech.Size = New System.Drawing.Size(234, 26)
         Me.cmbMedtech.TabIndex = 222
@@ -274,7 +275,7 @@ Partial Class frmResultBaseDesign
         Me.panelsignatory.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelsignatory.Location = New System.Drawing.Point(0, 237)
         Me.panelsignatory.Name = "panelsignatory"
-        Me.panelsignatory.Size = New System.Drawing.Size(750, 110)
+        Me.panelsignatory.Size = New System.Drawing.Size(750, 122)
         Me.panelsignatory.TabIndex = 253
         '
         'tblpanelsignatory
@@ -291,7 +292,7 @@ Partial Class frmResultBaseDesign
         Me.tblpanelsignatory.Name = "tblpanelsignatory"
         Me.tblpanelsignatory.RowCount = 1
         Me.tblpanelsignatory.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblpanelsignatory.Size = New System.Drawing.Size(750, 110)
+        Me.tblpanelsignatory.Size = New System.Drawing.Size(750, 122)
         Me.tblpanelsignatory.TabIndex = 283
         '
         'Panel4
@@ -304,12 +305,13 @@ Partial Class frmResultBaseDesign
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(250, 3)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(241, 104)
+        Me.Panel4.Size = New System.Drawing.Size(241, 116)
         Me.Panel4.TabIndex = 278
         '
         'Label13
         '
-        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Calibri", 11.25!)
@@ -323,23 +325,25 @@ Partial Class frmResultBaseDesign
         '
         'cmbverifiedby
         '
-        Me.cmbverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbverifiedby.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbverifiedby.BackColor = System.Drawing.Color.White
         Me.cmbverifiedby.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbverifiedby.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cmbverifiedby.FormattingEnabled = True
-        Me.cmbverifiedby.Location = New System.Drawing.Point(4, 38)
+        Me.cmbverifiedby.Location = New System.Drawing.Point(4, 43)
         Me.cmbverifiedby.Name = "cmbverifiedby"
         Me.cmbverifiedby.Size = New System.Drawing.Size(234, 26)
         Me.cmbverifiedby.TabIndex = 222
         '
         'panelverifiedby
         '
-        Me.panelverifiedby.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelverifiedby.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelverifiedby.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.panelverifiedby.Controls.Add(Me.chkesigverifiedby)
         Me.panelverifiedby.Controls.Add(Me.lblverifiedby)
-        Me.panelverifiedby.Location = New System.Drawing.Point(3, 13)
+        Me.panelverifiedby.Location = New System.Drawing.Point(3, 18)
         Me.panelverifiedby.Name = "panelverifiedby"
         Me.panelverifiedby.Size = New System.Drawing.Size(238, 54)
         Me.panelverifiedby.TabIndex = 275
@@ -373,11 +377,12 @@ Partial Class frmResultBaseDesign
         '
         'lblverifiedbylicense
         '
-        Me.lblverifiedbylicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblverifiedbylicense.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblverifiedbylicense.BackColor = System.Drawing.Color.Transparent
         Me.lblverifiedbylicense.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblverifiedbylicense.ForeColor = System.Drawing.Color.Black
-        Me.lblverifiedbylicense.Location = New System.Drawing.Point(6, 62)
+        Me.lblverifiedbylicense.Location = New System.Drawing.Point(6, 67)
         Me.lblverifiedbylicense.Name = "lblverifiedbylicense"
         Me.lblverifiedbylicense.Size = New System.Drawing.Size(235, 18)
         Me.lblverifiedbylicense.TabIndex = 253
@@ -386,11 +391,12 @@ Partial Class frmResultBaseDesign
         '
         'lblverifiedbydesignation
         '
-        Me.lblverifiedbydesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblverifiedbydesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblverifiedbydesignation.BackColor = System.Drawing.Color.Transparent
         Me.lblverifiedbydesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblverifiedbydesignation.ForeColor = System.Drawing.Color.Black
-        Me.lblverifiedbydesignation.Location = New System.Drawing.Point(7, 77)
+        Me.lblverifiedbydesignation.Location = New System.Drawing.Point(7, 82)
         Me.lblverifiedbydesignation.Name = "lblverifiedbydesignation"
         Me.lblverifiedbydesignation.Size = New System.Drawing.Size(232, 27)
         Me.lblverifiedbydesignation.TabIndex = 252
@@ -407,12 +413,13 @@ Partial Class frmResultBaseDesign
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(241, 104)
+        Me.Panel2.Size = New System.Drawing.Size(241, 116)
         Me.Panel2.TabIndex = 276
         '
         'Label12
         '
-        Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 11.25!)
@@ -426,11 +433,12 @@ Partial Class frmResultBaseDesign
         '
         'panelmedtech
         '
-        Me.panelmedtech.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelmedtech.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelmedtech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.panelmedtech.Controls.Add(Me.chkesigmedtech)
         Me.panelmedtech.Controls.Add(Me.lblmedtech)
-        Me.panelmedtech.Location = New System.Drawing.Point(3, 13)
+        Me.panelmedtech.Location = New System.Drawing.Point(3, 18)
         Me.panelmedtech.Name = "panelmedtech"
         Me.panelmedtech.Size = New System.Drawing.Size(238, 54)
         Me.panelmedtech.TabIndex = 275
@@ -464,11 +472,12 @@ Partial Class frmResultBaseDesign
         '
         'lblmedtechlicense
         '
-        Me.lblmedtechlicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblmedtechlicense.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblmedtechlicense.BackColor = System.Drawing.Color.Transparent
         Me.lblmedtechlicense.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblmedtechlicense.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtechlicense.Location = New System.Drawing.Point(6, 62)
+        Me.lblmedtechlicense.Location = New System.Drawing.Point(6, 67)
         Me.lblmedtechlicense.Name = "lblmedtechlicense"
         Me.lblmedtechlicense.Size = New System.Drawing.Size(235, 18)
         Me.lblmedtechlicense.TabIndex = 253
@@ -477,11 +486,12 @@ Partial Class frmResultBaseDesign
         '
         'lblmedtechdesignation
         '
-        Me.lblmedtechdesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblmedtechdesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblmedtechdesignation.BackColor = System.Drawing.Color.Transparent
         Me.lblmedtechdesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblmedtechdesignation.ForeColor = System.Drawing.Color.Black
-        Me.lblmedtechdesignation.Location = New System.Drawing.Point(7, 77)
+        Me.lblmedtechdesignation.Location = New System.Drawing.Point(7, 82)
         Me.lblmedtechdesignation.Name = "lblmedtechdesignation"
         Me.lblmedtechdesignation.Size = New System.Drawing.Size(232, 27)
         Me.lblmedtechdesignation.TabIndex = 252
@@ -497,16 +507,17 @@ Partial Class frmResultBaseDesign
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(497, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(250, 104)
+        Me.Panel3.Size = New System.Drawing.Size(250, 116)
         Me.Panel3.TabIndex = 277
         '
         'lblpathodesignation
         '
-        Me.lblpathodesignation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblpathodesignation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblpathodesignation.BackColor = System.Drawing.Color.Transparent
         Me.lblpathodesignation.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblpathodesignation.ForeColor = System.Drawing.Color.Black
-        Me.lblpathodesignation.Location = New System.Drawing.Point(3, 77)
+        Me.lblpathodesignation.Location = New System.Drawing.Point(3, 83)
         Me.lblpathodesignation.Name = "lblpathodesignation"
         Me.lblpathodesignation.Size = New System.Drawing.Size(249, 27)
         Me.lblpathodesignation.TabIndex = 255
@@ -515,23 +526,25 @@ Partial Class frmResultBaseDesign
         '
         'cmbPathologist
         '
-        Me.cmbPathologist.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbPathologist.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbPathologist.BackColor = System.Drawing.Color.White
         Me.cmbPathologist.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPathologist.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cmbPathologist.FormattingEnabled = True
-        Me.cmbPathologist.Location = New System.Drawing.Point(4, 38)
+        Me.cmbPathologist.Location = New System.Drawing.Point(4, 44)
         Me.cmbPathologist.Name = "cmbPathologist"
         Me.cmbPathologist.Size = New System.Drawing.Size(243, 26)
         Me.cmbPathologist.TabIndex = 257
         '
         'lblpatholicense
         '
-        Me.lblpatholicense.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblpatholicense.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblpatholicense.BackColor = System.Drawing.Color.Transparent
         Me.lblpatholicense.Font = New System.Drawing.Font("Calibri", 11.25!)
         Me.lblpatholicense.ForeColor = System.Drawing.Color.Black
-        Me.lblpatholicense.Location = New System.Drawing.Point(6, 62)
+        Me.lblpatholicense.Location = New System.Drawing.Point(6, 68)
         Me.lblpatholicense.Name = "lblpatholicense"
         Me.lblpatholicense.Size = New System.Drawing.Size(242, 18)
         Me.lblpatholicense.TabIndex = 256
@@ -540,11 +553,12 @@ Partial Class frmResultBaseDesign
         '
         'panelpatho
         '
-        Me.panelpatho.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelpatho.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelpatho.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.panelpatho.Controls.Add(Me.chkesigpatho)
         Me.panelpatho.Controls.Add(Me.lblpatho)
-        Me.panelpatho.Location = New System.Drawing.Point(3, 13)
+        Me.panelpatho.Location = New System.Drawing.Point(3, 19)
         Me.panelpatho.Name = "panelpatho"
         Me.panelpatho.Size = New System.Drawing.Size(246, 54)
         Me.panelpatho.TabIndex = 274
@@ -637,24 +651,24 @@ Partial Class frmResultBaseDesign
         Me.dgvResult.AllowUserToResizeRows = False
         Me.dgvResult.BackgroundColor = System.Drawing.Color.White
         Me.dgvResult.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colparameter, Me.colresult, Me.colunits, Me.colref, Me.collabdetailid, Me.collabresultdetailid, Me.coltexthighlight})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle16
         Me.dgvResult.Dock = System.Windows.Forms.DockStyle.Top
         Me.dgvResult.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.dgvResult.Location = New System.Drawing.Point(0, 27)
@@ -663,6 +677,76 @@ Partial Class frmResultBaseDesign
         Me.dgvResult.RowTemplate.Height = 20
         Me.dgvResult.Size = New System.Drawing.Size(748, 51)
         Me.dgvResult.TabIndex = 255
+        '
+        'colparameter
+        '
+        Me.colparameter.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.colparameter.DefaultCellStyle = DataGridViewCellStyle12
+        Me.colparameter.HeaderText = "Parameter"
+        Me.colparameter.Name = "colparameter"
+        Me.colparameter.ReadOnly = True
+        '
+        'colresult
+        '
+        Me.colresult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.colresult.DefaultCellStyle = DataGridViewCellStyle13
+        Me.colresult.HeaderText = "Result"
+        Me.colresult.Name = "colresult"
+        Me.colresult.Width = 160
+        '
+        'colunits
+        '
+        Me.colunits.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.colunits.DefaultCellStyle = DataGridViewCellStyle14
+        Me.colunits.HeaderText = "Units"
+        Me.colunits.Name = "colunits"
+        Me.colunits.ReadOnly = True
+        '
+        'colref
+        '
+        Me.colref.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.colref.DefaultCellStyle = DataGridViewCellStyle15
+        Me.colref.HeaderText = "Reference  Range"
+        Me.colref.Name = "colref"
+        Me.colref.ReadOnly = True
+        Me.colref.Width = 190
+        '
+        'collabdetailid
+        '
+        Me.collabdetailid.HeaderText = "collabdetailid"
+        Me.collabdetailid.Name = "collabdetailid"
+        Me.collabdetailid.Visible = False
+        '
+        'collabresultdetailid
+        '
+        Me.collabresultdetailid.HeaderText = "collabresultdetailid"
+        Me.collabresultdetailid.Name = "collabresultdetailid"
+        Me.collabresultdetailid.Visible = False
+        '
+        'coltexthighlight
+        '
+        Me.coltexthighlight.HeaderText = "coltexthighlight"
+        Me.coltexthighlight.Name = "coltexthighlight"
+        Me.coltexthighlight.Visible = False
         '
         'panelmanageparams
         '
@@ -1113,11 +1197,11 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle17
         Me.DataGridViewTextBoxColumn1.HeaderText = "Parameter"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -1125,11 +1209,11 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridViewTextBoxColumn2.HeaderText = "Result"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.Width = 160
@@ -1137,12 +1221,12 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewTextBoxColumn3.HeaderText = "Units"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
@@ -1150,12 +1234,12 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn4
         '
         Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle20
         Me.DataGridViewTextBoxColumn4.HeaderText = "Reference  Range"
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         Me.DataGridViewTextBoxColumn4.ReadOnly = True
@@ -1178,76 +1262,6 @@ Partial Class frmResultBaseDesign
         Me.DataGridViewTextBoxColumn7.HeaderText = "coltexthighlight"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         Me.DataGridViewTextBoxColumn7.Visible = False
-        '
-        'colparameter
-        '
-        Me.colparameter.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.colparameter.DefaultCellStyle = DataGridViewCellStyle2
-        Me.colparameter.HeaderText = "Parameter"
-        Me.colparameter.Name = "colparameter"
-        Me.colparameter.ReadOnly = True
-        '
-        'colresult
-        '
-        Me.colresult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.colresult.DefaultCellStyle = DataGridViewCellStyle3
-        Me.colresult.HeaderText = "Result"
-        Me.colresult.Name = "colresult"
-        Me.colresult.Width = 160
-        '
-        'colunits
-        '
-        Me.colunits.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.colunits.DefaultCellStyle = DataGridViewCellStyle4
-        Me.colunits.HeaderText = "Units"
-        Me.colunits.Name = "colunits"
-        Me.colunits.ReadOnly = True
-        '
-        'colref
-        '
-        Me.colref.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.colref.DefaultCellStyle = DataGridViewCellStyle5
-        Me.colref.HeaderText = "Reference  Range"
-        Me.colref.Name = "colref"
-        Me.colref.ReadOnly = True
-        Me.colref.Width = 190
-        '
-        'collabdetailid
-        '
-        Me.collabdetailid.HeaderText = "collabdetailid"
-        Me.collabdetailid.Name = "collabdetailid"
-        Me.collabdetailid.Visible = False
-        '
-        'collabresultdetailid
-        '
-        Me.collabresultdetailid.HeaderText = "collabresultdetailid"
-        Me.collabresultdetailid.Name = "collabresultdetailid"
-        Me.collabresultdetailid.Visible = False
-        '
-        'coltexthighlight
-        '
-        Me.coltexthighlight.HeaderText = "coltexthighlight"
-        Me.coltexthighlight.Name = "coltexthighlight"
-        Me.coltexthighlight.Visible = False
         '
         'frmResultBaseDesign
         '
