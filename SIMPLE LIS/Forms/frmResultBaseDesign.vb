@@ -630,7 +630,7 @@ Public Class frmResultBaseDesign
             Exit Sub
         End If
         If t = signatory.patho Then 'Patho
-            Me.lblpatho.Text = Me.cmbPathologist.Text
+            Me.lblpatho.Text = dt.Rows(0).Item("employeename")
             Me.lblpatholicense.Text = "License No. " & dt.Rows(0).Item("prcno")
             If Utility.NullToEmptyString(dt.Rows(0).Item("designation")) = "" Then
                 Me.lblpathodesignation.Text = "Clinical Pathologist"
