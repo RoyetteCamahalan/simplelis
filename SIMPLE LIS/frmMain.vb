@@ -91,8 +91,8 @@ Public Class frmMain
         'If Me.requestdetailno > 0 Then
         '    target = targetmodule.manageresult
         'End If
-        frmNotif.Show()
-        frmNotif.StartBroadCast()
+        'frmNotif.Show()
+        'frmNotif.StartBroadCast()
         setUserInfo()
         LoadUserSubModules()
         Me.Hide()

@@ -60,20 +60,9 @@ Public Class frmResultBaseDesign
 
     Private Sub frmMiscellaneous_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Text = getLabname()
+
+        initForm()
         Me.lblMisc.Text = Me.getLabname
-        dtHospitalInfo = clsLaboratoryResult.getHospitalInfo()
-        Me.lblHeader.Text = dtHospitalInfo.Rows(0).Item("Hospital").ToString()
-        Me.lblAddress.Text = dtHospitalInfo.Rows(0).Item("Address3").ToString()
-        Me.lablTelNo.Text = dtHospitalInfo.Rows(0).Item("Telephone").ToString()
-        Try
-            Dim tempphoto As Byte() = dtHospitalInfo.Rows(0).Item("hospitallogo")
-            If IsDBNull(dtHospitalInfo.Rows(0).Item("hospitallogo")) Or tempphoto.Length = 0 Then
-                pctrLogo.Image = Nothing
-            Else
-                pctrLogo.Image = Utility.convertImage(dtHospitalInfo.Rows(0).Item("hospitallogo")) 'image here
-            End If
-        Catch ex As Exception
-        End Try
         If Me.laboratoryid = LabFormat.ECGREPORT Then
             Me.lblpathodesignation.Text = "Cardiologist"
         ElseIf Me.laboratoryid = LabFormat.NEWBORNSCREENING Then
@@ -92,6 +81,30 @@ Public Class frmResultBaseDesign
         End If
         Return Me.labname
     End Function
+    Private Sub initForm()
+        dtHospitalInfo = clsLaboratoryResult.getHospitalInfo()
+        Me.lblHeader.Text = dtHospitalInfo.Rows(0).Item("Hospital").ToString()
+        Me.lblAddress.Text = dtHospitalInfo.Rows(0).Item("Address3").ToString()
+        Me.lablTelNo.Text = dtHospitalInfo.Rows(0).Item("Telephone").ToString()
+        If (modGlobal.hospitalcode = Constant.Facility.lhi) Then
+            paneltimeinfo.Visible = False
+            lbldateencoded.Text = "Date:"
+            txtdateencoded.Location = New Point(616, 114)
+            txtdateencoded.Size = New Size(131, 18)
+            lbltimeencoded.Text = "Ward:"
+            txttimeencoded.Location = New Point(620, 135)
+            txttimeencoded.Size = New Size(127, 18)
+        End If
+        Try
+            Dim tempphoto As Byte() = dtHospitalInfo.Rows(0).Item("hospitallogo")
+            If IsDBNull(dtHospitalInfo.Rows(0).Item("hospitallogo")) Or tempphoto.Length = 0 Then
+                pctrLogo.Image = Nothing
+            Else
+                pctrLogo.Image = Utility.convertImage(dtHospitalInfo.Rows(0).Item("hospitallogo")) 'image here
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 
     Public Sub loadRequestDetails(ByVal requestdetailno As Long)
         Me.requestdetailno = requestdetailno
@@ -113,8 +126,12 @@ Public Class frmResultBaseDesign
         Me.lblMisc.Text = getLabname()
         Me.lbltransdate.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("daterequested")).ToString(modGlobal.defaultdateformat)
         Me.lbltranstime.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("daterequested")).ToString(modGlobal.defaulttimeformat)
-        Me.lbldateencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaultdateformat)
-        Me.lbltimeencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaulttimeformat)
+        Me.txtdateencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaultdateformat)
+        If (modGlobal.hospitalcode = Constant.Facility.lhi) Then
+            Me.txttimeencoded.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("ward"))
+        Else
+            Me.txttimeencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaulttimeformat)
+        End If
         Me.medtech = dtPatientDetails.Rows(0).Item("medicaltechnologist")
         Me.verifiedby = Utility.NullToZero(dtPatientDetails.Rows(0).Item("verifiedby"))
         Me.patho = dtPatientDetails.Rows(0).Item("pathologist")
@@ -921,8 +938,10 @@ Public Class frmResultBaseDesign
         End If
     End Sub
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, keyData As System.Windows.Forms.Keys) As Boolean
-        If (keyData = Keys.Enter Or keyData = Keys.Down Or keyData = Keys.Up Or keyData = Keys.Tab) And Not dgvResult.EditingControl Is Nothing Then
-            Return True
+        If modGlobal.hospitalcode = Constant.Facility.ecomed Then
+            If (keyData = Keys.Enter Or keyData = Keys.Down Or keyData = Keys.Up Or keyData = Keys.Tab) And Not dgvResult.EditingControl Is Nothing Then
+                Return True
+            End If
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function

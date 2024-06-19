@@ -29,6 +29,8 @@ Partial Class frmResultBaseDesign
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -47,22 +49,6 @@ Partial Class frmResultBaseDesign
         Me.lblAddress = New System.Windows.Forms.Label()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.panelmain = New System.Windows.Forms.Panel()
-        Me.panelresult = New System.Windows.Forms.Panel()
-        Me.panelresultgrid = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.txtgridremarks = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.dgvResult = New System.Windows.Forms.DataGridView()
-        Me.panelresultwithconversion = New System.Windows.Forms.Panel()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.panelmanageparams = New System.Windows.Forms.Panel()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.panelsignatory = New System.Windows.Forms.Panel()
         Me.tblpanelsignatory = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -87,6 +73,22 @@ Partial Class frmResultBaseDesign
         Me.panelpatho = New System.Windows.Forms.Panel()
         Me.chkesigpatho = New System.Windows.Forms.CheckBox()
         Me.lblpatho = New System.Windows.Forms.Label()
+        Me.panelresult = New System.Windows.Forms.Panel()
+        Me.panelresultgrid = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.txtgridremarks = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.dgvResult = New System.Windows.Forms.DataGridView()
+        Me.panelresultwithconversion = New System.Windows.Forms.Panel()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.panelmanageparams = New System.Windows.Forms.Panel()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.LineShape6 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape10 = New Microsoft.VisualBasic.PowerPacks.LineShape()
@@ -116,10 +118,10 @@ Partial Class frmResultBaseDesign
         Me.lblptno = New System.Windows.Forms.Label()
         Me.lblprintdate = New System.Windows.Forms.Label()
         Me.lblprinttime = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.lbldateencoded = New System.Windows.Forms.Label()
         Me.lbltimeencoded = New System.Windows.Forms.Label()
+        Me.txtdateencoded = New System.Windows.Forms.Label()
+        Me.txttimeencoded = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lbltransdate = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -128,6 +130,7 @@ Partial Class frmResultBaseDesign
         Me.lblbirthdate = New System.Windows.Forms.Label()
         Me.pctrLogo = New System.Windows.Forms.PictureBox()
         Me.cmverifiedby = New System.Windows.Forms.ComboBox()
+        Me.paneltimeinfo = New System.Windows.Forms.Panel()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -151,11 +154,6 @@ Partial Class frmResultBaseDesign
         Me.colrefconversion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colconversion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelmain.SuspendLayout()
-        Me.panelresultgrid.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.panelresultwithconversion.SuspendLayout()
-        Me.panelmanageparams.SuspendLayout()
         Me.panelsignatory.SuspendLayout()
         Me.tblpanelsignatory.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -164,8 +162,14 @@ Partial Class frmResultBaseDesign
         Me.panelmedtech.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.panelpatho.SuspendLayout()
+        Me.panelresultgrid.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panelresultwithconversion.SuspendLayout()
+        Me.panelmanageparams.SuspendLayout()
         Me.panelnewborn.SuspendLayout()
         CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.paneltimeinfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblMisc
@@ -288,222 +292,6 @@ Partial Class frmResultBaseDesign
         Me.panelmain.Name = "panelmain"
         Me.panelmain.Size = New System.Drawing.Size(750, 233)
         Me.panelmain.TabIndex = 250
-        '
-        'panelresult
-        '
-        Me.panelresult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panelresult.Dock = System.Windows.Forms.DockStyle.Top
-        Me.panelresult.Location = New System.Drawing.Point(0, 120)
-        Me.panelresult.Name = "panelresult"
-        Me.panelresult.Size = New System.Drawing.Size(750, 117)
-        Me.panelresult.TabIndex = 252
-        '
-        'panelresultgrid
-        '
-        Me.panelresultgrid.BackColor = System.Drawing.Color.White
-        Me.panelresultgrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panelresultgrid.Controls.Add(Me.Panel1)
-        Me.panelresultgrid.Controls.Add(Me.dgvResult)
-        Me.panelresultgrid.Controls.Add(Me.panelresultwithconversion)
-        Me.panelresultgrid.Controls.Add(Me.panelmanageparams)
-        Me.panelresultgrid.Dock = System.Windows.Forms.DockStyle.Top
-        Me.panelresultgrid.Location = New System.Drawing.Point(0, 0)
-        Me.panelresultgrid.Name = "panelresultgrid"
-        Me.panelresultgrid.Size = New System.Drawing.Size(750, 120)
-        Me.panelresultgrid.TabIndex = 253
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.txtgridremarks)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 123)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(748, 41)
-        Me.Panel1.TabIndex = 257
-        '
-        'txtgridremarks
-        '
-        Me.txtgridremarks.BackColor = System.Drawing.Color.White
-        Me.txtgridremarks.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtgridremarks.Location = New System.Drawing.Point(95, 4)
-        Me.txtgridremarks.Multiline = True
-        Me.txtgridremarks.Name = "txtgridremarks"
-        Me.txtgridremarks.Size = New System.Drawing.Size(607, 33)
-        Me.txtgridremarks.TabIndex = 266
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calisto MT", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(30, 4)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(69, 17)
-        Me.Label3.TabIndex = 265
-        Me.Label3.Text = "Remarks:"
-        '
-        'dgvResult
-        '
-        Me.dgvResult.AllowUserToAddRows = False
-        Me.dgvResult.AllowUserToDeleteRows = False
-        Me.dgvResult.AllowUserToResizeRows = False
-        Me.dgvResult.BackgroundColor = System.Drawing.Color.White
-        Me.dgvResult.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colparameter, Me.colresult, Me.colunits, Me.colref, Me.collabdetailid, Me.collabresultdetailid, Me.coltexthighlight, Me.colresultconversion, Me.colunitsconversion, Me.colrefconversion, Me.colconversion})
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle9
-        Me.dgvResult.Dock = System.Windows.Forms.DockStyle.Top
-        Me.dgvResult.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
-        Me.dgvResult.Location = New System.Drawing.Point(0, 72)
-        Me.dgvResult.Name = "dgvResult"
-        Me.dgvResult.RowHeadersVisible = False
-        Me.dgvResult.RowTemplate.Height = 20
-        Me.dgvResult.Size = New System.Drawing.Size(748, 51)
-        Me.dgvResult.TabIndex = 255
-        '
-        'panelresultwithconversion
-        '
-        Me.panelresultwithconversion.Controls.Add(Me.Label14)
-        Me.panelresultwithconversion.Controls.Add(Me.Label15)
-        Me.panelresultwithconversion.Controls.Add(Me.Label16)
-        Me.panelresultwithconversion.Controls.Add(Me.Label17)
-        Me.panelresultwithconversion.Controls.Add(Me.Label18)
-        Me.panelresultwithconversion.Controls.Add(Me.Label19)
-        Me.panelresultwithconversion.Controls.Add(Me.Label20)
-        Me.panelresultwithconversion.Dock = System.Windows.Forms.DockStyle.Top
-        Me.panelresultwithconversion.Location = New System.Drawing.Point(0, 27)
-        Me.panelresultwithconversion.Name = "panelresultwithconversion"
-        Me.panelresultwithconversion.Size = New System.Drawing.Size(748, 45)
-        Me.panelresultwithconversion.TabIndex = 258
-        '
-        'Label14
-        '
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label14.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(472, 24)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(275, 22)
-        Me.Label14.TabIndex = 244
-        Me.Label14.Text = "(Conventional)"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label15
-        '
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label15.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(198, 24)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(275, 22)
-        Me.Label15.TabIndex = 243
-        Me.Label15.Text = "(S.I.)"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label16
-        '
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label16.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(616, 3)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(131, 22)
-        Me.Label16.TabIndex = 242
-        Me.Label16.Text = "REF. VAL."
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label17
-        '
-        Me.Label17.BackColor = System.Drawing.Color.Transparent
-        Me.Label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label17.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.Black
-        Me.Label17.Location = New System.Drawing.Point(472, 3)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(145, 22)
-        Me.Label17.TabIndex = 241
-        Me.Label17.Text = "RESULT"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label18
-        '
-        Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label18.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(342, 3)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(131, 22)
-        Me.Label18.TabIndex = 240
-        Me.Label18.Text = "REF. VAL."
-        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label19
-        '
-        Me.Label19.BackColor = System.Drawing.Color.Transparent
-        Me.Label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label19.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(198, 3)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(145, 22)
-        Me.Label19.TabIndex = 239
-        Me.Label19.Text = "RESULT"
-        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label20
-        '
-        Me.Label20.BackColor = System.Drawing.Color.Transparent
-        Me.Label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label20.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(0, 3)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(200, 43)
-        Me.Label20.TabIndex = 238
-        Me.Label20.Text = "TEST"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'panelmanageparams
-        '
-        Me.panelmanageparams.Controls.Add(Me.btnEdit)
-        Me.panelmanageparams.Dock = System.Windows.Forms.DockStyle.Top
-        Me.panelmanageparams.Location = New System.Drawing.Point(0, 0)
-        Me.panelmanageparams.Name = "panelmanageparams"
-        Me.panelmanageparams.Size = New System.Drawing.Size(748, 27)
-        Me.panelmanageparams.TabIndex = 256
-        '
-        'btnEdit
-        '
-        Me.btnEdit.BackColor = System.Drawing.Color.White
-        Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEdit.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEdit.Location = New System.Drawing.Point(620, 2)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(123, 23)
-        Me.btnEdit.TabIndex = 230
-        Me.btnEdit.Text = "Manage Parameters"
-        Me.btnEdit.UseVisualStyleBackColor = False
         '
         'panelsignatory
         '
@@ -815,6 +603,222 @@ Partial Class frmResultBaseDesign
         Me.lblpatho.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lblpatho.Visible = False
         '
+        'panelresult
+        '
+        Me.panelresult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelresult.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelresult.Location = New System.Drawing.Point(0, 120)
+        Me.panelresult.Name = "panelresult"
+        Me.panelresult.Size = New System.Drawing.Size(750, 117)
+        Me.panelresult.TabIndex = 252
+        '
+        'panelresultgrid
+        '
+        Me.panelresultgrid.BackColor = System.Drawing.Color.White
+        Me.panelresultgrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelresultgrid.Controls.Add(Me.Panel1)
+        Me.panelresultgrid.Controls.Add(Me.dgvResult)
+        Me.panelresultgrid.Controls.Add(Me.panelresultwithconversion)
+        Me.panelresultgrid.Controls.Add(Me.panelmanageparams)
+        Me.panelresultgrid.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelresultgrid.Location = New System.Drawing.Point(0, 0)
+        Me.panelresultgrid.Name = "panelresultgrid"
+        Me.panelresultgrid.Size = New System.Drawing.Size(750, 120)
+        Me.panelresultgrid.TabIndex = 253
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.txtgridremarks)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 123)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(748, 41)
+        Me.Panel1.TabIndex = 257
+        '
+        'txtgridremarks
+        '
+        Me.txtgridremarks.BackColor = System.Drawing.Color.White
+        Me.txtgridremarks.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtgridremarks.Location = New System.Drawing.Point(95, 4)
+        Me.txtgridremarks.Multiline = True
+        Me.txtgridremarks.Name = "txtgridremarks"
+        Me.txtgridremarks.Size = New System.Drawing.Size(607, 33)
+        Me.txtgridremarks.TabIndex = 266
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calisto MT", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(30, 4)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(69, 17)
+        Me.Label3.TabIndex = 265
+        Me.Label3.Text = "Remarks:"
+        '
+        'dgvResult
+        '
+        Me.dgvResult.AllowUserToAddRows = False
+        Me.dgvResult.AllowUserToDeleteRows = False
+        Me.dgvResult.AllowUserToResizeRows = False
+        Me.dgvResult.BackgroundColor = System.Drawing.Color.White
+        Me.dgvResult.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvResult.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colparameter, Me.colresult, Me.colunits, Me.colref, Me.collabdetailid, Me.collabresultdetailid, Me.coltexthighlight, Me.colresultconversion, Me.colunitsconversion, Me.colrefconversion, Me.colconversion})
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Cambria", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvResult.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dgvResult.Dock = System.Windows.Forms.DockStyle.Top
+        Me.dgvResult.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
+        Me.dgvResult.Location = New System.Drawing.Point(0, 72)
+        Me.dgvResult.Name = "dgvResult"
+        Me.dgvResult.RowHeadersVisible = False
+        Me.dgvResult.RowTemplate.Height = 20
+        Me.dgvResult.Size = New System.Drawing.Size(748, 51)
+        Me.dgvResult.TabIndex = 255
+        '
+        'panelresultwithconversion
+        '
+        Me.panelresultwithconversion.Controls.Add(Me.Label14)
+        Me.panelresultwithconversion.Controls.Add(Me.Label15)
+        Me.panelresultwithconversion.Controls.Add(Me.Label16)
+        Me.panelresultwithconversion.Controls.Add(Me.Label17)
+        Me.panelresultwithconversion.Controls.Add(Me.Label18)
+        Me.panelresultwithconversion.Controls.Add(Me.Label19)
+        Me.panelresultwithconversion.Controls.Add(Me.Label20)
+        Me.panelresultwithconversion.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelresultwithconversion.Location = New System.Drawing.Point(0, 27)
+        Me.panelresultwithconversion.Name = "panelresultwithconversion"
+        Me.panelresultwithconversion.Size = New System.Drawing.Size(748, 45)
+        Me.panelresultwithconversion.TabIndex = 258
+        '
+        'Label14
+        '
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label14.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(472, 24)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(275, 22)
+        Me.Label14.TabIndex = 244
+        Me.Label14.Text = "(Conventional)"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label15
+        '
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
+        Me.Label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label15.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.Black
+        Me.Label15.Location = New System.Drawing.Point(198, 24)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(275, 22)
+        Me.Label15.TabIndex = 243
+        Me.Label15.Text = "(S.I.)"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label16
+        '
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label16.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.Black
+        Me.Label16.Location = New System.Drawing.Point(616, 3)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(131, 22)
+        Me.Label16.TabIndex = 242
+        Me.Label16.Text = "REF. VAL."
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label17
+        '
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
+        Me.Label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label17.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.Black
+        Me.Label17.Location = New System.Drawing.Point(472, 3)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(145, 22)
+        Me.Label17.TabIndex = 241
+        Me.Label17.Text = "RESULT"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label18
+        '
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label18.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Location = New System.Drawing.Point(342, 3)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(131, 22)
+        Me.Label18.TabIndex = 240
+        Me.Label18.Text = "REF. VAL."
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label19
+        '
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
+        Me.Label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label19.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.Black
+        Me.Label19.Location = New System.Drawing.Point(198, 3)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(145, 22)
+        Me.Label19.TabIndex = 239
+        Me.Label19.Text = "RESULT"
+        Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label20
+        '
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label20.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.Black
+        Me.Label20.Location = New System.Drawing.Point(0, 3)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(200, 43)
+        Me.Label20.TabIndex = 238
+        Me.Label20.Text = "TEST"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'panelmanageparams
+        '
+        Me.panelmanageparams.Controls.Add(Me.btnEdit)
+        Me.panelmanageparams.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelmanageparams.Location = New System.Drawing.Point(0, 0)
+        Me.panelmanageparams.Name = "panelmanageparams"
+        Me.panelmanageparams.Size = New System.Drawing.Size(748, 27)
+        Me.panelmanageparams.TabIndex = 256
+        '
+        'btnEdit
+        '
+        Me.btnEdit.BackColor = System.Drawing.Color.White
+        Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEdit.Font = New System.Drawing.Font("Cambria", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEdit.Location = New System.Drawing.Point(620, 2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(123, 23)
+        Me.btnEdit.TabIndex = 230
+        Me.btnEdit.Text = "Manage Parameters"
+        Me.btnEdit.UseVisualStyleBackColor = False
+        '
         'ShapeContainer1
         '
         Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
@@ -836,7 +840,7 @@ Partial Class frmResultBaseDesign
         'LineShape10
         '
         Me.LineShape10.Name = "LineShape10"
-        Me.LineShape10.X1 = 660
+        Me.LineShape10.X1 = 620
         Me.LineShape10.X2 = 746
         Me.LineShape10.Y1 = 153
         Me.LineShape10.Y2 = 153
@@ -844,7 +848,7 @@ Partial Class frmResultBaseDesign
         'LineShape9
         '
         Me.LineShape9.Name = "LineShape9"
-        Me.LineShape9.X1 = 660
+        Me.LineShape9.X1 = 616
         Me.LineShape9.X2 = 746
         Me.LineShape9.Y1 = 132
         Me.LineShape9.Y2 = 132
@@ -1045,7 +1049,7 @@ Partial Class frmResultBaseDesign
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(611, 6)
+        Me.Label4.Location = New System.Drawing.Point(4, 4)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(34, 14)
         Me.Label4.TabIndex = 266
@@ -1057,7 +1061,7 @@ Partial Class frmResultBaseDesign
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(610, 24)
+        Me.Label5.Location = New System.Drawing.Point(3, 22)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(64, 14)
         Me.Label5.TabIndex = 267
@@ -1069,7 +1073,7 @@ Partial Class frmResultBaseDesign
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(610, 42)
+        Me.Label6.Location = New System.Drawing.Point(3, 40)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(65, 14)
         Me.Label6.TabIndex = 268
@@ -1080,7 +1084,7 @@ Partial Class frmResultBaseDesign
         Me.lblptno.BackColor = System.Drawing.Color.Transparent
         Me.lblptno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblptno.ForeColor = System.Drawing.Color.Black
-        Me.lblptno.Location = New System.Drawing.Point(645, 6)
+        Me.lblptno.Location = New System.Drawing.Point(38, 4)
         Me.lblptno.Name = "lblptno"
         Me.lblptno.Size = New System.Drawing.Size(89, 14)
         Me.lblptno.TabIndex = 269
@@ -1090,7 +1094,7 @@ Partial Class frmResultBaseDesign
         Me.lblprintdate.BackColor = System.Drawing.Color.Transparent
         Me.lblprintdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblprintdate.ForeColor = System.Drawing.Color.Black
-        Me.lblprintdate.Location = New System.Drawing.Point(680, 24)
+        Me.lblprintdate.Location = New System.Drawing.Point(73, 22)
         Me.lblprintdate.Name = "lblprintdate"
         Me.lblprintdate.Size = New System.Drawing.Size(85, 14)
         Me.lblprintdate.TabIndex = 270
@@ -1100,56 +1104,56 @@ Partial Class frmResultBaseDesign
         Me.lblprinttime.BackColor = System.Drawing.Color.Transparent
         Me.lblprinttime.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblprinttime.ForeColor = System.Drawing.Color.Black
-        Me.lblprinttime.Location = New System.Drawing.Point(681, 42)
+        Me.lblprinttime.Location = New System.Drawing.Point(74, 40)
         Me.lblprinttime.Name = "lblprinttime"
         Me.lblprinttime.Size = New System.Drawing.Size(85, 14)
         Me.lblprinttime.TabIndex = 271
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.White
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(575, 116)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(91, 17)
-        Me.Label7.TabIndex = 273
-        Me.Label7.Text = "Date Encoded:"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.White
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(575, 138)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(91, 17)
-        Me.Label8.TabIndex = 274
-        Me.Label8.Text = "Time Encoded:"
-        '
         'lbldateencoded
         '
-        Me.lbldateencoded.BackColor = System.Drawing.Color.Transparent
-        Me.lbldateencoded.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.lbldateencoded.AutoSize = True
+        Me.lbldateencoded.BackColor = System.Drawing.Color.White
+        Me.lbldateencoded.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.lbldateencoded.ForeColor = System.Drawing.Color.Black
-        Me.lbldateencoded.Location = New System.Drawing.Point(660, 114)
+        Me.lbldateencoded.Location = New System.Drawing.Point(575, 116)
         Me.lbldateencoded.Name = "lbldateencoded"
-        Me.lbldateencoded.Size = New System.Drawing.Size(87, 18)
-        Me.lbldateencoded.TabIndex = 275
-        Me.lbldateencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbldateencoded.Size = New System.Drawing.Size(91, 17)
+        Me.lbldateencoded.TabIndex = 273
+        Me.lbldateencoded.Text = "Date Encoded:"
         '
         'lbltimeencoded
         '
-        Me.lbltimeencoded.BackColor = System.Drawing.Color.Transparent
-        Me.lbltimeencoded.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.lbltimeencoded.AutoSize = True
+        Me.lbltimeencoded.BackColor = System.Drawing.Color.White
+        Me.lbltimeencoded.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.lbltimeencoded.ForeColor = System.Drawing.Color.Black
-        Me.lbltimeencoded.Location = New System.Drawing.Point(663, 135)
+        Me.lbltimeencoded.Location = New System.Drawing.Point(575, 138)
         Me.lbltimeencoded.Name = "lbltimeencoded"
-        Me.lbltimeencoded.Size = New System.Drawing.Size(84, 18)
-        Me.lbltimeencoded.TabIndex = 276
-        Me.lbltimeencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lbltimeencoded.Size = New System.Drawing.Size(91, 17)
+        Me.lbltimeencoded.TabIndex = 274
+        Me.lbltimeencoded.Text = "Time Encoded:"
+        '
+        'txtdateencoded
+        '
+        Me.txtdateencoded.BackColor = System.Drawing.Color.Transparent
+        Me.txtdateencoded.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.txtdateencoded.ForeColor = System.Drawing.Color.Black
+        Me.txtdateencoded.Location = New System.Drawing.Point(660, 114)
+        Me.txtdateencoded.Name = "txtdateencoded"
+        Me.txtdateencoded.Size = New System.Drawing.Size(87, 18)
+        Me.txtdateencoded.TabIndex = 275
+        Me.txtdateencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'txttimeencoded
+        '
+        Me.txttimeencoded.BackColor = System.Drawing.Color.Transparent
+        Me.txttimeencoded.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.txttimeencoded.ForeColor = System.Drawing.Color.Black
+        Me.txttimeencoded.Location = New System.Drawing.Point(663, 135)
+        Me.txttimeencoded.Name = "txttimeencoded"
+        Me.txttimeencoded.Size = New System.Drawing.Size(84, 18)
+        Me.txttimeencoded.TabIndex = 276
+        Me.txttimeencoded.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label9
         '
@@ -1157,7 +1161,7 @@ Partial Class frmResultBaseDesign
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(610, 61)
+        Me.Label9.Location = New System.Drawing.Point(3, 59)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(71, 14)
         Me.Label9.TabIndex = 277
@@ -1168,7 +1172,7 @@ Partial Class frmResultBaseDesign
         Me.lbltransdate.BackColor = System.Drawing.Color.Transparent
         Me.lbltransdate.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltransdate.ForeColor = System.Drawing.Color.Black
-        Me.lbltransdate.Location = New System.Drawing.Point(682, 61)
+        Me.lbltransdate.Location = New System.Drawing.Point(75, 59)
         Me.lbltransdate.Name = "lbltransdate"
         Me.lbltransdate.Size = New System.Drawing.Size(83, 14)
         Me.lbltransdate.TabIndex = 278
@@ -1179,7 +1183,7 @@ Partial Class frmResultBaseDesign
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(610, 78)
+        Me.Label11.Location = New System.Drawing.Point(3, 76)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(72, 14)
         Me.Label11.TabIndex = 279
@@ -1190,7 +1194,7 @@ Partial Class frmResultBaseDesign
         Me.lbltranstime.BackColor = System.Drawing.Color.Transparent
         Me.lbltranstime.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltranstime.ForeColor = System.Drawing.Color.Black
-        Me.lbltranstime.Location = New System.Drawing.Point(682, 78)
+        Me.lbltranstime.Location = New System.Drawing.Point(75, 76)
         Me.lbltranstime.Name = "lbltranstime"
         Me.lbltranstime.Size = New System.Drawing.Size(83, 14)
         Me.lbltranstime.TabIndex = 280
@@ -1239,6 +1243,24 @@ Partial Class frmResultBaseDesign
         Me.cmverifiedby.Name = "cmverifiedby"
         Me.cmverifiedby.Size = New System.Drawing.Size(215, 26)
         Me.cmverifiedby.TabIndex = 222
+        '
+        'paneltimeinfo
+        '
+        Me.paneltimeinfo.BackColor = System.Drawing.Color.Transparent
+        Me.paneltimeinfo.Controls.Add(Me.Label4)
+        Me.paneltimeinfo.Controls.Add(Me.Label5)
+        Me.paneltimeinfo.Controls.Add(Me.Label6)
+        Me.paneltimeinfo.Controls.Add(Me.lblptno)
+        Me.paneltimeinfo.Controls.Add(Me.lbltranstime)
+        Me.paneltimeinfo.Controls.Add(Me.lblprintdate)
+        Me.paneltimeinfo.Controls.Add(Me.Label11)
+        Me.paneltimeinfo.Controls.Add(Me.lblprinttime)
+        Me.paneltimeinfo.Controls.Add(Me.lbltransdate)
+        Me.paneltimeinfo.Controls.Add(Me.Label9)
+        Me.paneltimeinfo.Location = New System.Drawing.Point(617, 3)
+        Me.paneltimeinfo.Name = "paneltimeinfo"
+        Me.paneltimeinfo.Size = New System.Drawing.Size(160, 90)
+        Me.paneltimeinfo.TabIndex = 283
         '
         'DataGridViewTextBoxColumn1
         '
@@ -1326,6 +1348,12 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn9.HeaderText = "colunitsconversion"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         Me.DataGridViewTextBoxColumn9.ReadOnly = True
@@ -1334,6 +1362,12 @@ Partial Class frmResultBaseDesign
         'DataGridViewTextBoxColumn10
         '
         Me.DataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewTextBoxColumn10.HeaderText = "colrefconversion"
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         Me.DataGridViewTextBoxColumn10.ReadOnly = True
@@ -1471,23 +1505,14 @@ Partial Class frmResultBaseDesign
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(789, 406)
         Me.ControlBox = False
+        Me.Controls.Add(Me.paneltimeinfo)
         Me.Controls.Add(Me.lblbirthdate)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.panelnewborn)
-        Me.Controls.Add(Me.lbltranstime)
-        Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.lbltransdate)
-        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txttimeencoded)
+        Me.Controls.Add(Me.txtdateencoded)
         Me.Controls.Add(Me.lbltimeencoded)
-        Me.Controls.Add(Me.lbldateencoded)
-        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.pctrLogo)
-        Me.Controls.Add(Me.lblprinttime)
-        Me.Controls.Add(Me.lblprintdate)
-        Me.Controls.Add(Me.lblptno)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.lblpatientaddress)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtRequestedby)
@@ -1502,7 +1527,7 @@ Partial Class frmResultBaseDesign
         Me.Controls.Add(Me.lblAge)
         Me.Controls.Add(Me.lblGender)
         Me.Controls.Add(Me.lblPatientname)
-        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.lbldateencoded)
         Me.Controls.Add(Me.lblMisc)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -1512,12 +1537,6 @@ Partial Class frmResultBaseDesign
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "TEST"
         Me.panelmain.ResumeLayout(False)
-        Me.panelresultgrid.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.panelresultwithconversion.ResumeLayout(False)
-        Me.panelmanageparams.ResumeLayout(False)
         Me.panelsignatory.ResumeLayout(False)
         Me.tblpanelsignatory.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
@@ -1531,9 +1550,17 @@ Partial Class frmResultBaseDesign
         Me.Panel3.ResumeLayout(False)
         Me.panelpatho.ResumeLayout(False)
         Me.panelpatho.PerformLayout()
+        Me.panelresultgrid.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.dgvResult, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panelresultwithconversion.ResumeLayout(False)
+        Me.panelmanageparams.ResumeLayout(False)
         Me.panelnewborn.ResumeLayout(False)
         Me.panelnewborn.PerformLayout()
         CType(Me.pctrLogo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.paneltimeinfo.ResumeLayout(False)
+        Me.paneltimeinfo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1608,10 +1635,10 @@ Partial Class frmResultBaseDesign
     Friend WithEvents LineShape8 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents LineShape10 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents LineShape9 As Microsoft.VisualBasic.PowerPacks.LineShape
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents lbldateencoded As System.Windows.Forms.Label
     Friend WithEvents lbltimeencoded As System.Windows.Forms.Label
+    Friend WithEvents txtdateencoded As System.Windows.Forms.Label
+    Friend WithEvents txttimeencoded As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents lbltransdate As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
@@ -1665,4 +1692,5 @@ Partial Class frmResultBaseDesign
     Friend WithEvents colunitsconversion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colrefconversion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colconversion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents paneltimeinfo As System.Windows.Forms.Panel
 End Class

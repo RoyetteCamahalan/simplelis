@@ -16,6 +16,7 @@ Module modGlobal
     Public sourceOfficeDesc As String
     Public divisionCode As String
     Public defaultSOfficeCode As String
+    Public hospitalcode As String
     Public userName As String
     Public password As String
     Public designation As String
@@ -346,7 +347,7 @@ Module modGlobal
         '        End If
         'End Select
         'hospitalname = dtHospInfo.Rows(0).Item("HospName")
-        'hospitalcode = dtHospInfo.Rows(0).Item("eclaimshospitalcode")
+        hospitalcode = dtHospInfo.Rows(0).Item("eclaimshospitalcode")
         'hospitaladdress = dtHospInfo.Rows(0).Item("Barangay") & ", " & dtHospInfo.Rows(0).Item("MunCity") & ", " & dtHospInfo.Rows(0).Item("Province")
 
         Select Case IsDBNull(dtHospInfo.Rows(0)("edit_icon"))
