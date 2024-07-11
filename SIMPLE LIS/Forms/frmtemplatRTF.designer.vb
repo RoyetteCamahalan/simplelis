@@ -135,6 +135,8 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblward = New System.Windows.Forms.Label()
+        Me.txtward = New System.Windows.Forms.Label()
         Me.tbResult.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.tbllayoutpanel.SuspendLayout()
@@ -1060,7 +1062,7 @@ Partial Class frmtemplateRTF
         Me.lblchiefcomplaint.ForeColor = System.Drawing.Color.Black
         Me.lblchiefcomplaint.Location = New System.Drawing.Point(520, 73)
         Me.lblchiefcomplaint.Name = "lblchiefcomplaint"
-        Me.lblchiefcomplaint.Size = New System.Drawing.Size(615, 18)
+        Me.lblchiefcomplaint.Size = New System.Drawing.Size(451, 18)
         Me.lblchiefcomplaint.TabIndex = 282
         Me.lblchiefcomplaint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1185,6 +1187,29 @@ Partial Class frmtemplateRTF
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         Me.DataGridViewTextBoxColumn11.Width = 132
         '
+        'lblward
+        '
+        Me.lblward.AutoSize = True
+        Me.lblward.BackColor = System.Drawing.Color.White
+        Me.lblward.Font = New System.Drawing.Font("Calibri", 11.25!)
+        Me.lblward.ForeColor = System.Drawing.Color.Black
+        Me.lblward.Location = New System.Drawing.Point(973, 69)
+        Me.lblward.Name = "lblward"
+        Me.lblward.Size = New System.Drawing.Size(44, 18)
+        Me.lblward.TabIndex = 285
+        Me.lblward.Text = "Ward:"
+        '
+        'txtward
+        '
+        Me.txtward.BackColor = System.Drawing.Color.Transparent
+        Me.txtward.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.txtward.ForeColor = System.Drawing.Color.Black
+        Me.txtward.Location = New System.Drawing.Point(1037, 69)
+        Me.txtward.Name = "txtward"
+        Me.txtward.Size = New System.Drawing.Size(156, 18)
+        Me.txtward.TabIndex = 286
+        Me.txtward.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'frmtemplateRTF
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1192,6 +1217,8 @@ Partial Class frmtemplateRTF
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1138, 611)
         Me.ControlBox = False
+        Me.Controls.Add(Me.txtward)
+        Me.Controls.Add(Me.lblward)
         Me.Controls.Add(Me.lblrequestedby)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lblchiefcomplaint)
@@ -1350,4 +1377,6 @@ Partial Class frmtemplateRTF
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents tsreloadresultpdf As System.Windows.Forms.ToolStripButton
     Friend WithEvents chkesig As System.Windows.Forms.CheckBox
+    Friend WithEvents lblward As System.Windows.Forms.Label
+    Friend WithEvents txtward As System.Windows.Forms.Label
 End Class

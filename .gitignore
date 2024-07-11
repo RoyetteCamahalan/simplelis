@@ -1,6 +1,6 @@
 **/Debug/*
 !**/Debug/*.dll
-!**/Debug/templates
+**/Debug/templates
 **/Debug/templates/temp/*
 **/Debug/templates/*.zip
 Obj/

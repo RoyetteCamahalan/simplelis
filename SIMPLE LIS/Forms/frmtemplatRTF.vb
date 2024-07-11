@@ -39,6 +39,7 @@ Public Class frmtemplateRTF
     Public patientbirthdate As Date = Date.Now
     Private patientcontactno As String
     Private ptno As String
+    Private hospitalno As String
     Private patientaddress As String
     Private radiologistdesignation As String
     Private requestStatus As Integer
@@ -341,10 +342,16 @@ Public Class frmtemplateRTF
             Me.patientname = dtResult.Rows(0).Item("patient")
             Me.patientbirthdate = Utility.NullToDefaultDateFormat(dtResult.Rows(0).Item("birthdate"))
             Me.ptno = Utility.NullToEmptyString(dtResult.Rows(0).Item("ptno"))
+            Me.hospitalno = Utility.NullToEmptyString(dtResult.Rows(0).Item("hospitalno"))
             Me.patientaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
             Me.radiologistdesignation = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistdesignation"))
             Me.dtDate.Value = Utility.NullToCurrentDate(dtResult.Rows(0).Item("dateencoded"))
             Me.chkesig.Checked = Utility.NullToBoolean(dtResult.Rows(0).Item("esigradiologist"))
+            Me.txtward.Text = Utility.NullToEmptyString(dtResult.Rows(0).Item("ward"))
+            If modGlobal.hospitalcode = Constant.Facility.ecomed Then
+                Me.lblward.Visible = False
+                Me.txtward.Visible = False
+            End If
 
             Dim dtResultImages As DataTable = clsRadiology.getRadiologyResultDetailsImages(requestdetailno, 4)
             For i = 0 To dtResultImages.Rows.Count - 1
@@ -679,6 +686,12 @@ Public Class frmtemplateRTF
                     .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
                 End With
                 With r.Find
+                    .Text = "{hospitalno}"
+                    .Replacement.Text = Me.hospitalno
+                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+                End With
+                With r.Find
                     .Text = "{birthdate}"
                     .Replacement.Text = Me.patientbirthdate.ToShortDateString
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
@@ -687,6 +700,18 @@ Public Class frmtemplateRTF
                 With r.Find
                     .Text = "{patientaddress}"
                     .Replacement.Text = Me.patientaddress
+                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+                End With
+                With r.Find
+                    .Text = "{reqphysician}"
+                    .Replacement.Text = Me.lblrequestedby.Text
+                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+                End With
+                With r.Find
+                    .Text = "{ward}"
+                    .Replacement.Text = Me.txtward.Text
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
                     .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
                 End With
@@ -768,6 +793,10 @@ Public Class frmtemplateRTF
                                     field.Result = Me.patientaddress
                                 Case "lblptno"
                                     field.Result = Me.ptno
+                                Case "lblhospno"
+                                    field.Result = Me.hospitalno
+                                Case "lblward"
+                                    field.Result = Me.txtward.Text
                                 Case "lblchiefcomplaint"
                                     field.Result = Me.lblchiefcomplaint.Text
                                 Case "lblage"
