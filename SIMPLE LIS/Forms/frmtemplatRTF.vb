@@ -42,6 +42,7 @@ Public Class frmtemplateRTF
     Private hospitalno As String
     Private patientaddress As String
     Private radiologistdesignation As String
+    Private radiologistlicenseno As String
     Private requestStatus As Integer
     Public resultpdflocation As String
 
@@ -345,6 +346,7 @@ Public Class frmtemplateRTF
             Me.hospitalno = Utility.NullToEmptyString(dtResult.Rows(0).Item("hospitalno"))
             Me.patientaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
             Me.radiologistdesignation = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistdesignation"))
+            Me.radiologistlicenseno = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistlicense"))
             Me.dtDate.Value = Utility.NullToCurrentDate(dtResult.Rows(0).Item("dateencoded"))
             Me.chkesig.Checked = Utility.NullToBoolean(dtResult.Rows(0).Item("esigradiologist"))
             Me.txtward.Text = Utility.NullToEmptyString(dtResult.Rows(0).Item("ward"))
@@ -668,6 +670,12 @@ Public Class frmtemplateRTF
                     .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
                 End With
                 With r.Find
+                    .Text = "{dateonly}"
+                    .Replacement.Text = dtDate.Value.ToString("MM/dd/yyyy")
+                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+                End With
+                With r.Find
                     .Text = "{print_date}"
                     .Replacement.Text = Utility.GetServerDate().ToString("MM/dd/yyyy hh:mm tt")
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
@@ -724,6 +732,12 @@ Public Class frmtemplateRTF
                 With r.Find
                     .Text = "{doctorsdesignation}"
                     .Replacement.Text = Me.radiologistdesignation
+                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+                End With
+                With r.Find
+                    .Text = "{doctorslicense}"
+                    .Replacement.Text = Me.radiologistlicenseno
                     .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
                     .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
                 End With
@@ -1130,5 +1144,19 @@ Public Class frmtemplateRTF
 
     Private Sub tseditresultpdf_Click(sender As System.Object, e As System.EventArgs) Handles tseditresultpdf.Click
         Call processWordDocument("", True)
+    End Sub
+
+    Private Sub cmbradiologist_SelectedValueChanged(sender As System.Object, e As System.EventArgs) Handles cmbradiologist.SelectedValueChanged
+        If afterload AndAlso cmbradiologist.SelectedIndex >= 0 Then
+            Call getEmployeeInfo(cmbradiologist.SelectedValue)
+        End If
+    End Sub
+    Private Sub getEmployeeInfo(ByVal employeeid As String)
+        Dim dt As DataTable = clsRadiology.genericcls(8, employeeid)
+        If dt.Rows.Count = 0 Then
+            Exit Sub
+        End If
+        Me.radiologistdesignation = Utility.NullToEmptyString(dt.Rows(0).Item("designation"))
+        Me.radiologistlicenseno = Utility.NullToEmptyString(dt.Rows(0).Item("prcno"))
     End Sub
 End Class
