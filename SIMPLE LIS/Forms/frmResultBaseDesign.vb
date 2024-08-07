@@ -94,6 +94,13 @@ Public Class frmResultBaseDesign
             lbltimeencoded.Text = "Ward:"
             txttimeencoded.Location = New Point(620, 135)
             txttimeencoded.Size = New Size(127, 18)
+            Me.paneltopmargin.Visible = True
+            Me.paneltopmargin.Height = 50
+            Me.Height = Me.Height + 50
+        ElseIf (modGlobal.hospitalcode = Constant.Facility.hipolfamily) Then
+            Me.paneltopmargin.Visible = True
+            Me.paneltopmargin.Height = 100
+            Me.Height = Me.Height + 100
         End If
         Try
             Dim tempphoto As Byte() = dtHospitalInfo.Rows(0).Item("hospitallogo")

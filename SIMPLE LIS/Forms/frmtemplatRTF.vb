@@ -34,18 +34,12 @@ Public Class frmtemplateRTF
     Private labradiologyid As Long
     Private laboratoryresultid As Long
     Private chargeid As Long
-    Private patientid As Long
-    Private patientname As String
-    Public patientbirthdate As Date = Date.Now
-    Private patientcontactno As String
+    Public patient As New Patient
     Private ptno As String
-    Private hospitalno As String
-    Private patientaddress As String
     Private radiologistdesignation As String
     Private radiologistlicenseno As String
     Private requestStatus As Integer
     Public resultpdflocation As String
-
 
     Private tempfilename As String
     Private tempsafefilaname As String
@@ -329,7 +323,7 @@ Public Class frmtemplateRTF
             Me.txtAge.Text = dtResult.Rows(0).Item("age").ToString
             Me.lblexamination.Text = dtResult.Rows(0).Item("itemspecs").ToString
             Me.lblchiefcomplaint.Text = dtResult.Rows(0).Item("chiefcomplaints").ToString
-            Me.patientcontactno = dtResult.Rows(0).Item("mobileno").ToString
+            Me.patient.mobileno = dtResult.Rows(0).Item("mobileno").ToString
             Me.lblrequestedby.Text = dtResult.Rows(0).Item("requestingphysician").ToString
             Me.laboratoryresultid = dtResult.Rows(0).Item("laboratoryresultid")
             Me.labradiologyid = dtResult.Rows(0).Item("labradiologyid")
@@ -339,12 +333,16 @@ Public Class frmtemplateRTF
                 Me.cmbRadTech.SelectedValue = dtResult.Rows(0).Item("radtechid")
             End If
             Me.cmbradiologist.SelectedValue = dtResult.Rows(0).Item("radiologistid")
-            Me.patientid = dtResult.Rows(0).Item("patientid")
-            Me.patientname = dtResult.Rows(0).Item("patient")
-            Me.patientbirthdate = Utility.NullToDefaultDateFormat(dtResult.Rows(0).Item("birthdate"))
+            Me.patient.patientid = dtResult.Rows(0).Item("patientid")
+            Me.patient.patientfullname = dtResult.Rows(0).Item("patient")
+            Me.patient.birthdate = Utility.NullToDefaultDateFormat(dtResult.Rows(0).Item("birthdate"))
             Me.ptno = Utility.NullToEmptyString(dtResult.Rows(0).Item("ptno"))
-            Me.hospitalno = Utility.NullToEmptyString(dtResult.Rows(0).Item("hospitalno"))
-            Me.patientaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
+            Me.patient.hospitalno = Utility.NullToEmptyString(dtResult.Rows(0).Item("hospitalno"))
+            Me.patient.homeaddress = Utility.NullToEmptyString(dtResult.Rows(0).Item("homeaddress"))
+            Me.patient.email = Utility.NullToEmptyString(dtResult.Rows(0).Item("emailaddress"))
+            Me.patient.nationality = Utility.NullToEmptyString(dtResult.Rows(0).Item("nationality"))
+            Me.patient.height = Utility.NullToEmptyString(dtResult.Rows(0).Item("height"))
+            Me.patient.weight = Utility.NullToEmptyString(dtResult.Rows(0).Item("weight"))
             Me.radiologistdesignation = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistdesignation"))
             Me.radiologistlicenseno = Utility.NullToEmptyString(dtResult.Rows(0).Item("radiologistlicense"))
             Me.dtDate.Value = Utility.NullToCurrentDate(dtResult.Rows(0).Item("dateencoded"))
@@ -416,7 +414,7 @@ Public Class frmtemplateRTF
         loadPreviousResult()
     End Sub
     Private Sub loadPreviousResult()
-        Dim dt As DataTable = clsRadiology.getPreviousResults(Me.patientid, Me.requestdetailno)
+        Dim dt As DataTable = clsRadiology.getPreviousResults(Me.patient.patientid, Me.requestdetailno)
         With Me.cmbpreviousresult
             .DataSource = dt
             .DisplayMember = "testdesc"
@@ -526,8 +524,8 @@ Public Class frmtemplateRTF
             myCharges.dateapproved = GetServerDate() '"1/1/1900 0:00:00 PM"
             myCharges.remarks = "X-RAY/Ultrasound"
 
-            myCharges.patientno = Me.patientid
-            myCharges.patientname = Me.patientname
+            myCharges.patientno = Me.patient.patientid
+            myCharges.patientname = Me.patient.patientfullname
             myCharges.registryno = myLaboratoryResult.admissionid ' or admission id
             If Me.chargeid = 0 Then
                 Me.chargeid = myCharges.Save(True)
@@ -650,98 +648,8 @@ Public Class frmtemplateRTF
             Me.txtResult.Copy()
             wordDocument = wordApplication.Documents.Open(tempfilename)
             wordDocument.Activate()
-            For Each r As Microsoft.Office.Interop.Word.Range In wordDocument.StoryRanges
-                With r.Find
-                    .Text = "{patientname}"
-                    .Replacement.Text = txtPatientname.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{age_sex}"
-                    .Replacement.Text = txtAge.Text & "/" & txtGender.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{date}"
-                    .Replacement.Text = dtDate.Value.ToString("MM/dd/yyyy hh:mm tt")
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{dateonly}"
-                    .Replacement.Text = dtDate.Value.ToString("MM/dd/yyyy")
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{print_date}"
-                    .Replacement.Text = Utility.GetServerDate().ToString("MM/dd/yyyy hh:mm tt")
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{examination}"
-                    .Replacement.Text = Me.lblexamination.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{patientno}"
-                    .Replacement.Text = Me.ptno
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{hospitalno}"
-                    .Replacement.Text = Me.hospitalno
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{birthdate}"
-                    .Replacement.Text = Me.patientbirthdate.ToShortDateString
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{patientaddress}"
-                    .Replacement.Text = Me.patientaddress
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{reqphysician}"
-                    .Replacement.Text = Me.lblrequestedby.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{ward}"
-                    .Replacement.Text = Me.txtward.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{doctorsname}"
-                    .Replacement.Text = Me.cmbradiologist.Text
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{doctorsdesignation}"
-                    .Replacement.Text = Me.radiologistdesignation
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-                With r.Find
-                    .Text = "{doctorslicense}"
-                    .Replacement.Text = Me.radiologistlicenseno
-                    .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
-                    .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
-                End With
-            Next
+
+            FindAndReplaceDocument(wordDocument)
 
             wordApplication.Selection.Paste()
             wordDocument.Save()
@@ -804,11 +712,11 @@ Public Class frmtemplateRTF
                                 Case "lbltestdate"
                                     field.Result = Me.dtDate.Value.ToString(defaultdateformat)
                                 Case "lblpatientaddress"
-                                    field.Result = Me.patientaddress
+                                    field.Result = Me.patient.homeaddress
                                 Case "lblptno"
                                     field.Result = Me.ptno
                                 Case "lblhospno"
-                                    field.Result = Me.hospitalno
+                                    field.Result = Me.patient.hospitalno
                                 Case "lblward"
                                     field.Result = Me.txtward.Text
                                 Case "lblchiefcomplaint"
@@ -820,7 +728,15 @@ Public Class frmtemplateRTF
                                 Case "lblrequestedby"
                                     field.Result = Me.lblrequestedby.Text
                                 Case "lblcontactno"
-                                    field.Result = Me.patientcontactno
+                                    field.Result = Me.patient.mobileno
+                                Case "lblemail"
+                                    field.Result = Me.patient.email
+                                Case "lblnationality"
+                                    field.Result = Me.patient.nationality
+                                Case "lblheight"
+                                    field.Result = Me.patient.height
+                                Case "lblweight"
+                                    field.Result = Me.patient.weight
                             End Select
                         Next
                     Else
@@ -833,7 +749,7 @@ Public Class frmtemplateRTF
                                 Case "lbltestdate"
                                     field.Range.Text = Me.dtDate.Value.ToString(defaultdateformat)
                                 Case "lblpatientaddress"
-                                    field.Range.Text = Me.patientaddress
+                                    field.Range.Text = Me.patient.homeaddress
                                 Case "lblptno"
                                     field.Result = Me.ptno
                                 Case "lblchiefcomplaint"
@@ -845,10 +761,22 @@ Public Class frmtemplateRTF
                                 Case "lblrequestedby"
                                     field.Range.Text = Me.lblrequestedby.Text
                                 Case "lblcontactno"
-                                    field.Range.Text = Me.patientcontactno
+                                    field.Range.Text = Me.patient.mobileno
+                                Case "lblnationality"
+                                    field.Range.Text = Me.patient.nationality
+                                Case "lblemail"
+                                    field.Range.Text = Me.patient.email
+                                Case "lblnationality"
+                                    field.Range.Text = Me.patient.nationality
+                                Case "lblheight"
+                                    field.Range.Text = Me.patient.height
+                                Case "lblweight"
+                                    field.Range.Text = Me.patient.weight
                             End Select
                         Next
                     End If
+
+                    FindAndReplaceDocument(wordDocument)
 
                 End With
             Catch ex As Exception
@@ -895,6 +823,124 @@ Public Class frmtemplateRTF
         Catch ex As Exception
 
         End Try
+    End Sub
+    Private Sub FindAndReplaceDocument(ByRef wordDocument As Microsoft.Office.Interop.Word.Document)
+        For Each r As Microsoft.Office.Interop.Word.Range In wordDocument.StoryRanges
+            With r.Find
+                .Text = "{patientname}"
+                .Replacement.Text = txtPatientname.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{age_sex}"
+                .Replacement.Text = txtAge.Text & "/" & txtGender.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{age}"
+                .Replacement.Text = txtAge.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{sex}"
+                .Replacement.Text = txtGender.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{date}"
+                .Replacement.Text = dtDate.Value.ToString("MM/dd/yyyy hh:mm tt")
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{dateonly}"
+                .Replacement.Text = dtDate.Value.ToString("MM/dd/yyyy")
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{print_date}"
+                .Replacement.Text = Utility.GetServerDate().ToString("MM/dd/yyyy hh:mm tt")
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{examination}"
+                .Replacement.Text = Me.lblexamination.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{patientno}"
+                .Replacement.Text = Me.ptno
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{hospitalno}"
+                .Replacement.Text = Me.patient.hospitalno
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{birthdate}"
+                .Replacement.Text = Me.patient.birthdate.ToShortDateString
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{patientaddress}"
+                .Replacement.Text = Me.patient.homeaddress
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{nationality}"
+                .Replacement.Text = Me.patient.nationality
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{civilstatus}"
+                .Replacement.Text = Me.patient.civilstatus
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{reqphysician}"
+                .Replacement.Text = Me.lblrequestedby.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{ward}"
+                .Replacement.Text = Me.txtward.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{doctorsname}"
+                .Replacement.Text = Me.cmbradiologist.Text
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{doctorsdesignation}"
+                .Replacement.Text = Me.radiologistdesignation
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+            With r.Find
+                .Text = "{doctorslicense}"
+                .Replacement.Text = Me.radiologistlicenseno
+                .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue
+                .Execute(Replace:=Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll)
+            End With
+        Next
     End Sub
 #End Region
 
@@ -961,16 +1007,7 @@ Public Class frmtemplateRTF
             .DisplayMember = "name"
         End With
         With Me.tsfonsize.ComboBox
-            .Items.Add("8")
-            .Items.Add("9")
-            .Items.Add("10")
-            .Items.Add("11")
-            .Items.Add("12")
-            .Items.Add("14")
-            .Items.Add("16")
-            .Items.Add("18")
-            .Items.Add("20")
-            .Items.Add("24")
+            .Items.AddRange({"8", "9", "10", "11", "12", "14", "16", "18", "20", "24"})
         End With
         afterload = True
     End Sub

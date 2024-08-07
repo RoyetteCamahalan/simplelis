@@ -771,7 +771,7 @@ getLabDetails:
                             newPDFDoc.AddPage(sourcePDFDoc.Pages(Pg))
                         Next
                         If lock Then
-                            newPDFDoc.SecuritySettings.UserPassword = frmRadiology.patientbirthdate.ToString("yyyyMMdd")
+                            newPDFDoc.SecuritySettings.UserPassword = frmRadiology.patient.birthdate.ToString("yyyyMMdd")
                             newPDFDoc.SecuritySettings.OwnerPassword = "owner"
                         End If
                     Case Else
