@@ -86,22 +86,26 @@ Public Class frmResultBaseDesign
         Me.lblHeader.Text = dtHospitalInfo.Rows(0).Item("Hospital").ToString()
         Me.lblAddress.Text = dtHospitalInfo.Rows(0).Item("Address3").ToString()
         Me.lablTelNo.Text = dtHospitalInfo.Rows(0).Item("Telephone").ToString()
-        If (modGlobal.hospitalcode = Constant.Facility.lhi) Then
-            paneltimeinfo.Visible = False
+        If modGlobal.hospitalcode = Constant.Facility.lhi Then
             lbldateencoded.Text = "Date:"
             txtdateencoded.Location = New Point(616, 114)
             txtdateencoded.Size = New Size(131, 18)
-            lbltimeencoded.Text = "Ward:"
+            lbltimeencoded.Text = "Room:"
             txttimeencoded.Location = New Point(620, 135)
             txttimeencoded.Size = New Size(127, 18)
-            Me.paneltopmargin.Visible = True
-            Me.paneltopmargin.Height = 50
-            Me.Height = Me.Height + 50
-        ElseIf (modGlobal.hospitalcode = Constant.Facility.hipolfamily) Then
-            Me.paneltopmargin.Visible = True
-            Me.paneltopmargin.Height = 100
-            Me.Height = Me.Height + 100
+            paneltimeinfo.Visible = False
+        ElseIf modGlobal.hospitalcode = Constant.Facility.hipolfamily Then
+            lbldateencoded.Text = "Date:"
+            txtdateencoded.Location = New Point(616, 114)
+            txtdateencoded.Size = New Size(131, 18)
+            lbltimeencoded.Text = "Room:"
+            txttimeencoded.Location = New Point(620, 135)
+            txttimeencoded.Size = New Size(127, 18)
         End If
+
+        Me.paneltopmargin.Visible = appSetting.labheadermargin > 0
+        Me.paneltopmargin.Height = appSetting.labheadermargin
+        Me.Height = Me.Height + appSetting.labheadermargin
         Try
             Dim tempphoto As Byte() = dtHospitalInfo.Rows(0).Item("hospitallogo")
             If IsDBNull(dtHospitalInfo.Rows(0).Item("hospitallogo")) Or tempphoto.Length = 0 Then
@@ -134,8 +138,10 @@ Public Class frmResultBaseDesign
         Me.lbltransdate.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("daterequested")).ToString(modGlobal.defaultdateformat)
         Me.lbltranstime.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("daterequested")).ToString(modGlobal.defaulttimeformat)
         Me.txtdateencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaultdateformat)
-        If (modGlobal.hospitalcode = Constant.Facility.lhi) Then
+        If modGlobal.hospitalcode = Constant.Facility.lhi Then
             Me.txttimeencoded.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("ward"))
+        ElseIf modGlobal.hospitalcode = Constant.Facility.hipolfamily Then
+            Me.txttimeencoded.Text = Utility.NullToEmptyString(dtPatientDetails.Rows(0).Item("room"))
         Else
             Me.txttimeencoded.Text = Utility.NullToCurrentDate(dtPatientDetails.Rows(0).Item("resultdatesubmitted")).ToString(modGlobal.defaulttimeformat)
         End If

@@ -371,7 +371,7 @@ Public Class frmtemplateRTF
                 Me.DGVFilm.Rows(ctr).Cells(colnooffilms.Index).Value = dtChargeResultDetails.Rows(ctr).Item("quantity")
                 Me.chargeid = dtChargeResultDetails.Rows(ctr).Item("chargeid")
             Next
-            DocumentLocation = Utility.readSetting(appSettings.DocumentLocationEMR)
+            DocumentLocation = Utility.readSetting(modGlobal.appSettings.DocumentLocationEMR)
             If DocumentLocation <> "" Then
                 ImageStorage = DocumentLocation & "\"
             End If

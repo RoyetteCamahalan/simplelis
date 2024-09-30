@@ -67,6 +67,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\VBPowerPacks\v10.0\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.1.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PdfSharp">
       <HintPath>..\..\bin\Debug\PdfSharp.dll</HintPath>
     </Reference>
@@ -129,6 +133,7 @@
     </Compile>
     <Compile Include="Classes\ResizeableControl.vb" />
     <Compile Include="Classes\Utility.vb" />
+    <Compile Include="Common\AppSettingsModule.vb" />
     <Compile Include="Data Access\clsDBConnection.vb" />
     <Compile Include="Data Access\clsQuery.vb" />
     <Compile Include="Data Access\GenericDA.vb" />
@@ -358,6 +363,9 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="lis.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Settings.settings">

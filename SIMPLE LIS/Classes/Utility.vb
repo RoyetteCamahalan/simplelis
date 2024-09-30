@@ -76,7 +76,7 @@ Public Class Utility
     Public Shared Function readSetting(ByVal setting As Integer) As String
         Try
             Dim appSettings = ConfigurationManager.AppSettings
-            Dim key As appSettings = setting
+            Dim key As modGlobal.appSettings = setting
             Dim result As String = appSettings(key.ToString)
             If IsNothing(result) Then
                 result = "Not found"
